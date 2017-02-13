@@ -9,5 +9,5 @@ I have intended this game to be top-down and one that has a similar concept and 
 * Environmental hazards: Dodge and avoid your enemy's trail while using the various contraptions spread around the environment to your advantage, such as ramps, barriers, etc.
 
 ####Things to work on: 
-The general theme of the game. Something other than "Tron" would benefit this game to avoid unoriginality.  
-An appropriate controller that fits this type of game.
+- The general theme of the game. Something other than "Tron" would benefit this game to avoid unoriginality.  
+- An appropriate controller that fits this type of game.
