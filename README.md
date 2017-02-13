@@ -5,3 +5,5 @@ I have intended this game to be top-down and one that has a similar concept and 
 
 ### Mechanics
 * Fast-paced movement: Dodge and avoid your enemy's trail while using the various contraptions spread around the environment to your advantage, such as ramps, barriers, etc.
+
+Unique selling points 
