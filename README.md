@@ -10,4 +10,4 @@ I have intended this game to be top-down and one that has a similar concept and 
 
 ####Things to work on: 
 - The general theme of the game. Something other than "Tron" would benefit this game to avoid unoriginality.  
-- An appropriate controller that fits this type of game.
+- An appropriate controller style that fits this type of game.
