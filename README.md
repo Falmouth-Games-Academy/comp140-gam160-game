@@ -2,14 +2,18 @@
 Repository for Assignment 1 of COMP140-GAM160
 
 # Overview
-My game idea came from both my love of wave based suvival games and my hatred of cats. Basically you will move around a relativley large arena while dozens of cats run at you. The game will be top down with maybe a 3d element to it and very bloody. The players score will be based on time survived and cats killed. If you've ever played box heads its similar to that. I also might add a feature to change the enemy models from cats to other things people don't like, or that don't like people.
+The idea of my game comes from several different games I play on my iPhone. Obviously with limited controls the games are limited in some respects, however I can see this potentially as a good thing. With this in mind I have chosen to build a game where the player is running around in a small platformer styled arena with a small hole in the middle. Enemies will spawn from the sky above and fall into the level, they will continue running until they fall in the pit below and die, if they hit any walls they turn the other way. The player can move left, right and jump. They will fire in both directtions when they shoot. Each enemy they kill will increase their score, if the enemies fall below nothing will happen so you if you can avoid them then you will not be penialised, however if the player gets hit once they will lose. There will also be randomly spawning pickups which increase the player score by maybe 500. In future iterations I will make it so you can unlock different methods of attack, and each time you pick up the item it randomly selects which method you use until the next pickup.
 
-# Mechanics
-      Dozens of cats chasing the player
-      Player dies if cats hit him 3 or 5 times
-      Start with a basic pistol
-      New guns spawn in the area and other power ups
-      Score increases a set amount per second survived as well as extra score per cat annihilated 
+Hopefully I will also be able to make a few extra map layouts which can be unlocked by achieving higher scores.
 
-# Controller
-I want to make this game very hard, and as such I think the players hand should always be on the controller or they won't shoot (there is no actual fire button but the player shoots constantly while the controller is held). So i will need a method of making sure there hand is on the controller. As for movement I'm not quite sure yet, as simple d-pad wouldn't be very creative, but movement by a movement sensor for example could be too hard. Maybe there's a reletivley cheap touch pad I can use similar to a d-pad.
+# Controller Research
+
+The first alternative controller that peaked my interest is the [Dial](http://shakethatbutton.com/dial/). This game uses a modified rotary phone which links wirelessly through bluetooth to a laptop where the game is running. The idea of the game is to call the number for whichever path the bullets are travelling at you. Creating a controller out of something who's purpose is completely different, to me is somewhat the definition of innovation.  I really liked this idea as it is incredibly simple yet at the same time its actually extremely creative. However I cannot even begin to think how I could use such a thing for my game idea.
+
+The second controller I found was the [Bionic Roshambo](http://shakethatbutton.com/bionic-roshambo/). This controller is essentially a game of rock paper scissors using a modified glove to interact with the game. The game can be played with two players or one against an ai. The best way to explain the glove is by an example; if the player makes the scissors shape the sensors on the two fingers you tuck in are activated which the game recognises. Although this controller isn't really something you need or may ever use, creativley it is a very cool idea. I really like the thought of creating controllers which feel so natural and easy to use. This has made me want to create something very simple yet can control my entire game with it.
+
+The last controller I found is the [Rube Goldberg Lauf der Dinge Electronic Circuit Feedback Machine
+](http://shakethatbutton.com/rube-goldberg-lauf-der-dinge-electronic-circuit-feedback-machine/). This controller to me is the definition of creativity. The controller is different for the multiple different games they play, there is one in which a remote controlled helicopter controls a helicopter in the game on screen. The players can be seen to fly it for a little bit before it falling to the ground and crashing, which is replicated exactly in the game. Another game they play is wii golf, which is controller by a wii controller hanging from a string above. The player rolls a ball down a track which collides with other balls pushing them along till it hit a golf ball down a final straight track and into the wii controller allowing the game to recognise the hit. The games here are all really impressive and you can tell they probably spent a long time planning them all out.
+
+## My controller
+I have decided to try and make a controller with as simple controls as I possible can while still allowing the user to do everything possible in the game. So I came up with a simple rounded square with a joystick at the top and a touch sensor underneath. The player will use the joystick to move and jump, and in order to shoot they must touch the sensor. If the player holders the sensor on it will shoot every second, however if they keep pressing it you will be able too shoot at a quicker rate giving them some incentive to do so. 
