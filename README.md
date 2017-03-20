@@ -15,3 +15,5 @@ Currently only one other motion based snooker controller exists which is the Wii
 
 ![alt text](https://github.com/Stompyy/comp140-gam160-game/blob/master/Wii_snooker.jpg)
 
+## Hardware
+
