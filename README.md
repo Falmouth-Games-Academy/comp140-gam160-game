@@ -1,5 +1,6 @@
 # comp140-gam160-game
 Repository for Assignment 1 of COMP140-GAM160
+Link to Github Repository: https://github.com/JamesCollins1/comp140-gam160-game
 
 In my game, you will take up the role of a submarine commander. There will be a continual list of commands for the player to fulfil, to gain points the player must complete the tasks correctly. However, if the player presses the wrong button of list of buttons, they will lose a life. When they lose all their lives the game ends as the submarine would have sunk. The game increases in difficulty after each successful completion of a command. As the difficulty increases the time between each command decreases. This aims to increase the stress level of the player, making them more likely to make mistakes and lose lives.
 
