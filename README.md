@@ -13,3 +13,4 @@ The game itself will be relatively simple and well established; A physics based 
 
 Currently only one other motion based snooker controller exists which is the Wii snooker cue add on, for use in the different pool and snooker games available for the Nintendo Wii.  Reviews are mixed from [Amazon](https://www.amazon.co.uk/WSC-Real-09-Snooker-Championship/dp/B0029LHMZO) customers and [criticisms](https://www.amazon.co.uk/d/PC-Video-Games/Logic-3-NW847-Wii-Snooker-Cue/B0016ZEX4W/ref=sr_1_6?s=videogames&ie=UTF8&qid=1490018062&sr=1-6&keywords=wii+snooker) are mainly of the build quality.
 
+![alt text](https://github.com/Stompyy/comp140-gam160-game/blob/master/Wii_snooker.jpg)
