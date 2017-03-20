@@ -1,0 +1,3 @@
+C:\Users\Richard Steele\Documents\Unreal Projects\Poolio\Source\Poolio\Poolio.Build.cs
+C:\Users\Richard Steele\Documents\Unreal Projects\Poolio\Source\Poolio.Target.cs
+C:\Users\Richard Steele\Documents\Unreal Projects\Poolio\Source\PoolioEditor.Target.cs

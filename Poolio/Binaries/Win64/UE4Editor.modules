@@ -1,0 +1,9 @@
+{
+	"Changelist" : 3249277,
+	"CompatibleChangelist" : 3195953,
+	"BuildId" : "",
+	"Modules" : 
+	{
+		"Poolio" : "UE4Editor-Poolio-9925.dll"
+	}
+}

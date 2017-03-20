@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\Poolio.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{B1BC9F5E-90DF-4599-B86E-8D30EBDC1F7B}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Poolio.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\PoolioEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{9D2A6DCF-F609-4060-8AEE-CD6D9BA4AA5C}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\Poolio">
+			<UniqueIdentifier>{3A138742-CBD7-4C12-AE60-523004AE6DC3}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Poolio\Poolio.Build.cs">
+			<Filter>Source\Poolio</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\Poolio\Poolio.cpp">
+			<Filter>Source\Poolio</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Poolio\Poolio.h">
+			<Filter>Source\Poolio</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Poolio\PoolioGameModeBase.cpp">
+			<Filter>Source\Poolio</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Poolio\PoolioGameModeBase.h">
+			<Filter>Source\Poolio</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>
