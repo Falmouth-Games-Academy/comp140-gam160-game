@@ -1,7 +1,7 @@
 # End of the Line
 
 ### Description
-I have intended this game to be top-down and one that has a similar concept and mechanics portrayed in the Tron movies, where the player's objective is to avoid crashing into the enemy's trail they leave behind from their constantly moving object. The player also wins by doing this against the enemy. 
+I have intended this game to be top-down with local multiplayer. The concept and mechanics are similar to the ones portrayed in the Tron movies, where the player's objective is to avoid crashing into the enemy's (second player's) trail they leave behind from their constantly moving object. The classic game "Snake" is another great example, although with two players instead of one.
 
 ### Mechanics
 * Fast-paced movement: The player is constantly on edge. You move forward with great speed while navigating left, right, up and down, strategising your next move against your enemy. 
