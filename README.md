@@ -11,8 +11,5 @@ I have intended this game to be top-down and one that has a similar concept and 
 ### Controller
 * Sphere shaped controller (almost "crystalball"-like) where the player simply has to rotate the ball to move around in the game, which is something that also fits the game's overall theme. 
 
-#### Things to work on: 
-- The general theme of the game. Something other than "Tron" would benefit this game to avoid unoriginality.  
-- An appropriate controller style that fits this type of game.
-
 ![Concept](https://github.com/Klumz/comp140-gam160-game/blob/master/Concept.png)
+
