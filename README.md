@@ -11,12 +11,15 @@ The game itself will be relatively simple and well established; A physics based 
 
 ## Research
 
-Currently only one other motion based snooker controller exists which is the Wii snooker cue add on, for use in the different pool and snooker games available for the Nintendo Wii.  Reviews are mixed from [Amazon](https://www.amazon.co.uk/WSC-Real-09-Snooker-Championship/dp/B0029LHMZO) customers and [criticisms](https://www.amazon.co.uk/d/PC-Video-Games/Logic-3-NW847-Wii-Snooker-Cue/B0016ZEX4W/ref=sr_1_6?s=videogames&ie=UTF8&qid=1490018062&sr=1-6&keywords=wii+snooker) are mainly of the build quality.
+Currently only one other motion based snooker controller exists; the Wii snooker cue add on, for use in the different pool and snooker games available for the Nintendo Wii.  Reviews are mixed from [Amazon](https://www.amazon.co.uk/WSC-Real-09-Snooker-Championship/dp/B0029LHMZO) customers and [criticisms](https://www.amazon.co.uk/d/PC-Video-Games/Logic-3-NW847-Wii-Snooker-Cue/B0016ZEX4W/ref=sr_1_6?s=videogames&ie=UTF8&qid=1490018062&sr=1-6&keywords=wii+snooker) are of the build quality, not the concept of a held cue controller.
 
-There is also a game called [SportsBarVR](http://www.poolnationvrgame.com/) which despite not using a physical controller, certainly can provide some inspiration as a pool game that does not rely on a traditional controller.
+There is also a game called [SportsBarVR](http://www.poolnationvrgame.com/) which despite not using a physical controller, can certainly provide inspiration as a pool game that does not rely on a traditional controller.
 
 ![alt text](https://github.com/Stompyy/comp140-gam160-game/blob/master/Wii_snooker.jpg)
 ![alt text](https://github.com/Stompyy/comp140-gam160-game/blob/master/VRPOOL.jpg)
 
 ## Hardware
 
+Relying on a real pool cue that can either sit in a cradle or have the arduino attached to the back section, aiming will be controlled with a joystick and a button to toggle fine tuning.  
+
+There are many different options available to measure the forward and backwards movement of the cue to take a shot, and the favourite currently is to translate that movement onto a motor to generate a voltage. This will give both a magnitude and a duration which can be used to return a shot velocity. All controls have been set out in the input settings of unreal to allow easy mapping to any arduino inputs.
