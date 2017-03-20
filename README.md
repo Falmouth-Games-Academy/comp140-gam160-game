@@ -6,10 +6,10 @@ I have intended this game to be top-down with local multiplayer. The concept and
 ### Mechanics
 * Fast-paced movement: The player is constantly on edge. You move forward with great speed while navigating left, right, up and down, strategising your next move against your enemy. 
 
-* Environmental hazards: Dodge and avoid your enemy's trail while using the various contraptions spread around the environment to your advantage, such as ramps, barriers, etc.
+* Environmental hazards: Dodge and avoid your enemy's (second player's) trail while using the various contraptions spread around the environment to your advantage, such as ramps, barriers, etc.
 
 ### Controller
-* Sphere shaped controller (almost "crystalball"-like) where the player simply has to rotate the ball to move around, which is something that also fits the game's overall theme. Attached image below for clarity.
+* Sphere shaped controller (almost crystal ball-like) where the player simply rotates the ball to move around, which is something that also fits the game's overall theme. Attached image below for clarity.
 
 ![Concept](https://github.com/Klumz/comp140-gam160-game/blob/master/Concept.png)
 
