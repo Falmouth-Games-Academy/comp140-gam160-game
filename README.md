@@ -15,4 +15,4 @@ I have intended this game to be top-down and one that has a similar concept and 
 - The general theme of the game. Something other than "Tron" would benefit this game to avoid unoriginality.  
 - An appropriate controller style that fits this type of game.
 
-![Concept](/relative/path/to/img.jpg?raw=true "Optional Title")
+![Concept](https://github.com/MichailKarakasis/comp140-gam160-game/blob/master/Concept.png)
