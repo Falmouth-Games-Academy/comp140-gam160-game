@@ -10,17 +10,91 @@
 #include "Poolio.generated.dep.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCode1Poolio() {}
+	void AArduinoControllerActor::StaticRegisterNativesAArduinoControllerActor()
+	{
+		FNativeFunctionRegistrar::RegisterFunction(AArduinoControllerActor::StaticClass(), "IsConnected",(Native)&AArduinoControllerActor::execIsConnected);
+	}
+	IMPLEMENT_CLASS(AArduinoControllerActor, 1454372536);
 	void APoolioGameModeBase::StaticRegisterNativesAPoolioGameModeBase()
 	{
 	}
 	IMPLEMENT_CLASS(APoolioGameModeBase, 4225121096);
 #if USE_COMPILED_IN_NATIVES
 // Cross Module References
+	ENGINE_API class UClass* Z_Construct_UClass_AActor();
 	ENGINE_API class UClass* Z_Construct_UClass_AGameModeBase();
 
+	POOLIO_API class UFunction* Z_Construct_UFunction_AArduinoControllerActor_IsConnected();
+	POOLIO_API class UClass* Z_Construct_UClass_AArduinoControllerActor_NoRegister();
+	POOLIO_API class UClass* Z_Construct_UClass_AArduinoControllerActor();
 	POOLIO_API class UClass* Z_Construct_UClass_APoolioGameModeBase_NoRegister();
 	POOLIO_API class UClass* Z_Construct_UClass_APoolioGameModeBase();
 	POOLIO_API class UPackage* Z_Construct_UPackage__Script_Poolio();
+	UFunction* Z_Construct_UFunction_AArduinoControllerActor_IsConnected()
+	{
+		struct ArduinoControllerActor_eventIsConnected_Parms
+		{
+			bool ReturnValue;
+		};
+		UObject* Outer=Z_Construct_UClass_AArduinoControllerActor();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("IsConnected"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x04020401, 65535, sizeof(ArduinoControllerActor_eventIsConnected_Parms));
+			CPP_BOOL_PROPERTY_BITMASK_STRUCT(ReturnValue, ArduinoControllerActor_eventIsConnected_Parms, bool);
+			UProperty* NewProp_ReturnValue = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("ReturnValue"), RF_Public|RF_Transient|RF_MarkAsNative) UBoolProperty(FObjectInitializer(), EC_CppProperty, CPP_BOOL_PROPERTY_OFFSET(ReturnValue, ArduinoControllerActor_eventIsConnected_Parms), 0x0010000000000580, CPP_BOOL_PROPERTY_BITMASK(ReturnValue, ArduinoControllerActor_eventIsConnected_Parms), sizeof(bool), true);
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("Category"), TEXT("Arduino"));
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("ArduinoControllerActor.h"));
+			MetaData->SetValue(ReturnFunction, TEXT("ToolTip"), TEXT("Check if we are actually connected"));
+#endif
+		}
+		return ReturnFunction;
+	}
+	UClass* Z_Construct_UClass_AArduinoControllerActor_NoRegister()
+	{
+		return AArduinoControllerActor::StaticClass();
+	}
+	UClass* Z_Construct_UClass_AArduinoControllerActor()
+	{
+		static UClass* OuterClass = NULL;
+		if (!OuterClass)
+		{
+			Z_Construct_UClass_AActor();
+			Z_Construct_UPackage__Script_Poolio();
+			OuterClass = AArduinoControllerActor::StaticClass();
+			if (!(OuterClass->ClassFlags & CLASS_Constructed))
+			{
+				UObjectForceRegistration(OuterClass);
+				OuterClass->ClassFlags |= 0x20900080;
+
+				OuterClass->LinkChild(Z_Construct_UFunction_AArduinoControllerActor_IsConnected());
+
+PRAGMA_DISABLE_DEPRECATION_WARNINGS
+				UProperty* NewProp_ArduinoOutputInt = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ArduinoOutputInt"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(ArduinoOutputInt, AArduinoControllerActor), 0x0010000000000005);
+				UProperty* NewProp_ArduinoOutput = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ArduinoOutput"), RF_Public|RF_Transient|RF_MarkAsNative) UStrProperty(CPP_PROPERTY_BASE(ArduinoOutput, AArduinoControllerActor), 0x0010000000000005);
+PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AArduinoControllerActor_IsConnected(), "IsConnected"); // 1729032018
+				OuterClass->StaticLink();
+#if WITH_METADATA
+				UMetaData* MetaData = OuterClass->GetOutermost()->GetMetaData();
+				MetaData->SetValue(OuterClass, TEXT("IncludePath"), TEXT("ArduinoControllerActor.h"));
+				MetaData->SetValue(OuterClass, TEXT("ModuleRelativePath"), TEXT("ArduinoControllerActor.h"));
+				MetaData->SetValue(NewProp_ArduinoOutputInt, TEXT("Category"), TEXT("ArduinoControllerActor"));
+				MetaData->SetValue(NewProp_ArduinoOutputInt, TEXT("ModuleRelativePath"), TEXT("ArduinoControllerActor.h"));
+				MetaData->SetValue(NewProp_ArduinoOutput, TEXT("Category"), TEXT("ArduinoControllerActor"));
+				MetaData->SetValue(NewProp_ArduinoOutput, TEXT("ModuleRelativePath"), TEXT("ArduinoControllerActor.h"));
+#endif
+			}
+		}
+		check(OuterClass->GetClass());
+		return OuterClass;
+	}
+	static FCompiledInDefer Z_CompiledInDefer_UClass_AArduinoControllerActor(Z_Construct_UClass_AArduinoControllerActor, &AArduinoControllerActor::StaticClass, TEXT("AArduinoControllerActor"), false, nullptr, nullptr, nullptr);
+	DEFINE_VTABLE_PTR_HELPER_CTOR(AArduinoControllerActor);
 	UClass* Z_Construct_UClass_APoolioGameModeBase_NoRegister()
 	{
 		return APoolioGameModeBase::StaticClass();
@@ -62,8 +136,8 @@ void EmptyLinkFunctionForGeneratedCode1Poolio() {}
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Poolio")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0xDA31BFC7;
-			Guid.B = 0x7FA7DFE2;
+			Guid.A = 0x319B70F6;
+			Guid.B = 0xCBA5B7C1;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

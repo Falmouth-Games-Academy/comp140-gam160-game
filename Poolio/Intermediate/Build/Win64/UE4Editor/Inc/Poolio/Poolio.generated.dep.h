@@ -5,6 +5,9 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
+#ifndef POOLIO_ArduinoControllerActor_generated_h
+	#include "ArduinoControllerActor.h"
+#endif
 #ifndef POOLIO_PoolioGameModeBase_generated_h
 	#include "PoolioGameModeBase.h"
 #endif
