@@ -1,9 +1,9 @@
-﻿Log file open, 04/11/17 11:08:31
+﻿Log file open, 04/18/17 17:31:34
 LogInit:Display: Running engine for game: Poolio
 LogPlatformFile: Not using cached read wrapper
-LogInit:Display: RandInit(-616750755) SRandInit(-616750755).
+LogInit:Display: RandInit(736401824) SRandInit(736401824).
 LogTaskGraph: Started task graph with 5 named threads and 8 total threads with 1 sets of task threads.
-LogStats: Stats thread started at 0.096071
+LogStats: Stats thread started at 0.091601
 LogPluginManager: Loaded Plugin Paper2D, From C:/Program Files (x86)/Epic Games/UE_4.14/Engine/Plugins/2D/Paper2D/Paper2D.uplugin
 LogPluginManager: Loaded Plugin LightPropagationVolume, From C:/Program Files (x86)/Epic Games/UE_4.14/Engine/Plugins/Blendables/LightPropagationVolume/LightPropagationVolume.uplugin
 LogPluginManager: Loaded Plugin BlankPlugin, From C:/Program Files (x86)/Epic Games/UE_4.14/Engine/Plugins/Developer/BlankPlugin/BlankPlugin.uplugin
@@ -139,441 +139,1189 @@ LogInit: Compiled (64-bit): Jan  6 2017 10:49:43
 LogInit: Compiled with Visual C++: 19.00.23026.00
 LogInit: Build Configuration: Development
 LogInit: Branch Name: ++UE4+Release-4.14
-LogInit: Command line:  
+LogInit: Command line:  /Temp/Autosaves/Game/Level/UEDPCPoolTable -game -PIEVIACONSOLE -ResX=1280 -ResY=720  -Multiprocess -messaging -SessionName="Play in Standalone Game" -windowed 
 LogInit: Base directory: C:/Program Files (x86)/Epic Games/UE_4.14/Engine/Binaries/Win64/
 LogInit: Installed Engine Build: 1
 LogInit: Presizing for max 8388607 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
 LogInit: Object subsystem initialized
-[2017.04.11-10.08.32:263][  0]LogInit: Selected Device Profile: [Windows]
-[2017.04.11-10.08.32:263][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
-[2017.04.11-10.08.32:275][  0]LogInit: Computer: RICHARDSTEELE
-[2017.04.11-10.08.32:275][  0]LogInit: User: RichardSteele
-[2017.04.11-10.08.32:275][  0]LogInit: CPU Page size=65536, Cores=4
-[2017.04.11-10.08.32:275][  0]LogInit: High frequency timer resolution =2.143483 MHz
-[2017.04.11-10.08.32:276][  0]LogMemory: Memory total: Physical=15.9GB (16GB approx)
-[2017.04.11-10.08.32:276][  0]LogMemory: Platform Memory Stats for Windows
-[2017.04.11-10.08.32:276][  0]LogMemory: Process Physical Memory: 265.52 MB used, 265.52 MB peak
-[2017.04.11-10.08.32:276][  0]LogMemory: Process Virtual Memory: 262.89 MB used, 262.89 MB peak
-[2017.04.11-10.08.32:276][  0]LogMemory: Physical Memory: 9413.11 MB used,  6847.16 MB free, 16260.27 MB total
-[2017.04.11-10.08.32:276][  0]LogMemory: Virtual Memory: 676.64 MB used,  6847.16 MB free, 134217728.00 MB total
-[2017.04.11-10.08.32:305][  0]LogTextLocalizationManager: No specific translations for ('en-GB') exist, so ('en') translations will be used.
-[2017.04.11-10.08.33:162][  0]LogD3D11RHI: D3D11 adapters:
-[2017.04.11-10.08.33:171][  0]LogD3D11RHI:    0. 'Intel(R) Iris(TM) Pro Graphics 5200' (Feature Level 11_0)
-[2017.04.11-10.08.33:171][  0]LogD3D11RHI:       112/0/2048 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:1, VendorId:0x8086
-[2017.04.11-10.08.33:172][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
-[2017.04.11-10.08.33:172][  0]LogD3D11RHI:       0/0/8130 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
-[2017.04.11-10.08.33:172][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
-[2017.04.11-10.08.33:180][  0]LogD3D11RHI: Creating new Direct3DDevice
-[2017.04.11-10.08.33:181][  0]LogD3D11RHI:     GPU DeviceId: 0xd26 (for the marketing name, search the web for "GPU Device Id")
-[2017.04.11-10.08.33:181][  0]LogWindows: EnumDisplayDevices:
-[2017.04.11-10.08.33:181][  0]LogWindows:    0. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:1 D:1)
-[2017.04.11-10.08.33:181][  0]LogWindows:    1. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:181][  0]LogWindows:    2. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:181][  0]LogWindows:    3. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:181][  0]LogWindows:    4. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:182][  0]LogWindows:    5. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:182][  0]LogWindows:    6. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:182][  0]LogWindows:    7. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:182][  0]LogWindows:    8. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
-[2017.04.11-10.08.33:182][  0]LogWindows: DebugString: FoundDriverCount:9 
-[2017.04.11-10.08.33:182][  0]LogD3D11RHI:     Adapter Name: Intel(R) Iris(TM) Pro Graphics 5200
-[2017.04.11-10.08.33:182][  0]LogD3D11RHI:   Driver Version: 20.19.15.4531 (internal:20.19.15.4531, unified:20.19.15.4531)
-[2017.04.11-10.08.33:182][  0]LogD3D11RHI:      Driver Date: 9-29-2016
-[2017.04.11-10.08.33:182][  0]LogRHI: Texture pool is 795 MB (70% of 1136 MB)
-[2017.04.11-10.08.33:189][  0]LogD3D11RHI: Async texture creation enabled
-[2017.04.11-10.08.33:193][  0]LogD3D11RHI: GPU Timing Frequency: 12.500000 (Debug: 2 0)
-[2017.04.11-10.08.33:194][  0]LogShaderCompilers: Guid format shader working directory is -11 characters bigger than the processId version (../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Intermediate/Shaders/WorkingDirectory/14628/).
-[2017.04.11-10.08.33:194][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/Richard Steele/AppData/Local/Temp/UnrealShaderWorkingDir/AB59151C4F1C0408CB7B90983193F3C0/'.
-[2017.04.11-10.08.33:194][  0]LogShaderCompilers:Display: Using Local Shader Compiler.
-[2017.04.11-10.08.34:440][  0]LogTemp:Display: Loaded TP AllDesktopTargetPlatform
-[2017.04.11-10.08.34:547][  0]LogTemp:Display: Loaded TP MacClientTargetPlatform
-[2017.04.11-10.08.34:641][  0]LogTemp:Display: Loaded TP MacNoEditorTargetPlatform
-[2017.04.11-10.08.34:732][  0]LogTemp:Display: Loaded TP MacServerTargetPlatform
-[2017.04.11-10.08.34:826][  0]LogTemp:Display: Loaded TP MacTargetPlatform
-[2017.04.11-10.08.34:914][  0]LogTemp:Display: Loaded TP WindowsClientTargetPlatform
-[2017.04.11-10.08.34:999][  0]LogTemp:Display: Loaded TP WindowsNoEditorTargetPlatform
-[2017.04.11-10.08.35:094][  0]LogTemp:Display: Loaded TP WindowsServerTargetPlatform
-[2017.04.11-10.08.35:165][  0]LogTemp:Display: Loaded TP WindowsTargetPlatform
-[2017.04.11-10.08.35:252][  0]LogTemp:Display: Loaded TP AndroidTargetPlatform
-[2017.04.11-10.08.35:345][  0]LogTemp:Display: Loaded TP Android_ASTCTargetPlatform
-[2017.04.11-10.08.35:436][  0]LogTemp:Display: Loaded TP Android_ATCTargetPlatform
-[2017.04.11-10.08.35:515][  0]LogTemp:Display: Loaded TP Android_DXTTargetPlatform
-[2017.04.11-10.08.35:601][  0]LogTemp:Display: Loaded TP Android_ETC1TargetPlatform
-[2017.04.11-10.08.35:685][  0]LogTemp:Display: Loaded TP Android_ETC2TargetPlatform
-[2017.04.11-10.08.35:856][  0]LogTemp:Display: Loaded TP Android_MultiTargetPlatform
-[2017.04.11-10.08.35:856][  0]LogTemp:Display: Loaded TP Android_PVRTCTargetPlatform
-[2017.04.11-10.08.35:921][  0]LogTemp:Display: Loaded TP HTML5TargetPlatform
-[2017.04.11-10.08.36:043][  0]LogTemp:Display: Loaded TP IOSTargetPlatform
-[2017.04.11-10.08.36:086][  0]LogTemp:Display: Loaded TP TVOSTargetPlatform
-[2017.04.11-10.08.36:175][  0]LogTemp:Display: Loaded TP LinuxClientTargetPlatform
-[2017.04.11-10.08.36:262][  0]LogTemp:Display: Loaded TP LinuxNoEditorTargetPlatform
-[2017.04.11-10.08.36:342][  0]LogTemp:Display: Loaded TP LinuxServerTargetPlatform
-[2017.04.11-10.08.36:428][  0]LogTemp:Display: Loaded TP LinuxTargetPlatform
-[2017.04.11-10.08.36:428][  0]LogTargetPlatformManager:Display: Building Assets For Windows
-[2017.04.11-10.08.36:990][  0]LogDerivedDataCache:Display: Max Cache Size: 512 MB
-[2017.04.11-10.08.37:044][  0]LogDerivedDataCache: Loaded boot cache 0.05s 50MB C:/Users/Richard Steele/AppData/Local/UnrealEngine/4.14/DerivedDataCache/Boot.ddc.
-[2017.04.11-10.08.37:044][  0]LogDerivedDataCache:Display: Loaded Boot cache: C:/Users/Richard Steele/AppData/Local/UnrealEngine/4.14/DerivedDataCache/Boot.ddc
-[2017.04.11-10.08.37:044][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
-[2017.04.11-10.08.37:044][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
-[2017.04.11-10.08.37:044][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
-[2017.04.11-10.08.37:044][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
-[2017.04.11-10.08.37:065][  0]LogDerivedDataCache:Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
-[2017.04.11-10.08.37:077][  0]LogDerivedDataCache: Using Local data cache path C:/Users/Richard Steele/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
-[2017.04.11-10.08.37:345][  0]LogInit: Selected Device Profile: [Windows]
-[2017.04.11-10.08.37:348][  0]LogContentStreaming: Texture pool size is 0.00 MB
-[2017.04.11-10.08.37:667][  0]LogMeshUtilities: Using QuadricMeshReduction for automatic static mesh reduction
-[2017.04.11-10.08.37:750][  0]LogSimplygon: Simplygon DLL not present - disabling.
-[2017.04.11-10.08.37:831][  0]LogMeshUtilities: Using SimplygonSwarm for distributed automatic mesh merging
-[2017.04.11-10.08.37:831][  0]LogMeshUtilities: No automatic skeletal mesh reduction module available
-[2017.04.11-10.08.37:831][  0]LogMeshUtilities: No automatic mesh merging module available
-[2017.04.11-10.08.38:454][  0]LogNetVersion: GetLocalNetworkVersion: CL: 3195953, ProjectName: poolio, ProjectVersion: , EngineNetworkVersion: 2, GameNetworkVersion: 0, NetworkChecksum: 1336151889
-[2017.04.11-10.08.38:520][  0]LogAssetRegistry: FAssetRegistry took 0.0211 seconds to start up
-[2017.04.11-10.08.38:587][  0]LogPackageLocalizationCache: Processed 3 localized package path(s) for 2 prioritized culture(s) in 0.036924 seconds
-[2017.04.11-10.08.38:592][  0]LogUObjectArray: 31946 objects as part of root set at end of initial load.
-[2017.04.11-10.08.38:592][  0]LogUObjectAllocator: 6935840 out of 0 bytes used by permanent object pool.
-[2017.04.11-10.08.38:592][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
-[2017.04.11-10.08.38:695][  0]LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
-[2017.04.11-10.08.39:930][  0]LogSlate: Using Freetype 2.6.0
-[2017.04.11-10.08.39:931][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
-[2017.04.11-10.08.39:931][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
-[2017.04.11-10.08.41:360][  0]LogTcpMessaging: Initializing TcpMessaging bridge
-[2017.04.11-10.08.41:412][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
-[2017.04.11-10.08.41:556][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.41:973][  0]LogMaterial: Uniform references updated for custom material expression Custom.
-[2017.04.11-10.08.42:554][  0]SourceControl: Info Source control is disabled
-[2017.04.11-10.08.42:626][  0]SourceControl: Info Source control is disabled
-[2017.04.11-10.08.42:699][  0]SourceControl: Info Source control is disabled
-[2017.04.11-10.08.42:781][  0]SourceControl: Info Source control is disabled
-[2017.04.11-10.08.44:929][  0]ModuleLog:Warning: UE4Duino: Log Started
-[2017.04.11-10.08.45:079][  0]LogEngine: Initializing Engine...
-[2017.04.11-10.08.45:080][  0]LogHMD: Failed to initialize OpenVR with code 110
-[2017.04.11-10.08.45:421][  0]LogAIModule: Creating AISystem for world Untitled
-[2017.04.11-10.08.45:432][  0]LogInit: XAudio2 using 'Speakers (Cirrus Logic CS4208 (AB 128))' : 4 channels at 48 kHz using 32 bits per sample (channel mask 0x33)
-[2017.04.11-10.08.45:446][  0]LogInit: FAudioDevice initialized.
-[2017.04.11-10.08.45:480][  0]LogDerivedDataCache: Saved boot cache 0.03s 50MB C:/Users/Richard Steele/AppData/Local/UnrealEngine/4.14/DerivedDataCache/Boot.ddc.
-[2017.04.11-10.08.45:486][  0]LogInit: Texture streaming: Enabled
-[2017.04.11-10.08.45:767][  0]LogInit: Transaction tracking system initialized
-[2017.04.11-10.08.46:336][  0]BlueprintLog: New page: Editor Load
-[2017.04.11-10.08.47:822][  0]LocalizationService: Info Localization service is disabled
-[2017.04.11-10.08.49:139][  0]LogConsoleResponse:Display: 
-[2017.04.11-10.08.49:322][  0]LogCook:Display: Max memory allowance for cook 16384mb min free memory 0mb
-[2017.04.11-10.08.49:322][  0]LogCook:Display: Mobile HDR setting 1
-[2017.04.11-10.08.49:356][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Content/' took 0.02s
-[2017.04.11-10.08.51:218][  0]SourceControl: Info Source control is disabled
-[2017.04.11-10.08.51:218][  0]Cmd: MAP LOAD FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap" TEMPLATE=0 SHOWPROGRESS=1 FEATURELEVEL=3
-[2017.04.11-10.08.51:219][  0]LightingResults: New page: Lighting Build
-[2017.04.11-10.08.51:309][  0]MapCheck: New page: Map Check
-[2017.04.11-10.08.51:309][  0]LightingResults: New page: Lighting Build
-[2017.04.11-10.08.51:489][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.51:582][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.51:587][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.51:610][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.51:635][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.51:658][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.51:804][  0]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.52:076][  0]LogAIModule: Creating AISystem for world PoolTable
-[2017.04.11-10.08.52:093][  0]LogPhysics:Error: PHYSX: (d:\build\++ue4+release-4.14+physx_compile\sync\engine\source\thirdparty\physx\physx_3.4\source\physx\src\NpRigidBodyTemplate.h 443) eINVALID_PARAMETER : RigidBody::setRigidBodyFlag: kinematic bodies with CCD enabled are not supported! CCD will be ignored.
-[2017.04.11-10.08.52:093][  0]PIE:Warning: Warning Trying to simulate physics on ''/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolFuckingTable_890.PoolTableStaticMesh'' but it has ComplexAsSimple collision.
-[2017.04.11-10.08.52:099][  0]LogEditorServer: Finished looking for orphan Actors (0.000 secs)
-[2017.04.11-10.08.52:099][  0]Cmd: MAP CHECKDEP NOCLEARLOG
-[2017.04.11-10.08.52:277][  0]MapCheck: Info Map check complete: 0 Error(s), 0 Warning(s), took 177.138ms to complete.
-[2017.04.11-10.08.52:277][  0]LogFileHelpers: Loading map 'PoolTable' took 1.059
-[2017.04.11-10.08.52:441][  0]LogCollectionManager: Loaded 1 collections in 0.002181 seconds
-[2017.04.11-10.08.52:572][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Collections/' took 0.01s
-[2017.04.11-10.08.52:572][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Content/Developers/RichardSteele/Collections/' took 0.01s
-[2017.04.11-10.08.52:572][  0]LogFileCache: Scanning file cache for directory 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Content/Collections/' took 0.01s
-[2017.04.11-10.08.52:572][  0]LogCollectionManager: Rebuilt the GUID cache for 1 collections in 0.000004 seconds
-[2017.04.11-10.08.52:572][  0]LogCollectionManager: Rebuilt the hierarchy cache for 1 collections in 0.000000 seconds
-[2017.04.11-10.08.52:588][  0]LogContentBrowser: Native class hierarchy populated in 0.0163 seconds. Added 2193 classes and 433 folders.
-[2017.04.11-10.08.52:675][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: Construct from data asset -  0.000 s
-[2017.04.11-10.08.52:675][  0]LogStats: UGameplayTagsManager::ConstructGameplayTagTree: GameplayTagTreeChangedEvent.Broadcast -  0.000 s
-[2017.04.11-10.08.52:678][  0]LogContentBrowser: Native class hierarchy updated for 'GameplayTags' in 0.0030 seconds. Added 13 classes and 0 folders.
-[2017.04.11-10.08.52:804][  0]LogContentBrowser: Native class hierarchy updated for 'WidgetCarousel' in 0.0022 seconds. Added 0 classes and 0 folders.
-[2017.04.11-10.08.52:888][  0]LogContentBrowser: Native class hierarchy updated for 'AddContentDialog' in 0.0028 seconds. Added 0 classes and 0 folders.
-[2017.04.11-10.08.52:974][  0]LogContentBrowser: Native class hierarchy updated for 'SceneOutliner' in 0.0022 seconds. Added 1 classes and 2 folders.
-[2017.04.11-10.08.53:034][  0]LogCrashTracker: Crashtracker disabled due to settings.
-[2017.04.11-10.08.53:040][  0]LogUObjectGlobals:Warning: Failed to find object 'Class None.'
-[2017.04.11-10.08.53:154][  0]LogContentBrowser: Native class hierarchy updated for 'HierarchicalLODOutliner' in 0.0029 seconds. Added 1 classes and 2 folders.
-[2017.04.11-10.08.53:154][  0]LogLoad: (Engine Initialization) Total time: 24.50 seconds
-[2017.04.11-10.08.53:154][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.33 seconds
-[2017.04.11-10.08.53:154][  0]LogExternalProfiler: Found external profiler: VSPerf
-[2017.04.11-10.08.53:155][  0]LogExternalProfiler: Using external profiler: VSPerf
-[2017.04.11-10.08.53:495][  0]LogOcInput: OculusInput pre-init called
-[2017.04.11-10.08.53:514][  0]LogContentStreaming: Texture pool size now 600 MB
-[2017.04.11-10.08.53:670][  0]LogRenderer: Reallocating scene render targets to support 1096x600 NumSamples 1 (Frame:2).
-[2017.04.11-10.08.54:224][  1]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.08.54:553][  2]LogAssetRegistry: Asset discovery search completed in 16.0544 seconds
-[2017.04.11-10.08.54:553][  2]LogCollectionManager: Rebuilt the object cache for 1 collections in 0.000008 seconds (found 0 objects)
-[2017.04.11-10.08.54:553][  2]LogCollectionManager: Fixed up redirectors for 1 collections in 0.000031 seconds (updated 0 objects)
-[2017.04.11-10.09.03:388][194]LogContentBrowser: Native class hierarchy updated for 'BlueprintGraph' in 0.0028 seconds. Added 111 classes and 0 folders.
-[2017.04.11-10.09.04:130][194]LogTemp:Warning: Connection Failure - port not available
-[2017.04.11-10.09.10:220][530]LogWindowsTextInputMethodSystem:Display: IME system now deactivated.
-[2017.04.11-10.09.10:220][530]LogWindowsTextInputMethodSystem:Display: IME system now deactivated.
-[2017.04.11-10.09.10:422][531]Cmd: QUIT_EDITOR
-[2017.04.11-10.09.10:499][531]LogExit: Preparing to exit.
-[2017.04.11-10.09.11:591][531]LogDirectoryWatcher: A directory notification for 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Content/' was aborted.
-[2017.04.11-10.09.11:634][531]LogExit: Editor shut down
-[2017.04.11-10.09.11:635][531]LogExit: Transaction tracking system shut down
-[2017.04.11-10.09.11:739][531]LogObj: Freed 0b from 0 cluster array pools.
-[2017.04.11-10.09.11:739][531]LogExit: Object subsystem successfully closed.
-[2017.04.11-10.09.11:759][531]LogD3D11RHI: Shutdown
-[2017.04.11-10.09.11:759][531]LogD3D11RHI: CleanupD3DDevice
-[2017.04.11-10.09.11:918][531]LogD3D11RHI: ~FD3D11DynamicRHI
-[2017.04.11-10.09.11:961][531]LogHttp:Display: Http module shutting down, but needs to wait on 1 outstanding Http requests:
-[2017.04.11-10.09.11:961][531]LogHttp:Display: 	verb=[POST] url=[https://datarouter.ol.epicgames.com/datarouter/api/v1/public/data?SessionID=%7B760052B0-451E-E025-4024-5EA867A22D0B%7D&AppID=UEEditor.Rocket.Release&AppVersion=4.14.3-3249277%2B%2B%2BUE4%2BRelease-4.14&UserID=4cfdedf24bd45285302dbda4454585fe%7C84634e3935c64bb984df2d03c54284c5%7C1ad1d4e2-a5d2-4d5e-aa9e-4c4c3035f5c1&AppEnvironment=datacollector-binary&UploadType=eteventstream] status=Processing
-[2017.04.11-10.09.11:961][531]LogHttp:Display: Sleeping 0.5s to wait for 1 outstanding Http requests.
-[2017.04.11-10.09.12:489][531]LogModuleManager: Shutting down and abandoning module BlueprintGraph (245)
-[2017.04.11-10.09.12:489][531]LogModuleManager: Shutting down and abandoning module BlueprintProfiler (244)
-[2017.04.11-10.09.12:489][531]LogModuleManager: Shutting down and abandoning module HierarchicalLODOutliner (243)
-[2017.04.11-10.09.12:489][531]LogModuleManager: Shutting down and abandoning module CrashTracker (242)
-[2017.04.11-10.09.12:489][531]LogModuleManager: Shutting down and abandoning module SceneOutliner (241)
-[2017.04.11-10.09.12:489][531]LogModuleManager: Shutting down and abandoning module WidgetCarousel (240)
-[2017.04.11-10.09.12:489][531]LogModuleManager: Shutting down and abandoning module AddContentDialog (239)
-[2017.04.11-10.09.12:489][531]LogDirectoryWatcher: A directory notification for 'C:/Program Files (x86)/Epic Games/UE_4.14/FeaturePacks/' was aborted.
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module GameplayTags (238)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module EditorWidgets (237)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module CollectionManager (236)
-[2017.04.11-10.09.12:490][531]LogDirectoryWatcher: A directory notification for 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Content/Collections/' was aborted.
-[2017.04.11-10.09.12:490][531]LogDirectoryWatcher: A directory notification for 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Content/Developers/RichardSteele/Collections/' was aborted.
-[2017.04.11-10.09.12:490][531]LogDirectoryWatcher: A directory notification for 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Collections/' was aborted.
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module StatsViewer (235)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module FoliageEdit (234)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module LandscapeEditor (233)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module SceneDepthPickerMode (232)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module ActorPickerMode (231)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module GeometryMode (230)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module TextureAlignMode (229)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module BspMode (228)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module HardwareSurvey (227)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module SequenceRecorderSections (226)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module AutomationWorker (225)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module MatineeToLevelSequence (224)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module PlacementMode (223)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module LevelSequenceEditor (222)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module WmfMediaFactory (221)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module WmfMediaEditor (220)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module AvfMediaFactory (219)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module AvfMediaEditor (218)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module Media (217)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module AndroidMediaFactory (216)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module AndroidMediaEditor (215)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module CharacterAI (214)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module SequenceRecorder (213)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module AudioCapture (212)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module SmartSnapping (211)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module SessionServices (210)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module ViewportSnapping (209)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module ViewportInteraction (208)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module LogVisualizer (207)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module GameProjectGeneration (206)
-[2017.04.11-10.09.12:490][531]LogModuleManager: Shutting down and abandoning module IntroTutorials (205)
-[2017.04.11-10.09.12:491][531]LogModuleManager: Shutting down and abandoning module EditorLiveStreaming (204)
-[2017.04.11-10.09.12:491][531]LogModuleManager: Shutting down and abandoning module IOSPlatformEditor (203)
-[2017.04.11-10.09.12:491][531]LogModuleManager: Shutting down and abandoning module HTML5PlatformEditor (202)
-[2017.04.11-10.09.12:491][531]LogModuleManager: Shutting down and abandoning module AndroidDeviceDetection (201)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module AndroidPlatformEditor (200)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module IOSRuntimeSettings (199)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module AndroidRuntimeSettings (198)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module InputBindingEditor (197)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module NiagaraEditor (196)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module MergeActors (195)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module SizeMap (194)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module TreeMap (193)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module ReferenceViewer (192)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module LocalizationService (191)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module LocalizationDashboard (190)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module HardwareTargeting (189)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module DeviceProfileEditor (188)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module UndoHistory (187)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module UserFeedback (186)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module XmlParser (185)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module Blutility (184)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module ProjectTargetPlatformEditor (183)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module ProjectSettingsViewer (182)
-[2017.04.11-10.09.13:404][531]LogModuleManager: Shutting down and abandoning module EditorSettingsViewer (181)
-[2017.04.11-10.09.13:405][531]LogModuleManager: Shutting down and abandoning module SettingsEditor (180)
-[2017.04.11-10.09.13:405][531]LogModuleManager: Shutting down and abandoning module ProjectLauncher (179)
-[2017.04.11-10.09.13:405][531]LogModuleManager: Shutting down and abandoning module SessionFrontend (178)
-[2017.04.11-10.09.13:405][531]LogModuleManager: Shutting down and abandoning module ProfilerClient (177)
-[2017.04.11-10.09.13:405][531]LogModuleManager: Shutting down and abandoning module TargetDeviceServices (176)
-[2017.04.11-10.09.13:405][531]LogModuleManager: Shutting down and abandoning module DeviceManager (175)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module AutomationController (174)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module AutomationWindow (173)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module Layers (172)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module ComponentVisualizers (171)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module DetailCustomizations (170)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module PackagesDialog (169)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module AnimGraph (168)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module Persona (167)
-[2017.04.11-10.09.13:447][531]LogModuleManager: Shutting down and abandoning module Kismet (166)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module GraphEditor (165)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module ClassViewer (164)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module Toolbox (163)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module ModuleUI (162)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module MovieSceneTools (161)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module OutputLog (160)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module GammaUI (159)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module Documentation (158)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module Niagara (157)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module StreamingPauseRendering (156)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module AnalyticsET (155)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module PortalServices (154)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module PortalRpc (153)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module MessagingRpc (152)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module GameplayDebugger (151)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module AITestSuite (150)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module AIModule (149)
-[2017.04.11-10.09.13:452][531]LogModuleManager: Shutting down and abandoning module ProfilerService (148)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module TaskGraph (147)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module UE4Duino (146)
-[2017.04.11-10.09.13:555][531]ModuleLog:Warning: UE4Duino: Log Ended
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SlateRemote (145)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SteamVRController (144)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SteamVR (143)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponentEditor (142)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponent (141)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module OculusLibrary (140)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module OculusInput (139)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module MobilePatchingUtils (138)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module CustomMeshComponent (137)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module CableComponent (136)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module ArchVisCharacter (135)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module MediaPlayerEditor (133)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module HTML5Networking (132)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module GeometryCacheEd (131)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module GeometryCache (130)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module AlembicLibrary (129)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module AlembicImporter (128)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SuperSearch (127)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SuperSearchEditor (126)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SpeedTreeImporter (125)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module PluginBrowser (124)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module MobileLauncherProfileWizard (123)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module EpicSurvey (122)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module DesktopPlatform (121)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module VisualStudioSourceCodeAccess (120)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module UObjectPlugin (119)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SubversionSourceControl (118)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module PerforceSourceControl (117)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module SourceControl (116)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module GitSourceControl (115)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module LightPropagationVolumeEditor (114)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module PaperTiledImporter (113)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module PaperSpriteSheetImporter (112)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module MeshPaint (111)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module PixelInspectorModule (110)
-[2017.04.11-10.09.13:555][531]LogModuleManager: Shutting down and abandoning module HotReload (109)
-[2017.04.11-10.09.13:555][531]LogDirectoryWatcher: A directory notification for 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Binaries/Win64' was aborted.
-[2017.04.11-10.09.13:556][531]LogModuleManager: Shutting down and abandoning module MainFrame (108)
-[2017.04.11-10.09.13:556][531]LogModuleManager: Shutting down and abandoning module LevelEditor (107)
-[2017.04.11-10.09.13:556][531]LogModuleManager: Shutting down and abandoning module ContentBrowser (106)
-[2017.04.11-10.09.13:557][531]LogModuleManager: Shutting down and abandoning module Paper2DEditor (105)
-[2017.04.11-10.09.13:557][531]LogModuleManager: Shutting down and abandoning module Poolio (104)
-[2017.04.11-10.09.13:557][531]LogModuleManager: Shutting down and abandoning module UdpMessaging (103)
-[2017.04.11-10.09.13:658][531]LogModuleManager: Shutting down and abandoning module TcpMessaging (102)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module LightPropagationVolumeRuntime (101)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module Paper2D (100)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module WindowsMoviePlayer (99)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module WmfMedia (98)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module MediaAssets (97)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module GameLiveStreaming (96)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module GameplayTagsEditor (95)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module VREditor (94)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module GameplayTasksEditor (93)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module BehaviorTreeEditor (92)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module FunctionalTesting (91)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module CollisionAnalyzer (90)
-[2017.04.11-10.09.13:758][531]LogModuleManager: Shutting down and abandoning module Sequencer (89)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module WorkspaceMenuStructure (88)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module MessageLog (87)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module AssetTools (86)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module UMGEditor (85)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module UMG (84)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module SlateReflector (83)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module Slate (82)
-[2017.04.11-10.09.13:759][531]LogModuleManager: Shutting down and abandoning module EditorStyle (81)
-[2017.04.11-10.09.13:762][531]LogModuleManager: Shutting down and abandoning module SourceCodeAccess (80)
-[2017.04.11-10.09.13:762][531]LogModuleManager: Shutting down and abandoning module HeadMountedDisplay (79)
-[2017.04.11-10.09.13:762][531]LogModuleManager: Shutting down and abandoning module XAudio2 (78)
-[2017.04.11-10.09.13:762][531]LogModuleManager: Shutting down and abandoning module Networking (76)
-[2017.04.11-10.09.13:762][531]LogModuleManager: Shutting down and abandoning module Core (75)
-[2017.04.11-10.09.13:762][531]LogModuleManager: Shutting down and abandoning module DirectoryWatcher (74)
-[2017.04.11-10.09.13:762][531]LogDirectoryWatcher: A directory notification for '../../../Engine/Content/' was aborted.
-[2017.04.11-10.09.13:763][531]LogDirectoryWatcher: A directory notification for '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/' was aborted.
-[2017.04.11-10.09.13:763][531]LogDirectoryWatcher: A directory notification for '../../../Engine/Plugins/2D/Paper2D/Content/' was aborted.
-[2017.04.11-10.09.13:763][531]LogModuleManager: Shutting down and abandoning module AssetRegistry (73)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module KismetCompiler (72)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module PhysXFormats (71)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module SimplygonSwarm (70)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module SimplygonMeshReduction (69)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module QuadricMeshReduction (68)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module PropertyEditor (67)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module MeshUtilities (66)
-[2017.04.11-10.09.13:954][531]LogModuleManager: Shutting down and abandoning module DerivedDataCache (65)
-[2017.04.11-10.09.14:098][531]LogDerivedDataCache: Shutdown
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module VulkanShaderFormat (64)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module ShaderFormatOpenGL (63)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module ShaderFormatD3D (62)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module MetalShaderFormat (61)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module TextureFormatUncompressed (60)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module TextureFormatPVR (59)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module TextureFormatDXT (58)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module TextureFormatIntelISPCTexComp (57)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module ImageWrapper (56)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module TextureFormatASTC (55)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module TextureFormatAndroid (54)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module AudioFormatOpus (53)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module AudioFormatOgg (52)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module AudioFormatADPCM (51)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module LinuxTargetPlatform (50)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module LinuxServerTargetPlatform (49)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module LinuxNoEditorTargetPlatform (48)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module LinuxClientTargetPlatform (47)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module TVOSTargetPlatform (46)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Messaging (45)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module IOSTargetPlatform (44)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module HTML5TargetPlatform (43)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Android_PVRTCTargetPlatform (42)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Android_MultiTargetPlatform (41)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Android_ETC2TargetPlatform (40)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Android_ETC1TargetPlatform (39)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Android_DXTTargetPlatform (38)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Android_ATCTargetPlatform (37)
-[2017.04.11-10.09.14:098][531]LogModuleManager: Shutting down and abandoning module Android_ASTCTargetPlatform (36)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module AndroidTargetPlatform (35)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module WindowsTargetPlatform (34)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module WindowsServerTargetPlatform (33)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module WindowsNoEditorTargetPlatform (32)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module WindowsClientTargetPlatform (31)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module MacTargetPlatform (30)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module MacServerTargetPlatform (29)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module MacNoEditorTargetPlatform (28)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module MacClientTargetPlatform (27)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module AllDesktopTargetPlatform (26)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module TargetPlatform (25)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module InputCore (24)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module Settings (23)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module OculusRift (22)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module ExampleDeviceProfileSelector (21)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module OnlineBlueprintSupport (20)
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module OnlineSubsystem (18)
-[2017.04.11-10.09.14:099][531]LogOnline:Display: Unloading online subsystem: NULL
-[2017.04.11-10.09.14:099][531]LogModuleManager: Shutting down and abandoning module SSL (17)
-[2017.04.11-10.09.14:100][531]LogModuleManager: Shutting down and abandoning module HTTP (16)
-[2017.04.11-10.09.14:100][531]LogModuleManager: Shutting down and abandoning module XMPP (15)
-[2017.04.11-10.09.14:100][531]LogModuleManager: Shutting down and abandoning module TextureCompressor (14)
-[2017.04.11-10.09.14:100][531]LogModuleManager: Shutting down and abandoning module ShaderCore (13)
-[2017.04.11-10.09.14:100][531]LogModuleManager: Shutting down and abandoning module Landscape (12)
-[2017.04.11-10.09.14:100][531]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (11)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module OpenGLDrv (10)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module D3D11RHI (9)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (8)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module Renderer (7)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module Engine (6)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module CoreUObject (5)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module NetworkFile (4)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module StreamingFile (3)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module SandboxFile (2)
-[2017.04.11-10.09.14:101][531]LogModuleManager: Shutting down and abandoning module PakFile (1)
-[2017.04.11-10.09.14:103][531]LogExit: Exiting.
-[2017.04.11-10.09.14:105][531]Log file closed, 04/11/17 11:09:14
+[2017.04.18-16.31.35:110][  0]LogInit: Selected Device Profile: [Windows]
+[2017.04.18-16.31.35:110][  0]LogInit: Applying CVar settings loaded from the selected device profile: [Windows]
+[2017.04.18-16.31.35:116][  0]LogInit: Computer: RICHARDSTEELE
+[2017.04.18-16.31.35:116][  0]LogInit: User: RichardSteele
+[2017.04.18-16.31.35:116][  0]LogInit: CPU Page size=65536, Cores=4
+[2017.04.18-16.31.35:116][  0]LogInit: High frequency timer resolution =2.143483 MHz
+[2017.04.18-16.31.35:116][  0]LogMemory: Memory total: Physical=15.9GB (16GB approx)
+[2017.04.18-16.31.35:116][  0]LogMemory: Platform Memory Stats for Windows
+[2017.04.18-16.31.35:116][  0]LogMemory: Process Physical Memory: 265.02 MB used, 265.02 MB peak
+[2017.04.18-16.31.35:116][  0]LogMemory: Process Virtual Memory: 262.88 MB used, 262.88 MB peak
+[2017.04.18-16.31.35:116][  0]LogMemory: Physical Memory: 9997.80 MB used,  6262.47 MB free, 16260.27 MB total
+[2017.04.18-16.31.35:116][  0]LogMemory: Virtual Memory: 676.64 MB used,  6262.47 MB free, 134217728.00 MB total
+[2017.04.18-16.31.35:144][  0]LogTextLocalizationManager: No specific translations for ('en-GB') exist, so ('en') translations will be used.
+[2017.04.18-16.31.35:587][  0]LogD3D11RHI: D3D11 adapters:
+[2017.04.18-16.31.35:596][  0]LogD3D11RHI:    0. 'Intel(R) Iris(TM) Pro Graphics 5200' (Feature Level 11_0)
+[2017.04.18-16.31.35:596][  0]LogD3D11RHI:       112/0/2048 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:1, VendorId:0x8086
+[2017.04.18-16.31.35:597][  0]LogD3D11RHI:    1. 'Microsoft Basic Render Driver' (Feature Level 11_0)
+[2017.04.18-16.31.35:597][  0]LogD3D11RHI:       0/0/8130 MB DedicatedVideo/DedicatedSystem/SharedSystem, Outputs:0, VendorId:0x1414
+[2017.04.18-16.31.35:597][  0]LogD3D11RHI: Chosen D3D11 Adapter: 0
+[2017.04.18-16.31.35:603][  0]LogD3D11RHI: Creating new Direct3DDevice
+[2017.04.18-16.31.35:603][  0]LogD3D11RHI:     GPU DeviceId: 0xd26 (for the marketing name, search the web for "GPU Device Id")
+[2017.04.18-16.31.35:603][  0]LogWindows: EnumDisplayDevices:
+[2017.04.18-16.31.35:604][  0]LogWindows:    0. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:1 D:1)
+[2017.04.18-16.31.35:604][  0]LogWindows:    1. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:604][  0]LogWindows:    2. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:604][  0]LogWindows:    3. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:604][  0]LogWindows:    4. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:605][  0]LogWindows:    5. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:605][  0]LogWindows:    6. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:605][  0]LogWindows:    7. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:606][  0]LogWindows:    8. 'Intel(R) Iris(TM) Pro Graphics 5200' (P:0 D:0)
+[2017.04.18-16.31.35:606][  0]LogWindows: DebugString: FoundDriverCount:9 
+[2017.04.18-16.31.35:606][  0]LogD3D11RHI:     Adapter Name: Intel(R) Iris(TM) Pro Graphics 5200
+[2017.04.18-16.31.35:606][  0]LogD3D11RHI:   Driver Version: 20.19.15.4531 (internal:20.19.15.4531, unified:20.19.15.4531)
+[2017.04.18-16.31.35:606][  0]LogD3D11RHI:      Driver Date: 9-29-2016
+[2017.04.18-16.31.35:606][  0]LogRHI: Texture pool is 795 MB (70% of 1136 MB)
+[2017.04.18-16.31.35:613][  0]LogD3D11RHI: Async texture creation enabled
+[2017.04.18-16.31.35:616][  0]LogD3D11RHI: GPU Timing Frequency: 12.500000 (Debug: 2 0)
+[2017.04.18-16.31.35:617][  0]LogShaderCompilers: Guid format shader working directory is -11 characters bigger than the processId version (../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Intermediate/Shaders/WorkingDirectory/43776/).
+[2017.04.18-16.31.35:617][  0]LogShaderCompilers: Cleaned the shader compiler working directory 'C:/Users/Richard Steele/AppData/Local/Temp/UnrealShaderWorkingDir/431001204CD5F047B53273BA6DBD9CED/'.
+[2017.04.18-16.31.35:617][  0]LogShaderCompilers:Display: Using Local Shader Compiler.
+[2017.04.18-16.31.36:808][  0]LogTemp:Display: Loaded TP WindowsClientTargetPlatform
+[2017.04.18-16.31.36:882][  0]LogTemp:Display: Loaded TP WindowsNoEditorTargetPlatform
+[2017.04.18-16.31.36:958][  0]LogTemp:Display: Loaded TP WindowsServerTargetPlatform
+[2017.04.18-16.31.37:022][  0]LogTemp:Display: Loaded TP WindowsTargetPlatform
+[2017.04.18-16.31.37:022][  0]LogTargetPlatformManager:Display: Building Assets For Windows
+[2017.04.18-16.31.37:514][  0]LogDerivedDataCache:Display: Max Cache Size: 512 MB
+[2017.04.18-16.31.37:572][  0]LogDerivedDataCache: Loaded boot cache 0.06s 60MB C:/Users/Richard Steele/AppData/Local/UnrealEngine/4.14/DerivedDataCache/Boot.ddc.
+[2017.04.18-16.31.37:572][  0]LogDerivedDataCache:Display: Loaded Boot cache: C:/Users/Richard Steele/AppData/Local/UnrealEngine/4.14/DerivedDataCache/Boot.ddc
+[2017.04.18-16.31.37:572][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  Pak pak cache file ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+[2017.04.18-16.31.37:572][  0]LogDerivedDataCache: Unable to find inner node Pak for hierarchical cache Hierarchy.
+[2017.04.18-16.31.37:572][  0]LogDerivedDataCache: FDerivedDataBackendGraph:  CompressedPak pak cache file ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+[2017.04.18-16.31.37:572][  0]LogDerivedDataCache: Unable to find inner node CompressedPak for hierarchical cache Hierarchy.
+[2017.04.18-16.31.37:592][  0]LogDerivedDataCache:Display: Pak cache opened for reading ../../../Engine/DerivedDataCache/Compressed.ddp.
+[2017.04.18-16.31.37:604][  0]LogDerivedDataCache: Using Local data cache path C:/Users/Richard Steele/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+[2017.04.18-16.31.37:849][  0]LogAssetRegistry: FAssetRegistry took 0.0001 seconds to start up
+[2017.04.18-16.31.37:854][  0]LogPackageLocalizationCache: Processed 3 localized package path(s) for 2 prioritized culture(s) in 0.004642 seconds
+[2017.04.18-16.31.37:874][  0]LogInit: Selected Device Profile: [Windows]
+[2017.04.18-16.31.37:875][  0]LogContentStreaming: Texture pool size is 1000.00 MB
+[2017.04.18-16.31.38:123][  0]LogMeshUtilities: Using QuadricMeshReduction for automatic static mesh reduction
+[2017.04.18-16.31.38:184][  0]LogSimplygon: Simplygon DLL not present - disabling.
+[2017.04.18-16.31.38:253][  0]LogMeshUtilities: Using SimplygonSwarm for distributed automatic mesh merging
+[2017.04.18-16.31.38:253][  0]LogMeshUtilities: No automatic skeletal mesh reduction module available
+[2017.04.18-16.31.38:253][  0]LogMeshUtilities: No automatic mesh merging module available
+[2017.04.18-16.31.38:749][  0]LogNetVersion: GetLocalNetworkVersion: CL: 3195953, ProjectName: poolio, ProjectVersion: , EngineNetworkVersion: 2, GameNetworkVersion: 0, NetworkChecksum: 1336151889
+[2017.04.18-16.31.38:832][  0]LogInit: WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+[2017.04.18-16.31.39:899][  0]LogSlate: Using Freetype 2.6.0
+[2017.04.18-16.31.39:900][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2017.04.18-16.31.39:900][  0]LogSlate: SlateFontCache - WITH_FREETYPE: 1, WITH_HARFBUZZ: 1
+[2017.04.18-16.31.40:078][  0]LogMoviePlayer: Initializing movie player
+[2017.04.18-16.31.40:158][  0]LogWindowsMoviePlayer: Unable to load movie: ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Movies/Default_Startup.mp4
+[2017.04.18-16.31.40:382][  0]LogTcpMessaging: Initializing TcpMessaging bridge
+[2017.04.18-16.31.40:430][  0]LogUdpMessaging: Initializing bridge on interface 0.0.0.0:0 to multicast group 230.0.0.1:6666.
+[2017.04.18-16.31.42:557][  0]LogTemp:Warning: Connection Success
+[2017.04.18-16.31.42:685][  0]SourceControl: Info Source control is disabled
+[2017.04.18-16.31.42:685][  0]SourceControl: Info Source control is disabled
+[2017.04.18-16.31.42:752][  0]SourceControl: Info Source control is disabled
+[2017.04.18-16.31.43:804][  0]ModuleLog:Warning: UE4Duino: Log Started
+[2017.04.18-16.31.43:810][  0]LogUObjectArray: 33522 objects as part of root set at end of initial load.
+[2017.04.18-16.31.43:810][  0]LogUObjectAllocator: 7425688 out of 0 bytes used by permanent object pool.
+[2017.04.18-16.31.43:810][  0]LogUObjectArray: CloseDisregardForGC: 0/0 objects in disregard for GC pool
+[2017.04.18-16.31.43:942][  0]LogEngine: Initializing Engine...
+[2017.04.18-16.31.43:943][  0]LogHMD: Failed to initialize OpenVR with code 110
+[2017.04.18-16.31.44:061][  0]LogInit: XAudio2 using 'Speakers (Cirrus Logic CS4208 (AB 128))' : 4 channels at 48 kHz using 32 bits per sample (channel mask 0x33)
+[2017.04.18-16.31.44:072][  0]LogInit: FAudioDevice initialized.
+[2017.04.18-16.31.44:091][  0]LogInit: Texture streaming: Enabled
+[2017.04.18-16.31.44:106][  0]LogMaterial: Uniform references updated for custom material expression Custom.
+[2017.04.18-16.31.44:552][  0]LogInit:Display: Game Engine Initialized.
+[2017.04.18-16.31.44:735][  0]LogInit:Display: Starting Game.
+[2017.04.18-16.31.44:735][  0]LogNet: Browse: /Temp/Autosaves/Game/Level/UEDPCPoolTable?Name=Player
+[2017.04.18-16.31.44:735][  0]LogLoad: LoadMap: /Temp/Autosaves/Game/Level/UEDPCPoolTable?Name=Player
+[2017.04.18-16.31.44:754][  0]LogMemory: Platform Memory Stats for Windows
+[2017.04.18-16.31.44:754][  0]LogMemory: Process Physical Memory: 682.48 MB used, 707.84 MB peak
+[2017.04.18-16.31.44:754][  0]LogMemory: Process Virtual Memory: 704.17 MB used, 704.23 MB peak
+[2017.04.18-16.31.44:754][  0]LogMemory: Physical Memory: 10332.63 MB used,  5927.64 MB free, 16260.27 MB total
+[2017.04.18-16.31.44:754][  0]LogMemory: Virtual Memory: 1382.10 MB used,  5927.64 MB free, 134217728.00 MB total
+[2017.04.18-16.31.44:754][  0]LogMemory: 
+[2017.04.18-16.31.44:754][  0]Allocator Stats for TBB: (not implemented)
+[2017.04.18-16.31.44:762][  0]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.18-16.31.44:838][  0]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.18-16.31.44:844][  0]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.18-16.31.44:862][  0]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.18-16.31.44:983][  0]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.18-16.31.44:993][  0]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.18-16.31.45:022][  0]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.18-16.31.45:370][  0]LogAIModule: Creating AISystem for world PoolTable
+[2017.04.18-16.31.45:370][  0]LogLoad: Game class is 'PoolGameMode_C'
+[2017.04.18-16.31.45:382][  0]LogPhysics:Error: PHYSX: (d:\build\++ue4+release-4.14+physx_compile\sync\engine\source\thirdparty\physx\physx_3.4\source\physx\src\NpRigidBodyTemplate.h 443) eINVALID_PARAMETER : RigidBody::setRigidBodyFlag: kinematic bodies with CCD enabled are not supported! CCD will be ignored.
+[2017.04.18-16.31.45:382][  0]PIE:Warning: Warning Trying to simulate physics on ''/Temp/Autosaves/Game/Level/UEDPCPoolTable.PoolTable:PersistentLevel.PoolFuckingTable_890.PoolTableStaticMesh'' but it has ComplexAsSimple collision.
+[2017.04.18-16.31.45:386][  0]LogWorld: Bringing World /Temp/Autosaves/Game/Level/UEDPCPoolTable.PoolTable up for play (max tick rate 0) at 2017.04.18-17.31.45
+[2017.04.18-16.31.45:387][  0]LogWorld: Bringing up level for play took: 0.014811
+[2017.04.18-16.31.45:389][  0]LogLoad: Took 0.653437 seconds to LoadMap(/Temp/Autosaves/Game/Level/UEDPCPoolTable)
+[2017.04.18-16.31.45:800][  0]LogLoad: (Engine Initialization) Total time: 12.71 seconds
+[2017.04.18-16.31.45:800][  0]LogLoad: (Engine Initialization) Total Blueprint compile time: 0.24 seconds
+[2017.04.18-16.31.45:800][  0]LogExternalProfiler: Found external profiler: VSPerf
+[2017.04.18-16.31.45:800][  0]LogExternalProfiler: Using external profiler: VSPerf
+[2017.04.18-16.31.45:820][  0]LogOcInput: OculusInput pre-init called
+[2017.04.18-16.31.45:871][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.45:871][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.45:871][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.45:872][  1]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.45:921][  2]LogRenderer: Reallocating scene render targets to support 1280x720 NumSamples 1 (Frame:2).
+[2017.04.18-16.31.46:404][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:404][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:404][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:405][  2]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:492][  3]LogRenderer: Reallocating scene render targets to support 1648x1032 NumSamples 1 (Frame:5).
+[2017.04.18-16.31.46:494][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:494][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:494][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:495][  3]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:642][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:642][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:642][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:642][  4]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:658][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:658][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:658][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:659][  5]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:675][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:675][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:675][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:675][  6]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:732][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:732][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:732][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:733][  7]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:798][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:798][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:798][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:798][  8]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:864][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:864][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:864][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:864][  9]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:929][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:929][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:929][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:929][ 10]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.46:995][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:995][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:995][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.46:995][ 11]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:061][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:061][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:061][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:061][ 12]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:126][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:126][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:126][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:127][ 13]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:191][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:191][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:191][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:191][ 14]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:277][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:277][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:277][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:278][ 15]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:328][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:328][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:328][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:329][ 16]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:395][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:395][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:395][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:395][ 17]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:463][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:463][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:463][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:463][ 18]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:527][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:527][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:527][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:527][ 19]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:594][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:594][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:594][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:594][ 20]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:658][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:658][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:658][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:658][ 21]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:724][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:724][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:724][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:724][ 22]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:788][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:788][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:788][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:789][ 23]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:855][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:855][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:855][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:855][ 24]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:921][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:921][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:921][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:921][ 25]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.47:985][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:985][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:985][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.47:985][ 26]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:048][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:048][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:048][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:048][ 27]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:110][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:110][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:110][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:111][ 28]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:174][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:174][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:174][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:174][ 29]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:237][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:237][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:237][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:237][ 30]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:303][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:303][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:303][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:303][ 31]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:368][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:368][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:368][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:368][ 32]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:432][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:432][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:432][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:432][ 33]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:496][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:496][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:496][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:496][ 34]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:561][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:561][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:561][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:561][ 35]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:626][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:626][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:626][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:626][ 36]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:693][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:693][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:693][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:693][ 37]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:759][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:759][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:759][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:759][ 38]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:825][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:825][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:825][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:825][ 39]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:890][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:890][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:890][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:891][ 40]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.48:956][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:956][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:956][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.48:956][ 41]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:022][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:022][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:022][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:022][ 42]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:087][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:087][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:087][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:087][ 43]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:153][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:153][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:153][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:153][ 44]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:219][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:219][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:219][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:219][ 45]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:284][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:284][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:284][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:284][ 46]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:350][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:350][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:350][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:350][ 47]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:415][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:415][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:415][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:415][ 48]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:481][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:481][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:481][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:481][ 49]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:547][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:547][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:547][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:547][ 50]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:613][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:613][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:613][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:613][ 51]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:678][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:678][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:678][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:679][ 52]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:744][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:744][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:744][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:744][ 53]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:809][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:809][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:809][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:809][ 54]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:876][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:876][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:876][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:876][ 55]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.49:941][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:941][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:941][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.49:941][ 56]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:007][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:007][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:007][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:008][ 57]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:074][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:074][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:074][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:074][ 58]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:140][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:140][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:140][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:140][ 59]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:207][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:207][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:207][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:208][ 60]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:272][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:272][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:272][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:272][ 61]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:336][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:336][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:336][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:336][ 62]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:401][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:401][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:401][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:401][ 63]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:466][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:466][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:466][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:466][ 64]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:532][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:532][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:532][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:532][ 65]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:598][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:598][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:598][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:599][ 66]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:664][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:664][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:664][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:665][ 67]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:731][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:731][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:731][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:731][ 68]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:795][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:795][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:795][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:795][ 69]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:859][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:859][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:859][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:860][ 70]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:924][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:924][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:924][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:924][ 71]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.50:988][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:988][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:988][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.50:988][ 72]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:051][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:051][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:051][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:052][ 73]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:114][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:114][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:114][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:114][ 74]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:178][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:178][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:178][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:179][ 75]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:243][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:243][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:243][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:243][ 76]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:308][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:308][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:308][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:308][ 77]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:374][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:374][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:374][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:374][ 78]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:439][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:439][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:439][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:439][ 79]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:504][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:504][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:504][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:505][ 80]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:571][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:571][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:571][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:572][ 81]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:636][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:636][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:636][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:636][ 82]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:702][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:702][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:702][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:702][ 83]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:767][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:767][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:767][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:767][ 84]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:833][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:833][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:833][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:833][ 85]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:898][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:898][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:898][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:899][ 86]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.51:963][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:963][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:963][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.51:964][ 87]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:029][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:029][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:029][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:030][ 88]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:095][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:095][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:095][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:095][ 89]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:160][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:160][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:160][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:160][ 90]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:226][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:226][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:226][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:226][ 91]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:292][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:292][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:292][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:292][ 92]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:357][ 93]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:357][ 93]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:357][ 93]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:357][ 93]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:422][ 94]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:422][ 94]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:422][ 94]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:423][ 94]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:488][ 95]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:488][ 95]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:488][ 95]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:488][ 95]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:554][ 96]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:554][ 96]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:554][ 96]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:554][ 96]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:620][ 97]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:620][ 97]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:620][ 97]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:620][ 97]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:686][ 98]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:686][ 98]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:686][ 98]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:686][ 98]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:752][ 99]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:752][ 99]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:752][ 99]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:752][ 99]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:817][100]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:817][100]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:817][100]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:818][100]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:883][101]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:883][101]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:883][101]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:884][101]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.52:948][102]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:948][102]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:948][102]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.52:948][102]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:011][103]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:011][103]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:011][103]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:011][103]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:076][104]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:076][104]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:076][104]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:076][104]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:142][105]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:142][105]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:142][105]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:142][105]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:208][106]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:208][106]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:208][106]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:208][106]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:273][107]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:273][107]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:273][107]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:273][107]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:339][108]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:339][108]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:339][108]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:340][108]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:404][109]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:404][109]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:404][109]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:404][109]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:468][110]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:469][110]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:469][110]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:469][110]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:534][111]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:534][111]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:534][111]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:534][111]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:600][112]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:600][112]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:600][112]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:601][112]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:666][113]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:666][113]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:666][113]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:666][113]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:732][114]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:732][114]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:732][114]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:732][114]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:797][115]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:797][115]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:797][115]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:798][115]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:863][116]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:863][116]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:863][116]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:863][116]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:927][117]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:928][117]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:928][117]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:928][117]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.53:991][118]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:991][118]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:991][118]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.53:991][118]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:055][119]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:055][119]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:055][119]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:055][119]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:117][120]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:117][120]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:117][120]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:118][120]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:180][121]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:180][121]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:180][121]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:181][121]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:244][122]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:244][122]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:244][122]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:245][122]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:308][123]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:308][123]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:308][123]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:308][123]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:375][124]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:375][124]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:375][124]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:375][124]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:438][125]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:438][125]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:438][125]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:438][125]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:503][126]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:503][126]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:503][126]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:503][126]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:570][127]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:570][127]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:570][127]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:570][127]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:636][128]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:636][128]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:636][128]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:636][128]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:701][129]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:701][129]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:701][129]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:701][129]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:766][130]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:766][130]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:766][130]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:767][130]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:832][131]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:832][131]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:832][131]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:832][131]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:897][132]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:897][132]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:897][132]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:898][132]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.54:961][133]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:961][133]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:961][133]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.54:961][133]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:026][134]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:026][134]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:026][134]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:027][134]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:091][135]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:091][135]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:091][135]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:092][135]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:156][136]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:156][136]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:156][136]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:157][136]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:222][137]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:222][137]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:222][137]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:222][137]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:286][138]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:286][138]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:286][138]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:287][138]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:352][139]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:352][139]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:352][139]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:352][139]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:416][140]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:416][140]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:416][140]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:417][140]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:481][141]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:481][141]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:481][141]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:482][141]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:546][142]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:546][142]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:546][142]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:546][142]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:610][143]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:610][143]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:610][143]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:611][143]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:673][144]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:673][144]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:673][144]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:674][144]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:738][145]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:738][145]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:738][145]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:738][145]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:800][146]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:800][146]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:800][146]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:801][146]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:866][147]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:866][147]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:866][147]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:866][147]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:931][148]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:931][148]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:931][148]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:931][148]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.55:995][149]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:995][149]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:995][149]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.55:995][149]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:059][150]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:060][150]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:060][150]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:060][150]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:124][151]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:124][151]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:124][151]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:125][151]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:190][152]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:190][152]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:190][152]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:190][152]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:254][153]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:254][153]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:254][153]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:254][153]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:318][154]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:318][154]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:318][154]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:318][154]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:383][155]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:383][155]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:383][155]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:383][155]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:447][156]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:447][156]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:447][156]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:447][156]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:511][157]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:511][157]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:511][157]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:511][157]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:576][158]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:576][158]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:576][158]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:576][158]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:641][159]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:641][159]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:641][159]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:641][159]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:706][160]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:706][160]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:706][160]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:706][160]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:770][161]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:770][161]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:770][161]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:770][161]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:834][162]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:834][162]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:834][162]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:834][162]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:898][163]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:898][163]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:898][163]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:899][163]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.56:962][164]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:962][164]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:962][164]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.56:962][164]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:024][165]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:024][165]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:024][165]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:024][165]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:085][166]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:085][166]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:085][166]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:086][166]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:146][167]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:146][167]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:146][167]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:147][167]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:209][168]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:209][168]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:209][168]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:209][168]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:273][169]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:273][169]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:273][169]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:273][169]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:338][170]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:338][170]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:338][170]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:338][170]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:402][171]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:402][171]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:402][171]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:402][171]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:466][172]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:466][172]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:466][172]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:466][172]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:529][173]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:529][173]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:529][173]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:529][173]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:593][174]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:593][174]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:593][174]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:593][174]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:657][175]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:657][175]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:657][175]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:658][175]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:721][176]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:722][176]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:722][176]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:722][176]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:786][177]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:786][177]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:786][177]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:786][177]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:850][178]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:850][178]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:850][178]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:850][178]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:914][179]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:914][179]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:914][179]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:914][179]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.57:977][180]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:977][180]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:977][180]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.57:977][180]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:041][181]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:041][181]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:041][181]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:041][181]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:105][182]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:105][182]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:105][182]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:105][182]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:169][183]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:169][183]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:169][183]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:169][183]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:233][184]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:233][184]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:233][184]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:233][184]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:296][185]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:296][185]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:296][185]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:297][185]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:360][186]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:360][186]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:360][186]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:360][186]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:423][187]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:423][187]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:423][187]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:424][187]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:488][188]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:488][188]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:488][188]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:488][188]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:551][189]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:552][189]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:552][189]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:552][189]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:615][190]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:615][190]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:615][190]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:615][190]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:679][191]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:679][191]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:679][191]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:679][191]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:743][192]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:743][192]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:743][192]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:743][192]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:807][193]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:807][193]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:807][193]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:807][193]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:870][194]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:870][194]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:870][194]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:871][194]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:934][195]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:934][195]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:934][195]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:935][195]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.58:997][196]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:997][196]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:997][196]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.58:997][196]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:063][197]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:063][197]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:063][197]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:064][197]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:128][198]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:128][198]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:128][198]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:128][198]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:190][199]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:190][199]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:190][199]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:191][199]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:253][200]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:253][200]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:253][200]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:253][200]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:314][201]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:314][201]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:314][201]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:314][201]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:376][202]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:376][202]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:376][202]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:376][202]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:445][203]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:445][203]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:445][203]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:446][203]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:508][204]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:508][204]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:508][204]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:508][204]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:570][205]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:570][205]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:570][205]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:570][205]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:632][206]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:632][206]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:632][206]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:632][206]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:696][207]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:696][207]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:696][207]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:696][207]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:759][208]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:759][208]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:759][208]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:759][208]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:822][209]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:822][209]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:822][209]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:823][209]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:886][210]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:886][210]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:886][210]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:886][210]LogTemp:Warning: Not Connected
+[2017.04.18-16.31.59:949][211]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:949][211]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:949][211]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.31.59:949][211]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:010][212]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:010][212]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:010][212]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:010][212]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:073][213]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:073][213]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:073][213]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:073][213]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:134][214]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:134][214]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:135][214]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:135][214]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:196][215]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:196][215]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:196][215]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:197][215]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:263][216]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:263][216]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:263][216]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:263][216]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:326][217]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:326][217]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:326][217]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:326][217]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:389][218]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:390][218]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:390][218]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:390][218]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:454][219]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:454][219]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:454][219]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:454][219]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:518][220]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:518][220]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:518][220]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:518][220]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:581][221]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:581][221]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:581][221]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:582][221]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:644][222]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:644][222]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:644][222]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:644][222]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:708][223]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:708][223]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:708][223]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:709][223]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:772][224]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:772][224]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:772][224]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:772][224]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:837][225]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:837][225]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:837][225]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:837][225]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:899][226]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:900][226]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:900][226]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:900][226]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.00:963][227]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:963][227]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:963][227]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.00:963][227]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.01:026][228]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:026][228]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:026][228]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:027][228]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.01:089][229]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:089][229]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:089][229]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:089][229]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.01:153][230]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:153][230]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:153][230]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.18-16.32.01:153][230]LogTemp:Warning: Not Connected
+[2017.04.18-16.32.01:304][231]LogWindowsTextInputMethodSystem:Display: IME system now deactivated.
+[2017.04.18-16.32.01:305][231]LogWindowsTextInputMethodSystem:Display: IME system now deactivated.
+[2017.04.18-16.32.01:318][231]LogEngine: All Windows Closed
+[2017.04.18-16.32.01:318][231]LogWindows: FPlatformMisc::RequestExit(0)
+[2017.04.18-16.32.01:320][232]LogMoviePlayer: Shutting down movie player
+[2017.04.18-16.32.01:955][232]LogExit: Preparing to exit.
+[2017.04.18-16.32.02:584][232]LogExit: Game engine shut down
+[2017.04.18-16.32.02:650][232]LogObj: Freed 0b from 0 cluster array pools.
+[2017.04.18-16.32.02:650][232]LogExit: Object subsystem successfully closed.
+[2017.04.18-16.32.02:673][232]LogD3D11RHI: Shutdown
+[2017.04.18-16.32.02:673][232]LogD3D11RHI: CleanupD3DDevice
+[2017.04.18-16.32.02:900][232]LogD3D11RHI: ~FD3D11DynamicRHI
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module SequenceRecorderSections (127)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module SequenceRecorder (126)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module AutomationController (125)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module AutomationWorker (124)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module GameplayDebugger (123)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module AITestSuite (122)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module AIModule (121)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module WmfMediaFactory (120)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module AvfMediaFactory (119)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module Media (118)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module AndroidMediaFactory (117)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module CharacterAI (116)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module SessionServices (115)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module MovieSceneCapture (114)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module GeometryCacheEd (113)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module GeometryCache (112)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module Niagara (111)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module StreamingPauseRendering (110)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module PortalServices (109)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module PortalRpc (108)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module MessagingRpc (107)
+[2017.04.18-16.32.02:939][232]LogModuleManager: Shutting down and abandoning module ProfilerService (106)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module TaskGraph (105)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module UE4Duino (104)
+[2017.04.18-16.32.03:180][232]ModuleLog:Warning: UE4Duino: Log Ended
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module SlateRemote (103)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module SteamVRController (102)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module SteamVR (101)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module ProceduralMeshComponent (100)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module OculusLibrary (99)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module OculusInput (98)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module MobilePatchingUtils (97)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module CustomMeshComponent (96)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module CableComponent (95)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module ArchVisCharacter (94)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module HTML5Networking (92)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module DesktopPlatform (91)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module DirectoryWatcher (90)
+[2017.04.18-16.32.03:180][232]LogDirectoryWatcher: A directory notification for 'C:/Users/Richard Steele/comp140-gam160-game/Poolio/Binaries/Win64' was aborted.
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module HotReload (89)
+[2017.04.18-16.32.03:180][232]LogModuleManager: Shutting down and abandoning module VisualStudioSourceCodeAccess (88)
+[2017.04.18-16.32.03:181][232]LogModuleManager: Shutting down and abandoning module UObjectPlugin (87)
+[2017.04.18-16.32.03:181][232]LogModuleManager: Shutting down and abandoning module SubversionSourceControl (86)
+[2017.04.18-16.32.03:181][232]LogModuleManager: Shutting down and abandoning module SourceControl (85)
+[2017.04.18-16.32.03:181][232]LogModuleManager: Shutting down and abandoning module PerforceSourceControl (84)
+[2017.04.18-16.32.03:181][232]LogModuleManager: Shutting down and abandoning module Poolio (83)
+[2017.04.18-16.32.03:181][232]LogModuleManager: Shutting down and abandoning module UdpMessaging (82)
+[2017.04.18-16.32.03:281][232]LogModuleManager: Shutting down and abandoning module TcpMessaging (81)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module LightPropagationVolumeRuntime (80)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module Paper2D (79)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module WindowsMoviePlayer (78)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module WmfMedia (77)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module MediaAssets (76)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module GameLiveStreaming (75)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module GameplayTagsEditor (74)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module VREditor (73)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module GameplayTasksEditor (72)
+[2017.04.18-16.32.03:396][232]LogModuleManager: Shutting down and abandoning module BehaviorTreeEditor (71)
+[2017.04.18-16.32.03:397][232]LogModuleManager: Shutting down and abandoning module FunctionalTesting (70)
+[2017.04.18-16.32.03:397][232]LogModuleManager: Shutting down and abandoning module CollisionAnalyzer (69)
+[2017.04.18-16.32.03:397][232]LogModuleManager: Shutting down and abandoning module Sequencer (68)
+[2017.04.18-16.32.03:398][232]LogModuleManager: Shutting down and abandoning module WorkspaceMenuStructure (67)
+[2017.04.18-16.32.03:398][232]LogModuleManager: Shutting down and abandoning module MessageLog (66)
+[2017.04.18-16.32.03:398][232]LogModuleManager: Shutting down and abandoning module AssetTools (65)
+[2017.04.18-16.32.03:399][232]LogModuleManager: Shutting down and abandoning module UMGEditor (64)
+[2017.04.18-16.32.03:400][232]LogModuleManager: Shutting down and abandoning module UMG (63)
+[2017.04.18-16.32.03:400][232]LogModuleManager: Shutting down and abandoning module SlateReflector (62)
+[2017.04.18-16.32.03:402][232]LogModuleManager: Shutting down and abandoning module Slate (61)
+[2017.04.18-16.32.03:402][232]LogModuleManager: Shutting down and abandoning module EditorStyle (60)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module Messaging (59)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module SourceCodeAccess (58)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module HeadMountedDisplay (57)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module XAudio2 (56)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module Networking (54)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module Core (53)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module KismetCompiler (52)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module PhysXFormats (51)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module SimplygonSwarm (50)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module SimplygonMeshReduction (49)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module QuadricMeshReduction (48)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module PropertyEditor (47)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module MeshUtilities (46)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module AssetRegistry (45)
+[2017.04.18-16.32.03:405][232]LogModuleManager: Shutting down and abandoning module DerivedDataCache (44)
+[2017.04.18-16.32.03:617][232]LogDerivedDataCache: Shutdown
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module VulkanShaderFormat (43)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module ShaderFormatOpenGL (42)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module ShaderFormatD3D (41)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module MetalShaderFormat (40)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module TextureFormatUncompressed (39)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module TextureFormatPVR (38)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module TextureFormatDXT (37)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module TextureFormatIntelISPCTexComp (36)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module ImageWrapper (35)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module TextureFormatASTC (34)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module TextureFormatAndroid (33)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module AudioFormatOpus (32)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module AudioFormatOgg (31)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module AudioFormatADPCM (30)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module WindowsTargetPlatform (29)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module WindowsServerTargetPlatform (28)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module WindowsNoEditorTargetPlatform (27)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module WindowsClientTargetPlatform (26)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module TargetPlatform (25)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module InputCore (24)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module Settings (23)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module OculusRift (22)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module ExampleDeviceProfileSelector (21)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module OnlineBlueprintSupport (20)
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module OnlineSubsystem (18)
+[2017.04.18-16.32.03:617][232]LogOnline:Display: Unloading online subsystem: NULL
+[2017.04.18-16.32.03:617][232]LogModuleManager: Shutting down and abandoning module SSL (17)
+[2017.04.18-16.32.03:619][232]LogModuleManager: Shutting down and abandoning module HTTP (16)
+[2017.04.18-16.32.03:619][232]LogModuleManager: Shutting down and abandoning module XMPP (15)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module TextureCompressor (14)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module ShaderCore (13)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module Landscape (12)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module SlateRHIRenderer (11)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module OpenGLDrv (10)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module D3D11RHI (9)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module AnimGraphRuntime (8)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module Renderer (7)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module Engine (6)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module CoreUObject (5)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module NetworkFile (4)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module StreamingFile (3)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module SandboxFile (2)
+[2017.04.18-16.32.03:620][232]LogModuleManager: Shutting down and abandoning module PakFile (1)
+[2017.04.18-16.32.03:622][232]LogExit: Exiting.
+[2017.04.18-16.32.03:624][232]Log file closed, 04/18/17 17:32:03

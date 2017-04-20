@@ -173,7 +173,7 @@ bool AArduinoControllerActor::IsConnected()
 void AArduinoControllerActor::EndPlay(const EEndPlayReason::Type EndPlayReason) {
 
 	Super::EndPlay(EndPlayReason);
-
+	
 	//Check if we are connected before trying to disconnect
 	if (this->connected)
 	{

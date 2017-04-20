@@ -12,24 +12,50 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCode1Poolio() {}
 	void AArduinoControllerActor::StaticRegisterNativesAArduinoControllerActor()
 	{
+		FNativeFunctionRegistrar::RegisterFunction(AArduinoControllerActor::StaticClass(), "EndPlay",(Native)&AArduinoControllerActor::execEndPlay);
 		FNativeFunctionRegistrar::RegisterFunction(AArduinoControllerActor::StaticClass(), "IsConnected",(Native)&AArduinoControllerActor::execIsConnected);
 	}
-	IMPLEMENT_CLASS(AArduinoControllerActor, 1454372536);
+	IMPLEMENT_CLASS(AArduinoControllerActor, 1319084515);
 	void APoolioGameModeBase::StaticRegisterNativesAPoolioGameModeBase()
 	{
 	}
 	IMPLEMENT_CLASS(APoolioGameModeBase, 4225121096);
 #if USE_COMPILED_IN_NATIVES
 // Cross Module References
+	ENGINE_API class UEnum* Z_Construct_UEnum_Engine_EEndPlayReason();
 	ENGINE_API class UClass* Z_Construct_UClass_AActor();
 	ENGINE_API class UClass* Z_Construct_UClass_AGameModeBase();
 
+	POOLIO_API class UFunction* Z_Construct_UFunction_AArduinoControllerActor_EndPlay();
 	POOLIO_API class UFunction* Z_Construct_UFunction_AArduinoControllerActor_IsConnected();
 	POOLIO_API class UClass* Z_Construct_UClass_AArduinoControllerActor_NoRegister();
 	POOLIO_API class UClass* Z_Construct_UClass_AArduinoControllerActor();
 	POOLIO_API class UClass* Z_Construct_UClass_APoolioGameModeBase_NoRegister();
 	POOLIO_API class UClass* Z_Construct_UClass_APoolioGameModeBase();
 	POOLIO_API class UPackage* Z_Construct_UPackage__Script_Poolio();
+	UFunction* Z_Construct_UFunction_AArduinoControllerActor_EndPlay()
+	{
+		struct ArduinoControllerActor_eventEndPlay_Parms
+		{
+			TEnumAsByte<EEndPlayReason::Type> EndPlayReason;
+		};
+		UObject* Outer=Z_Construct_UClass_AArduinoControllerActor();
+		static UFunction* ReturnFunction = NULL;
+		if (!ReturnFunction)
+		{
+			ReturnFunction = new(EC_InternalUseOnlyConstructor, Outer, TEXT("EndPlay"), RF_Public|RF_Transient|RF_MarkAsNative) UFunction(FObjectInitializer(), NULL, 0x04020400, 65535, sizeof(ArduinoControllerActor_eventEndPlay_Parms));
+			UProperty* NewProp_EndPlayReason = new(EC_InternalUseOnlyConstructor, ReturnFunction, TEXT("EndPlayReason"), RF_Public|RF_Transient|RF_MarkAsNative) UByteProperty(CPP_PROPERTY_BASE(EndPlayReason, ArduinoControllerActor_eventEndPlay_Parms), 0x0010000000000082, Z_Construct_UEnum_Engine_EEndPlayReason());
+			ReturnFunction->Bind();
+			ReturnFunction->StaticLink();
+#if WITH_METADATA
+			UMetaData* MetaData = ReturnFunction->GetOutermost()->GetMetaData();
+			MetaData->SetValue(ReturnFunction, TEXT("Category"), TEXT("Arduino"));
+			MetaData->SetValue(ReturnFunction, TEXT("ModuleRelativePath"), TEXT("ArduinoControllerActor.h"));
+			MetaData->SetValue(NewProp_EndPlayReason, TEXT("NativeConst"), TEXT(""));
+#endif
+		}
+		return ReturnFunction;
+	}
 	UFunction* Z_Construct_UFunction_AArduinoControllerActor_IsConnected()
 	{
 		struct ArduinoControllerActor_eventIsConnected_Parms
@@ -71,12 +97,14 @@ void EmptyLinkFunctionForGeneratedCode1Poolio() {}
 				UObjectForceRegistration(OuterClass);
 				OuterClass->ClassFlags |= 0x20900080;
 
+				OuterClass->LinkChild(Z_Construct_UFunction_AArduinoControllerActor_EndPlay());
 				OuterClass->LinkChild(Z_Construct_UFunction_AArduinoControllerActor_IsConnected());
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 				UProperty* NewProp_ArduinoOutputInt = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ArduinoOutputInt"), RF_Public|RF_Transient|RF_MarkAsNative) UIntProperty(CPP_PROPERTY_BASE(ArduinoOutputInt, AArduinoControllerActor), 0x0010000000000005);
 				UProperty* NewProp_ArduinoOutput = new(EC_InternalUseOnlyConstructor, OuterClass, TEXT("ArduinoOutput"), RF_Public|RF_Transient|RF_MarkAsNative) UStrProperty(CPP_PROPERTY_BASE(ArduinoOutput, AArduinoControllerActor), 0x0010000000000005);
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
+				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AArduinoControllerActor_EndPlay(), "EndPlay"); // 2204065660
 				OuterClass->AddFunctionToFunctionMapWithOverriddenName(Z_Construct_UFunction_AArduinoControllerActor_IsConnected(), "IsConnected"); // 1729032018
 				OuterClass->StaticLink();
 #if WITH_METADATA
@@ -136,8 +164,8 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 			ReturnPackage = CastChecked<UPackage>(StaticFindObjectFast(UPackage::StaticClass(), NULL, FName(TEXT("/Script/Poolio")), false, false));
 			ReturnPackage->SetPackageFlags(PKG_CompiledIn | 0x00000000);
 			FGuid Guid;
-			Guid.A = 0x319B70F6;
-			Guid.B = 0xCBA5B7C1;
+			Guid.A = 0xE7D3C959;
+			Guid.B = 0xB433AA75;
 			Guid.C = 0x00000000;
 			Guid.D = 0x00000000;
 			ReturnPackage->SetGuid(Guid);

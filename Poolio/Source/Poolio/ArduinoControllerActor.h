@@ -49,6 +49,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Arduino")
 	bool IsConnected();
 
+	UFUNCTION(BlueprintCallable, Category = "Arduino")
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
