@@ -1734,3 +1734,60 @@ LogInit: Object subsystem initialized
 [2017.04.21-10.21.11:904][794]LogSavePackage: Save=173.78ms
 [2017.04.21-10.21.11:904][794]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolTable2D64327342194BD95A365CAA80347825.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap'
 [2017.04.21-10.21.11:908][794]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap
+[2017.04.21-14.33.57:842][925]LogD3D11RHI: Timed out while waiting for GPU to catch up. (500 ms)
+[2017.04.21-14.38.23:469][392]BlueprintLog: New page: Compile PoolGameMode
+[2017.04.21-14.38.23:684][392]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.38.23:727][392]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.38.23:729][392]LogBlueprint:Warning: [PoolTable] 'WhiteBall' variable not found. Base class was probably changed.
+[2017.04.21-14.38.23:729][392]LogBlueprint:Warning: [PoolTable] 'WhiteBall' variable not found. Base class was probably changed.
+[2017.04.21-14.38.24:522][425]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/PoolGameMode" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/PoolGameMode.uasset" SILENT=true
+[2017.04.21-14.38.24:619][425]LogSavePackage: Save=22.16ms
+[2017.04.21-14.38.24:620][425]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolGameMode648B4DE149E735E1CACF0EBD6AC392E3.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/PoolGameMode.uasset'
+[2017.04.21-14.38.24:624][425]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/PoolGameMode.uasset
+[2017.04.21-14.47.51:620][822]LogSavePackage: Save=170.53ms
+[2017.04.21-14.47.51:620][822]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolTable_Auto34687500940ADCA50E329F6B297A49389.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Autosaves/Game/Level/PoolTable_Auto3.umap'
+[2017.04.21-14.47.51:623][822]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Autosaves/Game/Level/PoolTable_Auto3.umap
+[2017.04.21-14.47.51:625][822]LogFileHelpers: Editor autosave (incl. sublevels) for '/Game/Level/PoolTable' took 0.287
+[2017.04.21-14.47.51:625][822]LogFileHelpers: Editor autosave (incl. sublevels) for all levels took 0.287
+[2017.04.21-14.47.51:628][822]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/TriggerBoxes/BottomOfPocketTrigger] ([1] browsable assets)...
+[2017.04.21-14.47.51:628][822]OBJ SavePackage: Finished generating thumbnails for package [/Game/TriggerBoxes/BottomOfPocketTrigger]
+[2017.04.21-14.47.51:745][822]LogSavePackage: Save=40.21ms
+[2017.04.21-14.47.51:745][822]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/BottomOfPocketTrigger_Auto368FB7C424991373EA7284A9D818B1F3A.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Autosaves/Game/TriggerBoxes/BottomOfPocketTrigger_Auto3.uasset'
+[2017.04.21-14.47.51:747][822]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Autosaves/Game/TriggerBoxes/BottomOfPocketTrigger_Auto3.uasset
+[2017.04.21-14.47.51:747][822]LogFileHelpers: Auto-saving content packages took 0.121
+[2017.04.21-14.48.43:277][888]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.48.43:299][888]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.49.26:615][458]BlueprintLog: New page: Compile PoolCue
+[2017.04.21-14.49.26:687][458]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.49.26:688][458]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.49.26:709][458]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.49.26:746][458]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.49.26:755][458]LogBlueprint:Warning: [PoolTable] 'WhiteBall' variable not found. Base class was probably changed.
+[2017.04.21-14.49.26:755][458]LogBlueprint:Warning: [PoolTable] 'WhiteBall' variable not found. Base class was probably changed.
+[2017.04.21-14.49.27:640][482]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Players/PoolCue" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Players/PoolCue.uasset" SILENT=true
+[2017.04.21-14.49.27:886][482]LogSavePackage: Save=168.27ms
+[2017.04.21-14.49.27:886][482]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolCueB3B0F07B492D9C44DAB9FEAC7237B766.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Players/PoolCue.uasset'
+[2017.04.21-14.49.27:891][482]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Players/PoolCue.uasset
+[2017.04.21-14.49.36:165][653]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Level/PoolTable" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2017.04.21-14.49.36:406][653]LogSavePackage: Save=150.18ms
+[2017.04.21-14.49.36:406][653]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolTable73EAB90A4E8B2009A3CC70A617F5BD7B.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap'
+[2017.04.21-14.49.36:412][653]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap
+[2017.04.21-14.49.36:436][653]LogFileHelpers: Saving map 'PoolTable' took 0.425
+[2017.04.21-14.49.36:558][653]LogSavePackage: Save=44.12ms
+[2017.04.21-14.49.36:558][653]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/BottomOfPocketTriggerE3E86CFF47F319DC861C16BB8C42C8A3.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/TriggerBoxes/BottomOfPocketTrigger.uasset'
+[2017.04.21-14.49.36:562][653]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/TriggerBoxes/BottomOfPocketTrigger.uasset
+[2017.04.21-14.51.19:919][820]BlueprintLog: New page: Compile PoolCue
+[2017.04.21-14.51.19:983][820]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.51.19:984][820]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.51.20:006][820]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.51.20:041][820]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-14.51.20:045][820]LogBlueprint:Warning: [PoolTable] 'WhiteBall' variable not found. Base class was probably changed.
+[2017.04.21-14.51.20:045][820]LogBlueprint:Warning: [PoolTable] 'WhiteBall' variable not found. Base class was probably changed.
+[2017.04.21-14.51.20:893][841]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Players/PoolCue" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Players/PoolCue.uasset" SILENT=true
+[2017.04.21-14.51.21:102][841]LogSavePackage: Save=135.80ms
+[2017.04.21-14.51.21:102][841]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolCue8092C569416B6FC78E3A48A4A460EF9F.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Players/PoolCue.uasset'
+[2017.04.21-14.51.21:107][841]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Players/PoolCue.uasset
+[2017.04.21-14.51.24:785][969]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Level/PoolTable" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2017.04.21-14.51.25:017][969]LogSavePackage: Save=146.82ms
+[2017.04.21-14.51.25:017][969]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolTable7D76849F4C7281CFE62796A5E1135B34.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap'
+[2017.04.21-14.51.25:022][969]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap
