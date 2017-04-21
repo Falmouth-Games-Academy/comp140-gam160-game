@@ -382,3 +382,1355 @@ LogInit: Object subsystem initialized
 [2017.04.20-20.13.43:160][ 30]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Autosaves/Game/Level/PoolTable_Auto1.umap
 [2017.04.20-20.13.43:162][ 30]LogFileHelpers: Editor autosave (incl. sublevels) for '/Game/Level/PoolTable' took 0.280
 [2017.04.20-20.13.43:162][ 30]LogFileHelpers: Editor autosave (incl. sublevels) for all levels took 0.280
+[2017.04.21-10.02.05:525][116]LogD3D11RHI: Timed out while waiting for GPU to catch up. (500 ms)
+[2017.04.21-10.12.26:036][149]LogEditorViewport: Clicking on Actor (LMB): StaticMeshActor (Floor)
+[2017.04.21-10.12.26:886][193]LogEditorViewport: Clicking on Actor (context menu): StaticMeshActor (Floor)
+[2017.04.21-10.12.30:104][379]LogEditorViewport: Clicking on Actor (LMB): StaticMeshActor (Floor)
+[2017.04.21-10.13.17:567][ 63]LogEditorViewport: Clicking on Actor (LMB): SPACEBOXBP_C (SPACEBOXBP)
+[2017.04.21-10.13.18:367][107]LogEditorViewport: Clicking on Actor (LMB): SPACEBOXBP_C (SPACEBOXBP)
+[2017.04.21-10.13.18:636][121]LogEditorViewport: Clicking on Component (LMB): StaticMeshComponent (SPACEBOX)
+[2017.04.21-10.13.18:962][139]LogEditorViewport: Clicking on Component (LMB): StaticMeshComponent (SPACEBOX)
+[2017.04.21-10.13.19:044][142]LogEditorViewport: Clicking on Actor (double click): SPACEBOXBP_C (SPACEBOXBP)
+[2017.04.21-10.13.19:424][164]LogEditorViewport: Clicking on Actor (LMB): SPACEBOXBP_C (SPACEBOXBP)
+[2017.04.21-10.13.19:541][169]LogEditorViewport: Clicking on Component (LMB): StaticMeshComponent (SPACEBOX)
+[2017.04.21-10.13.19:879][188]LogEditorViewport: Clicking on Component (LMB): StaticMeshComponent (SPACEBOX)
+[2017.04.21-10.13.49:193][606]LogSavePackage: Save=196.27ms
+[2017.04.21-10.13.49:193][606]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolTable_Auto24D0C48F44E594B355D6FE8839697136A.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Autosaves/Game/Level/PoolTable_Auto2.umap'
+[2017.04.21-10.13.49:196][606]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/Autosaves/Game/Level/PoolTable_Auto2.umap
+[2017.04.21-10.13.49:198][606]LogFileHelpers: Editor autosave (incl. sublevels) for '/Game/Level/PoolTable' took 0.364
+[2017.04.21-10.13.49:198][606]LogFileHelpers: Editor autosave (incl. sublevels) for all levels took 0.364
+[2017.04.21-10.16.29:017][723]LogContentBrowser: Native class hierarchy updated for 'TextureEditor' in 0.0026 seconds. Added 1 classes and 2 folders.
+[2017.04.21-10.17.15:693][944]LogTexture:Display: Building textures: SPACEBOX (BGRA8)
+[2017.04.21-10.17.33:599][ 12]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Skybox/SPACEBOX" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX.uasset" SILENT=true
+[2017.04.21-10.17.33:845][ 12]LogSavePackage: Save=170.65ms
+[2017.04.21-10.17.33:845][ 12]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/SPACEBOX73A7C16248E4618C607A46AAE094F0F6.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX.uasset'
+[2017.04.21-10.17.33:850][ 12]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX.uasset
+[2017.04.21-10.18.01:247][574]LogLinker:Warning: Can't find file '/Game/Textures/Skybox/SPACEBOX'
+[2017.04.21-10.18.01:248][574]LogLinker:Warning: Can't find file for asset '/Game/Textures/Skybox/SPACEBOX' while loading ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset.
+[2017.04.21-10.18.01:249][574]LoadErrors:Error: Error /Game/Skybox/SPACEBOX_MAT : Can't find file for asset. /Game/Textures/Skybox/SPACEBOX
+[2017.04.21-10.18.01:250][574]LogLinker:Warning: Can't find file '/Game/Textures/Skybox/SPACEBOX'
+[2017.04.21-10.18.01:250][574]LogLinker:Warning: Can't find file for asset '/Game/Textures/Skybox/SPACEBOX' while loading ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset.
+[2017.04.21-10.18.01:251][574]LogLinker:Warning: Can't find file '/Game/Textures/Skybox/SPACEBOX'
+[2017.04.21-10.18.01:251][574]LoadErrors: Info Failed to load /Game/Textures/Skybox/SPACEBOX.SPACEBOX Referenced by MaterialExpressionTextureSampleParameterCube_0
+[2017.04.21-10.18.01:251][574]LogLinker:Warning: Can't find file for asset '/Game/Textures/Skybox/SPACEBOX' while loading NULL.
+[2017.04.21-10.18.01:252][574]LogMaterial: Missing cached shader map for material SPACEBOX_MAT, compiling. 
+[2017.04.21-10.18.01:254][574]LogMaterial:Warning: Failed to compile Material /Game/Skybox/SPACEBOX_MAT.SPACEBOX_MAT for platform PCD3D_SM5, Default Material will be used in game.
+[2017.04.21-10.18.01:254][574]LogMaterial:Warning: 	(Node TextureSampleParameterCube) ParamCube> Requires TextureCube
+[2017.04.21-10.18.01:350][574]LogMaterial: Missing cached shader map for material SPACEBOX_MAT, compiling. 
+[2017.04.21-10.18.01:350][574]LogMaterial:Warning: Failed to compile Material /Engine/Transient.SPACEBOX_MAT for platform PCD3D_SM5, Default Material will be used in game.
+[2017.04.21-10.18.01:350][574]LogMaterial:Warning: 	(Node TextureSampleParameterCube) ParamCube> Requires TextureCube
+[2017.04.21-10.18.01:424][574]LogMaterial: Missing cached shader map for material SPACEBOX_MAT, compiling. 
+[2017.04.21-10.18.01:424][574]LogMaterial:Warning: Failed to compile Material /Engine/Transient.SPACEBOX_MAT for platform PCD3D_SM5, Default Material will be used in game.
+[2017.04.21-10.18.01:424][574]LogMaterial:Warning: 	(Node TextureSampleParameterCube) ParamCube> Requires TextureCube
+[2017.04.21-10.18.01:425][574]LogMaterial: 0.00 seconds spent updating 1 materials, 1 interfaces, 0 instances, 0 with static permutations.
+[2017.04.21-10.18.01:454][574]LogMaterial: Missing cached shader map for material FMatExpressionPreview MaterialExpressionConstant3Vector_0, compiling. 
+[2017.04.21-10.18.01:461][574]LogMaterial: Missing cached shader map for material FMatExpressionPreview MaterialExpressionTextureSampleParameterCube_0, compiling. 
+[2017.04.21-10.18.13:861][293]LogMaterialEditor: Saving and Compiling material SPACEBOX_MAT
+[2017.04.21-10.18.13:897][293]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Skybox/SPACEBOX_MAT" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset" SILENT=true
+[2017.04.21-10.18.13:985][293]LogSavePackage: Save=12.65ms
+[2017.04.21-10.18.13:985][293]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/SPACEBOX_MAT6904A5DC4F3590C31BB3829929ECCCAF.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset'
+[2017.04.21-10.18.13:988][293]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset
+[2017.04.21-10.18.23:560][855]LogMaterial: Missing cached shader map for material SPACEBOX_MAT, compiling. 
+[2017.04.21-10.18.23:571][855]LogMaterial: 0.00 seconds spent updating 1 materials, 1 interfaces, 0 instances, 0 with static permutations.
+[2017.04.21-10.18.23:598][855]LogMaterial: Missing cached shader map for material FMatExpressionPreview MaterialExpressionTextureSampleParameterCube_0, compiling. 
+[2017.04.21-10.18.27:824][ 94]LogMaterialEditor: Saving and Compiling material SPACEBOX_MAT
+[2017.04.21-10.18.28:421][ 94]LogMaterial: Missing cached shader map for material SPACEBOX_MAT, compiling. 
+[2017.04.21-10.18.28:429][ 94]LogMaterial: 0.00 seconds spent updating 1 materials, 1 interfaces, 0 instances, 0 with static permutations.
+[2017.04.21-10.18.28:471][ 94]LogMaterial: Missing cached shader map for material SPACEBOX_MAT, compiling. 
+[2017.04.21-10.18.28:493][ 94]LogMaterial: Missing cached shader map for material SPACEBOX_MAT, compiling. 
+[2017.04.21-10.18.28:507][ 94]LogMaterial: 0.00 seconds spent updating 1 materials, 1 interfaces, 0 instances, 0 with static permutations.
+[2017.04.21-10.18.29:745][ 94]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Skybox/SPACEBOX_MAT" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset" SILENT=true
+[2017.04.21-10.18.29:840][ 94]LogSavePackage: Save=11.69ms
+[2017.04.21-10.18.29:840][ 94]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/SPACEBOX_MATB4738DA549AB585AB7BC589B5603D53E.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset'
+[2017.04.21-10.18.29:844][ 94]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX_MAT.uasset
+[2017.04.21-10.18.43:211][862]BlueprintLog: New page: Compile SPACEBOXBP
+[2017.04.21-10.18.44:030][900]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Skybox/SPACEBOXBP" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOXBP.uasset" SILENT=true
+[2017.04.21-10.18.44:121][900]LogSavePackage: Save=16.74ms
+[2017.04.21-10.18.44:121][900]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/SPACEBOXBP36327FC545D2B560A5ADD2B4A31A72E8.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOXBP.uasset'
+[2017.04.21-10.18.44:125][900]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOXBP.uasset
+[2017.04.21-10.18.54:853][507]LogRenderer: Reallocating scene render targets to support 1120x600 NumSamples 1 (Frame:2971).
+[2017.04.21-10.18.54:985][508]LogRenderer: Reallocating scene render targets to support 1152x600 NumSamples 1 (Frame:2973).
+[2017.04.21-10.18.55:101][509]LogRenderer: Reallocating scene render targets to support 1172x600 NumSamples 1 (Frame:2975).
+[2017.04.21-10.18.55:220][510]LogRenderer: Reallocating scene render targets to support 1176x600 NumSamples 1 (Frame:2977).
+[2017.04.21-10.18.55:344][511]LogRenderer: Reallocating scene render targets to support 1180x600 NumSamples 1 (Frame:2979).
+[2017.04.21-10.18.55:494][512]LogRenderer: Reallocating scene render targets to support 1188x600 NumSamples 1 (Frame:2981).
+[2017.04.21-10.18.57:181][605]LogRenderer: Reallocating scene render targets to support 1192x600 NumSamples 1 (Frame:2986).
+[2017.04.21-10.18.57:302][606]LogRenderer: Reallocating scene render targets to support 1220x600 NumSamples 1 (Frame:2988).
+[2017.04.21-10.18.57:448][607]LogRenderer: Reallocating scene render targets to support 1240x600 NumSamples 1 (Frame:2990).
+[2017.04.21-10.18.57:568][608]LogRenderer: Reallocating scene render targets to support 1248x600 NumSamples 1 (Frame:2992).
+[2017.04.21-10.18.57:708][609]LogRenderer: Reallocating scene render targets to support 1260x600 NumSamples 1 (Frame:2994).
+[2017.04.21-10.19.03:906][886]LogTemp: Repeting last play command: Selected Viewport
+[2017.04.21-10.19.03:920][886]LogBlueprintUserMessages: Early PlayInEditor Detection: Level '/Game/Level/PoolTable.PoolTable:PersistentLevel' has LevelScriptBlueprint '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable' with GeneratedClass '/Game/Level/PoolTable.PoolTable_C' with ClassGeneratedBy '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable'
+[2017.04.21-10.19.03:920][886]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2017.04.21-10.19.03:920][886]PIE: New page: PIE session: PoolTable (21 Apr 2017 12:19:03)
+[2017.04.21-10.19.03:920][886]LogPlayLevel: Creating play world package: /Game/Level/UEDPIE_0_PoolTable
+[2017.04.21-10.19.03:921][886]LogTemp:Warning: Connection Failure - reason unknown
+[2017.04.21-10.19.03:932][886]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011491s)
+[2017.04.21-10.19.03:932][886]LogAIModule: Creating AISystem for world PoolTable
+[2017.04.21-10.19.03:933][886]LogPlayLevel: PIE: World Init took: (0.000857s)
+[2017.04.21-10.19.03:933][886]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/Level/PoolTable.PoolTable to /Game/Level/UEDPIE_0_PoolTable.PoolTable (0.012670s)
+[2017.04.21-10.19.03:955][886]LogInit: XAudio2 using 'Speakers (Cirrus Logic CS4208 (AB 128))' : 4 channels at 48 kHz using 32 bits per sample (channel mask 0x33)
+[2017.04.21-10.19.03:966][886]LogInit: FAudioDevice initialized.
+[2017.04.21-10.19.04:015][886]LogLoad: Game class is 'PoolGameMode_C'
+[2017.04.21-10.19.04:018][886]LogWorld: Bringing World /Game/Level/UEDPIE_0_PoolTable.PoolTable up for play (max tick rate 60) at 2017.04.21-11.19.04
+[2017.04.21-10.19.04:019][886]LogWorld: Bringing up level for play took: 0.002135
+[2017.04.21-10.19.04:087][886]LogContentBrowser: Native class hierarchy updated for 'MovieSceneCapture' in 0.0028 seconds. Added 11 classes and 0 folders.
+[2017.04.21-10.19.04:089][886]PIE: Info Play in editor start time for /Game/Level/UEDPIE_0_PoolTable 1.004
+[2017.04.21-10.19.04:089][886]LogBlueprintUserMessages: Late PlayInEditor Detection: Level '/Game/Level/PoolTable.PoolTable:PersistentLevel' has LevelScriptBlueprint '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable' with GeneratedClass '/Game/Level/PoolTable.PoolTable_C' with ClassGeneratedBy '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable'
+[2017.04.21-10.19.04:090][886]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:090][886]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:090][886]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:090][886]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:090][886]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:090][886]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:134][887]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:134][887]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:134][887]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:134][887]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:134][887]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:134][887]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:178][888]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:178][888]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:178][888]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:178][888]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:178][888]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:178][888]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:196][889]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:196][889]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:196][889]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:196][889]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:196][889]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:196][889]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:213][890]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:213][890]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:213][890]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:213][890]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:213][890]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:213][890]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:229][891]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:229][891]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:229][891]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:230][891]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:230][891]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:230][891]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:247][892]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:247][892]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:247][892]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:247][892]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:247][892]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:247][892]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:263][893]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:263][893]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:263][893]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:263][893]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:263][893]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:263][893]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:281][894]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:281][894]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:281][894]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:281][894]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:281][894]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:281][894]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:297][895]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:297][895]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:297][895]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:297][895]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:297][895]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:297][895]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:313][896]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:313][896]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:313][896]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:313][896]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:313][896]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:313][896]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:330][897]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:330][897]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:330][897]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:330][897]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:330][897]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:330][897]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:347][898]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:347][898]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:347][898]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:347][898]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:347][898]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:347][898]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:364][899]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:364][899]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:364][899]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:364][899]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:364][899]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:364][899]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:382][900]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:382][900]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:382][900]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:382][900]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:382][900]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:382][900]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:400][901]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:400][901]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:400][901]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:400][901]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:400][901]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:400][901]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:416][902]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:416][902]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:416][902]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:416][902]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:417][902]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:417][902]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:434][903]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:434][903]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:434][903]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:434][903]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:434][903]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:434][903]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:451][904]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:451][904]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:451][904]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:451][904]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:451][904]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:452][904]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:472][905]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:472][905]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:472][905]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:472][905]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:472][905]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:472][905]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:486][906]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:486][906]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:486][906]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:486][906]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:486][906]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:486][906]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:505][907]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:505][907]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:505][907]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:505][907]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:505][907]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:505][907]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:522][908]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:522][908]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:522][908]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:522][908]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:522][908]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:523][908]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:540][909]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:540][909]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:540][909]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:540][909]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:540][909]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:540][909]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:558][910]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:559][910]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:559][910]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:559][910]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:559][910]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:559][910]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:579][911]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:579][911]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:579][911]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:579][911]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:579][911]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:579][911]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:597][912]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:597][912]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:597][912]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:597][912]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:597][912]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:597][912]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:614][913]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:615][913]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:615][913]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:615][913]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:615][913]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:615][913]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:632][914]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:632][914]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:632][914]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:632][914]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:632][914]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:632][914]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:651][915]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:651][915]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:651][915]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:651][915]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:651][915]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:651][915]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:672][916]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:672][916]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:672][916]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:672][916]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:672][916]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:673][916]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:690][917]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:690][917]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:690][917]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:690][917]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:690][917]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:690][917]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:707][918]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:707][918]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:707][918]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:707][918]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:708][918]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:708][918]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:729][919]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:729][919]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:729][919]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:729][919]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:729][919]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:729][919]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:747][920]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:748][920]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:748][920]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:748][920]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:748][920]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:748][920]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:765][921]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:765][921]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:765][921]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:765][921]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:765][921]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:765][921]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:782][922]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:782][922]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:782][922]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:782][922]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:782][922]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:782][922]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:800][923]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:800][923]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:800][923]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:800][923]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:800][923]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:800][923]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:818][924]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:818][924]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:818][924]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:818][924]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:818][924]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:818][924]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:837][925]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:838][925]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:838][925]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:838][925]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:838][925]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:838][925]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:857][926]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:857][926]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:857][926]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:857][926]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:857][926]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:857][926]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:874][927]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:874][927]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:874][927]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:874][927]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:874][927]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:874][927]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:891][928]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:892][928]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:892][928]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:892][928]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:892][928]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:892][928]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:908][929]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:909][929]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:909][929]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:909][929]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:909][929]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:909][929]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:927][930]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:927][930]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:927][930]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:927][930]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:927][930]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:927][930]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:943][931]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:943][931]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:943][931]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:943][931]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:943][931]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:943][931]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:960][932]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:960][932]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:960][932]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:960][932]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:960][932]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:960][932]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:977][933]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:977][933]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:977][933]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:977][933]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:977][933]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:977][933]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.04:994][934]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:995][934]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:995][934]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:995][934]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:995][934]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.04:995][934]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:010][935]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:010][935]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:010][935]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:010][935]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:010][935]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:010][935]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:026][936]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:026][936]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:026][936]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:026][936]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:026][936]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:026][936]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:043][937]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:043][937]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:043][937]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:043][937]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:043][937]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:043][937]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:060][938]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:060][938]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:060][938]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:060][938]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:060][938]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:060][938]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:077][939]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:077][939]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:077][939]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:077][939]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:077][939]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:077][939]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:093][940]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:093][940]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:093][940]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:094][940]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:094][940]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:094][940]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:110][941]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:110][941]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:110][941]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:110][941]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:110][941]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:110][941]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:127][942]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:127][942]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:127][942]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:127][942]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:127][942]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:127][942]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:143][943]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:143][943]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:143][943]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:143][943]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:143][943]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:143][943]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:160][944]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:160][944]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:160][944]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:160][944]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:160][944]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:160][944]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:177][945]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:177][945]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:177][945]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:177][945]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:177][945]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:177][945]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:195][946]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:195][946]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:195][946]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:195][946]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:195][946]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:195][946]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:213][947]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:213][947]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:213][947]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:213][947]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:213][947]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:213][947]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:230][948]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:230][948]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:230][948]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:230][948]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:230][948]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:230][948]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:247][949]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:247][949]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:247][949]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:247][949]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:247][949]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:247][949]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:264][950]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:264][950]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:265][950]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:265][950]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:265][950]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:265][950]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:281][951]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:281][951]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:282][951]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:282][951]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:282][951]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:282][951]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:299][952]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:299][952]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:299][952]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:299][952]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:299][952]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:299][952]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:316][953]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:317][953]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:317][953]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:317][953]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:317][953]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:317][953]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:334][954]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:334][954]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:334][954]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:334][954]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:334][954]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:334][954]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:352][955]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:352][955]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:352][955]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:352][955]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:352][955]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:352][955]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:368][956]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:368][956]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:369][956]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:369][956]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:369][956]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:369][956]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:386][957]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:386][957]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:386][957]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:386][957]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:386][957]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:387][957]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:403][958]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:404][958]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:404][958]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:404][958]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:404][958]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:404][958]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:421][959]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:421][959]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:421][959]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:421][959]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:421][959]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:422][959]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:439][960]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:439][960]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:439][960]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:439][960]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:439][960]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:439][960]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:456][961]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:456][961]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:456][961]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:456][961]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:456][961]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:457][961]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:474][962]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:474][962]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:474][962]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:474][962]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:474][962]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:474][962]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:493][963]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:493][963]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:493][963]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:493][963]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:493][963]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:493][963]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:510][964]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:510][964]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:510][964]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:510][964]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:510][964]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:510][964]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:526][965]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:526][965]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:526][965]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:526][965]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:526][965]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:526][965]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:542][966]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:543][966]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:543][966]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:543][966]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:543][966]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:543][966]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:560][967]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:560][967]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:560][967]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:560][967]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:560][967]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:560][967]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:576][968]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:576][968]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:576][968]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:576][968]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:576][968]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:576][968]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:593][969]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:593][969]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:593][969]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:593][969]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:593][969]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:593][969]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:609][970]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:609][970]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:610][970]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:610][970]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:610][970]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:610][970]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:626][971]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:626][971]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:626][971]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:626][971]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:626][971]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:626][971]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:643][972]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:643][972]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:643][972]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:643][972]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:643][972]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:643][972]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:660][973]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:660][973]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:660][973]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:660][973]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:660][973]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:660][973]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:676][974]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:676][974]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:676][974]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:676][974]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:676][974]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:676][974]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:693][975]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:693][975]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:693][975]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:693][975]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:693][975]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:693][975]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:709][976]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:709][976]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:709][976]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:709][976]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:709][976]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:709][976]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:726][977]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:726][977]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:726][977]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:726][977]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:726][977]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:726][977]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:742][978]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:742][978]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:742][978]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:742][978]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:742][978]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:743][978]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:759][979]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:759][979]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:759][979]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:759][979]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:760][979]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:760][979]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:776][980]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:776][980]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:776][980]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:776][980]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:776][980]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:776][980]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:792][981]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:792][981]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:792][981]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:792][981]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:792][981]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:792][981]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:809][982]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:809][982]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:809][982]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:809][982]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:809][982]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:810][982]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:826][983]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:826][983]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:826][983]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:826][983]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:826][983]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:826][983]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:843][984]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:843][984]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:843][984]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:843][984]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:843][984]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:843][984]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:862][985]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:862][985]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:862][985]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:862][985]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:863][985]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:863][985]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:880][986]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:880][986]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:880][986]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:880][986]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:880][986]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:880][986]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:896][987]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:896][987]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:896][987]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:896][987]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:897][987]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:897][987]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:913][988]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:913][988]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:913][988]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:913][988]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:913][988]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:913][988]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:930][989]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:930][989]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:930][989]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:930][989]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:930][989]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:930][989]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:947][990]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:947][990]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:947][990]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:947][990]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:947][990]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:947][990]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:965][991]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:965][991]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:965][991]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:965][991]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:965][991]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:965][991]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:982][992]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:982][992]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:982][992]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:982][992]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:982][992]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:982][992]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.05:999][993]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:999][993]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:999][993]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:999][993]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:999][993]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.05:999][993]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:016][994]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:016][994]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:016][994]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:016][994]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:016][994]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:016][994]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:034][995]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:034][995]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:034][995]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:034][995]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:034][995]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:034][995]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:050][996]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:050][996]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:051][996]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:051][996]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:051][996]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:051][996]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:068][997]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:068][997]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:068][997]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:068][997]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:068][997]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:068][997]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:084][998]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:084][998]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:084][998]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:084][998]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:084][998]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:084][998]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:102][999]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:102][999]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:102][999]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:102][999]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:102][999]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:102][999]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:119][  0]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:119][  0]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:119][  0]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:119][  0]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:120][  0]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:120][  0]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:137][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:137][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:137][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:137][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:137][  1]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:137][  1]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:154][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:154][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:154][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:154][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:154][  2]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:154][  2]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:173][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:173][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:173][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:173][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:173][  3]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:173][  3]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:190][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:190][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:190][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:190][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:190][  4]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:190][  4]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:207][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:207][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:207][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:207][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:207][  5]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:207][  5]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:227][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:227][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:227][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:227][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:227][  6]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:227][  6]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:242][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:242][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:242][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:242][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:242][  7]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:242][  7]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:259][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:259][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:259][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:259][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:259][  8]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:259][  8]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:280][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:280][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:280][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:280][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:280][  9]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:280][  9]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:299][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:299][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:299][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:299][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:299][ 10]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:299][ 10]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:314][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:314][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:314][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:314][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:314][ 11]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:314][ 11]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:331][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:331][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:331][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:331][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:331][ 12]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:331][ 12]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:350][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:350][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:350][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:350][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:350][ 13]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:350][ 13]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:368][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:368][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:368][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:368][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:368][ 14]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:368][ 14]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:385][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:385][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:385][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:385][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:385][ 15]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:385][ 15]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:403][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:403][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:403][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:403][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:403][ 16]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:403][ 16]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:419][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:419][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:419][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:419][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:419][ 17]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:419][ 17]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:436][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:436][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:436][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:436][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:436][ 18]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:436][ 18]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:454][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:454][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:454][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:454][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:454][ 19]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:454][ 19]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:471][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:471][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:471][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:471][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:471][ 20]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:471][ 20]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:488][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:488][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:488][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:488][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:488][ 21]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:488][ 21]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:506][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:506][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:506][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:506][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:506][ 22]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:506][ 22]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:523][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:523][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:523][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:523][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:523][ 23]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:523][ 23]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:540][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:541][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:541][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:541][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:541][ 24]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:541][ 24]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:559][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:559][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:559][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:559][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:559][ 25]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:559][ 25]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:576][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:577][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:577][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:577][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:577][ 26]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:577][ 26]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:592][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:592][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:592][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:592][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:592][ 27]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:592][ 27]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:609][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:609][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:609][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:609][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:609][ 28]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:609][ 28]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:626][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:626][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:626][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:626][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:626][ 29]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:626][ 29]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:642][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:643][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:643][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:643][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:643][ 30]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:643][ 30]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:659][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:659][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:659][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:659][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:659][ 31]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:659][ 31]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:676][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:676][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:676][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:676][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:676][ 32]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:676][ 32]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:692][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:692][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:692][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:692][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:692][ 33]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:692][ 33]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:709][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:709][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:710][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:710][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:710][ 34]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:710][ 34]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:726][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:726][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:726][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:726][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:726][ 35]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:726][ 35]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:742][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:742][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:742][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:742][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:742][ 36]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:742][ 36]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:758][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:759][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:759][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:759][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:759][ 37]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:759][ 37]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:779][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:779][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:779][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:779][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:779][ 38]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:780][ 38]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:796][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:796][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:796][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:796][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:796][ 39]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:796][ 39]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:814][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:815][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:815][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:815][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:815][ 40]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:815][ 40]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:832][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:832][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:832][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:832][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:832][ 41]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:832][ 41]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:849][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:849][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:849][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:849][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:849][ 42]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:849][ 42]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:867][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:867][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:867][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:867][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:867][ 43]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:867][ 43]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:884][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:884][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:884][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:884][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:884][ 44]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:884][ 44]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:902][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:902][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:902][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:902][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:902][ 45]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:902][ 45]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:919][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:919][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:919][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:919][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:919][ 46]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:919][ 46]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:936][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:937][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:937][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:937][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:937][ 47]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:937][ 47]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:953][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:953][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:953][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:953][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:953][ 48]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:953][ 48]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:971][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:971][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:971][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:971][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:971][ 49]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:971][ 49]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.06:988][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:988][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:989][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:989][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:989][ 50]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.06:989][ 50]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:006][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:006][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:006][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:006][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:006][ 51]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:006][ 51]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:023][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:023][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:023][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:023][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:023][ 52]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:023][ 52]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:041][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:041][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:041][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:041][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:041][ 53]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:041][ 53]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:058][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:058][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:058][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:058][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:058][ 54]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:058][ 54]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:075][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:075][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:075][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:075][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:075][ 55]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:075][ 55]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:092][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:093][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:093][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:093][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:093][ 56]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:093][ 56]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:108][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:109][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:109][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:109][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:109][ 57]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:109][ 57]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:129][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:129][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:129][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:129][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:130][ 58]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:130][ 58]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:147][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:147][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:147][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:147][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:147][ 59]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:147][ 59]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:164][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:164][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:164][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:164][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:164][ 60]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:164][ 60]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:182][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:182][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:182][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:182][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:182][ 61]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:182][ 61]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:198][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:199][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:199][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:199][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:199][ 62]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:199][ 62]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:216][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:216][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:216][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:216][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:216][ 63]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:216][ 63]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:233][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:233][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:233][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:233][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:233][ 64]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:233][ 64]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:251][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:251][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:251][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:251][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:251][ 65]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:251][ 65]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:269][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:269][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:269][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:269][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:269][ 66]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:269][ 66]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:286][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:286][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:286][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:286][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:286][ 67]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:286][ 67]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:303][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:303][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:303][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:303][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:303][ 68]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:303][ 68]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:320][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:320][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:320][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:320][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:320][ 69]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:320][ 69]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:338][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:338][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:338][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:338][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:338][ 70]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:338][ 70]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:355][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:355][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:355][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:355][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:355][ 71]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:355][ 71]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:372][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:372][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:372][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:372][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:372][ 72]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:372][ 72]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:389][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:389][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:389][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:389][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:389][ 73]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:389][ 73]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:407][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:407][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:407][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:407][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:407][ 74]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:407][ 74]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:424][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:424][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:424][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:424][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:424][ 75]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:425][ 75]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:442][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:442][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:442][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:442][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:443][ 76]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:443][ 76]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:459][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:459][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:459][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:459][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:459][ 77]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:460][ 77]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:476][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:477][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:477][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:477][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:477][ 78]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:477][ 78]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:492][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:492][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:492][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:492][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:492][ 79]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:493][ 79]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:509][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:509][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:509][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:509][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:509][ 80]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:509][ 80]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:527][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:528][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:528][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:528][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:528][ 81]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:528][ 81]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:542][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:542][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:542][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:542][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:542][ 82]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:543][ 82]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:559][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:559][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:559][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:559][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:559][ 83]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:559][ 83]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:577][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:577][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:577][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:577][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:577][ 84]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:578][ 84]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:596][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:596][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:596][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:596][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:596][ 85]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:596][ 85]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:614][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:614][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:614][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:614][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:614][ 86]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:614][ 86]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:632][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:632][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:632][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:632][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:632][ 87]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:632][ 87]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:649][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:649][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:649][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:649][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:649][ 88]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:649][ 88]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:667][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:667][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:667][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:667][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:667][ 89]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:667][ 89]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:684][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:684][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:684][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:684][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:684][ 90]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:684][ 90]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:702][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:702][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:702][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:702][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:702][ 91]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:702][ 91]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:719][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:719][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 0 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:719][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 2 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:719][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 1 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:719][ 92]LogScriptCore:Warning: Script Msg: Attempted to access index 3 from array UsableControlArray of length 0!
+[2017.04.21-10.19.07:719][ 92]LogTemp:Warning: Not Connected
+[2017.04.21-10.19.07:720][ 92]LogBlueprintUserMessages: Early EndPlayMap Detection: Level '/Game/Level/PoolTable.PoolTable:PersistentLevel' has LevelScriptBlueprint '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable' with GeneratedClass '/Game/Level/PoolTable.PoolTable_C' with ClassGeneratedBy '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable'
+[2017.04.21-10.19.07:945][ 92]LogBlueprintUserMessages: Late EndPlayMap Detection: Level '/Game/Level/PoolTable.PoolTable:PersistentLevel' has LevelScriptBlueprint '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable' with GeneratedClass '/Game/Level/PoolTable.PoolTable_C' with ClassGeneratedBy '/Game/Level/PoolTable.PoolTable:PersistentLevel.PoolTable'
+[2017.04.21-10.19.18:826][698]LogMaterial: Missing cached shader map for material PreviewMaterial_0, compiling. 
+[2017.04.21-10.19.18:885][698]LogMaterial: Missing cached shader map for material PreviewMaterial_0, compiling. 
+[2017.04.21-10.19.18:889][698]LogMaterial: 0.00 seconds spent updating 1 materials, 1 interfaces, 0 instances, 0 with static permutations.
+[2017.04.21-10.19.18:913][698]LogMaterial: Missing cached shader map for material FMatExpressionPreview MaterialExpressionConstant3Vector_0, compiling. 
+[2017.04.21-10.19.18:918][698]LogMaterial: Missing cached shader map for material FMatExpressionPreview MaterialExpressionTextureSampleParameterCube_0, compiling. 
+[2017.04.21-10.19.32:136][445]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Skybox/SPACEBOX" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX.uasset" SILENT=true
+[2017.04.21-10.19.32:374][445]LogSavePackage: Save=165.42ms
+[2017.04.21-10.19.32:374][445]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/SPACEBOXC09858A9472F1B513C466B876D5477A3.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX.uasset'
+[2017.04.21-10.19.32:378][445]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Skybox/SPACEBOX.uasset
+[2017.04.21-10.21.11:632][794]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Level/PoolTable" FILE="../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap" SILENT=true AUTOSAVING=false KEEPDIRTY=false
+[2017.04.21-10.21.11:904][794]LogSavePackage: Save=173.78ms
+[2017.04.21-10.21.11:904][794]LogSavePackage: Moving '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Saved/PoolTable2D64327342194BD95A365CAA80347825.tmp' to '../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap'
+[2017.04.21-10.21.11:908][794]LogSavePackage:Display: Finished SavePackage ../../../../../../Users/Richard Steele/comp140-gam160-game/Poolio/Content/Level/PoolTable.umap
