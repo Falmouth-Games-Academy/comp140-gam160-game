@@ -5,9 +5,9 @@ Poolio will literally put the pool cue in your hands. Using a cradle to rest you
 ## Mechanics
 
 An inbuilt joystick will allow aiming your shot without having to leave the controller but it is in the way that you perform a shot that the game comes into it's own. 
-The arduino will track the movement of the cue to trigger a shot and reflect the appropriate amount of force applied.  By angling the cue up and down, screw or top spin may be applied to the object ball, whilst left and right adjustments may be used to replicate adding swerve or to fine tune aiming.
+The arduino will track the movement of the cue to trigger a shot and reflect the appropriate amount of force applied.
 
-The game itself will be relatively simple and well established; A physics based ball rolling game leaving most of the mechanics to Unreal Engines own physics module. The rules will initially be English pool rules but the amount of variations available leave much scope for games such as snooker, 8 ball, or killer.
+The game itself will be relatively simple and well established; A physics based ball rolling game leaving most of the mechanics to Unreal Engines own physics module. The rules will be upto the player, although the balls' colours lend themselves towards pool with English league rules.
 
 ## Research
 
@@ -20,6 +20,4 @@ There is also a game called [SportsBarVR](http://www.poolnationvrgame.com/) whic
 
 ## Hardware
 
-Relying on a real pool cue that can either sit in a cradle or have the arduino attached to the back section, aiming will be controlled with a joystick and a button to toggle fine tuning.  
-
-There are many different options available to measure the forward and backwards movement of the cue to take a shot, and the favourite currently is to translate that movement onto a motor to generate a voltage. This will give both a magnitude and a duration which can be used to return a shot velocity. All controls have been set out in the input settings of unreal to allow easy mapping to any arduino inputs.
+Relying on a real pool cue that has the arduino attached to the back section, aiming will be controlled with a joystick, the aiming speed will be adjustable from a potentiometer to allow fine tuning aim and large sweeping movements to be controlled from the same joystick.  The cue movement will be detected by an accelerometer, and a button will recentre the cue to the white ball and allow a shot to be taken.
