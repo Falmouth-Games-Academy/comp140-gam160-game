@@ -20,11 +20,7 @@ String OutputString;
 void setup() {
   Serial.begin(9600);
   
-  pinMode(JoystickSwitchPin, INPUT); 
   pinMode(ButtonPin, INPUT);
-  pinMode(PotentiometerPin, INPUT);
-  //pinMode(JoystickXPin, INPUT);
-  //pinMode(JoystickYPin, INPUT);
 
   adxl.powerOn();       
   adxl.setRangeSetting(16);           // Give the range settings
