@@ -16,3 +16,8 @@ I have intended this game to be top-down with local multiplayer. The concept and
 ### Research
 From my research, I have not found any controllers that are specifically similar to mine or ones that are linked to any sphere-based games. Although, I have found a fairly similar controller that was designed for Wii Sports by Nintendo, the [Wii Bowling Ball](https://images-na.ssl-images-amazon.com/images/G/01/videogames/detail-page/B002GEA4U4.2.large.jpg). It was more of a gimmick where you would mimic actual bowling sessions. Another one I found was [Puyocon](http://gizmodo.com/5446278/control-your-pc-with-the-puyocon-motion-sensing-ball), a motion-sensing ball that works on computers. Out of these two, my controller version is simplified, although I think is one with potential if configured properly. 
 
+Online sources:
+
+https://www.youtube.com/watch?v=wY4zbEIaVxU
+
+https://github.com/emara-geek/arduino-with-PS-2-Mouse
