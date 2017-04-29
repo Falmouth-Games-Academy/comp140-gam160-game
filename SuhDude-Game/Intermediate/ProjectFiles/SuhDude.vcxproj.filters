@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\SuhDude.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{CCE7D338-F853-4431-91B7-55F4135C92A2}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\SuhDude.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\SuhDudeEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{2C54346D-4671-4FAF-AFC2-5EED04FFEE1E}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\SuhDude">
+			<UniqueIdentifier>{48ADF761-BDAA-4F98-9AF9-81D63FEF7903}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\SuhDude\Arduino.cpp">
+			<Filter>Source\SuhDude</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\SuhDude\Arduino.h">
+			<Filter>Source\SuhDude</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\SuhDude\CppSpawner.cpp">
+			<Filter>Source\SuhDude</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\SuhDude\CppSpawner.h">
+			<Filter>Source\SuhDude</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\SuhDude\MovingObjects.cpp">
+			<Filter>Source\SuhDude</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\SuhDude\MovingObjects.h">
+			<Filter>Source\SuhDude</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\SuhDude\MyCharacter.cpp">
+			<Filter>Source\SuhDude</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\SuhDude\MyCharacter.h">
+			<Filter>Source\SuhDude</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\SuhDude\Server.cpp">
+			<Filter>Source\SuhDude</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\SuhDude\Server.h">
+			<Filter>Source\SuhDude</Filter>
+		</ClInclude >
+		<None Include="..\..\Source\SuhDude\Source - Shortcut.lnk">
+			<Filter>Source\SuhDude</Filter>
+		</None >
+		<None Include="..\..\Source\SuhDude\SuhDude.Build.cs">
+			<Filter>Source\SuhDude</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\SuhDude\SuhDude.cpp">
+			<Filter>Source\SuhDude</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\SuhDude\SuhDude.h">
+			<Filter>Source\SuhDude</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>

@@ -1,0 +1,3 @@
+C:\Users\Tristan\Documents\comp140-gam160-game\SuhDude-Game\Source\SuhDude\SuhDude.Build.cs
+C:\Users\Tristan\Documents\comp140-gam160-game\SuhDude-Game\Source\SuhDude.Target.cs
+C:\Users\Tristan\Documents\comp140-gam160-game\SuhDude-Game\Source\SuhDudeEditor.Target.cs

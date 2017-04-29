@@ -1,0 +1,12 @@
+﻿  Creating makefile for hot reloading SuhDudeEditor (modules to compile have changed)
+  Compiling game modules for hot reload
+  Parsing headers for SuhDudeEditor
+    Running UnrealHeaderTool "C:\Users\Tristan\Documents\comp140-gam160-game\SuhDude-Game\SuhDude.uproject" "C:\Users\Tristan\Documents\comp140-gam160-game\SuhDude-Game\Intermediate\Build\Win64\SuhDudeEditor\Development\SuhDudeEditor.uhtmanifest" -LogCmds="loginit warning, logexit warning, logdatabase error" -Unattended -WarningsAsErrors -installed
+  Reflection code generated for SuhDudeEditor in 4.5598306 seconds
+  Performing 4 actions (2 in parallel)
+  Server.cpp
+  Arduino.cpp
+  SuhDude.generated.cpp
+  [4/4] Link UE4Editor-SuhDude-3858.dll
+     Creating library C:\Users\Tristan\Documents\comp140-gam160-game\SuhDude-Game\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-SuhDude-3858.lib and object C:\Users\Tristan\Documents\comp140-gam160-game\SuhDude-Game\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-SuhDude-3858.exp
+  Total build time: 182.94 seconds
