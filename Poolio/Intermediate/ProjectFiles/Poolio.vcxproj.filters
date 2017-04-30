@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\Poolio.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{80CABC47-9807-41BD-9599-1787DA1304C9}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Poolio.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\PoolioEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{D59A19F0-D3DC-45B9-8476-542AE4745E5D}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\Poolio">
+			<UniqueIdentifier>{37EC68AB-81EA-499E-914E-D2EC3DD14741}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\Poolio\ArduinoController.cpp">
+			<Filter>Source\Poolio</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Poolio\ArduinoController.h">
+			<Filter>Source\Poolio</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Poolio\ArduinoControllerActor.cpp">
+			<Filter>Source\Poolio</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Poolio\ArduinoControllerActor.h">
+			<Filter>Source\Poolio</Filter>
+		</ClInclude >
+		<None Include="..\..\Source\Poolio\Poolio.Build.cs">
+			<Filter>Source\Poolio</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\Poolio\Poolio.cpp">
+			<Filter>Source\Poolio</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Poolio\Poolio.h">
+			<Filter>Source\Poolio</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Poolio\PoolioGameModeBase.cpp">
+			<Filter>Source\Poolio</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Poolio\PoolioGameModeBase.h">
+			<Filter>Source\Poolio</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>

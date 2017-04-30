@@ -1,0 +1,4 @@
+C:\Users\Richard Steele\comp140-gam160-game\Poolio\Source\Poolio\Poolio.Build.cs
+C:\Users\Richard Steele\comp140-gam160-game\Poolio\Plugins\UE4Duino\Source\UE4Duino\UE4Duino.Build.cs
+C:\Users\Richard Steele\comp140-gam160-game\Poolio\Source\Poolio.Target.cs
+C:\Users\Richard Steele\comp140-gam160-game\Poolio\Source\PoolioEditor.Target.cs
