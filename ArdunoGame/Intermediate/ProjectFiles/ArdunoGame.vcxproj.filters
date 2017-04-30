@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\ArdunoGame.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{E82824F8-9C3B-4E02-BA08-B120D7D62700}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\ArdunoGame.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\ArdunoGameEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{18BB9F51-29F3-4A1D-BAA1-6D669CE1EAD2}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Plugins">
+			<UniqueIdentifier>{2950A282-0433-4999-8616-7E812230A1BB}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Plugins\UE4Duino">
+			<UniqueIdentifier>{71D619E8-F44C-437A-9672-D97557421833}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Plugins\UE4Duino\Source">
+			<UniqueIdentifier>{0FDF9AD1-2139-4A5A-9EE8-A796AE745ED4}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Plugins\UE4Duino\Source\UE4Duino">
+			<UniqueIdentifier>{316D2403-C8E6-4B9C-863D-9B3FB0936FB8}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Plugins\UE4Duino\Source\UE4Duino\UE4Duino.Build.cs">
+			<Filter>Plugins\UE4Duino\Source\UE4Duino</Filter>
+		</None >
+		<Filter Include="Plugins\UE4Duino\Source\UE4Duino\Private">
+			<UniqueIdentifier>{D38CC926-B650-4D53-ADDB-9A1E3420C5F3}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Plugins\UE4Duino\Source\UE4Duino\Private\Serial.cpp">
+			<Filter>Plugins\UE4Duino\Source\UE4Duino\Private</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Plugins\UE4Duino\Source\UE4Duino\Private\Serial.h">
+			<Filter>Plugins\UE4Duino\Source\UE4Duino\Private</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Plugins\UE4Duino\Source\UE4Duino\Private\UE4DuinoModule.cpp">
+			<Filter>Plugins\UE4Duino\Source\UE4Duino\Private</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Plugins\UE4Duino\Source\UE4Duino\Private\UE4DuinoModule.h">
+			<Filter>Plugins\UE4Duino\Source\UE4Duino\Private</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Plugins\UE4Duino\Source\UE4Duino\Private\UE4DuinoPCH.h">
+			<Filter>Plugins\UE4Duino\Source\UE4Duino\Private</Filter>
+		</ClInclude >
+		<None Include="..\..\Plugins\UE4Duino\UE4Duino.uplugin">
+			<Filter>Plugins\UE4Duino</Filter>
+		</None >
+		<Filter Include="Plugins\UE4Duino\Resources">
+			<UniqueIdentifier>{78E2F155-4454-42E0-999E-673B6E83A1D7}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Plugins\UE4Duino\Resources\Icon128.png">
+			<Filter>Plugins\UE4Duino\Resources</Filter>
+		</None >
+		<None Include="..\..\Plugins\UE4Duino\Resources\Logo.ai">
+			<Filter>Plugins\UE4Duino\Resources</Filter>
+		</None >
+		<Filter Include="Source\ArdunoGame">
+			<UniqueIdentifier>{98B245D2-B413-43A1-9EF3-C6E501E4588F}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\ArdunoGame\ArdunoGame.Build.cs">
+			<Filter>Source\ArdunoGame</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\ArdunoGame\ArdunoGame.cpp">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\ArdunoGame\ArdunoGame.h">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\ArdunoGame\ArdunoGameCharacter.cpp">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\ArdunoGame\ArdunoGameCharacter.h">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\ArdunoGame\ArdunoGameGameMode.cpp">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\ArdunoGame\ArdunoGameGameMode.h">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\ArdunoGame\MyClass.cpp">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\ArdunoGame\MyClass.h">
+			<Filter>Source\ArdunoGame</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>

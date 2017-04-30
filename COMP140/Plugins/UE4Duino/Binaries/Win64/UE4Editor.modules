@@ -1,9 +1,0 @@
-{
-	"Changelist" : 3195953,
-	"CompatibleChangelist" : 0,
-	"BuildId" : "729b66c2-14de-45f8-84b7-c65e01340f07",
-	"Modules" : 
-	{
-		"UE4Duino" : "UE4Editor-UE4Duino.dll"
-	}
-}
