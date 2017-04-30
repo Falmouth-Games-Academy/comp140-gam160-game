@@ -1,3 +1,6 @@
+Project built in Unreal Engine version 4.14.3
+Arduino serial output handled in PoolCue blueprint class, which inherits from ArduinoControllerActor.cpp, which handles the port and data stream.
+
 # Poolio
 
 Poolio will literally put the pool cue in your hands. Using a cradle to rest your actual physical cue into, the arduino will track it's movements to reflect your shots direction and power. 
