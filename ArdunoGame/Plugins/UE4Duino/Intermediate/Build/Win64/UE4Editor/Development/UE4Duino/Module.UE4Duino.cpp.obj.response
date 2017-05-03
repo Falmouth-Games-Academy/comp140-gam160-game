@@ -23,10 +23,10 @@
 /wd4838
 /w44668
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source"
-/I C:\Users\rasta\Desktop\ArdunoGame\Plugins\UE4Duino\Source\UE4Duino\Private
-/I C:\Users\rasta\Desktop\ArdunoGame\Plugins\UE4Duino\Source
-/I C:\Users\rasta\Desktop\ArdunoGame\Plugins\UE4Duino\Intermediate\Build\Win64\UE4Editor\Inc\UE4Duino
-/I C:\Users\rasta\Desktop\ArdunoGame\Plugins\UE4Duino\Source\UE4Duino
+/I C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Plugins\UE4Duino\Source\UE4Duino\Private
+/I C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Plugins\UE4Duino\Source
+/I C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Plugins\UE4Duino\Intermediate\Build\Win64\UE4Editor\Inc\UE4Duino
+/I C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Plugins\UE4Duino\Source\UE4Duino
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source\Runtime\Engine\Classes"
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source\Runtime\Engine\Public"
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source\Runtime\Engine\Public\AI"
@@ -421,8 +421,8 @@
 /DMESHUTILITIES_API=
 /DKISMET_API=DLLIMPORT
 /DNETWORKREPLAYSTREAMING_API=
-"C:\Users\rasta\Desktop\ArdunoGame\Plugins\UE4Duino\Intermediate\Build\Win64\UE4Editor\Development\UE4Duino\Module.UE4Duino.cpp"
-/Fo"C:\Users\rasta\Desktop\ArdunoGame\Plugins\UE4Duino\Intermediate\Build\Win64\UE4Editor\Development\UE4Duino\Module.UE4Duino.cpp.obj"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Plugins\UE4Duino\Intermediate\Build\Win64\UE4Editor\Development\UE4Duino\Module.UE4Duino.cpp"
+/Fo"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Plugins\UE4Duino\Intermediate\Build\Win64\UE4Editor\Development\UE4Duino\Module.UE4Duino.cpp.obj"
 /TP
 /GR-
 /W4

@@ -1,4 +1,4 @@
-C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame\ArdunoGame.Build.cs
-C:\Users\rasta\Desktop\ArdunoGame\Plugins\UE4Duino\Source\UE4Duino\UE4Duino.Build.cs
-C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame.Target.cs
-C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGameEditor.Target.cs
+C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame\ArdunoGame.Build.cs
+C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Plugins\UE4Duino\Source\UE4Duino\UE4Duino.Build.cs
+C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame.Target.cs
+C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGameEditor.Target.cs

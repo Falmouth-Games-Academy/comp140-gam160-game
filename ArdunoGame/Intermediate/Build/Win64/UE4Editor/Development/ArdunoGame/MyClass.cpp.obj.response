@@ -23,9 +23,9 @@
 /wd4838
 /w44668
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source"
-/I C:\Users\rasta\Desktop\ArdunoGame\Source
-/I C:\Users\rasta\Desktop\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Inc\ArdunoGame
-/I C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame
+/I C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source
+/I C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Inc\ArdunoGame
+/I C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source\Runtime\Core\Public"
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source\Runtime\Core\Public\Internationalization"
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Source\Runtime\Core\Public\Async"
@@ -307,11 +307,11 @@
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Plugins\2D\Paper2D\Source\Paper2D\Public"
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Plugins\2D\Paper2D\Intermediate\Build\Win64\UE4Editor\Inc\Paper2D"
 /I "C:\Program Files\Epic Games\UE_4.15\Engine\Plugins\2D\Paper2D\Source\Paper2D"
-/FI"C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame\ArdunoGame.h"
-/Yu"C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame\ArdunoGame.h"
-/Fp"C:\Users\rasta\Desktop\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\PCH.ArdunoGame.h.pch"
-"C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame\MyClass.cpp"
-/Fo"C:\Users\rasta\Desktop\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\MyClass.cpp.obj"
+/FI"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame\ArdunoGame.h"
+/Yu"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame\ArdunoGame.h"
+/Fp"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\PCH.ArdunoGame.h.pch"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame\MyClass.cpp"
+/Fo"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\MyClass.cpp.obj"
 /TP
 /GR-
 /W4

@@ -1,4 +1,4 @@
-// PCH for C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame\ArdunoGame.h
+// PCH for C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame\ArdunoGame.h
 #define UE_EDITOR 1
 #define IS_PROGRAM 0
 #define WITH_DEV_AUTOMATION_TESTS 1
@@ -118,4 +118,4 @@
 #define NETWORKREPLAYSTREAMING_API 
 #define WITH_BOX2D 1
 #define PAPER2D_API DLLIMPORT
-#include "C:\Users\rasta\Desktop\ArdunoGame\Source\ArdunoGame\ArdunoGame.h"
+#include "C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Source\ArdunoGame\ArdunoGame.h"
