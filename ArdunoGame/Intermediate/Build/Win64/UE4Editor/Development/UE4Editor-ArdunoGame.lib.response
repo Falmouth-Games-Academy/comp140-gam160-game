@@ -1,0 +1,26 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-ArdunoGame.dll"
+/IGNORE:4221
+/NODEFAULTLIB:"LIBCMT"
+/NODEFAULTLIB:"LIBCPMT"
+/NODEFAULTLIB:"LIBCMTD"
+/NODEFAULTLIB:"LIBCPMTD"
+/NODEFAULTLIB:"MSVCRTD"
+/NODEFAULTLIB:"MSVCPRTD"
+/NODEFAULTLIB:"LIBC"
+/NODEFAULTLIB:"LIBCP"
+/NODEFAULTLIB:"LIBCD"
+/NODEFAULTLIB:"LIBCPD"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\PCH.ArdunoGame.h.obj"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\ArdunoGame.cpp.obj"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\ArdunoGameCharacter.cpp.obj"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\ArdunoGameGameMode.cpp.obj"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\MyClass.cpp.obj"
+"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\ArdunoGame.generated.cpp.obj"
+"C:\Program Files\Epic Games\UE_4.15\Engine\Intermediate\Build\Win64\UE4Editor\Development\ArdunoGame\PCLaunch.rc.res"
+"C:\Program Files\Epic Games\UE_4.15\Engine\Intermediate\Build\Win64\UE4Editor\Development\ModuleVersionResource.rc.inl.res"
+/OUT:"C:\Users\rasta\Documents\Github\comp140-gam160-game\ArdunoGame\Intermediate\Build\Win64\UE4Editor\Development\UE4Editor-ArdunoGame.lib"
