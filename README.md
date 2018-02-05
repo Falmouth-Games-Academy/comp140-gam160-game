@@ -19,3 +19,7 @@ Music game about ducks where you match the rhythm by mashing rubber ducks. The d
 
 ## Proposal 2: Artsy Paper Doll game
 ## 
+
+## Proposal 3: Police car game
+# Concept
+You drive a police car. The crooks are on the run! Flip on the sirens and lights and drive your car using tilt controls. A music element would be fun...?
