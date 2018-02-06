@@ -6,6 +6,9 @@ Repository for Assignment 1 of COMP140-GAM160
 ### Concept
 Music game about ducks where you match the rhythm by mashing rubber ducks. The ducks squeak in response.
 
+### Gameplay proposal
+On the screen, a character throws baby sucks into pipes. In real life, there is a series of ducks attached to strings of LEDs going up to the screen. When a duck falls through a pipe, they start 'travelling' down the LEDs as a yellow light.  
+
 ### Quirks
 * Ducks are tuned to harmonise with the song
 * Use the Duck Lemonade song
@@ -17,9 +20,56 @@ Music game about ducks where you match the rhythm by mashing rubber ducks. The d
 **Code:** Main game loop, music player, synchronisation, duck sensors, duck lights?
 **Extra:** Rhythm *level editor*
 
+### Research/Questions:
+* Is it possible to have a rubber duck play a specific note?
+* Is there any way the rubber duck could be tuned?
+
 ## Proposal 2: Artsy Paper Doll game
-## 
+### Concept
+Paper-oriented side-scrolling game. The main controls are two props, a paper doll and a flag. To move, you bounce the paper doll up an down. The flag is a different story. Blow on it to make it wave and change direction. The game responds by changing the in-game wind speed and direction. In-game, there are many props and objects, all made of paper, which can blow around depending on how hard you blow. This can be used to solve puzzles.  
+
+### Research/Questions:
+* Is this fun?
+* How could wind be picked up?
+* Anything else to be added?
 
 ## Proposal 3: Police car game
-# Concept
+### Concept
 You drive a police car. The crooks are on the run! Flip on the sirens and lights and drive your car using tilt controls. A music element would be fun...?
+
+### Potential music element
+
+
+## Mechanics
+**Tilt:** Drive car
+**Push down:** Powerslide!/handbrake
+**Vibrate** When powersliding, crashing, or hitting a speed boost.
+
+### Prerequisites
+**Model:** Flashing LED lights. Working buzzer.
+
+### Research/Questions
+* Is it fun?
+* How could I make a device that can hold the car in place whilst allowing it to tilt and push down?
+
+## Proposal 4: Hand puppet The Game
+### Concept
+You play as a hand puppet with a laser-beam spewing mouth in a 2D side-scrolling platform game. Maybe a music element. I like music elements.  
+
+### Quirks
+* When you defeat enemies, they crumble into pieces.
+* The entire art style could be based on photos of props and puppets.
+* The more you open the mouth, the wider and more destructive your lazer. However, this expends more at a time
+* Mirror enemy. This enemy is really dumb and tends to hold mirrors in random directions. If you shoot him at the right time your shot could bounce of multiple enemies, destroying them all.
+
+### Potential music element
+The game could be an infinite scroller with a background tune where cats fly in at different heights from the right-hand side. You need to open wide and unleash your lazer on them as they cross a certain point on your screen. Some of the cats are really long and you'll need to hold your lazer long enough. The higher the combo, the more apocalyptically powerful your lazer is on-screen and the stronger the vibration.  
+
+The vibration should give a satisfying feel as you obliterate cats. Perhaps they could come from the left side as well?
+
+### Mechanics
+**Bounce up and down:** Move foward. If possible, make game as responsive as possible. Track the motion of the accelerometer along a sine wave and the character on-screen will bounce along with it and forward.
+**Small crouch, fast motion up:** Jump, spring-style. The motion is like pushing down on a spring and then bouncing back up.
+**Open mouth:** Fire super poweredlazer
+**Collect blitties:** Blitties are pretty, collect more to charge ur lazer for a more powerful attack.
+**Vibrate**--when you open your mouth?
