@@ -16,4 +16,4 @@ impared who often cannot play video games due to their disability.
 
 I have produced a simple diagram showing how the components will connect to the arduino
 
-https://drive.google.com/file/d/1x7FtyvR28s5QIVyMnP1xsCqJA23axiF8/view?usp=sharing
+[Simple Arduino Diagram](https://drive.google.com/file/d/1x7FtyvR28s5QIVyMnP1xsCqJA23axiF8/view?usp=sharing)
