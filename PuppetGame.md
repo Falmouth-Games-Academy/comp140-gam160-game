@@ -1,3 +1,4 @@
+# The Page
 ## Proposal 4: Hand Puppet The Game
 ### Concept
 *Note that scope is not addressed in this concept*
@@ -18,23 +19,24 @@ The flex sensor will be used for your laser beam. The accelerometer and possibly
 
 The final version might have a hand-made puppet to go with it, but I prefer the idea of playing the game as your own hand.
 
+# Extra to the Page (no need to read this)
 ### Quirks
-* When you defeat enemies, they crumble into pieces.
-* The entire art style could be based on photos of props and puppets.
-* The more you open the mouth, the wider and more destructive your lazer. However, this expends more at a time
-* **Mirror enemy.** This enemy is really dumb and tends to hold mirrors in random directions. If you shoot him at the right time your shot could bounce of multiple enemies, destroying them all.
-* Talk to a character. **Nod for yes and shake head for no.**
-* **Left-handed mode:** Entire game is flipped around to make it easier to navigate the level. (Hands have a bias for going inwards more than outwards)
-* **Sock puppet AI:** Meet Monday, Tuesday, Wednesday, Thursday and Friday as they try to find their missing partners.
+* When you defeat enemies, they crumble into pieces.  
+* The entire art style could be based on photos of props and puppets.  
+* The more you open the mouth, the wider and more destructive your lazer. However, this expends more at a time.  
+* **Mirror enemy.** This enemy is really dumb and tends to hold mirrors in random directions. If you shoot him at the right time your shot could bounce of multiple enemies, destroying them all.  
+* Talk to a character. **Nod for yes and shake head for no.**  
+* **Left-handed mode:** Entire game is flipped around to make it easier to navigate the level. (Hands have a bias for going inwards more than outwards)  
+* **Sock puppet AI:** Meet Monday, Tuesday, Wednesday, Thursday and Friday as they try to find their missing partners.  
 
 ### Potential music element
 The game could be an infinite scroller with a background tune where cats fly in at different heights from the right-hand side. You need to open wide and unleash your lazer on them as they cross a certain point on your screen. Some of the cats are really long and you'll need to hold your lazer long enough. The higher the combo, the more apocalyptically powerful your lazer is on-screen and the stronger the vibration.  
 
-The vibration should give a satisfying feel as you obliterate cats. Perhaps they could come from the left side as well?
+The vibration should give a satisfying feel as you obliterate cats. Perhaps they could come from the left side as well?  
 
 ### Mechanics
-**Bounce up and down:** Move foward. If possible, make game as responsive as possible. Track the motion of the accelerometer along a sine wave and the character on-screen will bounce along with it and forward.
+**Bounce up and down:** Move foward. If possible, make game as responsive as possible. Track the motion of the accelerometer along a sine wave and the character on-screen will bounce along with it and forward.  
 **Small crouch, fast motion up:** Jump, spring-style. The motion is like pushing down on a spring and then bouncing back up.
-**Open mouth:** Fire super poweredlazer
+**Open mouth:** Fire super poweredlazer  
 **Collect blitties:** Blitties are pretty, collect more to charge ur lazer for a more powerful attack.
-**Vibrate**--when you open your mouth?
+**Vibrate**--when you open your mouth?  
