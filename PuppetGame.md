@@ -1,7 +1,7 @@
 # The Page
 ## Proposal: Hand Puppet The Game
 ### Concept
-*Note that scope is not addressed in this concept*
+*Note that scope is not addressed in this concept*  
 You play as a hand puppet with a laser-beam spewing mouth in a 2D side-scrolling platform game. You bounce up and down to move along, and use a crouch-jump motion to jump. To use your laser beam, open your mouth wide. The laser beam will make a satisfying BLAAAAAARGH and the controller will vibrate.  
 
 The gameplay will revolve around destroying evil mutant 'animals' (shadow puppets) with your laser, but there may be some RPG elements. For example, you may be sent on a mission by the Monday sock to find his missing partner. In fact, socks might be a regular collectible. Getting a pair will unleash new powers.  
