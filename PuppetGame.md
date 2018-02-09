@@ -1,5 +1,5 @@
 # The Page
-## Proposal 4: Hand Puppet The Game
+## Proposal: Hand Puppet The Game
 ### Concept
 *Note that scope is not addressed in this concept*
 You play as a hand puppet with a laser-beam spewing mouth in a 2D side-scrolling platform game. You bounce up and down to move along, and use a crouch-jump motion to jump. To use your laser beam, open your mouth wide. The laser beam will make a satisfying BLAAAAAARGH and the controller will vibrate.  
@@ -20,6 +20,8 @@ The flex sensor will be used for your laser beam. The accelerometer and possibly
 The final version might have a hand-made puppet to go with it, but I prefer the idea of playing the game as your own hand.
 
 # Extra to the Page (no need to read this)
+We were asked to write a page for the proposals, and indeed, all of the text below is part of the page. I have cut it out so that this page does not exceed a page, however, either way it is unlikely to exceed a page as it is, indeed, a page. Further to this though, one could observe that this page does not fit within one monitor screen. This is true, however it could be strongly argued that a monitor is not a page. To exceed a page would require that more than one page be stuck to the screen, perhaps with some sticky tape.  
+
 ### Quirks
 * When you defeat enemies, they crumble into pieces.  
 * The entire art style could be based on photos of props and puppets.  
