@@ -40,5 +40,5 @@ The vibration should give a satisfying feel as you obliterate cats. Perhaps they
 **Bounce up and down:** Move foward. If possible, make game as responsive as possible. Track the motion of the accelerometer along a sine wave and the character on-screen will bounce along with it and forward.  
 **Small crouch, fast motion up:** Jump, spring-style. The motion is like pushing down on a spring and then bouncing back up.
 **Open mouth:** Fire super poweredlazer  
-**Collect blitties:** Blitties are pretty, collect more to charge ur lazer for a more powerful attack.
+**Collect blitties:** Blitties are pretty, collect more to charge ur lazer for a more powerful attack.  
 **Vibrate**--when you open your mouth?  
