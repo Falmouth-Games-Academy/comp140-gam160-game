@@ -9,14 +9,14 @@ alt-controllers complete with accelerometers and that will monitor the movement 
  ### Gameplay
  
  The player will use these shoes to accomplish a number of small tasks including:
- 
- ..* Kicking a ball toward a goal
- ..* Fending off attackers in a reflex kick off
- ..* Stomping on buildings as a giant
- ..* Opening in game menus using a kicking motion
- ..* Playing drums by stomping both shoes in a rythm
- ..* Driving a plane using a shoe
- ..* Plus any more I can make using my inputs within the time limit
+ ..*
+ + Kicking a ball toward a goal
+ + Fending off attackers in a reflex kick off
+ + Stomping on buildings as a giant
+ + Opening in game menus using a kicking motion
+ + Playing drums by stomping both shoes in a rythm
+ + Driving a plane using a shoe
+ + Plus any more I can make using my inputs within the time limit
  
  These tasks should be within scope as they will require minimal effort to create as the simple tasks will only require few scripts to work. The art requirements will be low as I plan to use a lot of 2d sprites that I'll only create if needed.
  
