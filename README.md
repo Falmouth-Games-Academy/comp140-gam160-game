@@ -60,9 +60,10 @@ You play as a hand puppet with a laser-beam spewing mouth in a 2D side-scrolling
 * When you defeat enemies, they crumble into pieces.
 * The entire art style could be based on photos of props and puppets.
 * The more you open the mouth, the wider and more destructive your lazer. However, this expends more at a time
-* Mirror enemy. This enemy is really dumb and tends to hold mirrors in random directions. If you shoot him at the right time your shot could bounce of multiple enemies, destroying them all.
-* Talk to a character. Nod for yes and shake head for no.
-* Left-handed mode: Entire game is flipped around to make it easier to navigate the level. (Hands have a bias for going inwards more than outwards)
+* **Mirror enemy.** This enemy is really dumb and tends to hold mirrors in random directions. If you shoot him at the right time your shot could bounce of multiple enemies, destroying them all.
+* Talk to a character. **Nod for yes and shake head for no.**
+* **Left-handed mode:** Entire game is flipped around to make it easier to navigate the level. (Hands have a bias for going inwards more than outwards)
+* **Sock puppet AI:** Meet Monday, Tuesday, Wednesday, Thursday and Friday as they try to find their missing partners.
 
 ### Potential music element
 The game could be an infinite scroller with a background tune where cats fly in at different heights from the right-hand side. You need to open wide and unleash your lazer on them as they cross a certain point on your screen. Some of the cats are really long and you'll need to hold your lazer long enough. The higher the combo, the more apocalyptically powerful your lazer is on-screen and the stronger the vibration.  
