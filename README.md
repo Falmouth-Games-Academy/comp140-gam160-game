@@ -30,6 +30,12 @@ We were asked to write a page for the proposals, and indeed, all of the text bel
 * Talk to a character. **Nod for yes and shake head for no.**  
 * **Left-handed mode:** Entire game is flipped around to make it easier to navigate the level. (Hands have a bias for going inwards more than outwards)  
 * **Sock puppet AI:** Meet Monday, Tuesday, Wednesday, Thursday and Friday as they try to find their missing partners.  
+* **Classmate actors:** Ask around to see who wants to voice act their own hands as NPCs.  
+* **Story: Game could use a short story**... try to finish the concept and action sequences by **next Fri 16th**.  
+* **Fully awkwardly 3D hand rendering:** The direction of your hand is displayed on the screen in 8 intervals.  
+
+### Characters
+Todo
 
 ### Potential music element
 The game could be an infinite scroller with a background tune where cats fly in at different heights from the right-hand side. You need to open wide and unleash your lazer on them as they cross a certain point on your screen. Some of the cats are really long and you'll need to hold your lazer long enough. The higher the combo, the more apocalyptically powerful your lazer is on-screen and the stronger the vibration.  
