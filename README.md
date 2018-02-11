@@ -35,7 +35,8 @@ We were asked to write a page for the proposals, and indeed, all of the text bel
 * **Fully awkwardly 3D hand rendering:** The direction of your hand is displayed on the screen in 8 intervals.  
 
 ### Characters
-Todo
+* **Sales hand:** Please, feel free to browse our collection anytime, because we've got lots of great products just waiting for you to not care about... (note: only says this if you're walking away from him while he's talking).  
+
 
 ### Potential music element
 The game could be an infinite scroller with a background tune where cats fly in at different heights from the right-hand side. You need to open wide and unleash your lazer on them as they cross a certain point on your screen. Some of the cats are really long and you'll need to hold your lazer long enough. The higher the combo, the more apocalyptically powerful your lazer is on-screen and the stronger the vibration.  
