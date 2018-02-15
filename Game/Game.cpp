@@ -9,7 +9,7 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM5";
+const char* port = "COM3";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;
@@ -120,6 +120,9 @@ void Game::Render() {
 		SDL_RenderClear(sdlRenderers[i]);
 	}
 	
+	// Render the level first
+	level.Render();
+
 	// Render gesture debug stuff
 	gesture.Render();
 
@@ -151,6 +154,9 @@ void Game::Run() {
 
 	// Spawn the player
 	player.Spawn();
+
+	// Load the level
+	level.Load();
 
 	// Begin main loop!
 	SDL_Event sdlEvent;
@@ -191,9 +197,6 @@ void Game::Run() {
 
 		// Render the game!
 		Render();
-
-		// temp: Frame limit
-		SDL_Delay(2);
 
 		// Timer update
 		lastPerformanceCounter = currentPerformanceCounter;

@@ -6,6 +6,7 @@
 #include "Hand.h"
 #include "Gesture.h"
 #include "Input.h"
+#include "Level.h"
 
 // Main game (singleton class)
 // Contains the objects and methods to render and update objects
@@ -50,6 +51,9 @@ public:
 
 	// Da player
 	Hand player;
+
+	// Da level
+	Level level;
 
 private:
 	// Game renderers, one for each window

@@ -14,6 +14,8 @@ public:
 
 	inline T& Append();
 	inline T& Append(const T& clone);
+	template <typename ...ConstructorArgs>
+	inline T& Append(ConstructorArgs... args);
 
 	inline void RemoveByIndex(int index);
 
@@ -215,7 +217,7 @@ template<typename T> void Array<T>::Realloc(int32 numNeeded) {
 template<typename T> void Array<T>::Clear() {
 	// Call destructors on items
 	for (int i = 0; i < numItems; ++i) {
-		~items[i]();
+		items[i].~T();
 	}
 
 	// Clean up variables
@@ -244,4 +246,14 @@ template<typename T> const T* Array<T>::end() const {
 
 template<typename T> Array<T>::operator T*() {
 	return items;
+}
+
+template<typename T>
+template<typename ...ConstructorArgs>
+inline T& Array<T>::Append(ConstructorArgs ...args) {
+	// Resize list
+	Realloc(numItems + 1);
+
+	// Return placement new-initialised object
+	return *new (&items[numItems++]) T(args...);
 }

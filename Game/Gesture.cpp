@@ -109,59 +109,21 @@ void GestureManager::Update() {
 	if (game.GetInput().IsInputBooped(SDLK_SPACE)) {
 		debugGraphs[0].AddBar(Graph::GraphBar(Graph::GraphBar::Horizontal, 400, 0, 20));
 	}
+
+	// Toggle debug mode
+	if (game.GetInput().IsInputBooped(SDLK_d)) {
+		debugMode = !debugMode;
+	}
 }
 
 static uint32 timeWindowMs = 100;
 
 void GestureManager::Render() {
-	RenderDebugGraphs();
-	RenderDebugText();
-	RenderDebugVectors();
-
-	// Collect historical statistical data
-	static float currentSpeed = 0.0f;
-	static uint32 lastNumAccelsOnSpeedRecord = 0;
-	float movementThreshold = 3000.0f;
-	int numMovementsAboveThreshold = 0;
-	lastNumAccelsOnSpeedRecord = numAccelsRecordedTotal;
-
-	// Try and detect average frequency of movement
-	/*uint32 lastBelowAverage = 0;
-	uint32 lastAboveAverage = 0;
-	float averageDeadzone = 1000.0f;
-	float averageValue = GetAverageAccel(100, 0).direction.z;
-
-	for (int i = -accelHistory.GetNum(); i < 0; ++i) {
-		AccelStamp& accel = accelHistory[i];
-
-		if (accel.direction.z > movementThreshold) {
-			if (lastBelowAverage != 0) {
-				// found etc
-
-			}
-		}
-
-		if (accel.direction.z < averageValue + averageDeadzone) {
-			lastBelowAverage = accel.timestamp;
-		}
-		
-		if (accel.direction.z > averageValue - averageDeadzone) {
-			lastAboveAverage = accel.timestamp;
-		}
+	if (debugMode) {
+		RenderDebugGraphs();
+		RenderDebugText();
+		RenderDebugVectors();
 	}
-
-	// Reset speed after resting for a while
-	static uint32 lastDisturbTime = 0;
-
-	if (game.GetInput().IsInputBooped(SDLK_SPACE))
-		lastDisturbTime = game.GetFrameTime();
-
-	if (maxValue - minValue >= 1500.0f)
-		lastDisturbTime = game.GetFrameTime();
-
-	if (game.GetFrameTime() - lastDisturbTime > 300)
-		currentSpeed = 0.0f;*/
-
 }
 
 void GestureManager::RenderDebugGraphs() {
@@ -172,18 +134,39 @@ void GestureManager::RenderDebugGraphs() {
 }
 
 void GestureManager::RenderDebugVectors() {
-	float vectorScale = 0.03f;
+	float vectorScale = 0.01f;
 	Vec3 average = GetAverageAccel(50, 0);
 	SDL_Renderer* renderer = game.GetRenderer(Game::Debug);
-	const int qSize = 50;
-	SDL_Rect box = {300, 300, qSize * 4, qSize * 4};
+	const int halfSize = 150;
+	SDL_Rect box = {300, 300, halfSize * 2, halfSize * 2};
 
+	// Draw vector box
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderFillRect(renderer, &box);
 
-	// XY
-	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-	SDL_RenderDrawLine(renderer, box.x + qSize, box.y + qSize, box.x + qSize + average.x * vectorScale, box.y + qSize + average.y * vectorScale);
+	// Draw the XZ vector's historical position
+	const uint32 historicalMs = 1000, historicalDrawIntervalMs = 25;
+	SDL_Point points[historicalMs / historicalDrawIntervalMs];
+
+	for (uint32 i = game.GetFrameTime() % historicalDrawIntervalMs; i < historicalMs; i += historicalDrawIntervalMs) {
+		Vec3 force = game.GetGesture().GetAverageAccel(i + historicalDrawIntervalMs, i);
+
+		points[i / historicalDrawIntervalMs].x = box.x + halfSize + force.x * vectorScale;
+		points[i / historicalDrawIntervalMs].y = box.y + halfSize + force.z * vectorScale;
+	}
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+	SDL_RenderDrawLines(renderer, points, historicalMs / historicalDrawIntervalMs);
+	
+	// Draw the XZ vector
+	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 0);
+	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + average.x * vectorScale, box.y + halfSize + average.z * vectorScale);
+
+	// Draw the XZ vector compensating for changes in length
+	MinMax<Vec3> minMax = GetMinMaxAccel(50, 0);
+	Vec3 test = minMax.min + minMax.max / 2;
+
+	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + test.x * vectorScale, box.y + halfSize + test.z * vectorScale);
 }
 
 void GestureManager::RenderDebugText() {
@@ -277,6 +260,12 @@ MinMax<Vec3> GestureManager::GetMinMaxAccel(uint32 relativeTimeStart, uint32 rel
 	for (int i = -1; i >= -accelHistory.GetNum(); --i) {
 		const Vec3& accel = accelHistory[i].direction;
 
+		if (accelHistory[i].timestamp > absoluteTimeEnd) {
+			continue;
+		} else if (accelHistory[i].timestamp < absoluteTimeStart) {
+			break;
+		}
+
 		if (!foundAny) {
 			// This is the first value found so use this to initialise minMax
 			minMax.min.x = minMax.max.x = accel.x;
@@ -293,14 +282,14 @@ MinMax<Vec3> GestureManager::GetMinMaxAccel(uint32 relativeTimeStart, uint32 rel
 			if (accel.z < minMax.min.z) {
 				minMax.min.z = accel.z;
 			}
-			if (accel.x < minMax.min.x) {
-				minMax.min.x = accel.x;
+			if (accel.x > minMax.max.x) {
+				minMax.max.x = accel.x;
 			}
-			if (accel.y < minMax.min.y) {
-				minMax.min.y = accel.y;
+			if (accel.y > minMax.max.y) {
+				minMax.max.y = accel.y;
 			}
-			if (accel.z < minMax.min.z) {
-				minMax.min.z = accel.z;
+			if (accel.z > minMax.max.z) {
+				minMax.max.z = accel.z;
 			}
 		}
 	}

@@ -62,5 +62,7 @@ private:
 
 	bool8 gestureDown[NumGestureCodes] = {0}; // Whether a gesture is being done
 
+	bool8 debugMode = false;
+
 	Array<Graph> debugGraphs;
 };

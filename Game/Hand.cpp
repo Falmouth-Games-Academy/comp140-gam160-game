@@ -36,27 +36,6 @@ void Hand::Render() {
 
 		SDL_RenderCopyEx(game.GetRenderer(), sprite, nullptr, &spriteSplatRect, rotation, &originOfRotation, direction == -1 ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL);
 	}
-
-	// Draw the force vector
-	Vec3 accel = game.GetGesture().GetAverageAccel(200, 0);
-	const float forceScale = 0.03f;
-
-	SDL_SetRenderDrawColor(game.GetRenderer(), 0, 0, 0, 255);
-	SDL_RenderDrawLine(game.GetRenderer(), (int)origin.x, (int)origin.y, (int)(origin.x + accel.x * forceScale), (int)(origin.y + accel.z * forceScale));
-
-	// Draw the historical data
-	const uint32 historicalMs = 1000, historicalDrawIntervalMs = 25;
-	SDL_Point points[historicalMs / historicalDrawIntervalMs];
-
-	for (uint32 i = game.GetFrameTime() % historicalDrawIntervalMs; i < historicalMs; i += historicalDrawIntervalMs) {
-		Vec3 force = game.GetGesture().GetAverageAccel(i + historicalDrawIntervalMs, i);
-
-		points[i / historicalDrawIntervalMs].x = origin.x + force.x * forceScale;
-		points[i / historicalDrawIntervalMs].y = origin.y + force.z * forceScale;
-	}
-
-	SDL_SetRenderDrawColor(game.GetRenderer(), 255, 0, 255, 255);
-	SDL_RenderDrawLines(game.GetRenderer(), points, historicalMs / historicalDrawIntervalMs);
 }
 
 void Hand::Update(float deltaTime) {
