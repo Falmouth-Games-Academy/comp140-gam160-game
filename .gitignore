@@ -1,0 +1,6 @@
+# VC++ build directories
+**/Debug
+**/Release
+
+# VC++ user settings
+*.suo
