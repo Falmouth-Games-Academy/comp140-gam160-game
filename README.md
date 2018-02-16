@@ -1,6 +1,8 @@
 # comp140-gam160-game
 Repository for Assignment 1 of COMP140-GAM160
 
+## Part A
+
 I propose to develop a 2d platformer using a very specific setup of the Arduino alternative controller.
 The physical piece of hardware the player will be interacting with will be a small cube-like cushion sat
 on their lap. This will be connected to the Arduino via 3 soft touch sensitive buttons on the cushion,
@@ -28,3 +30,11 @@ Another mechanic I was considering were airbubbles found within the space. These
 to inflate, essentially increasing the minimum size cap. These would be optional hazzards to avoid, where 
 collecting too many could close off certain special paths or even cause the game to become impossible to
 complete due to you being too large.
+
+
+## Part B
+
+To reiterate my alternate controller will have 3 touch sensitive buttons, attached on 3 'faces' of a small cushion.
+They will be large and easy to push, making the controller accessible. Additionally the cushion makes for 
+a more enjoyable physicality to the controller, allowing it to be squeezed and squashed, and ultimately
+'played' with.
