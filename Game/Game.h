@@ -55,6 +55,9 @@ public:
 	// Da level
 	Level level;
 
+	// Da camera tho
+	Camera camera;
+
 private:
 	// Game renderers, one for each window
 	SDL_Renderer* sdlRenderers[NumRenderScreens];

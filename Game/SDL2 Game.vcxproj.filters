@@ -13,75 +13,93 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{67db1372-8b72-4473-b8d0-77e465addd0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Types">
+      <UniqueIdentifier>{1fb9385a-b8c4-430e-85bf-baf2d390a85e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{d1619ce7-a1a7-48e1-84fe-6cd43b9a3c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gameplay">
+      <UniqueIdentifier>{46fe814a-abc7-4807-a24f-d4f376a0427a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resources">
+      <UniqueIdentifier>{1d4ea48a-2627-4491-9abe-7f5db5bb55a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interface">
+      <UniqueIdentifier>{28e2e56e-2e17-4f32-bac1-e184909636f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Serial.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Graph.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Hand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Gesture.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Serial.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Hand.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Serial.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Containers.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Types.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Hand.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gesture.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClInclude>
     <ClInclude Include="String.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Types</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Math.h">
+      <Filter>Source Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Containers.h">
+      <Filter>Source Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="Gesture.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Serial.h">
+      <Filter>Source Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Hand.h">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Source Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Source Files\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
