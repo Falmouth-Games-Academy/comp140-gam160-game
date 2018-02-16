@@ -2,30 +2,6 @@
 #include "Image.h"
 #include "Game.h"
 
-BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec3& scale) {
-	Image bgImage(imageFilename);
-
-	if (bgImage.IsLoaded()) {
-		texture = bgImage.CreateSDLTexture(game.GetRenderer());
-	} else {
-		texture = nullptr;
-	}
-
-	this->position = position;
-	this->scale = scale * Vec3(bgImage.GetDimensions().width, bgImage.GetDimensions().height, 1.0f);
-}
-
-BackgroundLayer::~BackgroundLayer() {
-	SDL_DestroyTexture(texture);
-}
-
-void BackgroundLayer::Render() const {
-	const int cameraX = 0, cameraY = 0;
-	SDL_Rect destRect = {position.x - cameraX, position.y - cameraY, scale.x, scale.y};
-
-	SDL_RenderCopyEx(game.GetRenderer(), texture, nullptr, &destRect, 0.0f, nullptr, SDL_FLIP_NONE);
-}
-
 Level::Level() {
 	; // durr
 }
@@ -42,10 +18,35 @@ void Level::Render() const {
 }
 
 bool Level::Load() {
-	layers.Append("Graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 10.0f));
+	layers.Append("Graphics/bg_layer_1.png", Vec3(-3000.0f, -2000.0f, 3.0f), Vec3(1.5f, 1.5f, 1.0f));
+	layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 850.0f, 1.0f), Vec3(0.8f, 0.8f, 0.8f));
 	return true;
 }
 
 void Level::Unload() {
 	layers.Clear();
+}
+
+BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec3& scale) {
+	Image bgImage(imageFilename);
+
+	if (bgImage.IsLoaded()) {
+		texture = bgImage.CreateSDLTexture(game.GetRenderer());
+	} else {
+		texture = nullptr;
+	}
+
+	this->scale = scale * Vec3(bgImage.GetDimensions().width, bgImage.GetDimensions().height, 1.0f) * position.z;
+	this->position = position - scale / 2;
+}
+
+BackgroundLayer::~BackgroundLayer() {
+	SDL_DestroyTexture(texture);
+}
+
+void BackgroundLayer::Render() const {
+	const int cameraX = 0, cameraY = 0;
+	SDL_Rect destRect = {position.x - cameraX, position.y - cameraY, scale.x, scale.y};
+
+	game.GetCamera().RenderSprite(texture, position, scale.xy);
 }

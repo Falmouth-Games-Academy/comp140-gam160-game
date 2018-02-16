@@ -7,6 +7,8 @@
 #include "Gesture.h"
 #include "Input.h"
 #include "Level.h"
+#include "Camera.h"
+#include "GameState.h"
 
 // Main game (singleton class)
 // Contains the objects and methods to render and update objects
@@ -31,32 +33,35 @@ public:
 		NumRenderScreens
 	};
 
+	// Get renderer
 	inline SDL_Renderer* GetRenderer(RenderScreen screen = RenderScreen::Main);
-	inline Serial* GetSerialStream(); // Todo: class to handle this
 	
-	void RenderText(const char* text, int x, int y, RenderScreen screen = RenderScreen::Main); // Renders text. In the game class. Ask no questions just accept fate.
+	// Render stuff. In the game class. Ask no questions just accept fate.
+	void RenderText(const char* text, int x, int y, RenderScreen screen = RenderScreen::Main);
 	void RenderRectangle(bool filled = false);
+
+	// Game states
+	template<typename StateType>
+	void SetGameState();
+
+	// Gameplay objects
+	inline Hand& GetPlayer();
+	inline Level& GetLevel();
 
 	// Components
 	inline GestureManager& GetGesture();
 	inline InputManager& GetInput();
+	inline Camera& GetCamera();
+	inline Serial* GetSerialStream(); // Todo: class to handle this
 
 	// Time
 	inline uint32 GetFrameTime() const;
+	inline float GetDeltaTime() const;
 
 public:
 	// Object stuff
 	template<typename ObjectType>
 	ObjectType* CreateObject();
-
-	// Da player
-	Hand player;
-
-	// Da level
-	Level level;
-
-	// Da camera tho
-	Camera camera;
 
 private:
 	// Game renderers, one for each window
@@ -73,6 +78,19 @@ private:
 	GestureManager gesture;
 	InputManager input;
 	
+	// Currently active gamestate (e.g. GameStatePlay, meaning traditional in-game gameplay)
+	GameState* activeGameState;
+
+	// Game objects
+	// Da player
+	Hand player;
+
+	// Da level
+	Level level;
+
+	// Da camera tho
+	Camera camera;
+
 	// Delta time of current frame
 	float32 deltaTime;
 
@@ -147,6 +165,22 @@ inline InputManager& Game::GetInput() {
 	return input;
 }
 
+inline Camera& Game::GetCamera() {
+	return camera;
+};
+
+inline Hand& Game::GetPlayer() {
+	return player;
+}
+
+inline Level& Game::GetLevel() {
+	return level;
+}
+
 inline uint32 Game::GetFrameTime() const {
 	return frameTime;
+}
+
+inline float Game::GetDeltaTime() const {
+	return deltaTime;
 }

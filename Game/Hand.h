@@ -12,6 +12,8 @@ public:
 	void Render();
 	void Update(float deltaTime);
 
+	const Vec2& GetPosition() const;
+
 	Object::Type GetType() const override {return Object::Hand;}
 private:
 	struct SDL_Texture* sprite;
@@ -19,6 +21,7 @@ private:
 
 	Vec2 position;
 	Vec2 velocity;
+	Vec2 headBob;
 
 	int32 direction;
 

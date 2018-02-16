@@ -21,7 +21,7 @@ namespace Math {
 	template<typename ClampType>
 	inline ClampType clampmin(ClampType value, ClampType min) {if (value < min) {return min;} else {return value;}}
 	template<typename ClampType>
-	inline ClampType clampmax(ClampType value, ClampType max) {if (value < max) {return max;} else {return value;}}
+	inline ClampType clampmax(ClampType value, ClampType max) {if (value > max) {return max;} else {return value;}}
 
 	// Circular numbers
 	// anglediff: Returns shortest distance, positive or negative, between two values of a circular number of circleSize degrees
@@ -123,6 +123,27 @@ public:
 	};
 
 	float32 z;
+};
+
+// 2D Rectangle
+class Rect2 {
+public:
+	Rect2() = default;
+	Rect2(float32 _x, float32 _y) : x(_x), y(_y) {};
+
+	union {
+		struct {
+			float32 x, y;
+		};
+		Vec2 position;
+	};
+
+	union {
+		struct {
+			float32 width, height;
+		};
+		Vec2 size;
+	};
 };
 
 // 2-dimensional boundary

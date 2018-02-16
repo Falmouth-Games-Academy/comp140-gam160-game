@@ -9,7 +9,7 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM3";
+const char* port = "COM5";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;
@@ -48,7 +48,7 @@ void Game::Init() {
 	textSurfaceDc = CreateCompatibleDC(NULL);
 
 	// Create and select a bitmap into that DC
-	int infiniteData[4000];
+	int infiniteData[sizeof (BITMAPINFO) + 256 * sizeof (RGBQUAD)]; // lol (needed for bmiColors, prefer not to allocate memory when I can use stack memory)
 	BITMAPINFO& bi = *(BITMAPINFO*)infiniteData;
 	memset(&bi, 0, sizeof (bi));
 
@@ -61,8 +61,8 @@ void Game::Init() {
 	bi.bmiHeader.biClrUsed = 256;
 	bi.bmiHeader.biClrImportant = 256;
 	
-	for (BYTE i = 0; i < 255; ++i) {
-		bi.bmiColors[i] = RGBQUAD{i, i, i, 0};
+	for (uint32 i = 0; i < 256; ++i) {
+		bi.bmiColors[i] = RGBQUAD{(BYTE)i, (BYTE)i, (BYTE)i, 0};
 	}
 
 	textSurfaceBitmap = CreateDIBSection(0, &bi, DIB_RGB_COLORS, (void**) &textSurfaceBits, nullptr, 0);
@@ -106,11 +106,10 @@ void Game::Shutdown() {
 
 unsigned char incomingData[256] = "";
 void Game::Update(float deltaTime) {
-	// Update gesture input
-	gesture.Update();
-
-	// Update player
-	player.Update(deltaTime);
+	if (activeGameState) {
+		// Call current game state's update function
+		activeGameState->Update(deltaTime);
+	}
 }
 
 void Game::Render() {
@@ -120,27 +119,10 @@ void Game::Render() {
 		SDL_RenderClear(sdlRenderers[i]);
 	}
 	
-	// Render the level first
-	level.Render();
-
-	// Render gesture debug stuff
-	gesture.Render();
-
-	// Render player
-	player.Render();
-
-	// Render text
-	// Draw the text onto that bitmap
-	const int textWidth = 500, textHeight = 40;
-	RECT r = {0, 0, textWidth, textHeight};
-	
-	//FillRect(drawDc, &r, (HBRUSH) BLACK_BRUSH);
-	
-	char str[100];
-	sprintf(str, "FPS: %i", (int) (1.0f / deltaTime));
-	SDL_SetWindowTitle(sdlWindows[Main], str);
-
-	RenderText(str, 0, 0);
+	// Call current game state's render function
+	if (activeGameState) {	
+		activeGameState->Render();
+	}
 
 	// Finish rendering
 	for (int i = 0; i < RenderScreen::NumRenderScreens; ++i) {
@@ -151,6 +133,8 @@ void Game::Render() {
 void Game::Run() {
 	// Initialise engine
 	Init();
+
+	SetGameState<GameStatePlay>();
 
 	// Spawn the player
 	player.Spawn();
@@ -246,4 +230,9 @@ void Game::RenderText(const char* string, int x, int y, RenderScreen screen) {
 
 	SDL_SetTextureBlendMode(sdlTextSurfaces[screen], SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(sdlRenderers[screen], sdlTextSurfaces[screen], &src, &dest);
+}
+
+template<typename StateType>
+void Game::SetGameState() {
+	activeGameState = new StateType();
 }

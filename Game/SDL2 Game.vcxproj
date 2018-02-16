@@ -142,7 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Hand.cpp" />
@@ -153,8 +155,10 @@
     <ClCompile Include="Serial.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Containers.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="Gesture.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Hand.h" />

@@ -4,6 +4,8 @@
 #include "SDL.h"
 #include "Image.h"
  
+// Hand width: 9 1/2cm
+
 Hand::~Hand() {
 	if (sprite) {
 		SDL_DestroyTexture(sprite);
@@ -26,15 +28,13 @@ void Hand::Spawn() {
 void Hand::Render() {
 	// Draw the player
 	Vec2 spriteScale(1.5f, 1.5f);
-	SDL_Point originOfRotation = {222.0f * spriteScale.x, 154.0f * spriteScale.y};
-	Vec2 origin(position.x + originOfRotation.x, position.y + originOfRotation.y);
+	Vec2 originOfRotation = {222.0f * spriteScale.x, 154.0f * spriteScale.y};
 
 	if (sprite) {
 		Vec3 accel = game.GetGesture().GetAverageAccel(150, 0);
-		SDL_Rect spriteSplatRect = {position.x, position.y, spriteWidth * spriteScale.x, spriteHeight * spriteScale.y};
 		float rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-accel.x, -accel.z)) * Math::degs;
 
-		SDL_RenderCopyEx(game.GetRenderer(), sprite, nullptr, &spriteSplatRect, rotation, &originOfRotation, direction == -1 ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL);
+		game.GetCamera().RenderSprite(sprite, Vec3(position.x, position.y + headBob.y, 1.0f), Vec2(spriteWidth, spriteHeight) * spriteScale, rotation, originOfRotation, (direction == 1) ? true : false);
 	}
 }
 
@@ -72,7 +72,8 @@ void Hand::Update(float deltaTime) {
 	const float xScale = 0.2f, yScale = 1.0f;
 	static uint32 lastThresholdReached = 0;
 
-	position.y = 700.0f - (gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 240.0f;
+	position.y = 700.0f;
+	headBob.y = (gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 240.0f;
 
 	if (game.GetFrameTime() < lastThresholdReached + 1000) {
 		position.x += abs((gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 10.0f) * direction * deltaTime;
@@ -106,4 +107,8 @@ void Hand::Update(float deltaTime) {
 
 	// Perform final movement
 	position += velocity * deltaTime;
+}
+
+const Vec2& Hand::GetPosition() const {
+	return position;
 }
