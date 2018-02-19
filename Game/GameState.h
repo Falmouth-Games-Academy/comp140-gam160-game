@@ -1,4 +1,5 @@
 #pragma once
+#include "Math.h" // Vec3
 
 enum GameStateType {
 	Play = 0,
@@ -30,12 +31,20 @@ public:
 
 class GameStateEditor : public GameState {
 public:
-	virtual void Update(float deltaTime) = 0;
-	virtual void Render() = 0;
+	void Update(float deltaTime) override;
+	void Render() override;
 
-	virtual bool Enter() = 0;
-	virtual void Exit() = 0;
+	bool Enter() override;
+	void Exit() override;
+
+	void UpdateCameraControls();
 
 	GameStateType GetType() const override {return Editor;}
 	//static GameStateType::GetType() const {return Play;}
+
+private:
+	// Current position of the mouse cursor, in level units
+	Vec3 cursorPosition;
+
+
 };

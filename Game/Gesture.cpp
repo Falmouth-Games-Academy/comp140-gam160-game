@@ -106,12 +106,12 @@ void GestureManager::Update() {
 	debugGraphs[3].SetRenderValueRange(debugGraphs[2].GetRenderValueRange()); // average value needs to be in the same range as t he graph below it!
 
 	// Test bars
-	if (game.GetInput().IsInputBooped(SDLK_SPACE)) {
+	if (game.GetInput().IsKeyBooped(SDLK_SPACE)) {
 		debugGraphs[0].AddBar(Graph::GraphBar(Graph::GraphBar::Horizontal, 400, 0, 20));
 	}
 
 	// Toggle debug mode
-	if (game.GetInput().IsInputBooped(SDLK_d)) {
+	if (game.GetInput().IsKeyBooped(SDLK_d)) {
 		debugMode = !debugMode;
 	}
 }

@@ -42,7 +42,7 @@ public:
 
 	// Game states
 	template<typename StateType>
-	void SetGameState();
+	inline void SetGameState();
 
 	// Gameplay objects
 	inline Hand& GetPlayer();
@@ -80,6 +80,9 @@ private:
 	
 	// Currently active gamestate (e.g. GameStatePlay, meaning traditional in-game gameplay)
 	GameState* activeGameState;
+
+	// Next gamestate, postponed until the current game state is finished rendering
+	GameState* nextGameState;
 
 	// Game objects
 	// Da player
@@ -183,4 +186,16 @@ inline uint32 Game::GetFrameTime() const {
 
 inline float Game::GetDeltaTime() const {
 	return deltaTime;
+}
+
+template<typename StateType>
+void Game::SetGameState() {
+	// If another game state is already pending, overwrite it.......?
+	if (nextGameState) {
+		// todo: print warning?
+		delete nextGameState;
+	}
+
+	// Prepare the next game state
+	nextGameState = new StateType();
 }

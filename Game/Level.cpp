@@ -36,7 +36,7 @@ BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position
 		texture = nullptr;
 	}
 
-	this->scale = scale * Vec3(bgImage.GetDimensions().width, bgImage.GetDimensions().height, 1.0f) * position.z;
+	this->scale = scale * Vec3((float)bgImage.GetDimensions().width, (float)bgImage.GetDimensions().height, 1.0f) * position.z;
 	this->position = position - scale / 2;
 }
 

@@ -9,12 +9,13 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM5";
+const char* port = "COM3";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;
 HBITMAP textSurfaceBitmap;
-uint8* textSurfaceBits;
+uint8* textSurfaceBits; // todo declare variables in the right place
+const int textSurfaceSize = 1024;
 
 void Game::Init() {
 	AllocConsole();
@@ -36,7 +37,7 @@ void Game::Init() {
 	
 		if (sdlWindows[init.screen]) {
 			sdlRenderers[init.screen] = SDL_CreateRenderer(sdlWindows[init.screen], -1, SDL_RENDERER_ACCELERATED);
-			sdlTextSurfaces[init.screen] = SDL_CreateTexture(sdlRenderers[init.screen], SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, 500, 500);
+			sdlTextSurfaces[init.screen] = SDL_CreateTexture(sdlRenderers[init.screen], SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, textSurfaceSize, textSurfaceSize);
 		}
 	}
 
@@ -53,8 +54,8 @@ void Game::Init() {
 	memset(&bi, 0, sizeof (bi));
 
 	bi.bmiHeader.biSize = sizeof (bi.bmiHeader);
-	bi.bmiHeader.biWidth = 500;
-	bi.bmiHeader.biHeight = -500;
+	bi.bmiHeader.biWidth = textSurfaceSize;
+	bi.bmiHeader.biHeight = -textSurfaceSize;
 	bi.bmiHeader.biPlanes = 1;
 	bi.bmiHeader.biBitCount = 8;
 	bi.bmiHeader.biCompression = BI_RGB;
@@ -78,9 +79,9 @@ void Game::Init() {
 	arduino = new Serial(port);
 
 	if (arduino->IsConnected())
-		printf("Cereal has been made!\n");
+		printf("Cereal is served!\n");
 	else
-		printf("Arduino couldn't open. Cereal killer on the loose!!\n");
+		printf("Arduino couldn't open. Serial killer on the loose!!\n");
 
 	printf("Init complete\n");
 }
@@ -106,6 +107,22 @@ void Game::Shutdown() {
 
 unsigned char incomingData[256] = "";
 void Game::Update(float deltaTime) {
+	// Update the game state if it's changing
+	if (nextGameState) {
+		// Switch to the next game state
+		if (activeGameState) {
+			activeGameState->Exit();
+			delete activeGameState;
+		}
+
+		activeGameState = nextGameState;
+		nextGameState = nullptr;
+
+		// Begin the new state!
+		activeGameState->Enter();
+	}
+
+	// Now do the main stuff!
 	if (activeGameState) {
 		// Call current game state's update function
 		activeGameState->Update(deltaTime);
@@ -120,7 +137,7 @@ void Game::Render() {
 	}
 	
 	// Call current game state's render function
-	if (activeGameState) {	
+	if (activeGameState) {
 		activeGameState->Render();
 	}
 
@@ -166,11 +183,16 @@ void Game::Run() {
 
 		// Run SDL event loop
 		while (SDL_PollEvent(&sdlEvent)) {
+			// Window event
 			if (sdlEvent.type == SDL_WINDOWEVENT) {
 				// Check if the window has been closed
 				if (sdlEvent.window.event == SDL_WINDOWEVENT_CLOSE)
 					appIsRunning = false;
-			} else if (sdlEvent.type == SDL_KEYDOWN || sdlEvent.type == SDL_KEYUP) {
+
+			// Keyboard or mouse input event
+			} else if (sdlEvent.type == SDL_KEYDOWN || sdlEvent.type == SDL_KEYUP || 
+					   sdlEvent.type == SDL_MOUSEBUTTONDOWN || sdlEvent.type == SDL_MOUSEBUTTONUP || 
+					   sdlEvent.type == SDL_MOUSEMOTION || sdlEvent.type == SDL_MOUSEWHEEL) {
 				// Defer the input event to the input manager
 				input.OnInputEvent(sdlEvent);
 			}
@@ -215,7 +237,7 @@ void Game::RenderText(const char* string, int x, int y, RenderScreen screen) {
 		int textWidth = r.right, textHeight = r.bottom;
 		for (int i = 0; i < textHeight; ++i) {
 			uint32* pDest = &pixels[i * pitch / 4];
-			uint8* pSrc = &textSurfaceBits[i * 500];
+			uint8* pSrc = &textSurfaceBits[i * textSurfaceSize];
 
 			for (int i = 0; i < textWidth; ++i) {
 				pDest[i] = pSrc[i] << 24;
@@ -225,14 +247,13 @@ void Game::RenderText(const char* string, int x, int y, RenderScreen screen) {
 		SDL_UnlockTexture(sdlTextSurfaces[screen]);
 	}
 
+	if (!SDL_LockTexture(SDL_GetRenderTarget(sdlRenderers[screen]), &textureRect, (void**)&pixels, &pitch)) {
+		SDL_UnlockTexture(SDL_GetRenderTarget(sdlRenderers[screen]));
+	}
+
 	// Render the SDL texture
 	SDL_Rect src = {0, 0, r.right, r.bottom}, dest = {x, y, r.right, r.bottom};
 
 	SDL_SetTextureBlendMode(sdlTextSurfaces[screen], SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(sdlRenderers[screen], sdlTextSurfaces[screen], &src, &dest);
-}
-
-template<typename StateType>
-void Game::SetGameState() {
-	activeGameState = new StateType();
 }

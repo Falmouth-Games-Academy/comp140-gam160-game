@@ -89,6 +89,7 @@ public:
 	// Constructors
 	Vec3() = default;
 	Vec3(float x_, float y_, float z_) : x(x_), y(y_), z(z_) {};
+	Vec3(const Vec2& vec, float z_ = 0.0f) : x(vec.x), y(vec.y), z(z_) {};
 
 	// Traditional vector math functions follow
 	Vec3 operator+(const Vec3& other) const {Vec3 temp; temp.x = x + other.x; temp.y = y + other.y; temp.z = z + other.z; return temp;}
