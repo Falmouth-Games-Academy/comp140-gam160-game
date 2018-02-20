@@ -9,6 +9,12 @@ public:
 	// Set and get position
 	const Vec3& GetPosition() const;
 	void SetPosition(const Vec3& position);
+
+	// Go to a position smoothly. Speed determines the number of seconds it'll take to get there
+	void GoToPosition(const Vec3& position, float speed = 1.0f);
+
+	// Gets the position the camera is moving towards
+	const Vec3& GetTargetPosition() const;
 	
 	// Zoom
 	void SetZoomIntoCentre(float targetZoom);
@@ -16,6 +22,7 @@ public:
 	// Set whether or not the camera follows the player
 	void SetFollowingPlayer(bool isFollowingPlayer);
 
+	/* Note: Camera render functions work in world space! This depends entirely on the location of the camera, including its Z position */
 	/* Renders a sprite at a given position in the world
 		@param position: origin position to render the sprite at
 		@param size: Size of the sprite
@@ -38,8 +45,18 @@ public:
 	*/
 	void RenderSprite(const class Sprite& sprite, const Vec3& position, float rotation = 0.0f, bool hFlip = false, bool vFlip = false);
 	
+	/* Renders a rectangle at a given position in the world 
+		@param position: Position that the rectangle should be drawn
+		@param size: Dimensions of the rectangle
+		@param colour: The colour of the rectangle
+	*/
+	void RenderRectangle(const Vec3& position, const Vec2& size, Colour colour);
+
 	// Converts a pixel relative to a window to a world coordinate and returns the result
-	Vec3 ScreenToWorld(const Vec3& screenPoint);
+	Vec3 ScreenToWorld(const Vec3& screenPoint) const;
+
+	// Converts a pixel from a world coordinate to a window coordinate and returns the result
+	Vec3 WorldToScreen(const Vec3& worldPoint) const;
 
 	const float scalePerZ = 1.0f;
 

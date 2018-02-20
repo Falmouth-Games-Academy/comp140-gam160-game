@@ -28,12 +28,20 @@ void Camera::Render() {
 }
 
 const Vec3& Camera::GetPosition() const {
-	return targetPosition;
+	return position;
 }
 
 void Camera::SetPosition(const Vec3& position) {
-	//this->position = position;
 	this->targetPosition = position;
+	this->position = position;
+}
+
+void Camera::GoToPosition(const Vec3& position, float speed) {
+	this->targetPosition = position;
+}
+
+const Vec3& Camera::GetTargetPosition() const {
+	return targetPosition;
 }
 
 void Camera::SetZoomIntoCentre(float targetZoom) {
@@ -68,7 +76,8 @@ void Camera::RenderSprite(const Sprite& sprite, const Vec3& position, float rota
 	if (SDL_Texture* texture = sprite.GetSDLTexture()) {
 		// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
 		float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
-		Vec2 origin = (position.xy * zScale - viewBox.position);
+		Vec2 cameraOrigin = this->position.xy - (viewBox.size * 0.5f) / zScale;
+		Vec2 origin = (position.xy - cameraOrigin) * zScale;
 		SDL_Point sdlRotationOrigin = {origin.x + sprite.GetOrigin().x, origin.y + sprite.GetOrigin().y};
 		SDL_Rect sdlDestRect = {(int)origin.x, (int)origin.y, (int)(sprite.GetDimensions().x * zScale), (int)(sprite.GetDimensions().y * zScale)};
 
@@ -77,8 +86,28 @@ void Camera::RenderSprite(const Sprite& sprite, const Vec3& position, float rota
 	}
 }
 	
-Vec3 Camera::ScreenToWorld(const Vec3& screenPoint) {
-	float zScale = Math::clampmax(1.0f / (screenPoint.z - this->position.z), 10.0f);
+void Camera::RenderRectangle(const Vec3& position, const Vec2& size, Colour colour) {
+	float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
 
-	return position + screenPoint / zScale;
+	Vec2 origin = WorldToScreen(position).xy;
+	SDL_Rect sdlDestRect = {(int)origin.x, (int)origin.y, (int)(size.x * zScale), (int)(size.y * zScale)};
+
+	SDL_SetRenderDrawColor(game.GetRenderer(), colour.r, colour.g, colour.b, colour.a);
+	SDL_RenderDrawRect(game.GetRenderer(), &sdlDestRect);
+}
+
+Vec3 Camera::ScreenToWorld(const Vec3& screenPoint) const {
+	float zScale = Math::clampmax(1.0f / (screenPoint.z - this->position.z), 10.0f);
+	Vec2 cameraOrigin = position.xy - (viewBox.size * 0.5f) / zScale;
+
+	return Vec3(cameraOrigin + screenPoint.xy / zScale, screenPoint.z);
+}
+
+Vec3 Camera::WorldToScreen(const Vec3& worldPoint) const {
+	float zScale = Math::clampmax(1.0f / (worldPoint.z - this->position.z), 10.0f);
+	Vec2 cameraOrigin = position.xy - (viewBox.size * 0.5f) / zScale;
+
+	return Vec3((worldPoint.xy - cameraOrigin) * zScale, 1.0f);
+	// world = view + (screen / scale)
+	// scale = view - 
 }

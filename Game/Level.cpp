@@ -21,8 +21,8 @@ bool Level::Load() {
 	//layers.Append("Graphics/bg_layer_1.png", Vec3(-3000.0f, -2000.0f, 3.0f), Vec2(1.5f, 1.5f));
 	//layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 850.0f, 1.0f), Vec2(0.8f, 0.8f));
 
-	BackgroundLayer& bak = layers.Append("Graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 3.0f), Vec2(1.5f, 1.5f));
-	layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 0.0f, 1.0f), Vec2(0.8f, 0.8f));
+	BackgroundLayer& bak = layers.Append(layers.GetNum(), "Graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 3.0f), Vec2(1.5f, 1.5f));
+	layers.Append(layers.GetNum(), "Graphics/bg_layer_2.png", Vec3(0.0f, 0.0f, 1.0f), Vec2(0.8f, 0.8f));
 
 	bak.SetPosition(Vec3(bak.GetSize().x * -0.5f , bak.GetSize().y * -0.5f, 3.0f));
 	return true;
@@ -32,21 +32,28 @@ void Level::Unload() {
 	layers.Clear();
 }
 
-BackgroundLayer* Level::GetLayerAtPosition(const Vec3& position) {
-	Vec3 worldPosition = game.GetCamera().ScreenToWorld(position);
+BackgroundLayer* Level::GetLayerAtScreenPosition(const Vec2& position) {
+	float closestZ = 0.0f;
+	BackgroundLayer* returnLayer = nullptr;
+	const Camera& camera = game.GetCamera();
 
 	// Find a layer where worldPosition is within its boundaries
 	for (BackgroundLayer& layer : layers) {
+		Vec3 worldPosition = game.GetCamera().ScreenToWorld(Vec3(position, layer.GetPosition().z));
+
 		if (worldPosition.xy.IsWithin(layer.GetPosition().xy, layer.GetPosition().xy + layer.GetSize())) {
-			return &layer;
+			if (layer.GetPosition().z < closestZ || !closestZ) {
+				closestZ = layer.GetPosition().z;
+				returnLayer = &layer;
+			}
 		}
 	}
 
-	return nullptr;
+	return returnLayer;
 }
 
-BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec2& scale) : 
-		sprite(imageFilename, Vec2(0.0f, 0.0f), scale) {
+BackgroundLayer::BackgroundLayer(int index_, const char* imageFilename, const Vec3& position, const Vec2& scale) : 
+		index(index_), sprite(imageFilename, Vec2(0.0f, 0.0f), scale) {
 
 	this->position = position;
 }

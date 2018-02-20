@@ -25,12 +25,14 @@ void Game::Init() {
 	SDL_Init(SDL_INIT_VIDEO);
 
 	printf("Init windows\n");
+
 	// Create windows and renderers
-	struct ScreenInitInfo {RenderScreen screen; const char* windowTitle; int x, y; int width, height;};
 	SDL_Rect screenBounds;
 	SDL_GetDisplayBounds(0, &screenBounds);
-	int screenCentreX = screenBounds.w / 2, screenCentreY = screenBounds.h / 2;
 
+	int screenCentreX = screenBounds.w / 2, screenCentreY = screenBounds.h / 2;
+	
+	struct ScreenInitInfo {RenderScreen screen; const char* windowTitle; int x, y; int width, height;};
 	for (const ScreenInitInfo& init : {ScreenInitInfo{Main, "Epic Handventure", -2, -1, 640, 480}, ScreenInitInfo{Debug, "Debug graphs", 0, -1, 600, 600}}) {
 		sdlWindows[init.screen] = SDL_CreateWindow(init.windowTitle, screenCentreX + init.x * (init.width / 2), screenCentreY + init.y * (init.height / 2), 
 												   init.width, init.height, SDL_WINDOW_RESIZABLE);

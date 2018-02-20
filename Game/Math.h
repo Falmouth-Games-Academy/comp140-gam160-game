@@ -3,6 +3,7 @@
 #include <cmath> // sqrt
 #include "Types.h"
 
+
 // Undef min and max (thanks Windows)
 #ifdef min
 #undef min

@@ -37,8 +37,11 @@ public:
 	bool Enter() override;
 	void Exit() override;
 
+	// Update functions
+	void UpdateCursor();
 	void UpdateCameraControls();
 	void UpdateSelections();
+	void UpdateMoveables();
 
 	GameStateType GetType() const override {return Editor;}
 	//static GameStateType::GetType() const {return Play;}
@@ -47,8 +50,12 @@ private:
 	// Current position of the mouse cursor, in level units
 	Vec3 cursorPosition;
 
+	// Current position of the mouse cursor, in screen units
+	Vec3 cursorScreenPosition;
+	Vec3 lastCursorScreenPosition;
+
 	// Position of the mouse cursor at the beginning of a selection
-	Vec2 selectStartPosition;
+	Vec3 selectStartPosition;
 
 	// Selections
 	enum SelectionType {

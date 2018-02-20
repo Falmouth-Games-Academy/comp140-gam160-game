@@ -4,6 +4,7 @@
 
 #include <new> // for placement new
 #include <utility> // for move
+#include <initializer_list> // For setting array contents
 
 // Array: Simple dynamically-allocated array
 template <typename T>
@@ -17,11 +18,15 @@ public:
 	template <typename ...ConstructorArgs>
 	inline T& Append(ConstructorArgs... args);
 
+	inline void Set(std::initializer_list<const T> list);
+
 	inline void RemoveByIndex(int index);
 
 	inline int GetNum() const;
 
 	inline void Clear();
+
+	inline bool IsIndexValid(int index) const;
 
 	inline T* begin();
 	inline T* end();
@@ -29,6 +34,7 @@ public:
 	inline const T* end() const;
 
 	inline operator T*();
+	inline operator const T*() const;
 
 private:
 	void Realloc(int32 numNeeded);
@@ -170,6 +176,21 @@ template<typename T> T& Array<T>::Append(const T& clone) {
 	return *new (&items[numItems++]) T(clone);
 }
 
+template<typename T> inline void Array<T>::Set(std::initializer_list<const T> list) {
+	// Clear current contents
+	Clear();
+
+	// Allocate enough room to refill contents
+	Realloc(list.size());
+
+	// Copy the initializer list items to the array
+	numItems = list.size();
+
+	for (int i = 0; i < numItems; ++i) {
+		new (&items[i]) T(list.begin()[i]);
+	}
+}
+
 template<typename T> void Array<T>::RemoveByIndex(int index) {
 	// Decrement number of items
 	numItems -= 1;
@@ -228,6 +249,10 @@ template<typename T> void Array<T>::Clear() {
 	numAlloced = 0;
 }
 
+template<typename T> inline bool Array<T>::IsIndexValid(int index) const {
+	return (index >= 0 && index < numItems);
+}
+
 template<typename T> T* Array<T>::begin() {
 	return items;
 }
@@ -245,6 +270,10 @@ template<typename T> const T* Array<T>::end() const {
 }
 
 template<typename T> Array<T>::operator T*() {
+	return items;
+}
+
+template<typename T> Array<T>::operator const T*() const {
 	return items;
 }
 

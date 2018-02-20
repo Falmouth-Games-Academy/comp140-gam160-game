@@ -17,8 +17,12 @@ public:
 	// Renders the level background
 	void Render() const;
 	
-	// Returns the closest layer at the given position, where its z >= position's z component
-	class BackgroundLayer* GetLayerAtPosition(const Vec3& position);
+	// Returns the closest layer at the given position
+	class BackgroundLayer* GetLayerAtScreenPosition(const Vec2& position);
+
+	// Returns layer list
+	inline const Array<class BackgroundLayer>& GetLayers() const;
+	inline Array<class BackgroundLayer>& GetLayers();
 
 private:
 	Array<class BackgroundLayer> layers;
@@ -28,13 +32,14 @@ private:
 // Background layer for level sections
 class BackgroundLayer {
 public:
-	BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
+	BackgroundLayer(int index, const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
 	~BackgroundLayer();
 
 	void Render() const;
 	
 	inline void SetPosition(const Vec3& position);
 
+	inline int GetIndex() const;
 	inline const Vec3& GetPosition() const;
 	inline const Vec2 GetSize() const;
 
@@ -44,7 +49,29 @@ private:
 
 	// Position of the layer, including z, which is depth
 	Vec3 position;
+
+	// Index of the layer in the parent level's layer list
+	int32 index;
+
+private:
+	inline void SetIndex(int newIndex); // Do not call unless you're Level!
 };
+
+inline Array<class BackgroundLayer>& Level::GetLayers() {
+	return layers;
+}
+
+inline const Array<class BackgroundLayer>& Level::GetLayers() const {
+	return layers;
+}
+
+inline void BackgroundLayer::SetIndex(int newIndex) {
+	index = newIndex;
+}
+
+inline int BackgroundLayer::GetIndex() const {
+	return index;
+}
 
 inline const Vec3& BackgroundLayer::GetPosition() const {
 	return position;
