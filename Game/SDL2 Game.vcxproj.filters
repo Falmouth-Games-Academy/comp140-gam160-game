@@ -69,6 +69,12 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\Resources</Filter>
     </ClCompile>
+    <ClCompile Include="FileDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateEditor.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
@@ -121,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="Render.h">
       <Filter>Source Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="FileDialog.h">
+      <Filter>Source Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateEditor.h">
+      <Filter>Source Files\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -33,15 +33,18 @@ private:
 class BackgroundLayer {
 public:
 	BackgroundLayer(int index, const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
+	//BackgroundLayer(const BackgroundLayer& other) : sprite(other.sprite), position(other.position), index(other.index) {};
 	~BackgroundLayer();
 
 	void Render() const;
 	
 	inline void SetPosition(const Vec3& position);
+	inline void SetSize(const Vec2& size);
 
 	inline int GetIndex() const;
 	inline const Vec3& GetPosition() const;
 	inline const Vec2 GetSize() const;
+	inline const Sprite& GetSprite() const;
 
 private:
 	// Layer image
@@ -81,6 +84,14 @@ inline const Vec2 BackgroundLayer::GetSize() const {
 	return sprite.GetDimensions();
 }
 
+inline void BackgroundLayer::SetSize(const Vec2& size) {
+	sprite.SetScale(size / sprite.GetBaseDimensions());
+}
+
 inline void BackgroundLayer::SetPosition(const Vec3& position) {
 	this->position = position;
+}
+
+inline const Sprite& BackgroundLayer::GetSprite() const {
+	return sprite;
 }

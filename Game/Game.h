@@ -111,7 +111,7 @@ public:
 			SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
 
 			SDL_Rect rect{x_, y_, width_, height_};
-			SDL_RenderDrawRect(renderer, &rect);
+			//SDL_RenderDrawRect(renderer, &rect);
 		}
 	}
 
@@ -119,6 +119,11 @@ public:
 	void DrawString(const char* string) {
 		game.RenderText(string, x, currentTextY, screen);
 		currentTextY += 20;
+	}
+
+	// Resets the line pointer--can be done every frame
+	void Reset() {
+		currentTextY = 0;
 	}
 
 private:

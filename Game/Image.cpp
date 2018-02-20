@@ -18,6 +18,15 @@ Image::Image(const char* filename) : pixels(nullptr) {
 	Load(filename);
 }
 
+Image::Image(const Image& other) : dimensions(other.dimensions), pitch(other.pitch) {
+	// Add reference
+	Image::AddRef();
+
+	// Copy the pixels over
+	pixels = new uint32[pitch * dimensions.height / 4];
+	memcpy(pixels, other.pixels, pitch * dimensions.height);
+}
+
 Image::~Image() {
 	Image::RemoveRef();
 

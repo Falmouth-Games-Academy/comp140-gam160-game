@@ -8,9 +8,10 @@ class StaticString {
 public:
 	// Constructor: Makes an empty string
 	StaticString();
-	
+	StaticString(const char* str);
+
 	// Copy assignment
-	const StaticString<MaxLength>& operator=(const char* strIn);
+	StaticString<MaxLength>& operator=(const char* strIn);
 
 	// C-string conversion operators
 	inline operator char*();
@@ -27,6 +28,10 @@ private:
 
 template<int MaxLength> StaticString<MaxLength>::StaticString() {
 	data[0] = '\0';
+}
+
+template<int MaxLength> inline StaticString<MaxLength>::StaticString(const char* str) {
+	*this = str;
 }
 
 template<int MaxLength> StaticString<MaxLength> StaticString<MaxLength>::FromFormat(const char* format, ...) {
@@ -48,9 +53,9 @@ template<int MaxLength> StaticString<MaxLength> StaticString<MaxLength>::FromFor
 	return newString;
 }
 
-template<int MaxLength> const StaticString<MaxLength>& StaticString<MaxLength>::operator=(const char* strIn) {
+template<int MaxLength> StaticString<MaxLength>& StaticString<MaxLength>::operator=(const char* strIn) {
 	// Copy string and add implicit null terminator (because strncpy is naughty and doesn't do it for us)
-	strncpy(data, strIn, MaxLength - 1);
+	strncpy_s(data, strIn, MaxLength - 1);
 	data[MaxLength - 1] = '\0';
 	return *this;
 }

@@ -11,6 +11,10 @@ public:
 	// Constructor: Tries to load the image and store it
 	inline Sprite(const char* fileName, const Vec2& origin_ = Vec2(0.0f, 0.0f), const Vec2& scale_ = Vec2(1.0f, 1.0f));
 
+	// Copy constructor
+	inline Sprite(const Sprite& sprite) : Image(sprite), originalOrigin(sprite.originalOrigin), scaledOrigin(sprite.scaledOrigin), scaledDimensions(sprite.scaledDimensions), 
+		scale(sprite.scale), textures{nullptr} {};
+
 	// Destructor: Frees image etc
 	~Sprite();
 
@@ -31,6 +35,9 @@ public:
 
 	// Gets the dimensions of the image, in pixels, according to the original unscaled image
 	inline const Vec2 GetBaseDimensions() const;
+
+	// Sets the scale of the image, affecting its dimensions
+	inline void SetScale(const Vec2& scale);
 
 	// Returns a texture of the image, generating one if it doesn't exist
 	// Todo: true const correctness?
@@ -76,4 +83,10 @@ inline const Vec2& Sprite::GetDimensions() const {
 
 inline const Vec2 Sprite::GetBaseDimensions() const {
 	return Vec2((float)Image::GetDimensions().width, (float)Image::GetDimensions().height);
+}
+
+inline void Sprite::SetScale(const Vec2& scale) {
+	this->scale = scale;
+	scaledOrigin = originalOrigin * scale;
+	scaledDimensions = Vec2((float)Image::GetDimensions().width, (float)Image::GetDimensions().height) * scale;
 }

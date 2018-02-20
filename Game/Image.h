@@ -12,6 +12,9 @@ public:
 	// Constructor: Loads image from a file
 	Image(const char* filename);
 
+	// Copy constructor
+	Image(const Image& other);
+
 	// Destructor: Frees and dereferences image information
 	~Image();
 

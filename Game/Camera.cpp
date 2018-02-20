@@ -2,12 +2,6 @@
 #include "Game.h"
 
 void Camera::Update() {
-	// Follow the player
-	if (isFollowingPlayer) {
-		position.xy = game.GetPlayer().GetPosition();
-		//position.z = 0.0f;
-	}
-
 	// Get the viewport size
 	SDL_Rect renderViewport;
 	SDL_RenderGetViewport(game.GetRenderer(), &renderViewport);
@@ -18,13 +12,18 @@ void Camera::Update() {
 
 	// Move the camera gradually to the target point
 	position += (targetPosition - position) * 10.0f * game.GetDeltaTime();
+	
+	// Follow the player
+	if (isFollowingPlayer) {
+		position.xy = game.GetPlayer().GetPosition();
+		//position.z = 0.0f;
+	}
 }
 
 void Camera::Render() {
 	DebugStringBox debug(RenderScreen::Main, 0, 20, 100, 100);
 
 	debug.DrawString(StaticString<80>::FromFormat("Camera pos: %f %f %f", position.x, position.y, position.z));
-	return;
 }
 
 const Vec3& Camera::GetPosition() const {
