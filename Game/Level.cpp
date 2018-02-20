@@ -18,8 +18,13 @@ void Level::Render() const {
 }
 
 bool Level::Load() {
-	layers.Append("Graphics/bg_layer_1.png", Vec3(-3000.0f, -2000.0f, 3.0f), Vec3(1.5f, 1.5f, 1.0f));
-	layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 850.0f, 1.0f), Vec3(0.8f, 0.8f, 0.8f));
+	//layers.Append("Graphics/bg_layer_1.png", Vec3(-3000.0f, -2000.0f, 3.0f), Vec2(1.5f, 1.5f));
+	//layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 850.0f, 1.0f), Vec2(0.8f, 0.8f));
+
+	BackgroundLayer& bak = layers.Append("Graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 3.0f), Vec2(1.5f, 1.5f));
+	layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 0.0f, 1.0f), Vec2(0.8f, 0.8f));
+
+	bak.SetPosition(Vec3(bak.GetSize().x * -0.5f , bak.GetSize().y * -0.5f, 3.0f));
 	return true;
 }
 
@@ -27,26 +32,30 @@ void Level::Unload() {
 	layers.Clear();
 }
 
-BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec3& scale) {
-	Image bgImage(imageFilename);
+BackgroundLayer* Level::GetLayerAtPosition(const Vec3& position) {
+	Vec3 worldPosition = game.GetCamera().ScreenToWorld(position);
 
-	if (bgImage.IsLoaded()) {
-		texture = bgImage.CreateSDLTexture(game.GetRenderer());
-	} else {
-		texture = nullptr;
+	// Find a layer where worldPosition is within its boundaries
+	for (BackgroundLayer& layer : layers) {
+		if (worldPosition.xy.IsWithin(layer.GetPosition().xy, layer.GetPosition().xy + layer.GetSize())) {
+			return &layer;
+		}
 	}
 
-	this->scale = scale * Vec3((float)bgImage.GetDimensions().width, (float)bgImage.GetDimensions().height, 1.0f) * position.z;
-	this->position = position - scale / 2;
+	return nullptr;
+}
+
+BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec2& scale) : 
+		sprite(imageFilename, Vec2(0.0f, 0.0f), scale) {
+
+	this->position = position;
 }
 
 BackgroundLayer::~BackgroundLayer() {
-	SDL_DestroyTexture(texture);
+	return;
 }
 
 void BackgroundLayer::Render() const {
-	const int cameraX = 0, cameraY = 0;
-	SDL_Rect destRect = {position.x - cameraX, position.y - cameraY, scale.x, scale.y};
-
-	game.GetCamera().RenderSprite(texture, position, scale.xy);
+	game.GetCamera().RenderSprite(sprite, position);
+	//game.GetCamera().RenderSprite(texture, position, scale.xy);
 }

@@ -52,6 +52,7 @@ void GameStateEditor::Update(float deltaTime) {
 
 	// Update custom camera panning
 	UpdateCameraControls();
+	UpdateSelections();
 
 	// Switch back to gameplay if the editor button was pressed
 	if (game.GetInput().IsKeyBooped(SDLK_e)) {
@@ -70,12 +71,14 @@ void GameStateEditor::Render() {
 	game.GetPlayer().Render();
 
 	// Draw debug information
-	DebugStringBox box(Game::Main, 0, 0, 200, 300);
+	DebugStringBox box(RenderScreen::Main, 0, 0, 200, 300);
+	Vec3 cameraPosition = game.GetCamera().GetPosition();
 
 	box.DrawString("Basic controls: LeftClick: Select, ScrollWheel: Camera zoom, RightClick: Pan camera, Z: Reset zoom, C: Centre camera to player");
 	box.DrawString("Object controls: LeftClick: Select, ScrollWheel: RightClick: Pan camera");
 	box.DrawString("");
-	box.DrawString(StaticString<80>::FromFormat("Cursor position: %.2f,%.2f,%.2f", cursorPosition.x, cursorPosition.y, cursorPosition.z));
+	box.DrawString(StaticString<140>::FromFormat("Camera position: %.2f,%.2f,%.2f", cameraPosition.x, cameraPosition.y, cameraPosition.z));
+	box.DrawString(StaticString<140>::FromFormat("Cursor position: %.2f,%.2f,%.2f", cursorPosition.x, cursorPosition.y, cursorPosition.z));
 }
 
 bool GameStateEditor::Enter() {
@@ -89,7 +92,7 @@ void GameStateEditor::UpdateCameraControls() {
 	Camera& camera = game.GetCamera();
 	Vec3 nextCursorPosition(game.GetInput().GetMousePosition(), cursorPosition.z);
 
-	nextCursorPosition.z = 1.0f;
+	nextCursorPosition.z = camera.GetPosition().z + 1.0f;
 	// Pan camera
 	if (game.GetInput().IsMouseDown(InputManager::RightButton)) {
 		camera.SetPosition(camera.GetPosition() + (camera.ScreenToWorld(cursorPosition) - camera.ScreenToWorld(nextCursorPosition)));
@@ -104,4 +107,25 @@ void GameStateEditor::UpdateCameraControls() {
 
 	// Update cursor position, done!
 	cursorPosition = nextCursorPosition;
+}
+
+void GameStateEditor::UpdateSelections() {
+	const float singleSelectionRadius = 5.0f;
+	bool isMouseSingleSelecting = game.GetInput().IsMouseUnbooped(InputManager::LeftButton) && Vec2::Distance(selectStartPosition, cursorPosition.xy) <= singleSelectionRadius;
+	bool isMouseRangeSelecting = false;
+
+	if (game.GetInput().IsMouseBooped(InputManager::LeftButton)) {
+		selectStartPosition = cursorPosition.xy;
+	}
+
+	if (isMouseSingleSelecting) {
+		switch (selectionType) {
+			case BgLayer: {
+				if (BackgroundLayer* layer = game.GetLevel().GetLayerAtPosition(cursorPosition)) {
+					int i = 0;
+					i = 1;
+				}
+			}
+		}
+	}
 }

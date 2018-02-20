@@ -3,11 +3,20 @@
 
 class Image {
 public:
+	// Constructor: Empty image
+	Image() : pixels(nullptr), pitch(0), dimensions(0, 0) {
+		// Add global ref
+		Image::AddRef();
+	};
+
 	// Constructor: Loads image from a file
 	Image(const char* filename);
 
 	// Destructor: Frees and dereferences image information
 	~Image();
+
+	// Loads a new image, discarding any previous data
+	bool Load(const char* filename);
 
 	// Returns whether the image was successfully loaded
 	inline bool IsLoaded() const;
@@ -24,7 +33,7 @@ public:
 	// Returns a new SDL texture based on this image. This texture is not bound to this image and must be freed by the caller
 	struct SDL_Texture* CreateSDLTexture(struct SDL_Renderer* renderer) const;
 
-private:
+protected:
 	// Raw pixel data, if successfully loaded
 	uint32* pixels;
 

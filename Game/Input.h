@@ -30,6 +30,7 @@ public:
 
 	bool IsMouseDown(MouseButton button) const;
 	bool IsMouseBooped(MouseButton button) const;
+	bool IsMouseUnbooped(MouseButton button) const;
 
 	int GetMouseScroll() const;
 

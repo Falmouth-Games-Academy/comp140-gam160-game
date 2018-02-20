@@ -38,6 +38,7 @@ public:
 	void Exit() override;
 
 	void UpdateCameraControls();
+	void UpdateSelections();
 
 	GameStateType GetType() const override {return Editor;}
 	//static GameStateType::GetType() const {return Play;}
@@ -46,5 +47,18 @@ private:
 	// Current position of the mouse cursor, in level units
 	Vec3 cursorPosition;
 
+	// Position of the mouse cursor at the beginning of a selection
+	Vec2 selectStartPosition;
 
+	// Selections
+	enum SelectionType {
+		BgLayer = 0,
+		Object = 1,
+		NumSelectionTypes,
+	};
+
+	SelectionType selectionType;
+
+	Array<int32> highlightedItems[NumSelectionTypes];
+	Array<int32> selectedItems[NumSelectionTypes];
 };

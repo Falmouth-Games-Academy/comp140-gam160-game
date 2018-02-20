@@ -138,7 +138,7 @@ void Graph::UpdateAutoScale() {
 // Renders the graph onto the game surface at a given position
 void Graph::Render() const {
 	// Draw title
-	game.RenderText(title, renderX, renderY, Game::Debug);
+	game.RenderText(title, renderX, renderY, RenderScreen::Debug);
 	
 	// Draw border
 	SDL_Rect border;
@@ -148,11 +148,11 @@ void Graph::Render() const {
 	border.w = renderWidth;
 	border.h = renderHeight;
 
-	SDL_SetRenderDrawColor(game.GetRenderer(Game::Debug), 0, 0, 0, 255);
-	SDL_RenderDrawRect(game.GetRenderer(Game::Debug), &border);
+	SDL_SetRenderDrawColor(game.GetRenderer(RenderScreen::Debug), 0, 0, 0, 255);
+	SDL_RenderDrawRect(game.GetRenderer(RenderScreen::Debug), &border);
 
 	// Draw graph
-	SDL_SetRenderDrawColor(game.GetRenderer(Game::Debug), clrR, clrG, clrB, 0);
+	SDL_SetRenderDrawColor(game.GetRenderer(RenderScreen::Debug), clrR, clrG, clrB, 0);
 
 	int numDrawnPoints = 0;
 	SDL_Point points[maxNumValues];
@@ -170,7 +170,7 @@ void Graph::Render() const {
 	}
 
 
-	SDL_RenderDrawLines(game.GetRenderer(Game::Debug), points, numDrawnPoints);
+	SDL_RenderDrawLines(game.GetRenderer(RenderScreen::Debug), points, numDrawnPoints);
 
 	// Draw bars
 	for (const GraphBar& bar : bars) {
@@ -178,9 +178,9 @@ void Graph::Render() const {
 		int centreY = renderY + renderHeight - ((bar.value - renderMin) * renderHeight / (renderMax - renderMin));
 
 		if (bar.orientation == GraphBar::Horizontal) {
-			SDL_RenderDrawLine(game.GetRenderer(Game::Debug), centreX - bar.length, centreY, centreX + bar.length, centreY);
+			SDL_RenderDrawLine(game.GetRenderer(RenderScreen::Debug), centreX - bar.length, centreY, centreX + bar.length, centreY);
 		} else {
-			SDL_RenderDrawLine(game.GetRenderer(Game::Debug), centreX, centreY - bar.length, centreX, centreY + bar.length);
+			SDL_RenderDrawLine(game.GetRenderer(RenderScreen::Debug), centreX, centreY - bar.length, centreX, centreY + bar.length);
 		}
 	}
 }

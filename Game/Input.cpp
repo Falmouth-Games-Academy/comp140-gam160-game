@@ -43,6 +43,10 @@ bool InputManager::IsMouseBooped(MouseButton button) const {
 	return mouseStates[button] == KeyBooped;
 }
 
+bool InputManager::IsMouseUnbooped(MouseButton button) const {
+	return mouseStates[button] == KeyUnbooped;
+}
+
 Vec2 InputManager::GetMousePosition() const {
 	return mousePosition;
 }

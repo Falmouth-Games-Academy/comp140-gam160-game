@@ -153,6 +153,7 @@
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Serial.cpp" />
+    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -167,7 +168,9 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Render.h" />
     <ClInclude Include="Serial.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>

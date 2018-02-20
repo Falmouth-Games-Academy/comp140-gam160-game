@@ -1,10 +1,11 @@
 #pragma once
 #include "Object.h"
 #include "Math.h"
+#include "Sprite.h"
 
 class Hand : public Object {
 public:
-	Hand() : position(0.0f, 0.0f), velocity(0.0f, 0.0f), sprite(nullptr) {};
+	Hand() : position(0.0f, 0.0f), velocity(0.0f, 0.0f), sprite() {};
 	~Hand();
 
 	void Spawn();
@@ -16,8 +17,7 @@ public:
 
 	Object::Type GetType() const override {return Object::Hand;}
 private:
-	struct SDL_Texture* sprite;
-	int32 spriteWidth, spriteHeight; // temporary
+	Sprite sprite;
 
 	Vec2 position;
 	Vec2 velocity;

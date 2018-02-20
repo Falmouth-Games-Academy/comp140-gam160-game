@@ -9,6 +9,7 @@
 #include "Level.h"
 #include "Camera.h"
 #include "GameState.h"
+#include "Render.h"
 
 // Main game (singleton class)
 // Contains the objects and methods to render and update objects
@@ -26,13 +27,6 @@ public:
 	void Run();
 	
 public:
-	// Render stuff
-	enum RenderScreen : uint8 {
-		Main,
-		Debug,
-		NumRenderScreens
-	};
-
 	// Get renderer
 	inline SDL_Renderer* GetRenderer(RenderScreen screen = RenderScreen::Main);
 	
@@ -110,7 +104,7 @@ extern Game game;
 // Debug string box: Box on the screen containing debug text
 class DebugStringBox {
 public:
-	DebugStringBox(Game::RenderScreen screen_, int x_, int y_, int width_, int height_) : screen(screen_), x(x_), y(y_), width(width_), height(height_), 
+	DebugStringBox(RenderScreen screen_, int x_, int y_, int width_, int height_) : screen(screen_), x(x_), y(y_), width(width_), height(height_), 
 			currentTextY(y_) {
 
 		if (SDL_Renderer* renderer = game.GetRenderer(screen)) {
@@ -128,7 +122,7 @@ public:
 	}
 
 private:
-	Game::RenderScreen screen;
+	RenderScreen screen;
 	int32 currentTextY;
 	int32 x, y;
 	int32 width, height;

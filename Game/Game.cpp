@@ -9,7 +9,7 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM3";
+const char* port = "COM5";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;
@@ -209,6 +209,9 @@ void Game::Run() {
 	}
 
 	// Game has ended
+	// Unload the level (todo: move)
+	level.Unload();
+
 	// Cleanup
 	Shutdown();
 }

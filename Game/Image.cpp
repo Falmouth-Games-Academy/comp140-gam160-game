@@ -14,6 +14,21 @@ Image::Image(const char* filename) : pixels(nullptr) {
 	// Add global ref
 	Image::AddRef();
 
+	// Try to load the image
+	Load(filename);
+}
+
+Image::~Image() {
+	Image::RemoveRef();
+
+	delete pixels;
+}
+
+bool Image::Load(const char* filename) {
+	// Unload the previous image, if one exists
+	delete pixels;
+	pixels = nullptr;
+
 	// Try to load the file into a GDIPlus image
 	wchar_t wideName[280];
 	mbstowcs(wideName, filename, 280);
@@ -38,12 +53,9 @@ Image::Image(const char* filename) : pixels(nullptr) {
 
 	// Free the bitmap
 	delete bitmap;
-}
 
-Image::~Image() {
-	Image::RemoveRef();
-
-	delete pixels;
+	// Return whether the load was evidently successful
+	return (pixels != nullptr);
 }
 
 SDL_Texture* Image::CreateSDLTexture(SDL_Renderer* renderer) const {

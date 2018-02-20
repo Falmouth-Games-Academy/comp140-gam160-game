@@ -67,6 +67,12 @@ public:
 
 	float Length() const {return (float)sqrt((x * x) + (y * y));}
 
+	// Deeper math functions
+	// Returns whether this vector is between a box where min is the top-left corner and max is the bottom-right corner
+	bool IsWithin(const Vec2& min, const Vec2& max) {
+		return (x >= min.x && y >= min.y && x <= max.x && y <= max.y);
+	}
+
 	// Static vector functions
 	// Returns distance between two points
 	static float Distance(const Vec2& vecA, const Vec2& vecB) {

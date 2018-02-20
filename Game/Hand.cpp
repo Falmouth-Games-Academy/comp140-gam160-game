@@ -5,36 +5,24 @@
 #include "Image.h"
  
 // Hand width: 9 1/2cm
-
 Hand::~Hand() {
-	if (sprite) {
-		SDL_DestroyTexture(sprite);
-	}
+	return; // dur
 }
 
 void Hand::Spawn() {
 	// Load player sprite
-	Image handImage("Graphics/hand1.png");
-
-	if (handImage.IsLoaded()) {
-		sprite = handImage.CreateSDLTexture(game.GetRenderer());
-		spriteWidth = handImage.GetDimensions().width;
-		spriteHeight = handImage.GetDimensions().height;
-	}
+	sprite.Load("Graphics/hand1.png", Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f));
 
 	direction = -1;
 }
 
 void Hand::Render() {
 	// Draw the player
-	Vec2 spriteScale(1.5f, 1.5f);
-	Vec2 originOfRotation = {222.0f * spriteScale.x, 154.0f * spriteScale.y};
-
-	if (sprite) {
+	if (sprite.IsLoaded()) {
 		Vec3 accel = game.GetGesture().GetAverageAccel(150, 0);
 		float rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-accel.x, -accel.z)) * Math::degs;
 
-		game.GetCamera().RenderSprite(sprite, Vec3(position.x, position.y + headBob.y, 1.0f), Vec2(spriteWidth, spriteHeight) * spriteScale, rotation, originOfRotation, (direction == 1) ? true : false);
+		game.GetCamera().RenderSprite(sprite, Vec3(position.x, position.y + headBob.y, 1.0f), rotation, (direction == 1) ? true : false);
 	}
 }
 

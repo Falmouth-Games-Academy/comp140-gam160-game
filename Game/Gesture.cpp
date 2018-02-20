@@ -136,7 +136,7 @@ void GestureManager::RenderDebugGraphs() {
 void GestureManager::RenderDebugVectors() {
 	float vectorScale = 0.01f;
 	Vec3 average = GetAverageAccel(50, 0);
-	SDL_Renderer* renderer = game.GetRenderer(Game::Debug);
+	SDL_Renderer* renderer = game.GetRenderer(RenderScreen::Debug);
 	const int halfSize = 150;
 	SDL_Rect box = {300, 300, halfSize * 2, halfSize * 2};
 
@@ -171,7 +171,7 @@ void GestureManager::RenderDebugVectors() {
 
 void GestureManager::RenderDebugText() {
 	// Render debug text
-	DebugStringBox strings(Game::Debug, 0, 300, 300, 300);
+	DebugStringBox strings(RenderScreen::Debug, 0, 300, 300, 300);
 	const float restingValue = 9750.5f;//9640.0f;
 	MinMax<Vec3> minMax = GetMinMaxAccel(timeWindowMs, 0);
 

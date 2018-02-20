@@ -1,6 +1,7 @@
 #pragma once
 #include "Containers.h"
 #include "Math.h"
+#include "Sprite.h"
 
 class Level {
 public:
@@ -15,6 +16,9 @@ public:
 
 	// Renders the level background
 	void Render() const;
+	
+	// Returns the closest layer at the given position, where its z >= position's z component
+	class BackgroundLayer* GetLayerAtPosition(const Vec3& position);
 
 private:
 	Array<class BackgroundLayer> layers;
@@ -24,17 +28,32 @@ private:
 // Background layer for level sections
 class BackgroundLayer {
 public:
-	BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec3& scale = Vec3(1.0f, 1.0f, 1.0f));
+	BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
 	~BackgroundLayer();
 
 	void Render() const;
+	
+	inline void SetPosition(const Vec3& position);
+
+	inline const Vec3& GetPosition() const;
+	inline const Vec2 GetSize() const;
 
 private:
-	struct SDL_Texture* texture;
+	// Layer image
+	Sprite sprite;
 
-	// Position of layer, including z, which is depth
+	// Position of the layer, including z, which is depth
 	Vec3 position;
-
-	// Scale cuz that might change over time
-	Vec3 scale;
 };
+
+inline const Vec3& BackgroundLayer::GetPosition() const {
+	return position;
+}
+
+inline const Vec2 BackgroundLayer::GetSize() const {
+	return sprite.GetDimensions();
+}
+
+inline void BackgroundLayer::SetPosition(const Vec3& position) {
+	this->position = position;
+}
