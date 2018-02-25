@@ -8,7 +8,11 @@ Command a small advanced space cruiser on it's journey to fight against the grow
 
 ## Gameplay
 The game will be a vertical space shoot 'em up bullet hell type of game, like games such as Battle Garegga, Galaga and Rayforce.
-The main aim of the game is to survive waves of enemy space ships for as long as possible.
+The main aim of the game is to survive waves of enemy space ships for as long as possible while moving forward to your destination.
+The player will have the ability to move around the area, shoot at enemies and hopefully some extra functionalties such as using shields, different ammo types and special abilities. 
+
+### art style
+I'm hoping to be able to make some simple pixel art for the game while still trying to keep it aesthetically pleasing.
 
 Image of Bbattle Garegga
 
