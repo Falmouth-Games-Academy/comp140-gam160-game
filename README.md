@@ -1,3 +1,5 @@
+GitHub URL: https://github.com/LXShades/comp140-gam160-game
+
 # The Page
 ## Proposal: Hand Puppet The Game
 ### Concept
