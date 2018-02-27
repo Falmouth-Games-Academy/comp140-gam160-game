@@ -14,7 +14,7 @@ public:
 	void UpdateCursor();
 	void UpdateCameraControls();
 	void UpdateSelections();
-	void UpdateMoveables();
+	void UpdateDrag();
 
 	// Cursor update functions
 	void UpdateCursorDrawingLayer();

@@ -13,7 +13,7 @@ void GameStateEditor::Update(float deltaTime) {
 	UpdateCursor();
 	UpdateCameraControls();
 	UpdateSelections();
-	UpdateMoveables();
+	UpdateDrag();
 
 	if (game.GetInput().IsKeyBooped(SDLK_n)) {
 		FileDialog dialog(FileDialog::OpenFile, "Image files/*.JPG;*.PNG;*.BMP");
@@ -65,7 +65,7 @@ void GameStateEditor::Render() {
 	const Array<BackgroundLayer>& levelLayers = game.GetLevel().GetLayers();
 	for (int32 index : selectedItems[SelectionType::BgLayer]) {
 		if (levelLayers.IsIndexValid(index)) {
-			game.GetCamera().RenderRectangle(levelLayers[index].GetPosition(), levelLayers[index].GetSize(), clrRed);
+			game.GetCamera().RenderRectangle(levelLayers[index].GetPosition(), levelLayers[index].GetSize(), Colour::Red());
 		}
 	}
 
@@ -76,9 +76,8 @@ void GameStateEditor::Render() {
 	// Draw debug information
 	Vec3 cameraPosition = game.GetCamera().GetPosition();
 
-	debug->DrawString("Basic controls: LeftClick: Select, ScrollWheel: Camera zoom, RightClick: Pan camera, Z: Reset zoom, C: Centre camera to player");
-	debug->DrawString("Object controls: LeftClick: Select, ScrollWheel: RightClick: Pan camera");
-	debug->DrawString("");
+	debug->DrawString("Basic controls: LClick: Select, Scroll: Camera zoom, RightClick: Pan camera, Z: Reset zoom, C: Centre camera to player");
+	debug->DrawString("Object controls: LClick: Select, LClick (hold): Drag, S+LClick (hold): Drag depth");
 	debug->DrawString(StaticString<140>::FromFormat("Camera position: %.2f,%.2f,%.2f", cameraPosition.x, cameraPosition.y, cameraPosition.z));
 	debug->DrawString(StaticString<140>::FromFormat("Cursor position: %.2f,%.2f,%.2f", cursorPosition.x, cursorPosition.y, cursorPosition.z));
 	debug->DrawString(StaticString<140>::FromFormat("Select position: %.2f,%.2f", selectStartPosition.x, selectStartPosition.y, cursorScreenPosition.x, cursorScreenPosition.y));
@@ -128,7 +127,7 @@ void GameStateEditor::UpdateSelections() {
 
 	if (isMouseSingleSelecting) {
 		// Preserve the last selected item for layering tests
-		int lastLayerDepth = 0.0f;
+		float lastLayerDepth = 0.0f;
 		if (selectedItems[selectionType].GetNum() == 1) {
 			// Holy cow these lines of code are a mouthful.
 			if (game.GetLevel().GetLayers().IsIndexValid(selectedItems[selectionType][0])) {
@@ -151,23 +150,24 @@ void GameStateEditor::UpdateSelections() {
 	}
 }
 
-void GameStateEditor::UpdateMoveables() {
+void GameStateEditor::UpdateDrag() {
 	if (game.GetInput().IsMouseDown(InputManager::LeftButton) && selectedItems[selectionType].GetNum() >= 0) {
 		// Move layers
 		Vec2 cursorScreenDelta = cursorScreenPosition.xy - lastCursorScreenPosition.xy;
 		float cameraZ = game.GetCamera().GetPosition().z;
+		bool depthDrag = (game.GetInput().IsKeyDown(SDLK_s));
 
 		switch (selectionType) {
 			case BgLayer: {
 				Array<BackgroundLayer>& layers = game.GetLevel().GetLayers();
 				for (int32 index : selectedItems[BgLayer]) {
 					if (layers.IsIndexValid(index)) {
-						layers[index].SetPosition(layers[index].GetPosition() + cursorScreenDelta * (layers[index].GetPosition().z - cameraZ));
-						
-
-						// Push/pull layers
-						if (game.GetInput().GetMouseScroll()) {
-							layers[index].SetPosition(Vec3(layers[index].GetPosition().xy, layers[index].GetPosition().z + game.GetInput().GetMouseScroll() * 1.0f));
+						if (!depthDrag) {
+							// Drag to the sides
+							layers[index].SetPosition(layers[index].GetPosition() + cursorScreenDelta * (layers[index].GetPosition().z - cameraZ));
+						} else {
+							// Drag toward/away from camera
+							layers[index].SetPosition(Vec3(layers[index].GetPosition().xy, layers[index].GetPosition().z - cursorScreenDelta.y * 0.005f));
 						}
 					}
 				}

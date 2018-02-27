@@ -4,3 +4,6 @@
 
 # VC++ user settings
 *.suo
+
+# VC++ caches
+**/.vs

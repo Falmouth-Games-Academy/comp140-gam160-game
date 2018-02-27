@@ -15,8 +15,8 @@ void Camera::Update() {
 	
 	// Follow the player
 	if (isFollowingPlayer) {
-		position.xy = game.GetPlayer().GetPosition();
-		//position.z = 0.0f;
+		position = game.GetPlayer().GetPosition();
+		position.z -= 1.0f;
 	}
 }
 
@@ -77,7 +77,7 @@ void Camera::RenderSprite(const Sprite& sprite, const Vec3& position, float rota
 		float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
 		Vec2 cameraOrigin = this->position.xy - (viewBox.size * 0.5f) / zScale;
 		Vec2 origin = (position.xy - cameraOrigin) * zScale;
-		SDL_Point sdlRotationOrigin = {origin.x + sprite.GetOrigin().x, origin.y + sprite.GetOrigin().y};
+		SDL_Point sdlRotationOrigin = {sprite.GetOrigin().x, sprite.GetOrigin().y};
 		SDL_Rect sdlDestRect = {(int)origin.x, (int)origin.y, (int)(sprite.GetDimensions().x * zScale), (int)(sprite.GetDimensions().y * zScale)};
 
 		SDL_RenderCopyEx(game.GetRenderer(), sprite.GetSDLTexture(), nullptr, &sdlDestRect, rotation, &sdlRotationOrigin, 

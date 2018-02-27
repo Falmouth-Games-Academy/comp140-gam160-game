@@ -69,13 +69,16 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\Resources</Filter>
     </ClCompile>
-    <ClCompile Include="FileDialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameStateEditor.cpp">
       <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="ArduinoIO.h">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="FileDialog.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>

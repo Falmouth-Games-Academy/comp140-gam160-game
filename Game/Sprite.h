@@ -39,6 +39,9 @@ public:
 	// Sets the scale of the image, affecting its dimensions
 	inline void SetScale(const Vec2& scale);
 
+	// Gets the scale of the image
+	inline const Vec2& GetScale() const;
+
 	// Returns a texture of the image, generating one if it doesn't exist
 	// Todo: true const correctness?
 	struct SDL_Texture* GetSDLTexture(RenderScreen screen = RenderScreen::Main) const;
@@ -89,4 +92,8 @@ inline void Sprite::SetScale(const Vec2& scale) {
 	this->scale = scale;
 	scaledOrigin = originalOrigin * scale;
 	scaledDimensions = Vec2((float)Image::GetDimensions().width, (float)Image::GetDimensions().height) * scale;
+}
+
+inline const Vec2& Sprite::GetScale() const {
+	return scale;
 }

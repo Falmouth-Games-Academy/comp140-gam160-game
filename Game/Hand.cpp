@@ -96,7 +96,3 @@ void Hand::Update(float deltaTime) {
 	// Perform final movement
 	position += velocity * deltaTime;
 }
-
-const Vec2& Hand::GetPosition() const {
-	return position;
-}

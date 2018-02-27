@@ -22,17 +22,22 @@ typedef float float32;
 // Colour type
 struct Colour {
 	Colour() = default;
-	Colour(uint8 r_, uint8 g_, uint8 b_, uint8 a_) : r(r_), g(g_), b(b_), a(a_) {};
-	Colour(uint32 argb) : b(argb & 0xFF), g((argb >> 8) & 0xFF), r((argb >> 16) & 0xFF), a((argb >> 24) & 0xFF) {};
+	constexpr Colour(uint8 r_, uint8 g_, uint8 b_, uint8 a_) : r(r_), g(g_), b(b_), a(a_) {};
+	constexpr Colour(uint32 argb) : b(argb & 0xFF), g((argb >> 8) & 0xFF), r((argb >> 16) & 0xFF), a((argb >> 24) & 0xFF) {};
 
+	// RGB values
 	uint8 r, g, b, a;
 
-	static Colour Red() {
+	// Default colours
+	static constexpr Colour Red() {
 		return Colour(0xFFFF0000);
 	}
-};
 
-// Colour constants cause helpful
-const Colour clrRed(0xFFFF0000);
-const Colour clrGreen(0xFF00FF00);
-const Colour clrBlue(0xFF0000FF);
+	static constexpr Colour Green() {
+		return Colour(0xFF00FF00);
+	}
+
+	static constexpr Colour Blue() {
+		return Colour(0xFF0000FF);
+	}
+};
