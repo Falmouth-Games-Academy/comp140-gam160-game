@@ -2,8 +2,8 @@
 
 #include <Wire.h>
 #include <SPI.h>
-#include <Adafruit_LIS3DH.h>
-#include <Adafruit_Sensor.h>
+#include "src\Adafruit_LIS3DH\Adafruit_LIS3DH.h"
+#include "src\Adafruit_Sensor\Adafruit_Sensor.h"
 
 // Used for software SPI
 #define LIS3DH_CLK 13
