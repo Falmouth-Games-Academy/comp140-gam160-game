@@ -9,7 +9,7 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM6";
+const char* port = "COM3";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;
@@ -89,6 +89,9 @@ void Game::Init() {
 }
 
 void Game::Shutdown() {
+	// Destroy all game objects
+	ClearObjects();
+
 	// Shutdown Arduino
 	delete arduino;
 
@@ -156,7 +159,8 @@ void Game::Run() {
 	SetGameState<GameStatePlay>();
 
 	// Spawn the player
-	player.Spawn();
+	player = CreateObject<Hand>();
+	player->Spawn();
 
 	// Load the level
 	level.Load();
@@ -261,4 +265,21 @@ void Game::RenderText(const char* string, int x, int y, RenderScreen screen) {
 
 	SDL_SetTextureBlendMode(sdlTextSurfaces[screen], SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(sdlRenderers[screen], sdlTextSurfaces[screen], &src, &dest);
+}
+
+void Game::RenderDebugAppurtenances() {
+	// Yes I see you there and yes I just wanted an excuse Appurtenances
+	for (Object* object : objects) {
+		object->RenderCollisionBox();
+	}
+
+	level.RenderCollisionBoxes();
+}
+
+void Game::ClearObjects() {
+	for (Object* obj : objects) {
+		delete obj;
+	}
+
+	objects.Clear();
 }

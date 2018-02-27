@@ -5,8 +5,8 @@
 
 class Hand : public Object {
 public:
-	Hand() {};
-	~Hand();
+	Hand() : headBob(0.0f, 0.0f), powerslideTimeRemaining(0.0f), direction(-1) {};
+	virtual ~Hand();
 
 	void Spawn();
 

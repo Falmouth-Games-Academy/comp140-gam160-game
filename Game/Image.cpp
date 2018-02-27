@@ -40,10 +40,11 @@ bool Image::Load(const char* filename) {
 
 	// Try to load the file into a GDIPlus image
 	wchar_t wideName[280];
-	mbstowcs(wideName, filename, 280);
+	mbstowcs_s(nullptr, wideName, filename, 280);
 
 	Gdiplus::Bitmap* bitmap = Gdiplus::Bitmap::FromFile(wideName);
 
+	// Copy the image data to this->pixels if possible
 	if (bitmap) {
 		// Lock the bitmap bits
 		Gdiplus::BitmapData data;

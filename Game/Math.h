@@ -137,7 +137,8 @@ public:
 class Rect2 {
 public:
 	Rect2() = default;
-	Rect2(float32 _x, float32 _y) : x(_x), y(_y) {};
+	Rect2(float32 x_, float32 y_, float32 width_, float32 height_) : x(x_), y(y_), width(width_), height(height_) {};
+	Rect2(const Vec2& position_, const Vec2& size_) : position(position_), size(size_) {};
 
 	union {
 		struct {

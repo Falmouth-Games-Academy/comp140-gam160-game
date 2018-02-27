@@ -17,6 +17,12 @@ void Level::Render() const {
 	}
 }
 
+void Level::RenderCollisionBoxes() const {
+	for (const BackgroundLayer& layer : layers) {
+		layer.RenderCollisionBox();
+	}
+}
+
 bool Level::Load() {
 	//layers.Append("Graphics/bg_layer_1.png", Vec3(-3000.0f, -2000.0f, 3.0f), Vec2(1.5f, 1.5f));
 	//layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 850.0f, 1.0f), Vec2(0.8f, 0.8f));
@@ -52,9 +58,9 @@ BackgroundLayer* Level::GetLayerAtScreenPosition(const Vec2& position) {
 	return returnLayer;
 }
 
-BackgroundLayer::BackgroundLayer(int index_, const char* imageFilename, const Vec3& position, const Vec2& scale) : 
-		index(index_), sprite(imageFilename, Vec2(0.0f, 0.0f), scale) {
-
+BackgroundLayer::BackgroundLayer(int index_, const char* imageFilename, const Vec3& position, const Vec2& scale) : Object() {
+	sprite.Load(imageFilename);
+	sprite.SetScale(scale);
 	this->position = position;
 }
 
@@ -64,5 +70,4 @@ BackgroundLayer::~BackgroundLayer() {
 
 void BackgroundLayer::Render() const {
 	game.GetCamera().RenderSprite(sprite, position);
-	//game.GetCamera().RenderSprite(texture, position, scale.xy);
 }

@@ -13,6 +13,9 @@ void Hand::Spawn() {
 	// Load player sprite
 	sprite.Load("Graphics/hand1.png", Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f));
 
+	// Setup collision box
+	collisionBox = Rect2(7, 4, 259, 147);
+
 	direction = -1;
 }
 
@@ -22,8 +25,11 @@ void Hand::Render() {
 		Vec3 accel = game.GetGesture().GetAverageAccel(150, 0);
 		float rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-accel.x, -accel.z)) * Math::degs;
 
-		game.GetCamera().RenderSprite(sprite, Vec3(position.x, position.y + headBob.y, 1.0f), rotation, (direction == 1) ? true : false);
+		game.GetCamera().RenderSprite(sprite, position + headBob, rotation, (direction == 1) ? true : false);
 	}
+
+	position.z = 1.0f;
+	game.GetCamera().RenderRectangle(position, Vec2(1.0f, 1.0f), Colour(0xFF00FF00));
 }
 
 void Hand::Update(float deltaTime) {

@@ -14,11 +14,12 @@ public:
 	void UpdateCursor();
 	void UpdateCameraControls();
 	void UpdateSelections();
-	void UpdateDrag();
+	void UpdateCursorDraggingLayer();
 
 	// Cursor update functions
 	void UpdateCursorDrawingLayer();
-	void UpdateCursorPositioningLayer();
+	void UpdateCursorPlacingLayer();
+	void UpdateCursorDrawingCollision();
 
 	GameStateType GetType() const override {return Editor;}
 	//static GameStateType::GetType() const {return Play;}
@@ -26,8 +27,11 @@ public:
 private:
 	enum CursorState : uint8 {
 		Normal = 0,
-		PositioningLayer,
+		DraggingLayer,
+		PlacingLayer,
 		DrawingLayer,
+		DrawingCollision,
+		NumCursorStates,
 	};
 
 	// Debug info
@@ -49,15 +53,12 @@ private:
 	// CursorState::CreatingLayer
 	int32 cursorCreatingLayerIndex;
 
-	// Selections
-	enum SelectionType {
-		BgLayer = 0,
-		Object = 1,
-		NumSelectionTypes,
-	};
+	// CursorState::DrawingCollision
+	Vec3 cursorStartCollisionPosition;
 
-	SelectionType selectionType;
+	// Cursor graphics for feedback
+	SDL_Cursor* cursorSprites[NumCursorStates];
 
-	Array<int32> highlightedItems[NumSelectionTypes];
-	Array<int32> selectedItems[NumSelectionTypes];
+	// Selection list
+	Array<class Object*> selectedItems;
 };

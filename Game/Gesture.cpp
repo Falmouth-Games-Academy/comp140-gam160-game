@@ -94,13 +94,13 @@ void GestureManager::Update() {
 			}
 
 			if (numFound) {
-				debugGraphs[1].PushValue(totalValueSum / (float)numFound);
+				debugGraphs[1].PushValue((int)totalValueSum / numFound);
 			}
 		}
 	}
 
 	// Update average graph value
-	debugGraphs[3].PushValue(GetAverageAccel(1000, 0).z);
+	debugGraphs[3].PushValue((int)GetAverageAccel(1000, 0).z);
 	debugGraphs[3].SetRenderValueRange(debugGraphs[2].GetRenderValueRange()); // average value needs to be in the same range as t he graph below it!
 
 	// Test bars
@@ -113,8 +113,6 @@ void GestureManager::Update() {
 		debugMode = !debugMode;
 	}
 }
-
-static uint32 timeWindowMs = 100;
 
 void GestureManager::Render() {
 	if (debugMode) {
@@ -149,8 +147,8 @@ void GestureManager::RenderDebugVectors() {
 	for (uint32 i = game.GetFrameTime() % historicalDrawIntervalMs; i < historicalMs; i += historicalDrawIntervalMs) {
 		Vec3 force = game.GetGesture().GetAverageAccel(i + historicalDrawIntervalMs, i);
 
-		points[i / historicalDrawIntervalMs].x = box.x + halfSize + force.x * vectorScale;
-		points[i / historicalDrawIntervalMs].y = box.y + halfSize + force.z * vectorScale;
+		points[i / historicalDrawIntervalMs].x = box.x + halfSize + (int)(force.x * vectorScale);
+		points[i / historicalDrawIntervalMs].y = box.y + halfSize + (int)(force.z * vectorScale);
 	}
 
 	SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
@@ -158,19 +156,20 @@ void GestureManager::RenderDebugVectors() {
 	
 	// Draw the XZ vector
 	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 0);
-	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + average.x * vectorScale, box.y + halfSize + average.z * vectorScale);
+	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + (int)(average.x * vectorScale), box.y + halfSize + (int)(average.z * vectorScale));
 
 	// Draw the XZ vector compensating for changes in length
 	MinMax<Vec3> minMax = GetMinMaxAccel(50, 0);
 	Vec3 test = minMax.min + minMax.max / 2;
 
-	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + test.x * vectorScale, box.y + halfSize + test.z * vectorScale);
+	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + (int)(test.x * vectorScale), box.y + halfSize + (int)(test.z * vectorScale));
 }
 
 void GestureManager::RenderDebugText() {
 	// Render debug text
 	DebugStringBox strings(RenderScreen::Debug, 0, 300, 300, 300);
 	const float restingValue = 9750.5f;//9640.0f;
+	const uint32 timeWindowMs = 100;
 	MinMax<Vec3> minMax = GetMinMaxAccel(timeWindowMs, 0);
 
 	strings.DrawString(StaticString<60>::FromFormat("Window length: %i ms", timeWindowMs));

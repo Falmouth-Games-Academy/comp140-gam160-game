@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "GameState.h"
 #include "Render.h"
+#include "Game.h"
 
 // Main game (singleton class)
 // Contains the objects and methods to render and update objects
@@ -34,6 +35,8 @@ public:
 	void RenderText(const char* text, int x, int y, RenderScreen screen = RenderScreen::Main);
 	void RenderRectangle(bool filled = false);
 
+	void RenderDebugAppurtenances();
+
 	// Game states
 	template<typename StateType>
 	inline void SetGameState();
@@ -56,6 +59,12 @@ public:
 	// Object stuff
 	template<typename ObjectType>
 	ObjectType* CreateObject();
+
+	// Returns the iterable object list
+	inline Array<Object*>& GetObjects();
+
+	// Destroys all objects
+	void ClearObjects();
 
 private:
 	// Game renderers, one for each window
@@ -80,13 +89,16 @@ private:
 
 	// Game objects
 	// Da player
-	Hand player;
+	Hand* player;
 
 	// Da level
 	Level level;
 
 	// Da camera tho
 	Camera camera;
+
+	// The objects
+	Array<Object*> objects;
 
 	// Delta time of current frame
 	float32 deltaTime;
@@ -172,7 +184,7 @@ inline Camera& Game::GetCamera() {
 };
 
 inline Hand& Game::GetPlayer() {
-	return player;
+	return *player;
 }
 
 inline Level& Game::GetLevel() {
@@ -197,4 +209,16 @@ void Game::SetGameState() {
 
 	// Prepare the next game state
 	nextGameState = new StateType();
+}
+
+template<typename ObjectType>
+inline ObjectType* Game::CreateObject() {
+	ObjectType* object = new ObjectType();
+	objects.Append(object);
+
+	return object;
+}
+
+inline Array<Object*>& Game::GetObjects() {
+	return objects;
 }

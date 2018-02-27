@@ -15,8 +15,8 @@ void Camera::Update() {
 	
 	// Follow the player
 	if (isFollowingPlayer) {
-		position = game.GetPlayer().GetPosition();
-		position.z -= 1.0f;
+		position = game.GetPlayer().GetPosition() - viewBox.size * Vec2(0.3f, 0.4f);
+		position.z -= 1.5f;
 	}
 }
 
@@ -76,8 +76,8 @@ void Camera::RenderSprite(const Sprite& sprite, const Vec3& position, float rota
 		// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
 		float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
 		Vec2 cameraOrigin = this->position.xy - (viewBox.size * 0.5f) / zScale;
-		Vec2 origin = (position.xy - cameraOrigin) * zScale;
-		SDL_Point sdlRotationOrigin = {sprite.GetOrigin().x, sprite.GetOrigin().y};
+		Vec2 origin = (position.xy - cameraOrigin - sprite.GetOrigin()) * zScale;
+		SDL_Point sdlRotationOrigin = {sprite.GetOrigin().x * zScale, sprite.GetOrigin().y * zScale};
 		SDL_Rect sdlDestRect = {(int)origin.x, (int)origin.y, (int)(sprite.GetDimensions().x * zScale), (int)(sprite.GetDimensions().y * zScale)};
 
 		SDL_RenderCopyEx(game.GetRenderer(), sprite.GetSDLTexture(), nullptr, &sdlDestRect, rotation, &sdlRotationOrigin, 
@@ -89,7 +89,7 @@ void Camera::RenderRectangle(const Vec3& position, const Vec2& size, Colour colo
 	float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
 
 	Vec2 origin = WorldToScreen(position).xy;
-	SDL_Rect sdlDestRect = {(int)origin.x, (int)origin.y, (int)(size.x * zScale), (int)(size.y * zScale)};
+	SDL_Rect sdlDestRect = {(int)origin.x, (int)origin.y, (int)(size.x * zScale), (int)(size.y * zScale)}; // todo: consider rounding up so things don't go invisible
 
 	SDL_SetRenderDrawColor(game.GetRenderer(), colour.r, colour.g, colour.b, colour.a);
 	SDL_RenderDrawRect(game.GetRenderer(), &sdlDestRect);

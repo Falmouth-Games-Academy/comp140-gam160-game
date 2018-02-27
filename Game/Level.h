@@ -2,6 +2,7 @@
 #include "Containers.h"
 #include "Math.h"
 #include "Sprite.h"
+#include "Object.h"
 
 class Level {
 public:
@@ -17,6 +18,9 @@ public:
 	// Renders the level background
 	void Render() const;
 	
+	// Renders collision boxes in the level layers
+	void RenderCollisionBoxes() const;
+
 	// Returns the closest layer at the given position
 	class BackgroundLayer* GetLayerAtScreenPosition(const Vec2& position);
 
@@ -30,34 +34,14 @@ private:
 
 
 // Background layer for level sections
-class BackgroundLayer {
+class BackgroundLayer : public Object {
 public:
 	BackgroundLayer(int index, const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
-	//BackgroundLayer(const BackgroundLayer& other) : sprite(other.sprite), position(other.position), index(other.index) {};
 	~BackgroundLayer();
 
 	void Render() const;
-	
-	inline void SetPosition(const Vec3& position);
-	inline void SetSize(const Vec2& size);
 
-	inline int GetIndex() const;
-	inline const Vec3& GetPosition() const;
-	inline const Vec2 GetSize() const;
-	inline const Sprite& GetSprite() const;
-
-private:
-	// Layer image
-	Sprite sprite;
-
-	// Position of the layer, including z, which is depth
-	Vec3 position;
-
-	// Index of the layer in the parent level's layer list
-	int32 index;
-
-private:
-	inline void SetIndex(int newIndex); // Do not call unless you're Level!
+	Object::Type GetType() const override {return Object::BackgroundLayer;}
 };
 
 inline Array<class BackgroundLayer>& Level::GetLayers() {
@@ -66,32 +50,4 @@ inline Array<class BackgroundLayer>& Level::GetLayers() {
 
 inline const Array<class BackgroundLayer>& Level::GetLayers() const {
 	return layers;
-}
-
-inline void BackgroundLayer::SetIndex(int newIndex) {
-	index = newIndex;
-}
-
-inline int BackgroundLayer::GetIndex() const {
-	return index;
-}
-
-inline const Vec3& BackgroundLayer::GetPosition() const {
-	return position;
-}
-
-inline const Vec2 BackgroundLayer::GetSize() const {
-	return sprite.GetDimensions();
-}
-
-inline void BackgroundLayer::SetSize(const Vec2& size) {
-	sprite.SetScale(size / sprite.GetBaseDimensions());
-}
-
-inline void BackgroundLayer::SetPosition(const Vec3& position) {
-	this->position = position;
-}
-
-inline const Sprite& BackgroundLayer::GetSprite() const {
-	return sprite;
 }
