@@ -153,6 +153,7 @@ void GameStateEditor::UpdateSelections() {
 
 void GameStateEditor::UpdateMoveables() {
 	if (game.GetInput().IsMouseDown(InputManager::LeftButton) && selectedItems[selectionType].GetNum() >= 0) {
+		// Move layers
 		Vec2 cursorScreenDelta = cursorScreenPosition.xy - lastCursorScreenPosition.xy;
 		float cameraZ = game.GetCamera().GetPosition().z;
 
@@ -162,6 +163,12 @@ void GameStateEditor::UpdateMoveables() {
 				for (int32 index : selectedItems[BgLayer]) {
 					if (layers.IsIndexValid(index)) {
 						layers[index].SetPosition(layers[index].GetPosition() + cursorScreenDelta * (layers[index].GetPosition().z - cameraZ));
+						
+
+						// Push/pull layers
+						if (game.GetInput().GetMouseScroll()) {
+							layers[index].SetPosition(Vec3(layers[index].GetPosition().xy, layers[index].GetPosition().z + game.GetInput().GetMouseScroll() * 1.0f));
+						}
 					}
 				}
 			}
@@ -180,6 +187,7 @@ void GameStateEditor::UpdateCursorDrawingLayer() {
 		layer->SetSize(size);
 	}
 
+	// Update cursor state
 	if (game.GetInput().IsMouseBooped(InputManager::LeftButton)) {
 		cursorState = Normal;
 	}
