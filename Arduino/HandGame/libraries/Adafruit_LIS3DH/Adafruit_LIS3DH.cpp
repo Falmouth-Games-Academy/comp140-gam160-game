@@ -24,7 +24,7 @@
 #endif
 
 #include <Wire.h>
-#include "src/Adafruit_LIS3DH/Adafruit_LIS3DH.h"
+#include "Adafruit_LIS3DH.h"
 
 
 /**************************************************************************/

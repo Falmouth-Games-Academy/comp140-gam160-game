@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "ArduinoIO.h"
 
 #include <cassert>
 
@@ -23,8 +24,6 @@ GestureManager::GestureManager() {
 }
 
 void GestureManager::Update() {
-	static uint8 incomingData[256];
-
 	// Update graphs
 	int readResult = 0;
 	Serial* serial = game.GetSerialStream();
@@ -44,34 +43,33 @@ void GestureManager::Update() {
 				}
 
 				for (int i = numPendingBytes; i < 256; ++i) {
-					incomingData[i - numPendingBytes] = incomingData[i];
+					arduinoInStream[i - numPendingBytes] = arduinoInStream[i];
 				}
 
-				serial->ReadData((char*)&incomingData[256 - numPendingBytes], numPendingBytes);
+				serial->ReadData((char*)&arduinoInStream[256 - numPendingBytes], numPendingBytes);
 			}
-		} while (numPendingBytes >= 12);
+		} while (numPendingBytes >= sizeof (ArduinoToPCData));
 
+		// Find the latest Arduino IO info by checking alignment
 		// Find the latest 0xDEAD (head) and 0xD00D (tail) data markers
-		int headByte = -1, tailByte = -1;
-		for (int i = 255; i >= 0; --i) {
-			if (tailByte != -1 && incomingData[i] == 0xDE && incomingData[i + 1] == 0xAD) {
-				headByte = i;
+		ArduinoToPCData* arduinoIn = nullptr;
 
-				if (tailByte == headByte + 8) {
-					break;
-				}
-			}
-
-			if (tailByte == -1 && incomingData[i] == 0xD0 && incomingData[i + 1] == 0x0D) {
-				tailByte = i;
+		for (ArduinoToPCData* searchData = (ArduinoToPCData*)&arduinoInStream[sizeof (arduinoInStream) - sizeof (ArduinoToPCData)];
+							searchData >= (ArduinoToPCData*)arduinoInStream;
+							searchData = (ArduinoToPCData*)((uintptr)searchData - 1)) {
+			if (searchData->startMarker == 0xADDE && searchData->endMarker == 0x0DD0) {
+				arduinoIn = searchData;
+				break;
 			}
 		}
 
 		// If the data markers were found...
-		if (tailByte == headByte + 8) {
-			x = *(__int16*)(&incomingData[headByte + 2]);
-			y = *(__int16*)(&incomingData[headByte + 4]);
-			z = *(__int16*)(&incomingData[headByte + 6]);
+		if (arduinoIn) {
+			x = arduinoIn->accelX;
+			y = arduinoIn->accelY;
+			z = arduinoIn->accelZ;
+
+			flexAngle = arduinoIn->flexValue;
 
 			// Append the accel vector to the history
 			accelHistory.Append(AccelStamp(Vec3((float)x, (float)y, (float)z), game.GetFrameTime()));
@@ -182,6 +180,7 @@ void GestureManager::RenderDebugText() {
 	//strings.DrawString(StaticString<60>::FromFormat("Current guesstimated speed: %.2f", currentSpeed));
 	strings.DrawString(StaticString<60>::FromFormat("AllAxes force: %.3f m/s/s", accelHistory[-1].direction.Length()));
 	strings.DrawString(StaticString<80>::FromFormat("Total accelstamps received: %i", numAccelsRecordedTotal));
+	strings.DrawString(StaticString<80>::FromFormat("Flex angle: %.2f\n", flexAngle));
 }
 
 const StaticCircularArray<GestureManager::AccelStamp, GestureManager::maxNumAccelStamps>& GestureManager::GetAccelHistory() const {
@@ -299,4 +298,9 @@ MinMax<Vec3> GestureManager::GetMinMaxAccel(uint32 relativeTimeStart, uint32 rel
 
 int GestureManager::GetNumRecordedAccels() const {
 	return numAccelsRecordedTotal;
+}
+
+float GestureManager::GetFlexAngle() const
+{
+	return flexAngle;
 }

@@ -42,6 +42,9 @@ public:
 
 	// Gets the number of accel stamps recorded historically--this may be more than the array contains
 	int GetNumRecordedAccels() const;
+
+	// Gets the current bend angle of the flex sensor, in degrees
+	float GetFlexAngle() const;
 public:
 	// Gesture enum
 	enum GestureCode {
@@ -62,7 +65,13 @@ private:
 
 	bool8 gestureDown[NumGestureCodes] = {0}; // Whether a gesture is being done
 
+	// Angle, in degrees, of the flex sensor
+	float flexAngle;
+
 	bool8 debugMode = false;
 
 	Array<Graph> debugGraphs;
+
+	// Raw incoming data stream from the arduino
+	uint8 arduinoInStream[512];
 };

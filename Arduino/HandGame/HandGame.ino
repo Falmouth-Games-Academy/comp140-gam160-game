@@ -2,8 +2,8 @@
 
 #include <Wire.h>
 #include <SPI.h>
-#include "src\Adafruit_LIS3DH\Adafruit_LIS3DH.h"
-#include "src\Adafruit_Sensor\Adafruit_Sensor.h"
+#include <Adafruit_LIS3DH.h>
+#include <Adafruit_Sensor.h>
 
 // Used for software SPI
 #define LIS3DH_CLK 13
@@ -19,10 +19,34 @@
 // I2C
 Adafruit_LIS3DH lis = Adafruit_LIS3DH();
 
+#define FLEXSENSORIN A3
+#define FLEXSENSOROUT 2
+
 #if defined(ARDUINO_ARCH_SAMD)
 // for Zero, output on USB Serial console, remove line below if using programming port to program the Zero!
    #define Serial SerialUSB
 #endif
+
+typedef uint8_t uint8;
+typedef uint16_t uint16;
+typedef int8_t int8;
+typedef int16_t int16;
+
+struct ArduinoToPCData {
+  // Start data stream marker
+  uint16 startMarker; //=0xADDE
+  
+  // Accelerometer values
+  int16 accelX;
+  int16 accelY;
+  int16 accelZ;
+
+  // Raw bend sensor value between 0 and 1024
+  uint16 flexValue;
+
+  // End data stream marker
+  uint16 endMarker; //=0x0DD0
+};
 
 void setup(void) {
 #ifndef ESP8266
@@ -42,6 +66,11 @@ void setup(void) {
   
   Serial.print("Range = "); Serial.print(2 << lis.getRange());
   Serial.println("G");
+
+  // Setup bend sensor
+  pinMode(FLEXSENSORIN, INPUT);
+  pinMode(FLEXSENSOROUT, OUTPUT);
+  digitalWrite(FLEXSENSOROUT, true);
 }
 
 void loop() {
@@ -62,7 +91,16 @@ void loop() {
   Serial.println(" m/s^2 ");
 
   Serial.println();*/
-  // Send the data in the following byte format: DE AD XX XX XX XX YY YY YY YY ZZ ZZ ZZ ZZ D0 0D
-  int dataOut[5] = {0xADDE, (int)(event.acceleration.x * 1000), (int)(event.acceleration.y * 1000), (int)(event.acceleration.z * 1000), 0x0DD0};
-  Serial.write((char*)dataOut, 10);
+
+  // Send the data back to the PC through the serial port
+  ArduinoToPCData output;
+
+  output.startMarker = 0xADDE;
+  output.accelX = (int)(event.acceleration.x * 1000);
+  output.accelY = (int)(event.acceleration.y * 1000);
+  output.accelZ = (int)(event.acceleration.z * 1000);
+  output.flexValue = analogRead(FLEXSENSORIN);
+  output.endMarker = 0x0DD0;
+  
+  Serial.write((char*)&output, sizeof (output));
 }

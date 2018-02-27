@@ -27,6 +27,13 @@ The physique of the player's hand needs to be accounted for. Elastic components 
 
 It may be novel to make a hand puppet that is, indeed, just a rubber hand. This may be a stretch goal in the future, but finding ideal ways to fix the components to a 'naked' hand takes priority.  
 
+# Arduino Setup
+## Accelerometer
+GND/Black: GND  
+Vin/Brown:  5V (3V may also work)  
+SDA/Yellow: A4  
+SCL/Grey: A5  
+
 # Extra to the Page (no need to read this)
 We were asked to write a page for the proposals, and indeed, all of the text below is part of the page. I have cut it out so that this page does not exceed a page, however, either way it is unlikely to exceed a page as it is, indeed, a page. Further to this though, one could observe that this page does not fit within one monitor screen. This is true, however it could be strongly argued that a monitor is not a page. To exceed a page would require that more than one page be stuck to the screen, perhaps with some sticky tape.  
 

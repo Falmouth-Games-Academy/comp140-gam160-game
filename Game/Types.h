@@ -10,6 +10,9 @@ typedef unsigned __int16 uint16;
 typedef __int8			 int8;
 typedef unsigned __int8 uint8;
 
+// Numeric address pointer
+typedef unsigned __int64 uintptr;
+
 // Reliably-sized boolean type
 typedef __int8 bool8;
 
