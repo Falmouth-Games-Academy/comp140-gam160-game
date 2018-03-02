@@ -85,10 +85,16 @@ void Game::Init() {
 	else
 		printf("Arduino couldn't open. Serial killer on the loose!!\n");
 
+	// Create the debug box
+	debugBox = new DebugStringBox(RenderScreen::Main, 0, 0, 500, 500);
+
 	printf("Init complete\n");
 }
 
 void Game::Shutdown() {
+	// Destroy debug box
+	delete debugBox;
+
 	// Destroy all game objects
 	ClearObjects();
 
@@ -110,7 +116,6 @@ void Game::Shutdown() {
 	SDL_Quit();
 }
 
-unsigned char incomingData[256] = "";
 void Game::Update(float deltaTime) {
 	// Update the game state if it's changing
 	if (nextGameState) {
@@ -212,6 +217,11 @@ void Game::Run() {
 
 		// Timer update
 		lastPerformanceCounter = currentPerformanceCounter;
+
+		// Reset the debug box
+		if (debugBox) {
+			debugBox->Reset();
+		}
 	}
 
 	// Game has ended

@@ -68,9 +68,13 @@ private:
 	// Angle, in degrees, of the flex sensor
 	float flexAngle;
 
+	// Debug stuff
 	bool8 debugMode = false;
 
 	Array<Graph> debugGraphs;
+
+	// Debug keyboard control
+	bool8 isKeyboardEnabled;
 
 	// Raw incoming data stream from the arduino
 	uint8 arduinoInStream[512];

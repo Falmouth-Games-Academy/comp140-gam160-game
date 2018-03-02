@@ -50,6 +50,7 @@ public:
 	inline InputManager& GetInput();
 	inline Camera& GetCamera();
 	inline Serial* GetSerialStream(); // Todo: class to handle this
+	inline class DebugStringBox* GetDebug();
 
 	// Time
 	inline uint32 GetFrameTime() const;
@@ -108,6 +109,9 @@ private:
 
 	// System time at startup
 	uint32 startFrameTime;
+
+	// Box for debug strings
+	DebugStringBox* debugBox;
 };
 
 // The only global variable in the entire game. Justified by the fact that it's the only global variable in the entire game as a rule.
@@ -169,6 +173,10 @@ inline SDL_Renderer* Game::GetRenderer(RenderScreen screen) {
 
 inline Serial* Game::GetSerialStream() {
 	return arduino;
+}
+
+inline DebugStringBox* Game::GetDebug() {
+	return debugBox;
 }
 
 inline GestureManager& Game::GetGesture() {

@@ -20,6 +20,7 @@ public:
 	inline const Vec3& GetPosition() const;
 
 	// Attempts to move to a position. If teleport is false, collision detection is applied if the object is solid
+	// Returns whether the move was fully successful without any collisions
 	bool Move(const Vec3& moveOffset, bool teleport = false);
 
 	inline void SetPosition(const Vec3& position);
@@ -33,13 +34,16 @@ public:
 	// Returns the size of the object in pixels
 	inline const Vec2& GetSize() const;
 
-	// Sets the collision box, or if the collision box is nullptr, assume non-solid
-	void SetCollision(const Rect2* newBox);
+	// Sets the collision box, or if the collision box is nullptr, set as non-solid
+	void SetCollision(const Rect2* newBox, bool newIsSolid = true);
 
 	// Renders the object's collision box as a blue bounding border
 	void RenderCollisionBox() const;
 
-	bool IsColliding(const Object& otherObject);
+	// Returns whether this object is colliding with another object.
+	/* If true, and borderOffsets is non-null, borderOffsets is set to the possible offsets you could move the object by to nullify the collision, 
+	   where e.g. the top is the offset you can add to push your top away from the bottom of the other object. */
+	bool IsColliding(const Object& otherObject, Bounds2* borderOffsets = nullptr);
 
 protected:
 	// Current sprite
@@ -58,11 +62,6 @@ inline const Vec3& Object::GetPosition() const {
 	return position;
 }
 
-inline bool Object::Move(const Vec3& moveOffset, bool teleport) {
-	position += moveOffset;
-	return true;
-}
-
 inline void Object::SetPosition(const Vec3& position) {
 	this->position = position;
 }
@@ -79,11 +78,11 @@ inline const Vec2& Object::GetSize() const {
 	return sprite.GetDimensions();
 }
 
-inline void Object::SetCollision(const Rect2* newBox) {
+inline void Object::SetCollision(const Rect2* newBox, bool newIsSolid) {
 	if (newBox) {
 		collisionBox = *newBox;
-	}
-	else {
+		isSolid = newIsSolid;
+	} else {
 		isSolid = false;
 	}
 }

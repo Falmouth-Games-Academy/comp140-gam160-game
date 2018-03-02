@@ -18,6 +18,10 @@ namespace Math {
 	const float rads = pi / 180.0f;
 	const float degs = 180.0f / pi;
 
+	// Sign/negative/positive
+	template<typename SignType>
+	inline SignType getsign(SignType value) {return (value > (SignType)(0) ? (SignType)(1) : (value < (SignType)(0) ? (SignType)(-1) : (SignType)(0)));}
+
 	// Clamping
 	template<typename ClampType>
 	inline ClampType clampmin(ClampType value, ClampType min) {if (value < min) {return min;} else {return value;}}
@@ -66,6 +70,8 @@ public:
 	void operator*=(const float scalar) {x *= scalar; y *= scalar;}
 	void operator/=(const float scalar) {x /= scalar; y /= scalar;}
 
+	bool operator==(const Vec2& other) const {return x == other.x && y == other.y;}
+
 	float Length() const {return (float)sqrt((x * x) + (y * y));}
 
 	// Deeper math functions
@@ -113,6 +119,8 @@ public:
 	void operator*=(const float scalar) {x *= scalar; y *= scalar; z *= scalar;}
 	void operator/=(const float scalar) {x /= scalar; y /= scalar; z /= scalar;}
 
+	bool operator==(const Vec3& other) const {return x == other.x && y == other.y && z == other.z;}
+
 	// Extremely amazing advanced vector code
 	float Length() const {return (float)sqrt((x * x) + (y * y) + (z * z));}
 
@@ -155,7 +163,29 @@ public:
 	};
 };
 
-// 2-dimensional boundary
+// 2D rectangle boundaries: basically a rectangle with absolute right and bottom edges
+class Bounds2 {
+public:
+	Bounds2() = default;
+	Bounds2(const Vec2& topLeft_, const Vec2& bottomRight_) : topLeft(topLeft_), bottomRight(bottomRight_) {};
+	Bounds2(float32 left_, float32 top_, float32 right_, float32 bottom_) : topLeft(left_, top_), bottomRight(right_, bottom_) {};
+
+	union {
+		struct {
+			float32 left, top;
+		};
+		Vec2 topLeft;
+	};
+
+	union {
+		struct {
+			float32 right, bottom;
+		};
+		Vec2 bottomRight;
+	};
+};
+
+// 2-dimensional integer dimensions
 class Dimensions2 {
 public:
 	Dimensions2() = default;

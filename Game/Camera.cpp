@@ -21,9 +21,10 @@ void Camera::Update() {
 }
 
 void Camera::Render() {
-	DebugStringBox debug(RenderScreen::Main, 0, 20, 100, 100);
-
-	debug.DrawString(StaticString<80>::FromFormat("Camera pos: %f %f %f", position.x, position.y, position.z));
+	// Render debug information
+	if (DebugStringBox* debug = game.GetDebug()) {
+		debug->DrawString(StaticString<80>::FromFormat("Camera pos: %f %f %f", position.x, position.y, position.z));
+	}
 }
 
 const Vec3& Camera::GetPosition() const {

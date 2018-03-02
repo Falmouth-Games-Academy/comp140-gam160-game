@@ -1,5 +1,8 @@
 #include "Input.h"
 
+const int InputManager::keycodeTranslators[InputManager::numExtraKeycodes] = 
+	{SDLK_UP, SDLK_DOWN, SDLK_LEFT, SDLK_RIGHT, SDLK_LSHIFT, SDLK_RSHIFT, SDLK_LCTRL, SDLK_RCTRL};
+
 InputManager::InputManager() {
 	return; // YOU HAD NONE JOB
 }
@@ -28,10 +31,12 @@ void InputManager::Update() {
 }
 
 bool InputManager::IsKeyDown(SDL_Keycode keyCode) const {
+	keyCode = TranslateKeycode(keyCode);
 	return keyStates[keyCode] == KeyDown || keyStates[keyCode] == KeyBooped;
 }
 
 bool InputManager::IsKeyBooped(SDL_Keycode keyCode) const {
+	keyCode = TranslateKeycode(keyCode);
 	return keyStates[keyCode] == KeyBooped;
 }
 
@@ -60,9 +65,9 @@ void InputManager::OnInputEvent(const SDL_Event& event) {
 		// Keyboard input
 		case SDL_KEYDOWN:
 		case SDL_KEYUP: {
-			SDL_Keycode keyCode = event.key.keysym.sym;
+			SDL_Keycode keyCode = TranslateKeycode(event.key.keysym.sym);
 
-			if (event.key.keysym.sym >= maxKeycodes) {
+			if (keyCode >= maxKeycodes) {
 				return; // Key is too high and mighty to exist
 			}
 

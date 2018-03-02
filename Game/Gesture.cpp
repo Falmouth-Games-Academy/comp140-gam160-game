@@ -4,6 +4,7 @@
 #include <cassert>
 
 GestureManager::GestureManager() {
+	// Create debug graphs
 	struct GraphInitData {const char* title; uint32 colour; int x, y, width, height; uint32 range;};
 	const uint32 graphHeights = 80;
 
@@ -21,6 +22,10 @@ GestureManager::GestureManager() {
 		newGraph.SetRenderTimeRange(data.range);
 		newGraph.SetDoAutoScale(true);
 	}
+
+	// Set debug keyboard value
+	isKeyboardEnabled = true; // ...to true cuz yush
+
 }
 
 void GestureManager::Update() {
@@ -30,7 +35,6 @@ void GestureManager::Update() {
 
 	// Read data from the serial port
 	if (serial->IsConnected()) {
-		int x = 0, y = 0, z = 0;
 		int numPendingBytes = 0;
 
 		// Collect bytes into the circular data array
@@ -65,19 +69,16 @@ void GestureManager::Update() {
 
 		// If the data markers were found...
 		if (arduinoIn) {
-			x = arduinoIn->accelX;
-			y = arduinoIn->accelY;
-			z = arduinoIn->accelZ;
-
+			// Update the flex angle
 			flexAngle = arduinoIn->flexValue;
 
-			// Append the accel vector to the history
-			accelHistory.Append(AccelStamp(Vec3((float)x, (float)y, (float)z), game.GetFrameTime()));
+			// Append the accel vector to the movement history
+			accelHistory.Append(AccelStamp(Vec3((float)arduinoIn->accelX, (float)arduinoIn->accelY, (float)arduinoIn->accelZ), game.GetFrameTime()));
 			++numAccelsRecordedTotal;
 
 			// Update the debug graphs
-			debugGraphs[0].PushValue(z);
-			debugGraphs[2].PushValue(z);
+			debugGraphs[0].PushValue(arduinoIn->accelZ);
+			debugGraphs[2].PushValue(arduinoIn->accelZ);
 
 			// Append averaged out value to the other debug graph
 			const uint32 avgSpan = 500; // in ms
@@ -97,16 +98,20 @@ void GestureManager::Update() {
 				debugGraphs[1].PushValue((int)totalValueSum / numFound);
 			}
 		}
+	} else if (isKeyboardEnabled) {
+		// Use debug keyboard controls in place of the arduino
+		if (game.GetInput().IsKeyDown(SDLK_UP)) {
+			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 12000.0f), game.GetFrameTime()));
+		} else if (game.GetInput().IsKeyDown(SDLK_DOWN)) {
+			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 6000.0f), game.GetFrameTime()));
+		} else {
+			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 9000.0f), game.GetFrameTime()));
+		}
 	}
 
 	// Update average graph value
 	debugGraphs[3].PushValue((int)GetAverageAccel(1000, 0).z);
 	debugGraphs[3].SetRenderValueRange(debugGraphs[2].GetRenderValueRange()); // average value needs to be in the same range as t he graph below it!
-
-	// Test bars
-	if (game.GetInput().IsKeyBooped(SDLK_SPACE)) {
-		debugGraphs[0].AddBar(Graph::GraphBar(Graph::GraphBar::Horizontal, 400, 0, 20));
-	}
 
 	// Toggle debug mode
 	if (game.GetInput().IsKeyBooped(SDLK_d)) {

@@ -35,7 +35,9 @@ void GameStatePlay::Render() {
 	game.GetCamera().Render();
 
 	// Render text
-	game.RenderText(StaticString<80>::FromFormat("FPS: %f", 1.0f / game.GetDeltaTime()), 0, 0);
+	if (DebugStringBox* debug = game.GetDebug()) {
+		debug->DrawString(StaticString<80>::FromFormat("FPS: %f", 1.0f / game.GetDeltaTime()));
+	}
 }
 
 bool GameStatePlay::Enter() {
