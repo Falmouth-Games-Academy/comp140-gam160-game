@@ -1,5 +1,4 @@
 #pragma once
-#include "Math.h" // Vec3
 
 enum GameStateType {
 	Play = 0,
@@ -15,16 +14,4 @@ public:
 	virtual void Exit() = 0;
 
 	virtual GameStateType GetType() const = 0;
-};
-
-class GameStatePlay : public GameState {
-public:
-	void Update(float deltaTime) override;
-	void Render() override;
-
-	bool Enter() override;
-	void Exit() override;
-
-	GameStateType GetType() const override {return Play;}
-	//static GameStateType::GetType() const {return Play;}
 };

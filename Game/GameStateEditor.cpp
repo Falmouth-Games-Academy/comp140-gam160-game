@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "GameStatePlay.h"
 #include "GameStateEditor.h"
 #include "FileDialog.h"
 #include "Object.h"
@@ -8,7 +9,7 @@ void GameStateEditor::Update(float deltaTime) {
 	debug->Reset();
 
 	// Update camera
-	game.GetCamera().Update();
+	game.GetCamera().Update(deltaTime);
 
 	// Perform editor updates
 	UpdateCursor();
@@ -26,7 +27,9 @@ void GameStateEditor::Render() {
 	game.GetLevel().Render();
 
 	// Render the objects
-	// There are no objects lawl
+	for (Object* obj : game.GetObjects()) {
+		obj->Render();
+	}
 
 	// Render player
 	game.GetPlayer().Render();

@@ -28,9 +28,12 @@ bool Level::Load() {
 	//layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 850.0f, 1.0f), Vec2(0.8f, 0.8f));
 
 	BackgroundLayer& bak = layers.Append(layers.GetNum(), "Graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 3.0f), Vec2(1.5f, 1.5f));
-	layers.Append(layers.GetNum(), "Graphics/bg_layer_2.png", Vec3(0.0f, 0.0f, 1.0f), Vec2(0.8f, 0.8f));
+	BackgroundLayer& platform = layers.Append(layers.GetNum(), "Graphics/bg_layer_2.png", Vec3(0.0f, 500.0f, 1.0f), Vec2(0.8f, 0.8f));
 
 	bak.SetPosition(Vec3(bak.GetSize().x * -0.5f , bak.GetSize().y * -0.5f, 3.0f));
+
+	platform.SetCollision(&Rect2(0.0f, 60.0f, 2192.0f, 384.0f));
+
 	return true;
 }
 

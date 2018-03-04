@@ -41,7 +41,7 @@ public:
 
 	void Render() const;
 
-	Object::Type GetType() const override {return Object::BackgroundLayer;}
+	Object::Type GetType() const override {return BackgroundLayerType;}
 };
 
 inline Array<class BackgroundLayer>& Level::GetLayers() {

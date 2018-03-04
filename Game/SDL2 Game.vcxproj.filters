@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Interface">
       <UniqueIdentifier>{28e2e56e-2e17-4f32-bac1-e184909636f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Gameplay\Objects">
+      <UniqueIdentifier>{e2bbbee6-fc2c-49b7-8676-db1592b9c84c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gameplay\GameStates">
+      <UniqueIdentifier>{837c5a79-143f-40b6-801f-3cac1cac13d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gesture.cpp">
@@ -63,23 +69,26 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Source Files\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="GameStateEditor.cpp">
-      <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="ArduinoIO.h">
       <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>Source Files\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="FileDialog.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Gameplay\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Laser.cpp">
+      <Filter>Source Files\Gameplay\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStateEditor.cpp">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStatePlay.cpp">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,13 +128,7 @@
     <ClInclude Include="Graph.h">
       <Filter>Source Files\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Source Files\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Source Files\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
       <Filter>Source Files\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
@@ -137,8 +140,20 @@
     <ClInclude Include="FileDialog.h">
       <Filter>Source Files\System</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Source Files\Gameplay\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Laser.h">
+      <Filter>Source Files\Gameplay\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStatePlay.h">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClInclude>
     <ClInclude Include="GameStateEditor.h">
-      <Filter>Source Files\Gameplay</Filter>
+      <Filter>Source Files\Gameplay\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

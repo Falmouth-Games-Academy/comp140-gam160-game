@@ -104,7 +104,12 @@ void GestureManager::Update() {
 			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 12000.0f), game.GetFrameTime()));
 		} else if (game.GetInput().IsKeyDown(SDLK_DOWN)) {
 			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 6000.0f), game.GetFrameTime()));
+		} else if (game.GetInput().IsKeyDown(SDLK_k)) {
+			// Mouse tilt controls then?
+			Vec3 playerScreenPosition = game.GetCamera().WorldToScreen(game.GetPlayer().GetPosition());
+			accelHistory.Append(AccelStamp(Vec3((game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 10, 0.0f, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 10), game.GetFrameTime()));
 		} else {
+			// Advanced gravity simulation to the nearest whatevs units of meh
 			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 9000.0f), game.GetFrameTime()));
 		}
 	}

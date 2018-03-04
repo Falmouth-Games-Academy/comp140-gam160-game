@@ -1,5 +1,6 @@
 #include "Types.h"
 #include "Game.h"
+#include "GameStatePlay.h"
 
 #include "Graph.h"
 
@@ -43,8 +44,11 @@ void Game::Init() {
 		}
 	}
 
-	printf("Creating additional text rendering assets that nobody wants in their life ever\n");
+	// Setup renderer hints to make stuff look pretty
+	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
 	// Create default font
+	printf("Creating additional text rendering assets that nobody wants in their life ever\n");
 	defaultFont = CreateFont(20, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
 
 	// Create text render DC
@@ -64,10 +68,12 @@ void Game::Init() {
 	bi.bmiHeader.biClrUsed = 256;
 	bi.bmiHeader.biClrImportant = 256;
 	
+	// Give the bitmap a basic monochrome gradient palette
 	for (uint32 i = 0; i < 256; ++i) {
 		bi.bmiColors[i] = RGBQUAD{(BYTE)i, (BYTE)i, (BYTE)i, 0};
 	}
 
+	// Setup GDI objects
 	textSurfaceBitmap = CreateDIBSection(0, &bi, DIB_RGB_COLORS, (void**) &textSurfaceBits, nullptr, 0);
 
 	SelectObject(textSurfaceDc, (HGDIOBJ) textSurfaceBitmap);
@@ -157,6 +163,8 @@ void Game::Render() {
 	}
 }
 
+#include "Laser.h"
+
 void Game::Run() {
 	// Initialise engine
 	Init();
@@ -166,6 +174,10 @@ void Game::Run() {
 	// Spawn the player
 	player = CreateObject<Hand>();
 	player->Spawn();
+
+	// Spawn the test laser
+	Laser* testLaser = CreateObject<Laser>();
+	testLaser->Spawn();
 
 	// Load the level
 	level.Load();

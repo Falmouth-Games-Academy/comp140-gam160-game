@@ -8,10 +8,16 @@ public:
 
 public:
 	enum Type {
-		BackgroundLayer = 0,
-		Hand = 1,
+		BackgroundLayerType = 0,
+		HandType = 1,
+		LaserType = 2,
 		NumTypes
 	};
+
+	virtual void Spawn() {return;}
+
+	virtual void Update(float deltaTime) {return;}
+	virtual void Render() {return;}
 
 	virtual Type GetType() const = 0;
 
@@ -19,11 +25,15 @@ public:
 	// Returns current position
 	inline const Vec3& GetPosition() const;
 
+	// Sets the position of the object (teleport)
+	inline void SetPosition(const Vec3& position);
+
 	// Attempts to move to a position. If teleport is false, collision detection is applied if the object is solid
 	// Returns whether the move was fully successful without any collisions
-	bool Move(const Vec3& moveOffset, bool teleport = false);
+	bool Move(const Vec3& moveOffset, bool doAffectVelocity = true, bool teleport = false);
 
-	inline void SetPosition(const Vec3& position);
+	// Returns the object's rotation in degrees
+	inline float32 GetRotation() const;
 
 	// Returns the sprite
 	inline const Sprite& GetSprite() const;
@@ -53,6 +63,9 @@ protected:
 	Vec3 position;
 	Vec3 velocity;
 
+	// Rotation of the object, in degrees
+	float32 rotation;
+
 	// Dimensions of the collision box, relative to this object's unscaled sprite pixels
 	Rect2 collisionBox;
 	bool8 isSolid;
@@ -64,6 +77,10 @@ inline const Vec3& Object::GetPosition() const {
 
 inline void Object::SetPosition(const Vec3& position) {
 	this->position = position;
+}
+
+inline float32 Object::GetRotation() const {
+	return rotation;
 }
 
 inline const Sprite& Object::GetSprite() const {

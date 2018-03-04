@@ -21,7 +21,7 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 		  selfT = selfOrigin.y + collisionBox.y * sprite.GetScale().y,
 		  selfB = selfOrigin.y + (collisionBox.y + collisionBox.height) * sprite.GetScale().y;
 	float otherL = otherOrigin.x + otherObject.collisionBox.x * otherObject.sprite.GetScale().x,
-		  otherR = otherOrigin.x + (otherObject.collisionBox.x + collisionBox.width) * otherObject.sprite.GetScale().x,
+		  otherR = otherOrigin.x + (otherObject.collisionBox.x + otherObject.collisionBox.width) * otherObject.sprite.GetScale().x,
 		  otherT = otherOrigin.y + otherObject.collisionBox.y * otherObject.sprite.GetScale().y,
 		  otherB = otherOrigin.y + (otherObject.collisionBox.y + otherObject.collisionBox.height) * otherObject.sprite.GetScale().y;
 
@@ -37,42 +37,60 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 	}
 }
 
-bool Object::Move(const Vec3& originalMoveOffset, bool teleport) {
+bool Object::Move(const Vec3& originalMoveOffset, bool doAffectVelocity, bool teleport) {
 	// NewMoveOffset
-	Vec3 moveOffset = originalMoveOffset;
+	Vec3 originalPosition = position;
+	Vec3 moveOffset(originalMoveOffset.x, 0.0f, originalMoveOffset.z);
 
-	// Move to the desired position first
-	position += originalMoveOffset;
+	// Perform two movements, first on the X axis and next on the Y axis
+	// Very lazy collision system that hurts my brain to know it wouldn't work with any kind of slope
+	
+	// Move to the desired X position first
+	position += moveOffset;
 
-	// Find out how far we overstepped
-	// Find other objects and background layers that might get in the way
+	// Check collisions in this new position and move back if they exist
 	Bounds2 pushbackOffsets;
 	for (::BackgroundLayer& layer : game.GetLevel().GetLayers()) {
 		if (IsColliding(layer, &pushbackOffsets)) {
-			// Which direction are we most likely to push back in?
-			if (abs(moveOffset.y) > abs(moveOffset.x)) {
-				// Vertically
-				if (moveOffset.y > 0.0f) {
-					moveOffset.y += pushbackOffsets.bottom;
-				} else {
-					moveOffset.y += pushbackOffsets.top;
-				}
+			// Push back on X axis
+			if (moveOffset.x > 0.0f) {
+				moveOffset.x += pushbackOffsets.right;
 			} else {
-				// Horizontally
-				if (moveOffset.x > 0.0f) {
-					moveOffset.x += pushbackOffsets.right;
-				} else {
-					moveOffset.x += pushbackOffsets.left;
-				}
+				moveOffset.x += pushbackOffsets.left;
 			}
+
+			position = originalPosition + moveOffset;
 		}
 	}
 
-	// Then move back again, and move forward by the new adjusted vector
-	position -= originalMoveOffset;
+	// Now move X+Y
+	moveOffset.y = originalMoveOffset.y;
+	position = originalPosition + moveOffset;
+	
+	for (::BackgroundLayer& layer : game.GetLevel().GetLayers()) {
+		if (IsColliding(layer, &pushbackOffsets)) {
+			// Push back on X axis
+			if (moveOffset.y > 0.0f) {
+				moveOffset.y += pushbackOffsets.bottom;
+			} else {
+				moveOffset.y += pushbackOffsets.top;
+			}
 
-	// Perform the movement!
-	position += moveOffset;
+			position = originalPosition + moveOffset;
+		}
+	}
+
+	// Done!
+
+	// Stop the object on the offending axis
+	if (doAffectVelocity) {
+		if (moveOffset.x != originalMoveOffset.x) {
+			velocity.x = 0.0f;
+		}
+		if (moveOffset.y != originalMoveOffset.y) {
+			velocity.y = 0.0f;
+		}
+	}
 
 	return (moveOffset == originalMoveOffset);
 }

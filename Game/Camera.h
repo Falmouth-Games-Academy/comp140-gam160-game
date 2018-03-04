@@ -1,9 +1,16 @@
 #pragma once
 #include "Math.h"
 
+namespace FlipFlags {
+	const uint32
+		None = 0,
+		Horizontal = 1,
+		Vertical = 2;
+};
+
 class Camera {
 public:
-	void Update();
+	void Update(float deltaTime);
 	void Render();
 
 	// Set and get position
@@ -16,11 +23,18 @@ public:
 	// Gets the position the camera is moving towards
 	const Vec3& GetTargetPosition() const;
 	
-	// Zoom
+	// Sets the camera's current zoom, homing in on the centre of view
 	void SetZoomIntoCentre(float targetZoom);
 
 	// Set whether or not the camera follows the player
 	void SetFollowingPlayer(bool isFollowingPlayer);
+
+	/* Starts a camera shake (cancelling out any previous shake operation)
+		@param time: Time, in seconds, that the shake will last
+		@param rate: Rate, in Hz or shakes per second, that the shake will occur at
+		@param magnitude: Distance that the shake will send the camera up and down, in positional units
+	*/
+	void StartShake(float32 time, float32 rate, float32 magnitude);
 
 	/* Note: Camera render functions work in world space! This depends entirely on the location of the camera, including its Z position */
 	/* Renders a sprite at a given position in the world
@@ -40,10 +54,10 @@ public:
 		@param sprite: The sprite to render (todo: const mutable?)
 		@param position: The position to render the sprite at
 		@param rotation: The rotation of the sprite, in clockwise degrees
-		@param hFlip: Whether the sprite will be flipped horizontally
-		@param vFlip: Whether the sprite will be flipped vertically
+		@param flipFlags: Which axeses to flip the image, if any (of FlipFlags)
+		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image 
 	*/
-	void RenderSprite(const class Sprite& sprite, const Vec3& position, float rotation = 0.0f, bool hFlip = false, bool vFlip = false);
+	void RenderSprite(const class Sprite& sprite, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr);
 	
 	/* Renders a rectangle at a given position in the world 
 		@param position: Position that the rectangle should be drawn
@@ -61,7 +75,7 @@ public:
 	const float scalePerZ = 1.0f;
 
 private:
-	// The positiono of the camera
+	// The position of the camera
 	Vec3 position = {0.0f, 0.0f, 0.0f};
 
 	// The position that the camera is aiming for
@@ -75,4 +89,18 @@ private:
 
 	// Whether the camera is following the player character
 	bool8 isFollowingPlayer;
+
+	// Shake effect stuff
+	// Current time, in secs, until the shake is finished
+	float32 shakeTimer = 0.0f;
+	float32 shakeInitialTimer = 0.0f;
+
+	// Rate of shake, in Hz
+	float32 shakeRate = 0.0f;
+
+	// Initial magnitude of the shake
+	float32 shakeInitialMagnitude = 0.0f;
+
+	// Current positional offset due to the shake
+	Vec3 shakeOffset = {0.0f, 0.0f, 0.0f};
 };
