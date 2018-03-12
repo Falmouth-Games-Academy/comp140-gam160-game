@@ -38,11 +38,14 @@ public:
 	// Returns the sprite
 	inline const Sprite& GetSprite() const;
 
-	// Sets the size of the object in pixels
+	// Sets the size of the object in pixels (calculates scale)
 	inline void SetSize(const Vec2& size);
 
-	// Returns the size of the object in pixels
-	inline const Vec2& GetSize() const;
+	// Returns the scaled size of the object in pixels
+	inline const Vec2 GetSize() const;
+
+	// Sets the scale of the object
+	inline void SetScale(const Vec2& scale);
 
 	// Sets the collision box, or if the collision box is nullptr, set as non-solid
 	void SetCollision(const Rect2* newBox, bool newIsSolid = true);
@@ -87,12 +90,30 @@ inline const Sprite& Object::GetSprite() const {
 	return sprite;
 }
 
-inline void Object::SetSize(const Vec2& size) {
-	sprite.SetScale(size / sprite.GetBaseDimensions());
+inline void Object::SetScale(const Vec2& scale) {
+	for (SpriteFrame* frame : sprite.GetFrames()) {
+		frame->SetScale(scale);
+	}
 }
 
-inline const Vec2& Object::GetSize() const {
-	return sprite.GetDimensions();
+inline void Object::SetSize(const Vec2& size) {
+	if (sprite.GetCurrentFrame()) {
+		Vec2 scale = size / sprite.GetCurrentFrame()->GetBaseDimensions();
+	
+		for (SpriteFrame* frame : sprite.GetFrames()) {
+			frame->SetScale(scale);
+		}
+	}
+}
+
+inline const Vec2 Object::GetSize() const {
+	if (sprite.GetCurrentFrame()) {
+		// Todo: Erm, what to do when different frames are different sizes?
+		return sprite.GetCurrentFrame()->GetDimensions();
+	} else {
+		// No sprite image, no size!?
+		return Vec2(0.0f, 0.0f);
+	}
 }
 
 inline void Object::SetCollision(const Rect2* newBox, bool newIsSolid) {

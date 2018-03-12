@@ -1,24 +1,28 @@
 #include "Laser.h"
 #include "Game.h"
 
+Laser::~Laser() {
+	// Free laser effects
+	for (LaserFX* effect : effects) {
+		delete effect;
+	}
+
+	effects.Clear();
+}
+
 void Laser::Spawn() {
 	// Init angle
 	rotation = 0.0f;
 
-	// Load sprites
-	spriteFrames[CentreFiery].Load("graphics/effects/laser/fiery_centre.png");
-	spriteFrames[EdgeFlames].Load("graphics/effects/laser/fire_outline_middle.png");
-	spriteFrames[LightBall].Load("graphics/effects/laser/light_ball.png");
+	// Load sprite frames
+	sprite.LoadFrame("graphics/effects/laser/fiery_centre.png");
+	sprite.LoadFrame("graphics/effects/laser/fire_outline_middle.png");
+	sprite.LoadFrame("graphics/effects/laser/light_ball.png");
 
-	spriteFrames[OverLightningStart].Load("graphics/effects/laser/over_lightning_0000.png");
-	spriteFrames[OverLightningStart+1].Load("graphics/effects/laser/over_lightning_0001.png");
-	spriteFrames[OverLightningStart+2].Load("graphics/effects/laser/over_lightning_0002.png");
-	spriteFrames[OverLightningStart+3].Load("graphics/effects/laser/over_lightning_0003.png");
-	spriteFrames[OverLightningStart+4].Load("graphics/effects/laser/over_lightning_0004.png");
-	spriteFrames[OverLightningStart+5].Load("graphics/effects/laser/over_lightning_0005.png");
-
-	spriteFrames[CentreFiery].SetScale(Vec2(500.0f, 1.0f));
-	spriteFrames[CentreFiery].SetBaseOrigin(Vec2(0.0f, 109.0f));
+	sprite.GetFrame(CentreFiery)->SetScale(Vec2(500.0f, 1.0f));
+	sprite.GetFrame(CentreFiery)->SetBaseOrigin(Vec2(0.0f, 109.0f));
+	sprite.GetFrame(EdgeFlames)->SetBaseOrigin(Vec2(0.0f, 220.0f));
+	sprite.GetFrame(LightBall)->SetBaseOrigin(Vec2(100.0f, 100.0f));
 }
 
 void Laser::Update(float deltaTime) {
@@ -31,6 +35,9 @@ void Laser::Update(float deltaTime) {
 		rotation += 180.0f;
 	}
 
+	// Resize based on player mouth dimensions
+	sprite.GetFrame(CentreFiery)->SetScale(Vec2(500.0f, 0.3f));
+
 	// Test shake camera
 	/*static uint32 lastShakeTime = game.GetFrameTime();
 
@@ -39,16 +46,44 @@ void Laser::Update(float deltaTime) {
 		lastShakeTime = game.GetFrameTime();
 	}*/
 
+	UpdateEffects(deltaTime);
+
 	return;
+}
+
+void Laser::UpdateEffects(float deltaTime) {
+	if (game.GetFrameTime() >= nextLightningSpawnTime) {
+		nextLightningSpawnTime = game.GetFrameTime() + 0.3f + Math::randfloat(-0.1f, 0.1f);
+
+		effects.Append() = new LightningFX();
+	}
+
+	// Update special effects
+	for (LaserFX* effect : effects) {
+		effect->Update(deltaTime);
+	}
 }
 
 void Laser::Render() {
 	Camera& camera = game.GetCamera();
 
 	// Render fiery centre
-	camera.RenderSprite(spriteFrames[EdgeFlames], position, rotation);
-	camera.RenderSprite(spriteFrames[CentreFiery], position, rotation);
-	camera.RenderSprite(spriteFrames[LightBall], position);
+	camera.RenderSpriteFrame(sprite, EdgeFlames, position, rotation);
+	camera.RenderSpriteFrame(sprite, CentreFiery, position, rotation);
+	camera.RenderSpriteFrame(sprite, LightBall, position);
 
-	camera.RenderSprite(spriteFrames[OverLightningStart + (game.GetFrameTime()%6)], position);
+	// Render special effects
+	for (LaserFX* effect : effects) {
+		effect->Render(this);
+	}
+}
+
+void LightningFX::Update(float deltaTime) {
+	offset += speed * deltaTime;
+
+	sprite.TickAnimation(deltaTime);
+}
+
+void LightningFX::Render(const Laser* parent) {
+	game.GetCamera().RenderSprite(sprite, parent->GetPosition() + Vec2::FromRotation(parent->GetRotation() + 90.0f, offset), parent->GetRotation());
 }

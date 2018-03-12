@@ -53,7 +53,8 @@ public:
 	inline class DebugStringBox* GetDebug();
 
 	// Time
-	inline uint32 GetFrameTime() const;
+	inline float GetFrameTime() const;
+	inline uint32 GetFrameTimeMs() const;
 	inline float GetDeltaTime() const;
 
 public:
@@ -199,7 +200,11 @@ inline Level& Game::GetLevel() {
 	return level;
 }
 
-inline uint32 Game::GetFrameTime() const {
+inline float Game::GetFrameTime() const {
+	return (float)frameTime / 1000.0f;
+}
+
+inline uint32 Game::GetFrameTimeMs() const {
 	return frameTime;
 }
 

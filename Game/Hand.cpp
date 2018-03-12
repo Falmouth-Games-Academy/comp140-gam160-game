@@ -11,7 +11,7 @@ Hand::~Hand() {
 
 void Hand::Spawn() {
 	// Load player sprite
-	sprite.Load("Graphics/hand1.png", Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f));
+	sprite.LoadFrame("Graphics/hand1.png", Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f));
 
 	// Setup collision box
 	collisionBox = Rect2(7, 4, 259, 147);
@@ -25,9 +25,7 @@ void Hand::Spawn() {
 
 void Hand::Render() {
 	// Draw the player
-	if (sprite.IsLoaded()) {
-		game.GetCamera().RenderSprite(sprite, position + headBob, rotation, (direction == 1) ? true : false);
-	}
+	game.GetCamera().RenderSprite(sprite, position + headBob, rotation, (direction == 1) ? true : false);
 
 	// Draw relevant debug info
 	if (DebugStringBox* debug = game.GetDebug()) {
@@ -77,11 +75,11 @@ void Hand::Update(float deltaTime) {
 
 	// Check if the bounce force threshold was reached
 	if (abs(gesture.GetAverageAccel(25, 0).z - gesture.GetAverageAccel(50, 0).z) >= 500.0f) {
-		lastThresholdReached = game.GetFrameTime();
+		lastThresholdReached = game.GetFrameTimeMs();
 	}
 
 	// Keep moving as long as the force was above the threshold in the last 1000 ms
-	if (game.GetFrameTime() < lastThresholdReached + 1000) {
+	if (game.GetFrameTimeMs() < lastThresholdReached + 1000) {
 		position.x += abs((gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 10.0f) * direction * deltaTime;
 	} else {
 		// There hasn't been much movement for a while, so start slowing down

@@ -46,6 +46,18 @@ namespace Math {
 		}
 		return value;
 	}
+
+	// Circular clamping
+	template<typename ClampType>
+	inline ClampType circleclamp(ClampType value, ClampType max) { // Note: Max is exclusive
+		// Basically just a templated modulo (todo: consider large ints, even though that is 99% beyond the scope of this project)
+		return value - (int)(value / max) * max;
+	}
+
+	// Random number gesus
+	inline float randfloat(float min, float max) {
+		return ((float)rand() / (float)RAND_MAX) * (max - min) + min;
+	}
 };
 
 // 2-dimensional vector
@@ -89,6 +101,11 @@ public:
 	// Returns direction from one point to another, in radians, going clockwise where 0 is up (0 = -y)
 	static float Direction(const Vec2& vecA, const Vec2& vecB) {
 		return -atan2(vecA.x - vecB.x, vecA.y - vecB.y);
+	}
+
+	// Generator functions
+	static Vec2 FromRotation(float angle, float magnitude = 1.0f) {
+		return Vec2(sin(angle * Math::rads) * magnitude, -cos(angle * Math::rads) * magnitude);
 	}
 
 	// Variables

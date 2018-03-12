@@ -4,7 +4,7 @@
 #include <SDL_timer.h>
 
 void Graph::PushValue(int value) {
-	uint32 timestamp = game.GetFrameTime();
+	uint32 timestamp = game.GetFrameTimeMs();
 
 	if (numValues == maxNumValues) {
 		// Array is full so shift the existing values to the left
@@ -156,7 +156,7 @@ void Graph::Render() const {
 
 	int numDrawnPoints = 0;
 	SDL_Point points[maxNumValues];
-	uint32 currentTime = game.GetFrameTime();
+	uint32 currentTime = game.GetFrameTimeMs();
 
 	for (int point = 0; point < maxNumValues; ++point) {
 		if (valueTimestamps[point] + renderTimeRange < currentTime) {

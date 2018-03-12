@@ -51,14 +51,33 @@ public:
 		bool hFlip = false, bool vFlip = false);
 
 	/* Renders a sprite at a given position in the world
-		@param sprite: The sprite to render (todo: const mutable?)
+		@param sprite: The sprite to render
 		@param position: The position to render the sprite at
 		@param rotation: The rotation of the sprite, in clockwise degrees
-		@param flipFlags: Which axeses to flip the image, if any (of FlipFlags)
+		@param flipFlags: Which axes to flip the image, if any (of FlipFlags)
 		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image 
 	*/
 	void RenderSprite(const class Sprite& sprite, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr);
-	
+
+	/* Renders a single sprite frame at a given position in the world
+		@param sprite: The sprite frame to render
+		@param position: The position to render the sprite at
+		@param rotation: The rotation of the sprite, in clockwise degrees
+		@param flipFlags: Which axes to flip the image, if any (of FlipFlags)
+		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image 
+	*/
+	void RenderSpriteFrame(const class SpriteFrame& sprite, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr);
+
+	/* Renders a single sprite frame at a given position in the world
+		@param sprite: The sprite to render
+		@param frameIndex: The index of the frame to render
+		@param position: The position to render the sprite at
+		@param rotation: The rotation of the sprite, in clockwise degrees
+		@param flipFlags: Which axes to flip the image, if any (of FlipFlags)
+		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image 
+	*/
+	void RenderSpriteFrame(const class Sprite& sprite, int frameIndex, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr);
+
 	/* Renders a rectangle at a given position in the world 
 		@param position: Position that the rectangle should be drawn
 		@param size: Dimensions of the rectangle

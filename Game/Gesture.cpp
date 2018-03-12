@@ -73,7 +73,7 @@ void GestureManager::Update() {
 			flexAngle = arduinoIn->flexValue;
 
 			// Append the accel vector to the movement history
-			accelHistory.Append(AccelStamp(Vec3((float)arduinoIn->accelX, (float)arduinoIn->accelY, (float)arduinoIn->accelZ), game.GetFrameTime()));
+			accelHistory.Append(AccelStamp(Vec3((float)arduinoIn->accelX, (float)arduinoIn->accelY, (float)arduinoIn->accelZ), game.GetFrameTimeMs()));
 			++numAccelsRecordedTotal;
 
 			// Update the debug graphs
@@ -82,7 +82,7 @@ void GestureManager::Update() {
 
 			// Append averaged out value to the other debug graph
 			const uint32 avgSpan = 500; // in ms
-			const uint32 targetTime = game.GetFrameTime() - avgSpan;
+			const uint32 targetTime = game.GetFrameTimeMs() - avgSpan;
 			float totalValueSum = 0.0f;
 			uint32 numFound = 0;
 
@@ -101,16 +101,16 @@ void GestureManager::Update() {
 	} else if (isKeyboardEnabled) {
 		// Use debug keyboard controls in place of the arduino
 		if (game.GetInput().IsKeyDown(SDLK_UP)) {
-			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 12000.0f), game.GetFrameTime()));
+			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 12000.0f), game.GetFrameTimeMs()));
 		} else if (game.GetInput().IsKeyDown(SDLK_DOWN)) {
-			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 6000.0f), game.GetFrameTime()));
+			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 6000.0f), game.GetFrameTimeMs()));
 		} else if (game.GetInput().IsKeyDown(SDLK_k)) {
 			// Mouse tilt controls then?
 			Vec3 playerScreenPosition = game.GetCamera().WorldToScreen(game.GetPlayer().GetPosition());
-			accelHistory.Append(AccelStamp(Vec3((game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 10, 0.0f, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 10), game.GetFrameTime()));
+			accelHistory.Append(AccelStamp(Vec3((game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 10, 0.0f, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 10), game.GetFrameTimeMs()));
 		} else {
 			// Advanced gravity simulation to the nearest whatevs units of meh
-			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 9000.0f), game.GetFrameTime()));
+			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 9000.0f), game.GetFrameTimeMs()));
 		}
 	}
 
@@ -154,7 +154,7 @@ void GestureManager::RenderDebugVectors() {
 	const uint32 historicalMs = 1000, historicalDrawIntervalMs = 25;
 	SDL_Point points[historicalMs / historicalDrawIntervalMs];
 
-	for (uint32 i = game.GetFrameTime() % historicalDrawIntervalMs; i < historicalMs; i += historicalDrawIntervalMs) {
+	for (uint32 i = game.GetFrameTimeMs() % historicalDrawIntervalMs; i < historicalMs; i += historicalDrawIntervalMs) {
 		Vec3 force = game.GetGesture().GetAverageAccel(i + historicalDrawIntervalMs, i);
 
 		points[i / historicalDrawIntervalMs].x = box.x + halfSize + (int)(force.x * vectorScale);
@@ -197,7 +197,7 @@ const StaticCircularArray<GestureManager::AccelStamp, GestureManager::maxNumAcce
 }
 
 Vec3 GestureManager::GetAccelAtTime(uint32 numMsAgo) const {
-	uint32 targetTimestamp = game.GetFrameTime() - numMsAgo;
+	uint32 targetTimestamp = game.GetFrameTimeMs() - numMsAgo;
 
 	for (int i = 0; i > -maxNumAccelStamps + 1; --i) {
 		if (accelHistory[i].timestamp <= targetTimestamp && accelHistory[i + 1].timestamp >= targetTimestamp) {
@@ -222,7 +222,7 @@ Vec3 GestureManager::GetAccelAtTime(uint32 numMsAgo) const {
 
 Vec3 GestureManager::GetAverageAccel(uint32 relativeTimeStart, uint32 relativeTimeEnd) const {
 	Vec3 average(0.0f, 0.0f, 0.0f);
-	uint32 absoluteTimeStart = game.GetFrameTime() - relativeTimeStart, absoluteTimeEnd = game.GetFrameTime() - relativeTimeEnd;
+	uint32 absoluteTimeStart = game.GetFrameTimeMs() - relativeTimeStart, absoluteTimeEnd = game.GetFrameTimeMs() - relativeTimeEnd;
 	int numCollectedPoints = 0;
 	
 	// Alert programmer if they were stupid
@@ -257,7 +257,7 @@ Vec3 GestureManager::GetAverageAccel(uint32 relativeTimeStart, uint32 relativeTi
 
 MinMax<Vec3> GestureManager::GetMinMaxAccel(uint32 relativeTimeStart, uint32 relativeTimeEnd) const {
 	bool foundAny = false;
-	uint32 absoluteTimeStart = game.GetFrameTime() - relativeTimeStart, absoluteTimeEnd = game.GetFrameTime() - relativeTimeEnd;
+	uint32 absoluteTimeStart = game.GetFrameTimeMs() - relativeTimeStart, absoluteTimeEnd = game.GetFrameTimeMs() - relativeTimeEnd;
 	MinMax<Vec3> minMax(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 0.0f, 0.0f));
 
 	// Alert programmer if they made copypasta

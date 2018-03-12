@@ -3,8 +3,14 @@
 
 void Object::RenderCollisionBox() const {
 	SDL_Renderer* renderer = game.GetRenderer(RenderScreen::Main);
+	Vec2 spriteOrigin(0.0f, 0.0f), spriteScale(0.0f, 0.0f);
 
-	game.GetCamera().RenderRectangle(position - sprite.GetOrigin() + Vec3(collisionBox.position, 0.0f) * sprite.GetScale(), collisionBox.size * sprite.GetScale(), Colour::Blue());
+	if (sprite.GetFrame(0)) {
+		spriteOrigin = sprite.GetFrame(0)->GetOrigin();
+		spriteScale = sprite.GetFrame(0)->GetScale();
+	}
+
+	game.GetCamera().RenderRectangle(position - spriteOrigin + Vec3(collisionBox.position, 0.0f) * spriteScale, collisionBox.size * spriteScale, Colour::Blue());
 }
 
 bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
@@ -13,17 +19,31 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 		return false;
 	}
 
-	// Calculate object  collisionboundaries
-	Vec2 selfOrigin = position.xy - sprite.GetOrigin();
-	Vec2 otherOrigin = otherObject.position.xy - otherObject.sprite.GetOrigin();
-	float selfL = selfOrigin.x + collisionBox.x * sprite.GetScale().x,
-		  selfR = selfOrigin.x + (collisionBox.x + collisionBox.width) * sprite.GetScale().x,
-		  selfT = selfOrigin.y + collisionBox.y * sprite.GetScale().y,
-		  selfB = selfOrigin.y + (collisionBox.y + collisionBox.height) * sprite.GetScale().y;
-	float otherL = otherOrigin.x + otherObject.collisionBox.x * otherObject.sprite.GetScale().x,
-		  otherR = otherOrigin.x + (otherObject.collisionBox.x + otherObject.collisionBox.width) * otherObject.sprite.GetScale().x,
-		  otherT = otherOrigin.y + otherObject.collisionBox.y * otherObject.sprite.GetScale().y,
-		  otherB = otherOrigin.y + (otherObject.collisionBox.y + otherObject.collisionBox.height) * otherObject.sprite.GetScale().y;
+	Vec2 spriteOrigin(0.0f, 0.0f), spriteScale(0.0f, 0.0f);
+	Vec2 otherSpriteOrigin(0.0f, 0.0f), otherSpriteScale(0.0f, 0.0f);
+
+	// Get sprite frame info
+	if (sprite.GetFrame(0)) {
+		spriteOrigin = sprite.GetFrame(0)->GetOrigin();
+		spriteScale = sprite.GetFrame(0)->GetScale();
+	}
+
+	if (otherObject.sprite.GetFrame(0)) {
+		otherSpriteOrigin = otherObject.sprite.GetFrame(0)->GetOrigin();
+		otherSpriteScale = otherObject.sprite.GetFrame(0)->GetScale();
+	}
+
+	// Calculate object collision boundaries
+	Vec2 selfOrigin = position.xy - spriteOrigin;
+	Vec2 otherOrigin = otherObject.position.xy - otherSpriteOrigin;
+	float selfL = selfOrigin.x + collisionBox.x * spriteScale.x,
+		  selfR = selfOrigin.x + (collisionBox.x + collisionBox.width) * spriteScale.x,
+		  selfT = selfOrigin.y + collisionBox.y * spriteScale.y,
+		  selfB = selfOrigin.y + (collisionBox.y + collisionBox.height) * spriteScale.y;
+	float otherL = otherOrigin.x + otherObject.collisionBox.x * otherSpriteScale.x,
+		  otherR = otherOrigin.x + (otherObject.collisionBox.x + otherObject.collisionBox.width) * otherSpriteScale.x,
+		  otherT = otherOrigin.y + otherObject.collisionBox.y * otherSpriteScale.y,
+		  otherB = otherOrigin.y + (otherObject.collisionBox.y + otherObject.collisionBox.height) * otherSpriteScale.y;
 
 	// 
 	if (selfL >= otherR || selfR <= otherL || selfT >= otherB || selfB <= otherT) {

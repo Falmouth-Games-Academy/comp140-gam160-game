@@ -91,6 +91,19 @@ void Camera::RenderSprite(SDL_Texture* texture, const Vec3& position, const Vec2
 }
 
 void Camera::RenderSprite(const Sprite& sprite, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region) {
+	// Simply render the sprite's current frame
+	if (sprite.GetCurrentFrame() != nullptr) {
+		RenderSpriteFrame(*sprite.GetCurrentFrame(), position, rotation, flipFlags, region);
+	}
+}
+
+void Camera::RenderSpriteFrame(const Sprite& sprite, int frameIndex, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region) {
+	if (sprite.GetFrame(frameIndex)) {
+		RenderSpriteFrame(*sprite.GetFrame(frameIndex), position, rotation, flipFlags, region);
+	}
+}
+
+void Camera::RenderSpriteFrame(const SpriteFrame& sprite, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region) {
 	if (position.z <= this->position.z) {
 		// Don't render things behind the camera!
 		return;

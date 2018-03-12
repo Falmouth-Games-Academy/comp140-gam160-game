@@ -62,7 +62,7 @@ BackgroundLayer* Level::GetLayerAtScreenPosition(const Vec2& position) {
 }
 
 BackgroundLayer::BackgroundLayer(int index_, const char* imageFilename, const Vec3& position, const Vec2& scale) : Object() {
-	sprite.Load(imageFilename);
+	sprite.LoadFrame(imageFilename);
 	sprite.SetScale(scale);
 	this->position = position;
 }
