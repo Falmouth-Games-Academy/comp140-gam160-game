@@ -30,9 +30,11 @@ private:
 	// All sprite frames
 	enum SpriteFrameId {
 		CentreFiery = 0,
-		CentreRainbow = 1,
-		EdgeFlames = 2,
-		LightBall = 3,
+		StartFiery,
+		CentreRainbow,
+		StartRainbow,
+		EdgeFlames,
+		LightBall,
 		NumSpriteFrames,
 	};
 

@@ -81,6 +81,15 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 	}
 }
 
+Vec3 Object::SpritePointToWorldPoint(const Vec2& spritePoint) const {
+	if (sprite.GetCurrentFrame()) {
+		// Convert the sprite coordinate to a world coordinate
+		return position + ((spritePoint - sprite.GetCurrentFrame()->GetBaseOrigin()) * sprite.GetCurrentFrame()->GetScale()).Rotated(rotation);
+	} else {
+		return position + spritePoint;
+	}
+}
+
 bool Object::Move(const Vec3& originalMoveOffset, bool doAffectVelocity, bool teleport) {
 	// NewMoveOffset
 	Vec3 originalPosition = position;

@@ -105,9 +105,6 @@ public:
 	// Returns the length of the vector
 	float Length() const {return (float)sqrt((x * x) + (y * y));}
 
-	// Normalises the vector. If it has no length, sets it to an up vector (y=-1).
-	Vec2& Normalise() {float length = (float)sqrt((x * x) + (y * y)); if (length > 0.0f) {x /= length; y /= length;} else {y = -1.0f;}; return *this;}
-
 	// Deeper math functions
 	// Returns whether this vector is between a box where min is the top-left corner and max is the bottom-right corner
 	bool IsWithin(const Vec2& min, const Vec2& max) {
@@ -129,6 +126,13 @@ public:
 	static float Dot(const Vec2& vecA, const Vec2& vecB) {
 		return vecA.x * vecB.x + vecA.y * vecB.y;
 	}
+
+	// Transformation functions
+	// Normalises the vector. If it has no length, sets it to an up vector (y=-1).
+	Vec2& Normalise() {float length = (float)sqrt((x * x) + (y * y)); if (length > 0.0f) {x /= length; y /= length;} else {y = -1.0f;}; return *this;}
+
+	// Returns a rotated copy of the vector
+	Vec2 Rotated(float angle) const {float s = sin(angle * Math::rads), c = cos(angle * Math::rads); return Vec2(x * c - y * s, x * s + y * c);}
 
 	// Generator functions
 	static Vec2 FromRotation(float angle, float magnitude = 1.0f) {

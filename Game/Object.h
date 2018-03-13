@@ -88,6 +88,11 @@ public:
 	   where e.g. the top is the offset you can add to push your top away from the bottom of the other object. */
 	bool IsColliding(const Object& otherObject, Bounds2* borderOffsets = nullptr);
 
+public:
+	// Sprite position calculations
+	// Converts a pixel position on the object's sprite to a world position, considering the object's rotation and scale
+	Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const;
+
 protected:
 	// Current sprite
 	Sprite sprite;

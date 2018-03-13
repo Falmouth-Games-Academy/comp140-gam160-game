@@ -18,11 +18,15 @@ void Laser::OnSpawn() {
 
 	// Load sprite frames
 	sprite.LoadFrame("graphics/effects/laser/fiery_centre.png");
+	sprite.LoadFrame("graphics/effects/laser/fiery_start.png");
 	sprite.LoadFrame("graphics/effects/laser/rainbow_centre.png");
+	sprite.LoadFrame("graphics/effects/laser/rainbow_start.png");
 	sprite.LoadFrame("graphics/effects/laser/fire_outline_middle.png");
 	sprite.LoadFrame("graphics/effects/laser/light_ball.png");
 
+	sprite.GetFrame(StartFiery)->SetBaseOrigin(Vec2(220.0f, 109.0f));
 	sprite.GetFrame(CentreFiery)->SetBaseOrigin(Vec2(0.0f, 109.0f));
+	sprite.GetFrame(StartRainbow)->SetBaseOrigin(Vec2(248.0f, 109.0f));
 	sprite.GetFrame(CentreRainbow)->SetBaseOrigin(Vec2(0.0f, 109.0f));
 	sprite.GetFrame(EdgeFlames)->SetBaseOrigin(Vec2(0.0f, 220.0f));
 	sprite.GetFrame(LightBall)->SetBaseOrigin(Vec2(100.0f, 100.0f));
@@ -30,7 +34,7 @@ void Laser::OnSpawn() {
 
 void Laser::Update(float deltaTime) {
 	// Move to player mouth position and angle
-	position = game.GetPlayer().GetPosition() - Vec3(0.0f, 150.0f, 0.0f);
+	position = game.GetPlayer().SpritePointToWorldPoint(Vec2(1480.0f, 1345.0f));
 
 	rotation = game.GetPlayer().GetRotation();
 
@@ -40,10 +44,12 @@ void Laser::Update(float deltaTime) {
 
 	// Resize based on player mouth dimensions
 	power = game.GetPlayer().GetLaserPower();
+	sprite.GetFrame(StartFiery)->SetScale(Vec2(power * 2.0f, power));
 	sprite.GetFrame(CentreFiery)->SetScale(Vec2(2000.0f, power));
+	sprite.GetFrame(StartRainbow)->SetScale(Vec2(power * 2.0f, power));
 	sprite.GetFrame(CentreRainbow)->SetScale(Vec2(2000.0f, power));
 	sprite.GetFrame(EdgeFlames)->SetScale(Vec2(2.0f, power));
-	sprite.GetFrame(LightBall)->SetScale(Vec2(power, power));
+	sprite.GetFrame(LightBall)->SetScale(Vec2(power * 2.0f, power * 2.0f));
 
 	static float nextCameraShake = 0.0f;
 
@@ -109,13 +115,15 @@ void Laser::Render() {
 
 	// Render fiery centre
 	//camera.RenderSpriteFrame(sprite, EdgeFlames, position, rotation);
-	camera.RenderSpriteFrame(sprite, CentreFiery, position, rotation);
+	camera.RenderSpriteFrame(sprite, StartFiery, position, rotation + 180.0f);
+	camera.RenderSpriteFrame(sprite, CentreFiery, position + Vec2::FromRotation(rotation + 90.0f, sprite.GetFrame(StartFiery)->GetDimensions().x), rotation);
 
 	const float rainbowThreshold = 0.5f;
 	if (power >= rainbowThreshold) {
 		SDL_SetTextureAlphaMod(sprite.GetFrame(CentreRainbow)->GetSDLTexture(), 255 * ((power - rainbowThreshold) / (1.0f - rainbowThreshold)));
-		//SDL_SetTextureBlendMode(sprite.GetFrame(CentreRainbow)->GetSDLTexture(), SDL_BLENDMODE_ADD);
-		camera.RenderSpriteFrame(sprite, CentreRainbow, position, rotation);
+		SDL_SetTextureAlphaMod(sprite.GetFrame(StartRainbow)->GetSDLTexture(), 255 * ((power - rainbowThreshold) / (1.0f - rainbowThreshold)));
+		camera.RenderSpriteFrame(sprite, StartRainbow, position + Vec2::FromRotation(rotation + 90.0f, sprite.GetFrame(StartFiery)->GetDimensions().x), rotation, FlipFlags::Horizontal);
+		camera.RenderSpriteFrame(sprite, CentreRainbow, position + Vec2::FromRotation(rotation + 90.0f, sprite.GetFrame(StartFiery)->GetDimensions().x), rotation);
 	}
 
 	camera.RenderSpriteFrame(sprite, LightBall, position);
