@@ -109,9 +109,12 @@ void GestureManager::Update() {
 			Vec3 playerScreenPosition = game.GetCamera().WorldToScreen(game.GetPlayer().GetPosition());
 			accelHistory.Append(AccelStamp(Vec3((game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 10, 0.0f, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 10), game.GetFrameTimeMs()));
 		} else {
-			// Advanced gravity simulation to the nearest whatevs units of meh
+			// Perform accurate gravity simulation to the nearest whatevs units of meh
 			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 9000.0f), game.GetFrameTimeMs()));
 		}
+
+		// Simulate flex sensor
+		flexAngle = Math::round(flexAngle + (float)game.GetInput().GetMouseScroll() * 10.0f, 10.0f);
 	}
 
 	// Update average graph value
@@ -126,6 +129,7 @@ void GestureManager::Update() {
 
 void GestureManager::Render() {
 	if (debugMode) {
+		// Render debug information and objects
 		RenderDebugGraphs();
 		RenderDebugText();
 		RenderDebugVectors();
@@ -309,7 +313,6 @@ int GestureManager::GetNumRecordedAccels() const {
 	return numAccelsRecordedTotal;
 }
 
-float GestureManager::GetFlexAngle() const
-{
+float32 GestureManager::GetFlexAngle() const {
 	return flexAngle;
 }

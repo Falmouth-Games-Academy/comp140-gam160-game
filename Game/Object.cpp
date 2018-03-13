@@ -1,6 +1,14 @@
 #include "Object.h"
 #include "Game.h"
 
+void Object::Update(float deltaTime) {
+	Move(velocity * deltaTime, true);
+}
+
+void Object::Render() {
+	game.GetCamera().RenderSprite(sprite, position, rotation);
+}
+
 void Object::RenderCollisionBox() const {
 	SDL_Renderer* renderer = game.GetRenderer(RenderScreen::Main);
 	Vec2 spriteOrigin(0.0f, 0.0f), spriteScale(0.0f, 0.0f);

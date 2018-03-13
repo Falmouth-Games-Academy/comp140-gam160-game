@@ -27,9 +27,11 @@ namespace Math {
 	inline ClampType clampmin(ClampType value, ClampType min) {if (value < min) {return min;} else {return value;}}
 	template<typename ClampType>
 	inline ClampType clampmax(ClampType value, ClampType max) {if (value > max) {return max;} else {return value;}}
+	template<typename ClampType>
+	inline ClampType clamp(ClampType value, ClampType min, ClampType max) {if (value > max) return max; else if (value < min) return min; else return value;}
 
 	// Circular numbers
-	// anglediff: Returns shortest distance, positive or negative, between two values of a circular number of circleSize degrees
+	// Returns shortest distance, positive or negative, between two values of a circular number, with maximum circleSize degrees
 	inline float circlediff(float from, float to, float circleSize) {
 		float value = to - from;
 
@@ -54,9 +56,25 @@ namespace Math {
 		return value - (int)(value / max) * max;
 	}
 
+	// Rounding
+	template<typename RoundType>
+	inline RoundType round(RoundType value, RoundType interval) {
+		return (int)((value + ((float)interval * 0.5f)) / interval) * interval;
+	}
+
 	// Random number gesus
+	// Returns a random floating-point number between min and max (max exclusive)
 	inline float randfloat(float min, float max) {
 		return ((float)rand() / (float)RAND_MAX) * (max - min) + min;
+	}
+
+	// Returns 1 or -1 randomly
+	inline char randsign() {
+		if (rand() & 1) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 };
 

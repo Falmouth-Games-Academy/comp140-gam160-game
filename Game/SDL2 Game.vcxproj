@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bottle.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FileDialog.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -149,7 +150,7 @@
     <ClCompile Include="GameStatePlay.cpp" />
     <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="Hand.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Laser.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bottle.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Containers.h" />
     <ClInclude Include="FileDialog.h" />
@@ -170,7 +172,7 @@
     <ClInclude Include="GameStatePlay.h" />
     <ClInclude Include="Gesture.h" />
     <ClInclude Include="Graph.h" />
-    <ClInclude Include="Hand.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Laser.h" />

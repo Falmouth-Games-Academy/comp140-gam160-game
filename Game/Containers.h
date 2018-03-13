@@ -11,6 +11,7 @@ template <typename T>
 class Array {
 public:
 	Array() : items(nullptr), numItems(0), numAlloced(0) {};
+	inline Array(const Array& other);
 	inline ~Array();
 
 	inline T& Append();
@@ -158,6 +159,19 @@ template <typename ItemType, int NumItems> const ItemType& StaticCircularArray<I
 // ========== Array<T> functions ==========
 template<typename T> Array<T>::~Array() {
 	delete[] rawItems;
+}
+
+template<typename T> Array<T>::Array(const Array& other) : rawItems(nullptr), numItems(0), numAlloced(0) {
+	// Allocate a list of equal size
+	Realloc(other.numItems);
+
+	// Copy list items over
+	for (int i = 0; i < numItems; ++i) {
+		new (&items[i]) T(other.items[i]);
+	}
+	
+	// We has lots of items now
+	numItems = other.numItems;
 }
 
 template<typename T> T& Array<T>::Append() {

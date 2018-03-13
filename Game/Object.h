@@ -2,6 +2,7 @@
 #include "Sprite.h"
 #include "Render.h"
 
+// Base class for interactive objects in-game
 class Object {
 public:
 	Object() : position(0.0f, 0.0f, 0.0f), velocity(0.0f, 0.0f, 0.0f), sprite(), isSolid(false) {};
@@ -9,19 +10,28 @@ public:
 public:
 	enum Type {
 		BackgroundLayerType = 0,
-		HandType = 1,
-		LaserType = 2,
+		HandType,
+		BottleType,
+		BottleFragmentType,
+		LaserType,
 		NumTypes
 	};
 
-	virtual void Spawn() {return;}
-
-	virtual void Update(float deltaTime) {return;}
-	virtual void Render() {return;}
-
+	// Returns the object type. Must be overridden by the object class type
 	virtual Type GetType() const = 0;
 
 public:
+	// Called when the object spawns. Default action: None
+	virtual void Spawn() {return;}
+
+	// Updates the object. Default action: Move the object by its velocity
+	virtual void Update(float deltaTime);
+
+	// Renders the object. Default action: Render the sprite at the current position
+	virtual void Render();
+
+public:
+	// Positioning and movement
 	// Returns current position
 	inline const Vec3& GetPosition() const;
 
@@ -32,6 +42,11 @@ public:
 	// Returns whether the move was fully successful without any collisions
 	bool Move(const Vec3& moveOffset, bool doAffectVelocity = true, bool teleport = false);
 
+	// Sets an object's raw velocity. Useful for spawning projectiles, etc
+	inline void SetVelocity(const Vec3& velocity);
+
+public:
+	// Misc getters and setters
 	// Returns the object's rotation in degrees
 	inline float32 GetRotation() const;
 
@@ -47,6 +62,8 @@ public:
 	// Sets the scale of the object
 	inline void SetScale(const Vec2& scale);
 
+public:
+	// Collision boxes and detection
 	// Sets the collision box, or if the collision box is nullptr, set as non-solid
 	void SetCollision(const Rect2* newBox, bool newIsSolid = true);
 
@@ -78,8 +95,12 @@ inline const Vec3& Object::GetPosition() const {
 	return position;
 }
 
-inline void Object::SetPosition(const Vec3& position) {
-	this->position = position;
+inline void Object::SetPosition(const Vec3& position_) {
+	this->position = position_;
+}
+
+inline void Object::SetVelocity(const Vec3& velocity_) {
+	this->velocity = velocity_;
 }
 
 inline float32 Object::GetRotation() const {

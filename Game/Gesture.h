@@ -44,7 +44,7 @@ public:
 	int GetNumRecordedAccels() const;
 
 	// Gets the current bend angle of the flex sensor, in degrees
-	float GetFlexAngle() const;
+	float32 GetFlexAngle() const;
 public:
 	// Gesture enum
 	enum GestureCode {
@@ -66,7 +66,7 @@ private:
 	bool8 gestureDown[NumGestureCodes] = {0}; // Whether a gesture is being done
 
 	// Angle, in degrees, of the flex sensor
-	float flexAngle;
+	float32 flexAngle;
 
 	// Debug stuff
 	bool8 debugMode = false;

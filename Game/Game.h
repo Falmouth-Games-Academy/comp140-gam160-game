@@ -3,7 +3,7 @@
 #include "Serial.h"
 #include "Containers.h"
 #include "Graph.h"
-#include "Hand.h"
+#include "Player.h"
 #include "Gesture.h"
 #include "Input.h"
 #include "Level.h"
@@ -60,7 +60,7 @@ public:
 public:
 	// Object stuff
 	template<typename ObjectType>
-	ObjectType* CreateObject();
+	ObjectType* SpawnObject();
 
 	// Returns the iterable object list
 	inline Array<Object*>& GetObjects();
@@ -225,9 +225,11 @@ void Game::SetGameState() {
 }
 
 template<typename ObjectType>
-inline ObjectType* Game::CreateObject() {
+inline ObjectType* Game::SpawnObject() {
 	ObjectType* object = new ObjectType();
 	objects.Append(object);
+
+	object->Spawn();
 
 	return object;
 }

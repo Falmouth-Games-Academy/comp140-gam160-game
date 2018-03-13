@@ -172,34 +172,28 @@ void Game::Run() {
 	SetGameState<GameStatePlay>();
 
 	// Spawn the player
-	player = CreateObject<Hand>();
-	player->Spawn();
+	player = SpawnObject<Hand>();
 
 	// Spawn the test laser
-	Laser* testLaser = CreateObject<Laser>();
-	testLaser->Spawn();
+	Laser* testLaser = SpawnObject<Laser>();
 
 	// Load the level
 	level.Load();
 
 	// Begin main loop!
 	SDL_Event sdlEvent;
-	bool appIsRunning = true;
 	uint64 performanceFrequency = SDL_GetPerformanceFrequency();
 	uint64 lastPerformanceCounter = SDL_GetPerformanceCounter();
 
+
+	bool appIsRunning = true;
+	startFrameTime = lastPerformanceCounter * 1000 / performanceFrequency;
+
 	while (appIsRunning) {
-		// Calculate frame times
+		// Calculate current frame time
 		uint64 currentPerformanceCounter = SDL_GetPerformanceCounter();
 		deltaTime = (float) (currentPerformanceCounter - lastPerformanceCounter) / performanceFrequency;
 		frameTime = (uint32) (currentPerformanceCounter * 1000 / performanceFrequency) - startFrameTime;
-
-		if (!startFrameTime) {
-			// If this is the first frame, set the start frame time here (here instead of the init functions, for supah precision)
-			startFrameTime = frameTime;
-			frameTime = 0;
-			deltaTime = 0.0f;
-		}
 
 		// Update the input system before sending it input events--this clears boops
 		input.Update();

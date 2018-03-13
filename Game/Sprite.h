@@ -80,6 +80,9 @@ public:
 	// Load a single-frame sprite with an origin and scale
 	inline Sprite(const char* filename, const Vec2& origin_ = Vec2(0.0f, 0.0f), const Vec2& scale_ = Vec2(1.0f, 1.0f));
 
+	// Copies a sprite
+	inline Sprite(const Sprite& other);
+
 	// Unloads a sprite and frees frames from memory
 	inline ~Sprite();
 
@@ -113,8 +116,8 @@ public:
 	inline const SpriteFrame* GetFrame(int index) const;
 
 	// Gets all frames
-	inline Array<SpriteFrame*> GetFrames();
-	inline const Array<SpriteFrame*> GetFrames() const;
+	inline Array<SpriteFrame*>& GetFrames();
+	inline const Array<SpriteFrame*>& GetFrames() const;
 
 	// Sets the current frame
 	inline void SetCurrentFrame(float32 index);
@@ -151,6 +154,16 @@ private:
 
 inline Sprite::Sprite(const char* filename, const Vec2& origin, const Vec2& scale) {
 	LoadFrame(filename, origin, scale);
+}
+
+inline Sprite::Sprite(const Sprite& other) {
+	// Copy sprite frames
+	for (SpriteFrame* frame : other.frames) {
+		frames.Append() = new SpriteFrame(*frame);
+	}
+
+	currentFrame = other.currentFrame;
+	frameRate = other.frameRate;
 }
 
 inline Sprite::~Sprite() {
@@ -214,11 +227,11 @@ inline const SpriteFrame* Sprite::GetFrame(int index) const {
 	}
 }
 
-inline Array<SpriteFrame*> Sprite::GetFrames() {
+inline Array<SpriteFrame*>& Sprite::GetFrames() {
 	return frames;
 }
 
-inline const Array<SpriteFrame*> Sprite::GetFrames() const {
+inline const Array<SpriteFrame*>& Sprite::GetFrames() const {
 	return frames;
 }
 

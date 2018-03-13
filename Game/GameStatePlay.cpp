@@ -9,8 +9,13 @@ void GameStatePlay::Update(float deltaTime) {
 	game.GetGesture().Update();
 
 	// Update objects (including the player)
-	for (Object* obj : game.GetObjects()) {
+	/*for (Object* obj : game.GetObjects()) {
 		obj->Update(deltaTime);
+	}*/
+	// Changed because the iterator changes if the list is reallocated. Todo: Is there a more elegant solution?
+	Array<Object*>& objects = game.GetObjects();
+	for (int i = 0; i < objects.GetNum(); ++i) {
+		objects[i]->Update(deltaTime);
 	}
 
 	// Update camera

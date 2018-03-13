@@ -1,8 +1,10 @@
 #include "Object.h"
-#include "Hand.h"
+#include "Player.h"
 #include "Game.h"
 #include "SDL.h"
 #include "Image.h"
+
+#include "Bottle.h" // Test bottle spawning
  
 // Hand width: 9 1/2cm
 Hand::~Hand() {
@@ -11,8 +13,8 @@ Hand::~Hand() {
 
 void Hand::Spawn() {
 	// Load player sprite
-	sprite.LoadFrame("Graphics/hand1.png", Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f));
-
+	sprite.LoadFrames("Graphics/player/laser/handzer", 5, Vec2(2496.0, 2102.0), Vec2(0.2f, 0.2f)/*Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f)*/);
+	
 	// Setup collision box
 	collisionBox = Rect2(7, 4, 259, 147);
 	isSolid = true;
@@ -31,12 +33,25 @@ void Hand::Render() {
 	if (DebugStringBox* debug = game.GetDebug()) {
 		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", position.x, position.y, position.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
+		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
 	}
 }
 
 void Hand::Update(float deltaTime) {
-	const float minY = 0.0f, maxY = 900.0f, minX = 0.0f, maxX = 1800.0f;
+	const float maxY = 900.0f;
 	const float gravity = 1800.0f;
+
+	// Spawn bottles
+	static float lastBottleSpawnTime = 0.0f;
+
+	if (game.GetFrameTime() > lastBottleSpawnTime + 1.0f) {
+		lastBottleSpawnTime = game.GetFrameTime();
+
+		// Spawn a bottle in a random direction and speed
+		auto newBottle = game.SpawnObject<Bottle>();
+		newBottle->SetPosition(position);
+		newBottle->SetVelocity(Vec3(Math::randfloat(-5000.0f, 5000.0f), Math::randfloat(-6000.0f, -4000.0f), Math::randfloat(-1.0f, 1.0f)));
+	}
 
 	// Update rotation
 	Vec3 currentAccel = game.GetGesture().GetAverageAccel(25, 0);
@@ -60,8 +75,11 @@ void Hand::Update(float deltaTime) {
 		}
 	}
 
-	// Do gravity
-	velocity.y += gravity * deltaTime;
+	// Update laser power
+	laserPower = Math::clamp(game.GetGesture().GetFlexAngle() / 90.0f, 0.0f, 1.0f);
+
+	// Open mouth
+	sprite.SetCurrentFrame(Math::clampmax((int)(laserPower * sprite.GetNumFrames()), sprite.GetNumFrames() - 1));
 
 	// Do gesture movement
 	bool doFriction = false;
@@ -86,32 +104,19 @@ void Hand::Update(float deltaTime) {
 		doFriction = true;
 	}
 
+	// Do gravity
+	velocity.y += gravity * deltaTime;
+
 	// Do collision
 	if (position.y > maxY) {
 		position.y = maxY;
 		velocity.y = 0.0f;
 	}
 
-	if (position.y < minY) {
-		position.y = minY;
-		velocity.y = 0.0f;
-	}
-
-	if (position.x < minX) {
-		position.x = minX;
-		velocity.x = 0.0f;
-		direction = 1;
-	}
-	if (position.x > maxX) {
-		position.x = maxX;
-		velocity.x = 0.0f;
-		direction = -1;
-	}
-
 	if (game.GetInput().IsKeyDown(SDLK_LEFT)) {
-		velocity.x = -300.0f;
+		velocity.x = -900.0f;
 	} else if (game.GetInput().IsKeyDown(SDLK_RIGHT)) {
-		velocity.x = 300.0f;
+		velocity.x = 900.0f;
 	}
 
 	if (game.GetInput().IsKeyBooped(SDLK_SPACE)) {
