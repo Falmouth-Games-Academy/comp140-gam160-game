@@ -5,9 +5,6 @@
 // Base class for interactive objects in-game
 class Object {
 public:
-	Object() : position(0.0f, 0.0f, 0.0f), velocity(0.0f, 0.0f, 0.0f), sprite(), isSolid(false) {};
-
-public:
 	enum Type {
 		BackgroundLayerType = 0,
 		HandType,
@@ -21,10 +18,20 @@ public:
 	virtual Type GetType() const = 0;
 
 public:
-	// Called when the object spawns. Default action: None
-	virtual void Spawn() {return;}
+	// Destroyer
+	inline void Destroy();
 
-	// Updates the object. Default action: Move the object by its velocity
+public:
+	// Events
+	// Called when the object spawns. Default action: None
+	virtual void OnSpawn() {return;}
+
+	// Called when the object is destroyed. Default action: None
+	virtual void OnDestroy() {return;}
+
+public:
+	// Main functions
+	// Updates the object. Default action: Move the object by its velocity, spin it by its rotation speed, and countdown destroy timer
 	virtual void Update(float deltaTime);
 
 	// Renders the object. Default action: Render the sprite at the current position
@@ -42,7 +49,10 @@ public:
 	// Returns whether the move was fully successful without any collisions
 	bool Move(const Vec3& moveOffset, bool doAffectVelocity = true, bool teleport = false);
 
-	// Sets an object's raw velocity. Useful for spawning projectiles, etc
+	// Returns the object's velocity
+	inline const Vec3& GetVelocity() const;
+
+	// Sets the object's raw velocity. Useful for spawning projectiles, etc
 	inline void SetVelocity(const Vec3& velocity);
 
 public:
@@ -62,6 +72,9 @@ public:
 	// Sets the scale of the object
 	inline void SetScale(const Vec2& scale);
 
+	// Returns whether the objects is gon die
+	inline bool IsBeingDestroyed() const;
+
 public:
 	// Collision boxes and detection
 	// Sets the collision box, or if the collision box is nullptr, set as non-solid
@@ -80,16 +93,34 @@ protected:
 	Sprite sprite;
 
 	// Position and speed of the object
-	Vec3 position;
-	Vec3 velocity;
+	Vec3 position = Vec3(0.0f, 0.0f, 0.0f);
+	Vec3 velocity = Vec3(0.0f, 0.0f, 0.0f); // pixels/sec
 
 	// Rotation of the object, in degrees
-	float32 rotation;
+	float32 rotation = 0.0f;
+	float32 rotationSpeed = 0.0f; // deg/sec
 
 	// Dimensions of the collision box, relative to this object's unscaled sprite pixels
 	Rect2 collisionBox;
-	bool8 isSolid;
+	bool8 isSolid = false;
+
+	// If above 0, this is a timer, which by Object::Update counts down to 0. Once 0 is reached, the object self-destructs
+	float32 destroyTimer;
+
+private:
+	// Whether the object is being destroyed next frame
+	bool8 isBeingDestroyed = false;
 };
+
+inline void Object::Destroy() {
+	if (!isBeingDestroyed) {
+		// Call destruction event
+		OnDestroy();
+
+		// Prepare for destruction at the end of the frame
+		isBeingDestroyed = true;
+	}
+}
 
 inline const Vec3& Object::GetPosition() const {
 	return position;
@@ -97,6 +128,10 @@ inline const Vec3& Object::GetPosition() const {
 
 inline void Object::SetPosition(const Vec3& position_) {
 	this->position = position_;
+}
+
+inline const Vec3& Object::GetVelocity() const {
+	return velocity;
 }
 
 inline void Object::SetVelocity(const Vec3& velocity_) {
@@ -135,6 +170,10 @@ inline const Vec2 Object::GetSize() const {
 		// No sprite image, no size!?
 		return Vec2(0.0f, 0.0f);
 	}
+}
+
+inline bool Object::IsBeingDestroyed() const {
+	return isBeingDestroyed;
 }
 
 inline void Object::SetCollision(const Rect2* newBox, bool newIsSolid) {

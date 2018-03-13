@@ -102,7 +102,11 @@ public:
 
 	bool operator==(const Vec2& other) const {return x == other.x && y == other.y;}
 
+	// Returns the length of the vector
 	float Length() const {return (float)sqrt((x * x) + (y * y));}
+
+	// Normalises the vector. If it has no length, sets it to an up vector (y=-1).
+	Vec2& Normalise() {float length = (float)sqrt((x * x) + (y * y)); if (length > 0.0f) {x /= length; y /= length;} else {y = -1.0f;}; return *this;}
 
 	// Deeper math functions
 	// Returns whether this vector is between a box where min is the top-left corner and max is the bottom-right corner
@@ -119,6 +123,11 @@ public:
 	// Returns direction from one point to another, in radians, going clockwise where 0 is up (0 = -y)
 	static float Direction(const Vec2& vecA, const Vec2& vecB) {
 		return -atan2(vecA.x - vecB.x, vecA.y - vecB.y);
+	}
+
+	// Returns the dot product of two vectors
+	static float Dot(const Vec2& vecA, const Vec2& vecB) {
+		return vecA.x * vecB.x + vecA.y * vecB.y;
 	}
 
 	// Generator functions

@@ -5,9 +5,6 @@
 #include "Object.h"
 
 void GameStateEditor::Update(float deltaTime) {
-	// Reset debug text box for rendering5
-	debug->Reset();
-
 	// Update camera
 	game.GetCamera().Update(deltaTime);
 
@@ -48,20 +45,20 @@ void GameStateEditor::Render() {
 	//game.GetCamera().RenderRectangle(start3D, (end3D - start3D).xy, clrRed);
 
 	// Draw debug information
+	DebugStringBox* debug = game.GetDebug();
 	Vec3 cameraPosition = game.GetCamera().GetPosition();
 
-	debug->DrawString(StaticString<140>::FromFormat("Camera position: %.2f,%.2f,%.2f", cameraPosition.x, cameraPosition.y, cameraPosition.z));
-	debug->DrawString(StaticString<140>::FromFormat("Cursor position: %.2f,%.2f,%.2f", cursorPosition.x, cursorPosition.y, cursorPosition.z));
-	debug->DrawString(StaticString<140>::FromFormat("Select position: %.2f,%.2f", selectStartPosition.x, selectStartPosition.y, cursorScreenPosition.x, cursorScreenPosition.y));
-	debug->DrawString("");
-	debug->DrawString("LClick: Select/Drag  Space+LClick: Move away/closer S+LClick: Scale");
-	debug->DrawString("ScrollWheel: Zoom, RightClick: Pan, Z: Reset zoom, C: Centre camera on player");
+	if (debug) {
+		debug->DrawString(StaticString<140>::FromFormat("Camera position: %.2f,%.2f,%.2f", cameraPosition.x, cameraPosition.y, cameraPosition.z));
+		debug->DrawString(StaticString<140>::FromFormat("Cursor position: %.2f,%.2f,%.2f", cursorPosition.x, cursorPosition.y, cursorPosition.z));
+		debug->DrawString(StaticString<140>::FromFormat("Select position: %.2f,%.2f", selectStartPosition.x, selectStartPosition.y, cursorScreenPosition.x, cursorScreenPosition.y));
+		debug->DrawString("");
+		debug->DrawString("LClick: Select/Drag  Space+LClick: Move away/closer S+LClick: Scale");
+		debug->DrawString("ScrollWheel: Zoom, RightClick: Pan, Z: Reset zoom, C: Centre camera on player");
+	}
 }
 
 bool GameStateEditor::Enter() {
-	// Create debug box
-	debug = new DebugStringBox(RenderScreen::Main, 0, 0, 100, 100);
-	
 	// Create cursors
 	memset(cursorSprites, 0, sizeof (cursorSprites));
 	cursorSprites[Normal] = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
@@ -76,8 +73,6 @@ void GameStateEditor::Exit() {
 			SDL_FreeCursor(cursorSprites[i]);
 		}
 	}
-
-	delete debug;
 }
 
 void GameStateEditor::UpdateCursor() {

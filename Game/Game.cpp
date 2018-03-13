@@ -143,6 +143,16 @@ void Game::Update(float deltaTime) {
 		// Call current game state's update function
 		activeGameState->Update(deltaTime);
 	}
+
+	// Destroy any objects pending a kill
+	for (int i = 0; i < objects.GetNum(); ++i) {
+		if (objects[i]->IsBeingDestroyed()) {
+			// Buhbye
+			delete objects[i];
+
+			objects.RemoveByIndex(i--);
+		}
+	}
 }
 
 void Game::Render() {

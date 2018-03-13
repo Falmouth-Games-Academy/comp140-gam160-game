@@ -2,7 +2,23 @@
 #include "Game.h"
 
 void Object::Update(float deltaTime) {
+	// Update gravity
+	velocity.y = Math::clamp(velocity.y + 3000.0f * deltaTime, -2000.0f, 6000.0f);
+	
+	// Move object
 	Move(velocity * deltaTime, true);
+
+	// Spin object
+	rotation = Math::circleclamp(rotation + rotationSpeed * deltaTime, 360.0f);
+
+	// Countdown destruction timer and destroy self if it reaches 0
+	if (destroyTimer > 0.0f) {
+		destroyTimer -= deltaTime;
+
+		if (destroyTimer <= 0.0f) {
+			Destroy();
+		}
+	}
 }
 
 void Object::Render() {

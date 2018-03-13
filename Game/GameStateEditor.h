@@ -34,9 +34,6 @@ private:
 		NumCursorStates,
 	};
 
-	// Debug info
-	class DebugStringBox* debug;
-
 	// Current cursor state
 	CursorState cursorState;
 

@@ -1,6 +1,8 @@
 #include "Laser.h"
 #include "Game.h"
 
+#include "Bottle.h" // Bottle smashing
+
 Laser::~Laser() {
 	// Free laser effects
 	for (LaserFX* effect : effects) {
@@ -10,7 +12,7 @@ Laser::~Laser() {
 	effects.Clear();
 }
 
-void Laser::Spawn() {
+void Laser::OnSpawn() {
 	// Init angle
 	rotation = 0.0f;
 
@@ -48,6 +50,21 @@ void Laser::Update(float deltaTime) {
 	if (game.GetFrameTime() >= nextCameraShake && power > 0.0f) {
 		game.GetCamera().StartShake(0.5f, 40.0f - power * 30.0f, 200.0f * power);;
 		nextCameraShake = game.GetFrameTime() + Math::randfloat(0.25f, 0.5f);
+	}
+
+	// Destroy any bottles in range of the laser
+	if (power >= 0.5f) {
+		for (int i = 0; i < game.GetObjects().GetNum(); ++i) {
+			Object* obj = game.GetObjects()[i];
+			if (obj->GetType() == BottleType) {
+				float distance = Vec2::Distance(position.xy, obj->GetPosition().xy);
+				float dot = Vec2::Dot(obj->GetPosition().xy - position.xy, Vec2::FromRotation(rotation + 90.0f));
+
+				if (distance >= 600.0f && dot / distance >= 0.95f) {
+					((Bottle*)obj)->Smash();
+				}
+			}
+		}
 	}
 
 	// Test shake camera

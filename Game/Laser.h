@@ -6,7 +6,7 @@ public:
 	Laser() {};
 	virtual ~Laser();
 
-	void Spawn() override;
+	void OnSpawn() override;
 
 	void Update(float deltaTime) override;
 	void Render() override;

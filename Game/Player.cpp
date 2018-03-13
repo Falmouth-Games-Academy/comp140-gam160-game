@@ -11,7 +11,7 @@ Hand::~Hand() {
 	return; // dur
 }
 
-void Hand::Spawn() {
+void Hand::OnSpawn() {
 	// Load player sprite
 	sprite.LoadFrames("Graphics/player/laser/handzer", 5, Vec2(2496.0, 2102.0), Vec2(0.2f, 0.2f)/*Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f)*/);
 	

@@ -229,7 +229,7 @@ inline ObjectType* Game::SpawnObject() {
 	ObjectType* object = new ObjectType();
 	objects.Append(object);
 
-	object->Spawn();
+	object->OnSpawn();
 
 	return object;
 }
