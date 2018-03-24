@@ -109,6 +109,9 @@ private:
 	// Whether the camera is following the player character
 	bool8 isFollowingPlayer;
 
+	// The offset of the camera relative to the player, when following
+	Vec3 playerFollowOffset = (Vec3(0.0f, 0.0f, -1.5f));
+
 	// Shake effect stuff
 	// Current time, in secs, until the shake is finished
 	float32 shakeTimer = 0.0f;

@@ -4,17 +4,18 @@
 #include "Containers.h" // Array
 
 // A sprite frame is an Image with an origin, scale and/or any other future effects to come. It also keeps a texture cache.
-class SpriteFrame : public Image {
+class SpriteFrame {
 public:
 	/* Constructors and destructors */
-	SpriteFrame() : originalOrigin(0.0f, 0.0f), scaledOrigin(0.0f, 0.0f), scaledDimensions(0.0f, 0.0f), scale(0.0f, 0.0f), textures{nullptr} {};
+	SpriteFrame() : originalOrigin(0.0f, 0.0f), scaledOrigin(0.0f, 0.0f), scaledDimensions(0.0f, 0.0f), scale(0.0f, 0.0f), textures{nullptr}, 
+		sourceImage(nullptr) {};
 
 	// Constructor: Tries to load the image and store it
 	inline SpriteFrame(const char* filename, const Vec2& origin_ = Vec2(0.0f, 0.0f), const Vec2& scale_ = Vec2(1.0f, 1.0f));
 
 	// Copy constructor
-	inline SpriteFrame(const SpriteFrame& sprite) : Image(sprite), originalOrigin(sprite.originalOrigin), scaledOrigin(sprite.scaledOrigin), scaledDimensions(sprite.scaledDimensions), 
-		scale(sprite.scale), textures{nullptr} {};
+	inline SpriteFrame(const SpriteFrame& sprite) : originalOrigin(sprite.originalOrigin), scaledOrigin(sprite.scaledOrigin), scaledDimensions(sprite.scaledDimensions), 
+		scale(sprite.scale), textures{nullptr}, sourceImage(sprite.sourceImage) {};
 
 	// Destructor: Frees image etc
 	~SpriteFrame();
@@ -29,6 +30,8 @@ public:
 
 public:
 	/* Getters and setters */
+	bool IsLoaded() const;
+
 	// Returns the origin of the sprite, in pixels, relative to the image as it is currently scaled
 	inline const Vec2& GetOrigin() const;
 
@@ -55,6 +58,9 @@ public:
 	struct SDL_Texture* GetSDLTexture(RenderScreen screen = RenderScreen::Main) const;
 
 private:
+	// Pointer to the source image
+	const Image* sourceImage = nullptr;
+
 	// Origin of the sprite, in pixels relative to the original unscaled image
 	Vec2 originalOrigin;
 
@@ -239,6 +245,10 @@ inline void Sprite::SetCurrentFrame(float32 index) {
 	currentFrame = index;
 }
 
+inline bool SpriteFrame::IsLoaded() const {
+	return sourceImage != nullptr;
+}
+
 inline const SpriteFrame* Sprite::GetCurrentFrame() const {
 	return GetFrame((int)currentFrame);
 }
@@ -273,13 +283,22 @@ inline const Vec2& SpriteFrame::GetDimensions() const {
 }
 
 inline const Vec2 SpriteFrame::GetBaseDimensions() const {
-	return Vec2((float)Image::GetDimensions().width, (float)Image::GetDimensions().height);
+	if (sourceImage) {
+		return Vec2((float)sourceImage->GetDimensions().width, (float)sourceImage->GetDimensions().height);
+	} else {
+		return Vec2(0.0f, 0.0f);
+	}
 }
 
 inline void SpriteFrame::SetScale(const Vec2& scale) {
 	this->scale = scale;
 	scaledOrigin = originalOrigin * scale;
-	scaledDimensions = Vec2((float)Image::GetDimensions().width, (float)Image::GetDimensions().height) * scale;
+
+	if (sourceImage) {
+		scaledDimensions = Vec2((float)sourceImage->GetDimensions().width, (float)sourceImage->GetDimensions().height) * scale;
+	} else {
+		scaledDimensions = Vec2(0.0f, 0.0f);
+	}
 }
 
 inline const Vec2& SpriteFrame::GetScale() const {

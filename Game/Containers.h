@@ -29,6 +29,9 @@ public:
 
 	inline bool IsIndexValid(int index) const;
 
+	// Finds the first match of an item and returns its index, or -1 if not found
+	inline int Find(const T& item) const;
+
 	inline T* begin();
 	inline T* end();
 	inline const T* begin() const;
@@ -72,6 +75,101 @@ private:
 	int32 baseIndex;
 	bool8 isFull;
 };
+
+template <typename ItemType>
+class Cache {
+public:
+	// Adds an item to the cache, fails if the item already exists (this should never happen!)
+	// After an item is added to the cache, the caller must not delete it
+	// Todo factory pattern?
+	bool Bind(const char* tag, ItemType* itemPointer);
+
+	// Retrieves an item from the cache, increasing its reference counter
+	inline ItemType* Retrieve(const char* tag);
+
+	// Releases an item in the cache, decrementing its reference counter. item is const
+	inline void Release(const ItemType* itemPointer);
+
+	// Returns the total number of items in the cache
+	inline int GetNum() const;
+
+	// Returns the number of references to items in the cache
+	inline int CountReferences() const;
+
+	// Cleans up unreferenced items in the cache
+	inline void CleanupUnused();
+
+private:
+	// Generates a hash from an item tag
+	inline uint32 GenerateHash(const char* tag);
+
+	struct CacheItem {
+		// Pointer to the image
+		ItemType* item;
+
+		// Number of referrers to this image. May be used in the future to cleanup the cache
+		uint32 numReferers;
+
+		// Hash of the image's name
+		uint32 hash;
+	};
+
+	Array<CacheItem> items;
+};
+
+// ========== Cache functions ==========
+template <typename ItemType> bool Cache<ItemType>::Bind(const char* tag, ItemType* itemPointer) {
+	// Make sure it doesn't already exist
+	if (Retrieve(tag)) {
+		return false;
+	}
+
+	// Add the item and assign its info
+	CacheItem& item = items.Append();
+
+	item.item = itemPointer;
+	item.hash = GenerateHash(tag);
+	item.numReferers = 0;
+	return true;
+}
+
+template <typename ItemType> inline ItemType* Cache<ItemType>::Retrieve(const char* tag) {
+	// Try to find the item with the matching hash
+	uint32 hash = GenerateHash(tag);
+
+	for (CacheItem& item : items) {
+		if (item.hash == hash) {
+			++item.numReferers;
+			return item.item;
+		}
+	}
+
+	// None found, return nullptr
+	return nullptr;
+}
+
+template<typename ItemType> inline void Cache<ItemType>::Release(const ItemType* itemPointer) {
+	for (CacheItem& item : items) {
+		if (item.item == itemPointer) {
+			--item.numReferers;
+		}
+	}
+}
+
+template<typename ItemType> inline int Cache<ItemType>::GetNum() const {
+	return items.GetNum();
+}
+
+template <typename ItemType> uint32 Cache<ItemType>::GenerateHash(const char* tag) {
+	uint32 hash = 0x8DEFF5A1;
+	
+	for (int i = 0; tag[i]; ++i) {
+		// I dunno tho
+		hash += (hash >> (tag[i] & 7)) | ((tag[i] - i) << 24) * tag[i] >> 4;
+	}
+
+	return hash;
+}
 
 // ========== StaticCircularArray functions ==========
 template <typename ItemType, int NumItems> StaticCircularArray<ItemType, NumItems>::~StaticCircularArray() {
@@ -265,6 +363,16 @@ template<typename T> void Array<T>::Clear() {
 
 template<typename T> inline bool Array<T>::IsIndexValid(int index) const {
 	return (index >= 0 && index < numItems);
+}
+
+template<typename T> inline int Array<T>::Find(const T& item) const {
+	for (int i = 0; i < numItems; ++i) {
+		if (items[i] == item) {
+			return i;
+		}
+	}
+
+	return -1;
 }
 
 template<typename T> T* Array<T>::begin() {

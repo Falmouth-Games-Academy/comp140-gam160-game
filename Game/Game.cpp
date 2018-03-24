@@ -81,6 +81,9 @@ void Game::Init() {
 	SetBkColor(textSurfaceDc, RGB(0, 0, 0));
 	SetTextColor(textSurfaceDc, RGB(255, 255, 255));
 
+	// Init sound engine
+	sound.Init();
+
 	// Initialise Arduino if possible
 	printf("Init Arduino\n");
 
@@ -103,6 +106,9 @@ void Game::Shutdown() {
 
 	// Destroy all game objects
 	ClearObjects();
+
+	// Shutdown sound engine
+	sound.Shutdown();
 
 	// Shutdown Arduino
 	delete arduino;

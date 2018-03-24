@@ -11,6 +11,8 @@
 #include "GameState.h"
 #include "Render.h"
 #include "Game.h"
+#include "ImageCache.h"
+#include "Sound.h"
 
 // Main game (singleton class)
 // Contains the objects and methods to render and update objects
@@ -50,6 +52,7 @@ public:
 	inline InputManager& GetInput();
 	inline Camera& GetCamera();
 	inline Serial* GetSerialStream(); // Todo: class to handle this
+	inline ImageCache& GetImageCache();
 	inline class DebugStringBox* GetDebug();
 
 	// Time
@@ -78,10 +81,11 @@ private:
 	// Surface for text rendering
 	SDL_Texture* sdlTextSurfaces[NumRenderScreens];
 
-	// Additional components
+	// Additional system components
 	Serial* arduino;
 	GestureManager gesture;
 	InputManager input;
+	SoundManager sound;
 	
 	// Currently active gamestate (e.g. GameStatePlay, meaning traditional in-game gameplay)
 	GameState* activeGameState;
@@ -101,6 +105,9 @@ private:
 
 	// The objects
 	Array<Object*> objects;
+
+	// The image cache
+	ImageCache imageCache;
 
 	// Delta time of current frame
 	float32 deltaTime;
@@ -198,6 +205,10 @@ inline Hand& Game::GetPlayer() {
 
 inline Level& Game::GetLevel() {
 	return level;
+}
+
+inline ImageCache& Game::GetImageCache() {
+	return imageCache;
 }
 
 inline float Game::GetFrameTime() const {

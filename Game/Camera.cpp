@@ -15,8 +15,9 @@ void Camera::Update(float deltaTime) {
 	
 	// Follow the player
 	if (isFollowingPlayer) {
-		position = game.GetPlayer().GetPosition() - viewBox.size * Vec2(0.3f, 0.4f);
-		position.z -= 1.5f;
+		playerFollowOffset.xy = viewBox.size * Vec2(-0.3f, -0.4f);
+
+		position = game.GetPlayer().GetPosition() + playerFollowOffset;
 	}
 
 	// Apply shake effect
@@ -34,6 +35,11 @@ void Camera::Update(float deltaTime) {
 		shakeTimer -= deltaTime;
 	} else {
 		shakeOffset = Vec3(0.0f, 0.0f, 0.0f);
+	}
+
+	// Zoom in/out
+	if (game.GetInput().IsKeyDown(SDLK_c) && game.GetInput().GetMouseScroll()) {
+		playerFollowOffset.z += game.GetInput().GetMouseScroll() * 0.5f;
 	}
 }
 

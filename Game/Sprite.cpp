@@ -10,9 +10,14 @@ void SpriteFrame::Load(const char* filename, const Vec2& origin, const Vec2& sca
 	// Clear the textures
 	ClearTextureCache();
 
+	// Unload the previous image, if it exists
+	if (sourceImage) {
+		game.GetImageCache().ReleaseImage(sourceImage);
+	}
+
 	// Try and load the parent image
-	Image::Load(filename);
-	
+	sourceImage = game.GetImageCache().ObtainImage(filename);
+
 	// Set the origin and scale anyway
 	this->originalOrigin = origin;
 	this->scale = scale;
@@ -29,8 +34,8 @@ void SpriteFrame::Load(const char* filename, const Vec2& origin, const Vec2& sca
 
 SDL_Texture* SpriteFrame::GetSDLTexture(RenderScreen screen) const {
 	// Try to create the texture if it doesn't already exist
-	if (!textures[screen]) {
-		textures[screen] = CreateSDLTexture(game.GetRenderer(screen));
+	if (!textures[screen] && sourceImage) {
+		textures[screen] = sourceImage->CreateSDLTexture(game.GetRenderer(screen));
 	}
 
 	return textures[screen];
