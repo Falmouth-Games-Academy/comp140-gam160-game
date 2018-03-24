@@ -34,7 +34,7 @@ void Game::Init() {
 	int screenCentreX = screenBounds.w / 2, screenCentreY = screenBounds.h / 2;
 	
 	struct ScreenInitInfo {RenderScreen screen; const char* windowTitle; int x, y; int width, height;};
-	for (const ScreenInitInfo& init : {ScreenInitInfo{Main, "Epic Handventure", -2, -1, 640, 480}, ScreenInitInfo{Debug, "Debug graphs", 0, -1, 600, 600}}) {
+	for (const ScreenInitInfo& init : {ScreenInitInfo{Main, "Handzer", -2, -1, 640, 480}, ScreenInitInfo{Debug, "Debug graphs", 0, -1, 600, 600}}) {
 		sdlWindows[init.screen] = SDL_CreateWindow(init.windowTitle, screenCentreX + init.x * (init.width / 2), screenCentreY + init.y * (init.height / 2), 
 												   init.width, init.height, SDL_WINDOW_RESIZABLE);
 	
@@ -144,11 +144,14 @@ void Game::Update(float deltaTime) {
 		activeGameState->Enter();
 	}
 
-	// Now do the main stuff!
+	// Now do update the gameplay stuff!
 	if (activeGameState) {
 		// Call current game state's update function
 		activeGameState->Update(deltaTime);
 	}
+	
+	// Update the sound engine
+	sound.Update();
 
 	// Destroy any objects pending a kill
 	for (int i = 0; i < objects.GetNum(); ++i) {

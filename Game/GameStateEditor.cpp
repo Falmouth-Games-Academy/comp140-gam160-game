@@ -32,9 +32,8 @@ void GameStateEditor::Render() {
 	game.GetPlayer().Render();
 
 	// Render outlines around selected items
-	const Array<BackgroundLayer>& levelLayers = game.GetLevel().GetLayers();
-	for (::Object* obj : selectedItems) {
-			game.GetCamera().RenderRectangle(obj->GetPosition(), obj->GetSize(), Colour::Red());
+	for (Object* obj : selectedItems) {
+		game.GetCamera().RenderRectangle(obj->GetPosition() - obj->GetSprite().GetOrigin(), obj->GetSize(), Colour::Red());
 	}
 
 	// Render debug appurtenances
@@ -55,6 +54,43 @@ void GameStateEditor::Render() {
 		debug->DrawString("");
 		debug->DrawString("LClick: Select/Drag  Space+LClick: Move away/closer S+LClick: Scale");
 		debug->DrawString("ScrollWheel: Zoom, RightClick: Pan, Z: Reset zoom, C: Centre camera on player");
+	}
+
+	if (selectedItems.GetNum()) {
+		RenderDepthView();
+	}
+}
+
+void GameStateEditor::RenderDepthView() {
+	const Vec3 depthRectSize(100.0f, 100.0f, 20.0f);
+
+	// Render the depth screen background
+	SDL_Renderer* renderer = game.GetRenderer();
+	SDL_Rect depthRect = {0, 0, depthRectSize.x, depthRectSize.y};
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderFillRect(renderer, &depthRect);
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+
+	// Render objects and background layers in the depth screen
+	MinMax<float> depthXRange(game.GetCamera().ScreenToWorld(Vec3(0.0f, 0.0f, depthRectSize.z)).x, 
+		game.GetCamera().ScreenToWorld(Vec3(game.GetCamera().GetViewSize().x, 0.0f, depthRectSize.z)).x);
+
+	// Render background layers
+	for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
+		// Check the layer is in view
+		if (layer.GetPosition().x + layer.GetSprite().GetDimensions().x >= depthXRange.min && 
+			layer.GetPosition().x <= depthXRange.max) {
+
+			// Scale the layer into the depthRect for a top-down view
+			Vec2 lineStart((layer.GetPosition().x - depthXRange.min) * depthRectSize.x / depthXRange.GetRange(), 
+				depthRectSize.y - layer.GetPosition().z * depthRectSize.y / depthRectSize.z);
+			Vec2 lineEnd = lineStart + Vec2(layer.GetSprite().GetDimensions().x * depthRectSize.x / depthXRange.GetRange(), 0.0f);
+
+			// Render
+			SDL_RenderDrawLine(renderer, (int)lineStart.x, (int)lineStart.y, (int)lineEnd.x, (int)lineEnd.y);
+		}
 	}
 }
 
@@ -107,12 +143,8 @@ void GameStateEditor::UpdateCursor() {
 			}
 
 			// Draw collision box if C key is pressed
-			else if (game.GetInput().IsKeyBooped(SDLK_c)) {
-				if (selectedItems.GetNum() == 1) {
-					cursorState = DrawingCollision;
-
-					cursorStartCollisionPosition = cursorPosition;
-				}
+			else if (game.GetInput().IsKeyDown(SDLK_c) && selectedItems.GetNum() == 1) {
+				cursorState = DrawingCollision;
 			}
 
 			// Drag layer if nothing else is being pressed
@@ -175,11 +207,19 @@ void GameStateEditor::UpdateSelections() {
 		// Clear the selections list
 		selectedItems.Clear();
 
-		// Find a layer underneath the mouse adn select it
+		// Find a layer underneath the mouse and select it
 		if (BackgroundLayer* layer = game.GetLevel().GetLayerAtScreenPosition(cursorScreenPosition.xy)) {
 			selectedItems.Set({ layer });
 
 			cursorPosition.z = layer->GetPosition().z;
+		} else {
+			// Otherwise try and find an object instead
+			for (Object* obj : game.GetObjects()) {
+				if (game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin()).xy <= cursorScreenPosition.xy && 
+						game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin() + obj->GetSprite().GetDimensions()).xy >= cursorScreenPosition.xy) {
+					selectedItems.Append(obj);
+				}
+			}
 		}
 	}
 }
@@ -245,11 +285,16 @@ void GameStateEditor::UpdateCursorPlacingLayer() {
 }
 
 void GameStateEditor::UpdateCursorDrawingCollision() {
+	// Set the initial cursor position
+	if (game.GetInput().IsMouseBooped(InputManager::LeftButton)) {
+		cursorStartCollisionPosition = cursorPosition;
+	}
+
 	// Check if mouse is down
 	if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
 		if (selectedItems.GetNum() == 1) {
-			selectedItems[0]->SetCollision(&Rect2(cursorStartCollisionPosition.xy - selectedItems[0]->GetPosition().xy, 
-												  (cursorPosition - cursorStartCollisionPosition).xy));
+			selectedItems[0]->SetCollision(&Rect2((cursorStartCollisionPosition.xy - selectedItems[0]->GetPosition().xy) / selectedItems[0]->GetSprite().GetScale(), 
+												  ((cursorPosition - cursorStartCollisionPosition).xy) / selectedItems[0]->GetSprite().GetScale()));
 		}
 	}
 

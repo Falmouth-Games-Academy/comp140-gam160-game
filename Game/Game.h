@@ -50,6 +50,7 @@ public:
 	// Components
 	inline GestureManager& GetGesture();
 	inline InputManager& GetInput();
+	inline SoundManager& GetSound();
 	inline Camera& GetCamera();
 	inline Serial* GetSerialStream(); // Todo: class to handle this
 	inline ImageCache& GetImageCache();
@@ -193,6 +194,10 @@ inline GestureManager& Game::GetGesture() {
 
 inline InputManager& Game::GetInput() {
 	return input;
+}
+
+inline SoundManager& Game::GetSound() {
+	return sound;
 }
 
 inline Camera& Game::GetCamera() {

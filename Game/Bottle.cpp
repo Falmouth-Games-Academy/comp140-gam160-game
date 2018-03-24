@@ -40,7 +40,7 @@ void Bottle::Smash() {
 }
 
 void BottleFragment::OnSpawn() {
-	//rotationSpeed = Math::randfloat(7.0f, 11.0f) * 360.0f * (float)Math::randsign();
+	rotationSpeed = Math::randfloat(7.0f, 11.0f) * 360.0f * (float)Math::randsign();
 	rotation = 0.0f;
 
 	destroyTimer = 2.0f;

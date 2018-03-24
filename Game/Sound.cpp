@@ -21,20 +21,12 @@ bool SoundManager::Init() {
 	}
 
 	// Perform initialisation
-	result = system->init(512, FMOD_INIT_NORMAL, 0);
+	result = system->init(32, FMOD_INIT_NORMAL, 0);
 	if (result != FMOD_OK) {
 		printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
 		goto InitError;
 	}
-
-	FMOD::Sound* imASound;
-	result = system->createSound("./sounds/wilhelm.mp3", FMOD_LOOP_NORMAL | FMOD_2D, nullptr, &imASound);
-
-	FMOD::Channel* channel;
-	system->playSound(imASound, nullptr, true, &channel);
-
-	channel->setFrequency(44100.0f);
-	channel->setPaused(false);
+	system->setDSPBufferSize(256, 2);
 
 	// It worked!
 	return true;
@@ -47,5 +39,59 @@ InitError:
 }
 
 void SoundManager::Shutdown() {
+	// Cleanup
+	if (system) {
+		system->release();
+	}
+
 	CoUninitialize();
+}
+
+#include "Game.h"
+
+void SoundManager::Update() {
+	// Play blargh sound
+	FMOD_RESULT result;
+	static FMOD::Sound* imASound;
+	static FMOD::Sound* recordedSound;
+	static FMOD::Channel* channel;
+
+	if (game.GetPlayer().GetLaserPower() > 0.0f) {
+		if (!imASound) {
+			result = system->createSound("./sounds/IntenseLaser.mp3", FMOD_2D, nullptr, &imASound);
+		}
+
+		if (!channel) {
+			system->playSound(imASound, nullptr, true, &channel);
+
+			if (channel) {
+				channel->setPosition(50, FMOD_TIMEUNIT_MS);
+				channel->setPaused(false);
+			}
+		}
+
+		if (channel) {
+			bool isPlaying = false;
+			channel->isPlaying(&isPlaying);
+			
+			if (isPlaying) {
+				channel->setVolume(game.GetPlayer().GetLaserPower());
+				channel->setPitch(Math::randfloat(0.9f, 1.1f));
+			}
+		}
+	} else {
+		if (channel) {
+			channel->stop();
+			channel = nullptr;
+		}
+	}
+
+}
+
+FMOD::System* SoundManager::GetSystem() {
+	return system;
+}
+
+SoundEmitter::SoundEmitter(const Vec3& position, float32 lifeTime, bool8 looping) {
+
 }

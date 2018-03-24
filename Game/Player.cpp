@@ -16,7 +16,7 @@ void Hand::OnSpawn() {
 	sprite.LoadFrames("Graphics/player/laser/handzer", 5, Vec2(2496.0, 2102.0), Vec2(0.2f, 0.2f)/*Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f)*/);
 	
 	// Setup collision box
-	collisionBox = Rect2(7, 4, 259, 147);
+	collisionBox = Rect2(157, 701, 2509, 1661);
 	isSolid = true;
 
 	// Set position
@@ -43,7 +43,7 @@ void Hand::Update(float deltaTime) {
 
 	// Spawn bottles
 	static float lastBottleSpawnTime = 0.0f;
-
+	/*
 	if (game.GetFrameTime() > lastBottleSpawnTime + 1.0f) {
 		lastBottleSpawnTime = game.GetFrameTime();
 
@@ -51,7 +51,7 @@ void Hand::Update(float deltaTime) {
 		auto newBottle = game.SpawnObject<Bottle>();
 		newBottle->SetPosition(position);
 		newBottle->SetVelocity(Vec3(Math::randfloat(-5000.0f, 5000.0f), Math::randfloat(-6000.0f, -4000.0f), Math::randfloat(-1.0f, 1.0f)));
-	}
+	}*/
 
 	// Update rotation
 	Vec3 currentAccel = game.GetGesture().GetAverageAccel(25, 0);

@@ -148,6 +148,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateEditor.cpp" />
     <ClCompile Include="GameStatePlay.cpp" />
+    <ClCompile Include="GameStateRecordSpeech.cpp" />
     <ClCompile Include="Gesture.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="ImageCache.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateEditor.h" />
     <ClInclude Include="GameStatePlay.h" />
+    <ClInclude Include="GameStateRecordSpeech.h" />
     <ClInclude Include="Gesture.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="ImageCache.h" />

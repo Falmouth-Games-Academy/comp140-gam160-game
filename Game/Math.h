@@ -100,7 +100,13 @@ public:
 	void operator*=(const float scalar) {x *= scalar; y *= scalar;}
 	void operator/=(const float scalar) {x /= scalar; y /= scalar;}
 
+	// Comparison operators overloads (compares each field)
 	bool operator==(const Vec2& other) const {return x == other.x && y == other.y;}
+
+	bool operator>=(const Vec2& other) const {return x >= other.x && y >= other.y;}
+	bool operator<=(const Vec2& other) const {return x <= other.x && y <= other.y;}
+	bool operator>(const Vec2& other) const {return x > other.x && y > other.y;}
+	bool operator<(const Vec2& other) const {return x < other.x && y < other.y;}
 
 	// Returns the length of the vector
 	float Length() const {return (float)sqrt((x * x) + (y * y));}
@@ -167,7 +173,13 @@ public:
 	void operator*=(const float scalar) {x *= scalar; y *= scalar; z *= scalar;}
 	void operator/=(const float scalar) {x /= scalar; y /= scalar; z /= scalar;}
 
+	// Comparison operators overloads (compares each field)
 	bool operator==(const Vec3& other) const {return x == other.x && y == other.y && z == other.z;}
+
+	bool operator>=(const Vec3& other) const {return x >= other.x && y >= other.y && z >= other.z;}
+	bool operator<=(const Vec3& other) const {return x <= other.x && y <= other.y && z <= other.z;}
+	bool operator>(const Vec3& other) const {return x > other.x && y > other.y && z > other.z;}
+	bool operator<(const Vec3& other) const {return x < other.x && y < other.y && z < other.z;}
 
 	// Extremely amazing advanced vector code
 	float Length() const {return (float)sqrt((x * x) + (y * y) + (z * z));}

@@ -99,6 +99,9 @@
     <ClCompile Include="ImageCache.cpp">
       <Filter>Source Files\Resources</Filter>
     </ClCompile>
+    <ClCompile Include="GameStateRecordSpeech.cpp">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateRecordSpeech.h">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

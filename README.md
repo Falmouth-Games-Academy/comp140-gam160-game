@@ -1,5 +1,8 @@
 GitHub URL: https://github.com/LXShades/comp140-gam160-game
 
+# Compiling
+Required FMOD API, v1.10.04 recommended.
+
 # The Page
 ## Proposal: Hand Puppet The Game
 ### Concept
@@ -50,7 +53,7 @@ We were asked to write a page for the proposals, and indeed, all of the text bel
 * **Fully awkwardly 3D hand rendering:** The direction of your hand is displayed on the screen in 8 intervals.  
 
 ### Characters
-* **Sales hand:** Please, feel free to browse our collection anytime, because we've got lots of great products just waiting for you to not care about... (note: only says this if you're walking away from him while he's talking).  
+* **Sales hand:** Please, feel free to browse our collection anytime, because we've got lots of great products just waiting for you to ignore... (note: only says this if you're walking away from him while he's talking).  
 
 
 ### Potential music element

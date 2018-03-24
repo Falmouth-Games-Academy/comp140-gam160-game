@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "GameStatePlay.h"
 #include "GameStateEditor.h"
+#include "GameStateRecordSpeech.h"
 
 #include <SDL.h>
 
@@ -24,6 +25,10 @@ void GameStatePlay::Update(float deltaTime) {
 	// Switch game states if the editor button was pressed
 	if (game.GetInput().IsKeyBooped(SDLK_e)) {
 		game.SetGameState<GameStateEditor>();
+	}
+
+	if (game.GetInput().IsKeyBooped(SDLK_r)) {
+		game.SetGameState<GameStateRecordSpeech>();
 	}
 }
 

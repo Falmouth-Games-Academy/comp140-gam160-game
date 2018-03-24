@@ -67,6 +67,10 @@ const Vec3& Camera::GetTargetPosition() const {
 	return targetPosition;
 }
 
+const Vec2& Camera::GetViewSize() const {
+	return viewBox.size;
+}
+
 void Camera::SetZoomIntoCentre(float targetZoom) {
 	position.z = targetZoom;
 }
@@ -138,10 +142,6 @@ void Camera::RenderSpriteFrame(const SpriteFrame& sprite, const Vec3& position, 
 		if (region) {
 			SDL_Rect sdlSourceRect = {(int)region->x, (int)region->y, (int)region->width, (int)region->height};
 
-			sdlSourceRect.x = region->x;
-			sdlSourceRect.y = region->y;
-			sdlSourceRect.w = region->width;
-			sdlSourceRect.h = region->height;
 			sdlDestRect.w -= sdlSourceRect.x;
 			sdlDestRect.h -= sdlSourceRect.y;
 			// Todo make this actually work

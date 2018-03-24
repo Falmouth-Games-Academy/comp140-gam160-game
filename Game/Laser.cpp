@@ -51,11 +51,12 @@ void Laser::Update(float deltaTime) {
 	sprite.GetFrame(EdgeFlames)->SetScale(Vec2(2.0f, power));
 	sprite.GetFrame(LightBall)->SetScale(Vec2(power * 2.0f, power * 2.0f));
 
+	// Shake the camera
 	static float nextCameraShake = 0.0f;
 
 	if (game.GetFrameTime() >= nextCameraShake && power > 0.0f) {
-		game.GetCamera().StartShake(0.5f, 40.0f - power * 30.0f, 200.0f * power);;
-		nextCameraShake = game.GetFrameTime() + Math::randfloat(0.25f, 0.5f);
+		game.GetCamera().StartShake(0.5f, 40.0f - power * 30.0f, 100.0f * power);
+		nextCameraShake = game.GetFrameTime() + Math::randfloat(0.4f, 0.5f);
 	}
 
 	// Destroy any bottles in range of the laser

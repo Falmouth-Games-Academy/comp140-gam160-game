@@ -21,6 +21,9 @@ public:
 	void UpdateCursorPlacingLayer();
 	void UpdateCursorDrawingCollision();
 
+	// Additional render functions
+	void RenderDepthView();
+
 	GameStateType GetType() const override {return Editor;}
 	//static GameStateType::GetType() const {return Play;}
 

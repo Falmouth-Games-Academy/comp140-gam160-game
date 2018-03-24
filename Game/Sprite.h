@@ -147,6 +147,14 @@ public:
 	// Sets the scale of all the frames in the sprites
 	void SetScale(const Vec2& scale);
 
+	// Gets the scale of the current frame
+	const Vec2& GetScale() const;
+
+	// Gets the origin of the current frame
+	const Vec2& GetOrigin() const;
+
+	// Todo standardise which frames are being affected/used lol
+
 private:
 	// Array of all frames in the sprite
 	Array<SpriteFrame*> frames;
@@ -243,6 +251,22 @@ inline const Array<SpriteFrame*>& Sprite::GetFrames() const {
 
 inline void Sprite::SetCurrentFrame(float32 index) {
 	currentFrame = index;
+}
+
+inline const Vec2& Sprite::GetScale() const {
+	if (const SpriteFrame* frame = GetCurrentFrame()) {
+		return frame->GetDimensions();
+	} else {
+		return Vec2(0.0f, 0.0f);
+	}
+}
+
+inline const Vec2& Sprite::GetOrigin() const {
+	if (const SpriteFrame* frame = GetCurrentFrame()) {
+		return frame->GetOrigin();
+	} else {
+		return Vec2(0.0f, 0.0f);
+	}
 }
 
 inline bool SpriteFrame::IsLoaded() const {

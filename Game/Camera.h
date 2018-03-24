@@ -22,6 +22,9 @@ public:
 
 	// Gets the position the camera is moving towards
 	const Vec3& GetTargetPosition() const;
+
+	// Gets the size of the viewport
+	const Vec2& GetViewSize() const;
 	
 	// Sets the camera's current zoom, homing in on the centre of view
 	void SetZoomIntoCentre(float targetZoom);
