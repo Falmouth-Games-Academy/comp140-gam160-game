@@ -70,7 +70,7 @@ void GestureManager::Update() {
 		// If the data markers were found...
 		if (arduinoIn) {
 			// Update the flex angle
-			flexAngle = arduinoIn->flexValue;
+			flexAngle = (arduinoIn->flexValue - 570) * 90.0f / (730 - 570);
 
 			// Append the accel vector to the movement history
 			accelHistory.Append(AccelStamp(Vec3((float)arduinoIn->accelX, (float)arduinoIn->accelY, (float)arduinoIn->accelZ), game.GetFrameTimeMs()));

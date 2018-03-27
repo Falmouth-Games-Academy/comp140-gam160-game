@@ -102,6 +102,9 @@
     <ClCompile Include="GameStateRecordSpeech.cpp">
       <Filter>Source Files\Gameplay\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="GooglyEye.cpp">
+      <Filter>Source Files\Gameplay\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
@@ -178,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="GameStateRecordSpeech.h">
       <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GooglyEye.h">
+      <Filter>Source Files\Gameplay\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

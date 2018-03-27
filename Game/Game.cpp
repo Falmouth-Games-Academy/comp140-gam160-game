@@ -10,7 +10,7 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM3";
+const char* port = "COM5";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;
@@ -183,6 +183,7 @@ void Game::Render() {
 }
 
 #include "Laser.h"
+#include "GooglyEye.h"
 
 void Game::Run() {
 	// Initialise engine
@@ -193,8 +194,12 @@ void Game::Run() {
 	// Spawn the player
 	player = SpawnObject<Hand>();
 
-	// Spawn the test laser
-	Laser* testLaser = SpawnObject<Laser>();
+	// Spawn the laser (possibly move this code later?)
+	SpawnObject<Laser>();
+
+	// Spawn a googly eye
+	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 470.0f, 729.0f, 0.1f));
+	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 100.0f, 729.0f, -0.1f));
 
 	// Load the level
 	level.Load();
@@ -204,9 +209,8 @@ void Game::Run() {
 	uint64 performanceFrequency = SDL_GetPerformanceFrequency();
 	uint64 lastPerformanceCounter = SDL_GetPerformanceCounter();
 
-
 	bool appIsRunning = true;
-	startFrameTime = lastPerformanceCounter * 1000 / performanceFrequency;
+	startFrameTime = (uint32) (lastPerformanceCounter * 1000 / performanceFrequency);
 
 	while (appIsRunning) {
 		// Calculate current frame time

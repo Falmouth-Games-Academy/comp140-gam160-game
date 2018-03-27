@@ -28,8 +28,8 @@ void GameStateEditor::Render() {
 		obj->Render();
 	}
 
-	// Render player
-	game.GetPlayer().Render();
+	// Render camera
+	game.GetCamera().Render();
 
 	// Render outlines around selected items
 	for (Object* obj : selectedItems) {

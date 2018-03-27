@@ -44,7 +44,7 @@ void GameStatePlay::Render() {
 		object->Render();
 	}
 
-	// Render camera (debug stuff)
+	// Render camera (layered and debug stuff)
 	game.GetCamera().Render();
 
 	// Render debug text

@@ -19,6 +19,8 @@ public:
 	template <typename ...ConstructorArgs>
 	inline T& Append(ConstructorArgs... args);
 
+	inline T& Insert(int index, const T& clone);
+
 	inline void Set(std::initializer_list<const T> list);
 
 	inline void RemoveByIndex(int index);
@@ -286,6 +288,21 @@ template<typename T> T& Array<T>::Append(const T& clone) {
 
 	// Return placement new-initialised object
 	return *new (&items[numItems++]) T(clone);
+}
+
+template<typename T> inline T& Array<T>::Insert(int index, const T& clone) {
+	// Resize list
+	// Todo: Inefficient: two move calls are performed on some items
+	Realloc(numItems + 1);
+
+	// Move items above this item in the list
+	for (int i = numItems; i > index; --i) {
+		// Move next item into this slot
+		new (&items[i]) T(std::move(items[i - 1]));
+	}
+
+	++numItems;
+	return *new (&items[index]) T(clone);
 }
 
 template<typename T> inline void Array<T>::Set(std::initializer_list<const T> list) {

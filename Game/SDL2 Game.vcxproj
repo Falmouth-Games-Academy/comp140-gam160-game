@@ -150,6 +150,7 @@
     <ClCompile Include="GameStatePlay.cpp" />
     <ClCompile Include="GameStateRecordSpeech.cpp" />
     <ClCompile Include="Gesture.cpp" />
+    <ClCompile Include="GooglyEye.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="ImageCache.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="GameStatePlay.h" />
     <ClInclude Include="GameStateRecordSpeech.h" />
     <ClInclude Include="Gesture.h" />
+    <ClInclude Include="GooglyEye.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="ImageCache.h" />
     <ClInclude Include="Player.h" />

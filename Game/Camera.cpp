@@ -44,10 +44,91 @@ void Camera::Update(float deltaTime) {
 }
 
 void Camera::Render() {
+	// Render ordered render call shoite
+
 	// Render debug information
 	if (DebugStringBox* debug = game.GetDebug()) {
 		debug->DrawString(StaticString<80>::FromFormat("Camera pos: %f %f %f", position.x, position.y, position.z));
 	}
+
+	// Render layers
+	FlushLayeredRenders();
+}
+
+void Camera::FlushLayeredRenders() {
+	// Perform every deferred render call in descending order
+	int lastMajorItem;
+	float32 lastMajorDepth = 10000.0f; // Hack
+	const int numCalls = renderCalls.GetNum();
+
+	for (int iteration = 0; iteration < numCalls; ++iteration) {
+		float32 lastMinorDepth = -10000.0f; // Hack
+		int lastMinorItem = -1;
+
+		for (int item = 0; item < numCalls; ++item) {
+			// Select this item if it's smaller depth than the last rendered item
+			// Or if the depth is the same as the last item, render it if it has a higher index than the last
+			float depth = renderCalls[item]->depth;
+			if ((renderCalls[item]->depth < lastMajorDepth && renderCalls[item]->depth > lastMinorDepth) || 
+				(renderCalls[item]->depth == lastMajorDepth && item > lastMajorItem)) {
+				lastMinorItem = item;
+				lastMinorDepth = renderCalls[item]->depth;
+
+				if (renderCalls[item]->depth == lastMajorDepth) {
+					break;
+				}
+			}
+		}
+
+		// If an item was found (this should always be true, but if the above hack stays, then it isn't necessarily)
+		if (lastMinorItem != -1) {
+			RenderCall* call = renderCalls[lastMinorItem];
+
+			if (!call->texture) {
+				continue;
+			}
+
+			// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
+			SDL_Point sdlRotationOrigin = {(int)call->rotationOrigin.x, (int)call->rotationOrigin.y};
+			SDL_Rect sdlDestRect = {(int)call->destRect.x, (int)call->destRect.y, (int)call->destRect.width, (int)call->destRect.height};
+
+			// Setup flip flags
+			SDL_RendererFlip sdlFlip = SDL_FLIP_NONE;
+
+			if (call->flipFlags == FlipFlags::Horizontal) {
+				sdlFlip = SDL_FLIP_HORIZONTAL;
+			} else if (call->flipFlags == FlipFlags::Vertical) {
+				sdlFlip = SDL_FLIP_VERTICAL;
+			} else if (call->flipFlags == (FlipFlags::Vertical | FlipFlags::Horizontal)) {
+				call->rotation += 180.0f; // This little detail might be why SDL doesn't have SDL_FLIP_BOTH
+			}
+
+			// If a sprite region was specified, draw the sprite with wrapping enabled
+			if (!call->useFullRegion) {
+				SDL_Rect sdlSourceRect = {(int)call->region.x, (int)call->region.y, (int)call->region.width, (int)call->region.height};
+
+				sdlDestRect.w -= sdlSourceRect.x;
+				sdlDestRect.h -= sdlSourceRect.y;
+				// Todo make this actually work
+
+				SDL_RenderCopyEx(game.GetRenderer(), const_cast<SDL_Texture*>(call->texture), &sdlSourceRect, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+			} else {
+				// Otherwise draw it normally
+				SDL_RenderCopyEx(game.GetRenderer(), const_cast<SDL_Texture*>(call->texture), nullptr, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+			}
+
+			// Update major item
+			lastMajorDepth = lastMinorDepth;
+			lastMajorItem = lastMinorItem;
+		}
+	}
+
+	// Delete them all
+	for (RenderCall* call : renderCalls) {
+		delete call;
+	}
+
+	renderCalls.Clear();
 }
 
 const Vec3& Camera::GetPosition() const {
@@ -85,7 +166,7 @@ void Camera::StartShake(float32 time, float32 rate, float32 magnitude) {
 	shakeInitialMagnitude = magnitude;
 }
 
-void Camera::RenderSprite(SDL_Texture* texture, const Vec3& position, const Vec2& size, float rotation, const Vec2& rotationOrigin, bool hFlip, bool vFlip) {
+/*void Camera::RenderSprite(SDL_Texture* texture, const Vec3& position, const Vec2& size, float rotation, const Vec2& rotationOrigin, bool hFlip, bool vFlip) {
 	if (position.z <= this->position.z) {
 		// Don't render things behind the camera!
 		return;
@@ -98,7 +179,7 @@ void Camera::RenderSprite(SDL_Texture* texture, const Vec3& position, const Vec2
 
 	SDL_RenderCopyEx(game.GetRenderer(), texture, nullptr, &destRect, rotation, &sdlRotationOrigin, 
 		(SDL_RendererFlip)((hFlip ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE) | (vFlip ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE)));
-}
+}*/
 
 void Camera::RenderSprite(const Sprite& sprite, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region) {
 	// Simply render the sprite's current frame
@@ -119,8 +200,9 @@ void Camera::RenderSpriteFrame(const SpriteFrame& sprite, const Vec3& position, 
 		return;
 	}
 
+	// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
+
 	if (SDL_Texture* texture = sprite.GetSDLTexture()) {
-		// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
 		float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
 		Vec2 cameraOrigin = this->position.xy - (viewBox.size * 0.5f) / zScale;
 		Vec2 origin = (position.xy - cameraOrigin - sprite.GetOrigin()) * zScale;
@@ -146,10 +228,12 @@ void Camera::RenderSpriteFrame(const SpriteFrame& sprite, const Vec3& position, 
 			sdlDestRect.h -= sdlSourceRect.y;
 			// Todo make this actually work
 
-			SDL_RenderCopyEx(game.GetRenderer(), sprite.GetSDLTexture(), &sdlSourceRect, &sdlDestRect, rotation, &sdlRotationOrigin, sdlFlip);
+			//SDL_RenderCopyEx(game.GetRenderer(), texture, &sdlSourceRect, &sdlDestRect, rotation, &sdlRotationOrigin, sdlFlip);
+			InsertNewRenderCall(new RenderCall(position.z - this->position.z, texture, region, Rect2(origin, sprite.GetDimensions() * zScale), rotation, sprite.GetOrigin() * zScale, sdlFlip));
 		} else {
 			// Otherwise draw it normally
-			SDL_RenderCopyEx(game.GetRenderer(), sprite.GetSDLTexture(), nullptr, &sdlDestRect, rotation, &sdlRotationOrigin, sdlFlip);
+			//SDL_RenderCopyEx(game.GetRenderer(), texture, nullptr, &sdlDestRect, rotation, &sdlRotationOrigin, sdlFlip);
+			InsertNewRenderCall(new RenderCall(position.z - this->position.z, texture, nullptr, Rect2(origin, sprite.GetDimensions() * zScale), rotation, sprite.GetOrigin() * zScale, sdlFlip));
 		}
 	}
 }
@@ -178,4 +262,9 @@ Vec3 Camera::WorldToScreen(const Vec3& worldPoint) const {
 	return Vec3((worldPoint.xy - cameraOrigin) * zScale, 1.0f);
 	// world = view + (screen / scale)
 	// scale = view - 
+}
+
+void Camera::InsertNewRenderCall(RenderCall* renderCall) {
+	// Insert into the render call list (unordered for now)
+	renderCalls.Append(renderCall);
 }

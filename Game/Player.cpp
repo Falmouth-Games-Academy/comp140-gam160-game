@@ -39,7 +39,6 @@ void Hand::Render() {
 
 void Hand::Update(float deltaTime) {
 	const float maxY = 900.0f;
-	const float gravity = 1800.0f;
 
 	// Spawn bottles
 	static float lastBottleSpawnTime = 0.0f;
@@ -105,7 +104,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Do gravity
-	velocity.y += gravity * deltaTime;
+	velocity.y += game.GetGravity() * deltaTime;
 
 	// Do collision
 	if (position.y > maxY) {

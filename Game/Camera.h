@@ -1,5 +1,6 @@
 #pragma once
 #include "Math.h"
+#include "Containers.h"
 
 namespace FlipFlags {
 	const uint32
@@ -12,6 +13,9 @@ class Camera {
 public:
 	void Update(float deltaTime);
 	void Render();
+
+	// Renders depth-layered assets
+	void FlushLayeredRenders();
 
 	// Set and get position
 	const Vec3& GetPosition() const;
@@ -48,10 +52,10 @@ public:
 		@param hFlip: Whether the sprite will be flipped horizontally
 		@param vFlip: Whether the sprite will be flipped vertically
 	*/
-	void RenderSprite(struct SDL_Texture* texture,
+	/*void RenderSprite(struct SDL_Texture* texture,
 		const Vec3& position, const Vec2& size, 
 		float rotation = 0.0f, const Vec2& rotationOrigin = Vec2(0.0f, 0.0f), 
-		bool hFlip = false, bool vFlip = false);
+		bool hFlip = false, bool vFlip = false);*/
 
 	/* Renders a sprite at a given position in the world
 		@param sprite: The sprite to render
@@ -97,6 +101,11 @@ public:
 	const float scalePerZ = 1.0f;
 
 private:
+	/* Inserts a render call into the ordered render call list.
+	   Delete will be called on the render call when it's no longer needed! */
+	void InsertNewRenderCall(struct RenderCall* renderCall);
+
+private:
 	// The position of the camera
 	Vec3 position = {0.0f, 0.0f, 0.0f};
 
@@ -128,4 +137,31 @@ private:
 
 	// Current positional offset due to the shake
 	Vec3 shakeOffset = {0.0f, 0.0f, 0.0f};
+
+	// List of depth-ordered render calls
+	Array<struct RenderCall*> renderCalls;
+};
+
+struct RenderCall {
+	// Default constructor
+	RenderCall(float32 depth_, const struct SDL_Texture* texture_, const Rect2* srcRect_, const Rect2& destRect_, const float rotation_, const Vec2& rotationOrigin_, uint32 flipFlags_) : 
+		depth(depth_), texture(texture_), destRect(destRect_), rotation(rotation_), flipFlags(flipFlags_), rotationOrigin(rotationOrigin_) {
+		if (srcRect_) {
+			srcRect = *srcRect_;
+			useFullRegion = false;
+		} else {
+			useFullRegion = true;
+		}
+	}
+
+	float32 depth;
+
+	// Parameters for the draw call
+	const struct SDL_Texture* texture;
+	Rect2 srcRect, destRect;
+	float32 rotation;
+	Vec2 rotationOrigin;
+	uint32 flipFlags;
+	Rect2 region;
+	bool8 useFullRegion;
 };

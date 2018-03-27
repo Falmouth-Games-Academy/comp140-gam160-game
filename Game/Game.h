@@ -33,7 +33,7 @@ public:
 	// Get renderer
 	inline SDL_Renderer* GetRenderer(RenderScreen screen = RenderScreen::Main);
 	
-	// Render stuff. In the game class. Ask no questions just accept fate.
+	// Specialised render stuff. In the game class. Ask no questions, just accept fate.
 	void RenderText(const char* text, int x, int y, RenderScreen screen = RenderScreen::Main);
 	void RenderRectangle(bool filled = false);
 
@@ -60,6 +60,12 @@ public:
 	inline float GetFrameTime() const;
 	inline uint32 GetFrameTimeMs() const;
 	inline float GetDeltaTime() const;
+
+public:
+	// World stuff
+
+	// Returns the world's gravity in pixels/sec/sec
+	inline constexpr float GetGravity() const;
 
 public:
 	// Object stuff
@@ -226,6 +232,10 @@ inline uint32 Game::GetFrameTimeMs() const {
 
 inline float Game::GetDeltaTime() const {
 	return deltaTime;
+}
+
+inline constexpr float Game::GetGravity() const {
+	return 1800.0f;
 }
 
 template<typename StateType>

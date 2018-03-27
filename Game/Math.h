@@ -10,6 +10,9 @@
 #undef max
 #endif
 
+// Predeclarations for Math functions
+template<typename T> class MinMax;
+
 namespace Math {
 	// Constants
 	const float pi = 3.141593f;
@@ -62,6 +65,9 @@ namespace Math {
 		return (int)((value + ((float)interval * 0.5f)) / interval) * interval;
 	}
 
+	// Lerping
+	inline float lerpfloat(float value, const MinMax<float>& oldRange, const MinMax<float>& newRange);
+
 	// Random number gesus
 	// Returns a random floating-point number between min and max (max exclusive)
 	inline float randfloat(float min, float max) {
@@ -83,6 +89,7 @@ class Vec2 {
 public:
 	// Constructors
 	Vec2() = default;
+	Vec2(float xy) : x(xy), y(xy) {};
 	Vec2(float x_, float y_) : x(x_), y(y_) {};
 
 	// Traditional vector math functions follow
@@ -266,3 +273,8 @@ public:
 
 	MinMaxType min, max;
 };
+
+// Math definitions that couldn't be done because due to incomplete class/struct types
+inline float Math::lerpfloat(float value, const MinMax<float>& oldRange, const MinMax<float>& newRange) {
+	return newRange.min + (value - oldRange.min) * (newRange.max - newRange.min) / (oldRange.max - oldRange.min);
+}
