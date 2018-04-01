@@ -1,7 +1,7 @@
 # comp140-gam160-game
 Repository for Assignment 1 of COMP140-GAM160
 
-# Game and controller Proposal
+# Game and controller Proposal 
 
 ## Story
 Command a small advanced space cruiser on it's journey to fight against the growing legion of space pirates in Galaxy Omega 3B.
