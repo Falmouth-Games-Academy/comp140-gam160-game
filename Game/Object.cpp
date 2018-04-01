@@ -69,7 +69,7 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 		  otherT = otherOrigin.y + otherObject.collisionBox.y * otherSpriteScale.y,
 		  otherB = otherOrigin.y + (otherObject.collisionBox.y + otherObject.collisionBox.height) * otherSpriteScale.y;
 
-	// 
+	// Check if there's a collision
 	if (selfL >= otherR || selfR <= otherL || selfT >= otherB || selfB <= otherT) {
 		return false;
 	} else {
@@ -84,7 +84,7 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 Vec3 Object::SpritePointToWorldPoint(const Vec2& spritePoint) const {
 	if (sprite.GetCurrentFrame()) {
 		// Convert the sprite coordinate to a world coordinate
-		return position + ((spritePoint - sprite.GetCurrentFrame()->GetBaseOrigin()) * sprite.GetCurrentFrame()->GetScale()).Rotated(rotation);
+		return sprite.GetCurrentFrame()->PixelToWorld(spritePoint, position, rotation);
 	} else {
 		return position + spritePoint;
 	}

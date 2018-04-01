@@ -66,7 +66,7 @@ void GameStateEditor::RenderDepthView() {
 
 	// Render the depth screen background
 	SDL_Renderer* renderer = game.GetRenderer();
-	SDL_Rect depthRect = {0, 0, depthRectSize.x, depthRectSize.y};
+	SDL_Rect depthRect = {0, 0, (int)depthRectSize.x, (int)depthRectSize.y};
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderFillRect(renderer, &depthRect);

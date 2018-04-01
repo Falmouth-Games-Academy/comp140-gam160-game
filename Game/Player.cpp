@@ -78,7 +78,7 @@ void Hand::Update(float deltaTime) {
 	laserPower = Math::clamp(game.GetGesture().GetFlexAngle() / 90.0f, 0.0f, 1.0f);
 
 	// Open mouth
-	sprite.SetCurrentFrame(Math::clampmax((int)(laserPower * sprite.GetNumFrames()), sprite.GetNumFrames() - 1));
+	sprite.SetCurrentFrame(Math::clampmax(Math::round(laserPower * sprite.GetNumFrames(), 1.0f), (float)(sprite.GetNumFrames() - 1)));
 
 	// Do gesture movement
 	bool doFriction = false;
@@ -112,6 +112,7 @@ void Hand::Update(float deltaTime) {
 		velocity.y = 0.0f;
 	}
 
+	// Do debug keyboard movement
 	if (game.GetInput().IsKeyDown(SDLK_LEFT)) {
 		velocity.x = -900.0f;
 	} else if (game.GetInput().IsKeyDown(SDLK_RIGHT)) {
@@ -140,4 +141,13 @@ void Hand::Update(float deltaTime) {
 
 	// Perform final collision-checked movement
 	this->Move(velocity * deltaTime);
+}
+
+Vec3 Hand::SpritePointToWorldPoint(const Vec2& spritePoint) const
+{
+	if (sprite.GetCurrentFrame()) {
+		return sprite.GetCurrentFrame()->PixelToWorld(spritePoint, position + headBob, rotation);
+	} else {
+		return position + spritePoint;
+	}
 }

@@ -5,8 +5,15 @@
 
 #include <fmod.hpp>
 
-int openPositions[20];
-int closedPositions[20];
+struct SyllableKeyframe {
+	// Position in the sound, in samples
+	unsigned int position;
+
+	// todo
+};
+
+unsigned int openPositions[20];
+unsigned int closedPositions[20];
 int numSwitchPositions = 0;
 int currentSwitchPosition = -1;
 
@@ -80,7 +87,6 @@ void GameStateRecordSpeech::Update(float deltaTime) {
 		} else {
 			if (numSwitchPositions < 20) {
 				unsigned int position;
-				bool isPaused;
 				playingChannel->getPosition(&position, FMOD_TIMEUNIT_PCM);
 
 				openPositions[numSwitchPositions++] = position;

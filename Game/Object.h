@@ -92,7 +92,7 @@ public:
 public:
 	// Sprite position calculations
 	// Converts a pixel position on the object's sprite to a world position, considering the object's rotation and scale
-	Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const;
+	virtual Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const;
 
 protected:
 	// Current sprite

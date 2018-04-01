@@ -7,14 +7,14 @@
 class SpriteFrame {
 public:
 	/* Constructors and destructors */
-	SpriteFrame() : originalOrigin(0.0f, 0.0f), scaledOrigin(0.0f, 0.0f), scaledDimensions(0.0f, 0.0f), scale(0.0f, 0.0f), textures{nullptr}, 
+	SpriteFrame() : baseOrigin(0.0f, 0.0f), scaledOrigin(0.0f, 0.0f), scaledDimensions(0.0f, 0.0f), scale(0.0f, 0.0f), textures{nullptr}, 
 		sourceImage(nullptr) {};
 
 	// Constructor: Tries to load the image and store it
 	inline SpriteFrame(const char* filename, const Vec2& origin_ = Vec2(0.0f, 0.0f), const Vec2& scale_ = Vec2(1.0f, 1.0f));
 
 	// Copy constructor
-	inline SpriteFrame(const SpriteFrame& sprite) : originalOrigin(sprite.originalOrigin), scaledOrigin(sprite.scaledOrigin), scaledDimensions(sprite.scaledDimensions), 
+	inline SpriteFrame(const SpriteFrame& sprite) : baseOrigin(sprite.baseOrigin), scaledOrigin(sprite.scaledOrigin), scaledDimensions(sprite.scaledDimensions), 
 		scale(sprite.scale), textures{nullptr}, sourceImage(sprite.sourceImage) {};
 
 	// Destructor: Frees image etc
@@ -57,12 +57,17 @@ public:
 	// Todo: true const correctness?
 	struct SDL_Texture* GetSDLTexture(RenderScreen screen = RenderScreen::Main) const;
 
+public:
+	// Tools
+	// PixelToWorld: Converts a pixel coordinate on this sprite to a world coordinate
+	inline Vec3 PixelToWorld(const Vec2& spritePoint, const Vec3& worldPoint, float rotation) const;
+
 private:
 	// Pointer to the source image
 	const Image* sourceImage = nullptr;
 
 	// Origin of the sprite, in pixels relative to the original unscaled image
-	Vec2 originalOrigin;
+	Vec2 baseOrigin;
 
 	// Origin of the sprite, in pixels relative to the scaled image
 	Vec2 scaledOrigin;
@@ -148,10 +153,10 @@ public:
 	void SetScale(const Vec2& scale);
 
 	// Gets the scale of the current frame
-	const Vec2& GetScale() const;
+	const Vec2 GetScale() const;
 
 	// Gets the origin of the current frame
-	const Vec2& GetOrigin() const;
+	const Vec2 GetOrigin() const;
 
 	// Todo standardise which frames are being affected/used lol
 
@@ -253,7 +258,7 @@ inline void Sprite::SetCurrentFrame(float32 index) {
 	currentFrame = index;
 }
 
-inline const Vec2& Sprite::GetScale() const {
+inline const Vec2 Sprite::GetScale() const {
 	if (const SpriteFrame* frame = GetCurrentFrame()) {
 		return frame->GetDimensions();
 	} else {
@@ -261,7 +266,7 @@ inline const Vec2& Sprite::GetScale() const {
 	}
 }
 
-inline const Vec2& Sprite::GetOrigin() const {
+inline const Vec2 Sprite::GetOrigin() const {
 	if (const SpriteFrame* frame = GetCurrentFrame()) {
 		return frame->GetOrigin();
 	} else {
@@ -290,7 +295,7 @@ inline SpriteFrame::SpriteFrame(const char* filename, const Vec2& origin_, const
 }
 
 inline const Vec2& SpriteFrame::GetBaseOrigin() const {
-	return originalOrigin;
+	return baseOrigin;
 }
 
 inline const Vec2& SpriteFrame::GetOrigin() const {
@@ -298,7 +303,7 @@ inline const Vec2& SpriteFrame::GetOrigin() const {
 }
 
 inline void SpriteFrame::SetBaseOrigin(const Vec2& origin) {
-	originalOrigin = origin;
+	baseOrigin = origin;
 	scaledOrigin = origin * scale;
 }
 
@@ -316,7 +321,7 @@ inline const Vec2 SpriteFrame::GetBaseDimensions() const {
 
 inline void SpriteFrame::SetScale(const Vec2& scale) {
 	this->scale = scale;
-	scaledOrigin = originalOrigin * scale;
+	scaledOrigin = baseOrigin * scale;
 
 	if (sourceImage) {
 		scaledDimensions = Vec2((float)sourceImage->GetDimensions().width, (float)sourceImage->GetDimensions().height) * scale;
@@ -327,4 +332,8 @@ inline void SpriteFrame::SetScale(const Vec2& scale) {
 
 inline const Vec2& SpriteFrame::GetScale() const {
 	return scale;
+}
+
+inline Vec3 SpriteFrame::PixelToWorld(const Vec2& pixelPosition, const Vec3& worldPosition, float rotation) const {
+	return worldPosition + ((pixelPosition - baseOrigin) * scale).Rotated(rotation);
 }

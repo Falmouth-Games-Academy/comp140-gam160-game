@@ -16,11 +16,18 @@ public:
 	Object::Type GetType() const override {return Object::HandType;}
 
 public:
+	// Returns a point on the hand, considering its bobbed position
+	Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const override;
+
+public:
 	// Gets the direction of the hand (-1 is left, 1 is right)
 	inline int GetDirection() const;
 
 	// Returns how much power the laser should have, if any (0 = no laser being fired)
 	inline float32 GetLaserPower() const;
+
+	// Returns the exact position of the hand, including its bobbing
+	inline Vec3 GetBobbedPosition() const;
 
 private:
 	// Offset of the head according to the animated head bob
@@ -42,4 +49,8 @@ inline int Hand::GetDirection() const {
 
 inline float32 Hand::GetLaserPower() const {
 	return laserPower;
+}
+
+inline Vec3 Hand::GetBobbedPosition() const {
+	return position + headBob;
 }

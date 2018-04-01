@@ -19,7 +19,7 @@ void SpriteFrame::Load(const char* filename, const Vec2& origin, const Vec2& sca
 	sourceImage = game.GetImageCache().ObtainImage(filename);
 
 	// Set the origin and scale anyway
-	this->originalOrigin = origin;
+	this->baseOrigin = origin;
 	this->scale = scale;
 
 	// Update actual dimensions etc if the image successfully loaded

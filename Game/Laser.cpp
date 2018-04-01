@@ -121,8 +121,8 @@ void Laser::Render() {
 
 	const float rainbowThreshold = 0.5f;
 	if (power >= rainbowThreshold) {
-		SDL_SetTextureAlphaMod(sprite.GetFrame(CentreRainbow)->GetSDLTexture(), 255 * ((power - rainbowThreshold) / (1.0f - rainbowThreshold)));
-		SDL_SetTextureAlphaMod(sprite.GetFrame(StartRainbow)->GetSDLTexture(), 255 * ((power - rainbowThreshold) / (1.0f - rainbowThreshold)));
+		SDL_SetTextureAlphaMod(sprite.GetFrame(CentreRainbow)->GetSDLTexture(), (uint8)(255.0f * ((power - rainbowThreshold) / (1.0f - rainbowThreshold))));
+		SDL_SetTextureAlphaMod(sprite.GetFrame(StartRainbow)->GetSDLTexture(), (uint8)(255.0f * ((power - rainbowThreshold) / (1.0f - rainbowThreshold))));
 		camera.RenderSpriteFrame(sprite, StartRainbow, position + Vec2::FromRotation(rotation + 90.0f, sprite.GetFrame(StartFiery)->GetDimensions().x), rotation, FlipFlags::Horizontal);
 		camera.RenderSpriteFrame(sprite, CentreRainbow, position + Vec2::FromRotation(rotation + 90.0f, sprite.GetFrame(StartFiery)->GetDimensions().x), rotation);
 	}
