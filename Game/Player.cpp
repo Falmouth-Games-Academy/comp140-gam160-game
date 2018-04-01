@@ -53,8 +53,8 @@ void Hand::Update(float deltaTime) {
 	}*/
 
 	// Update rotation
-	Vec3 currentAccel = game.GetGesture().GetAverageAccel(25, 0);
-	Vec3 lastAccel = game.GetGesture().GetAverageAccel(50, 25);
+	Vec3 currentAccel = game.GetGesture().GetAverageAccel(100, 0);
+	Vec3 lastAccel = game.GetGesture().GetAverageAccel(200, 100);
 
 	float lastRotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-lastAccel.x, -lastAccel.z)) * Math::degs;
 	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.x, -currentAccel.z)) * Math::degs;

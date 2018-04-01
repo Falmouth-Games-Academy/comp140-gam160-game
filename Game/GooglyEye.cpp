@@ -9,6 +9,7 @@ void GooglyEye::OnSpawn() {
 	// Setup vars
 	eyeRadius = 75.0f;
 	pupilRadius = 55.0f;
+	pupilEdgeScale = 0.7f;
 
 	pupilRestingDirection = Vec2(-1.0f, 0.0f) * game.GetGravity();
 	pupilFriction = 800.0f;
@@ -27,14 +28,14 @@ void GooglyEye::Update(float deltaTime) {
 
 	pupilPosition += (lastPosition.xy - position.xy) * forceMultiplier;
 
+	// Pupil physics!!
+	UpdatePupilPhysics(deltaTime);
+
 	// Update scaling
-	float pupilXScale = Math::lerpfloat(pupilPosition.Length(), MinMax<float>(eyeRadius - pupilRadius, 0.0f), MinMax<float>(0.7f, 1.0f));
+	float pupilXScale = Math::lerpfloat(pupilPosition.Length(), MinMax<float>(eyeRadius - pupilRadius, 0.0f), MinMax<float>(pupilEdgeScale, 1.0f));
 
 	sprite.GetFrame(0)->SetScale(Vec2(eyeRadius * 2.0f / sprite.GetFrame(0)->GetBaseDimensions().x));
 	sprite.GetFrame(1)->SetScale(Vec2(pupilRadius * 2.0f / sprite.GetFrame(1)->GetBaseDimensions().x) * Vec2(pupilXScale, 1.0f));
-
-	// Pupil physics!!
-	UpdatePupilPhysics(deltaTime);
 }
 
 void GooglyEye::Render() {

@@ -35,6 +35,9 @@ private:
 	float32 eyeRadius;
 	float32 pupilRadius;
 
+	// Scale factor of the pupil when it's at the edge of the eye (squish effect)
+	float32 pupilEdgeScale;
+
 	// Current position of the pupil, relative to the centre of the eyeball
 	Vec2 pupilPosition;
 

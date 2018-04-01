@@ -18,3 +18,6 @@ This generally makes C++ classes easier to read and document.
 
 ### Except in Math functions
 Rationale for the math exception is that most math functions are inline, and the header is very large. As a programmer it's easier and faster to write and update math functions where they are. This may change in the future noting the aformentioned benefits of separate definitions.
+
+### Except in subclass GetType functions
+Rationale is that when it's on the same line, it is both easier to write and easier to interpret the object type.
