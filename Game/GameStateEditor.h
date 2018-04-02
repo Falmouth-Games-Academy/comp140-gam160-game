@@ -20,6 +20,7 @@ public:
 	void UpdateCursorDrawingLayer();
 	void UpdateCursorPlacingLayer();
 	void UpdateCursorDrawingCollision();
+	void UpdateCursorPlacingObject();
 
 	// Additional render functions
 	void RenderDepthView();
@@ -34,11 +35,12 @@ private:
 		PlacingLayer,
 		DrawingLayer,
 		DrawingCollision,
+		PlacingObject,
 		NumCursorStates,
 	};
 
 	// Current cursor state
-	CursorState cursorState;
+	CursorState cursorState = Normal;
 
 	// Current position of the mouse cursor, in level units
 	Vec3 cursorPosition;
@@ -55,6 +57,11 @@ private:
 
 	// CursorState::DrawingCollision
 	Vec3 cursorStartCollisionPosition;
+
+	// CursorState::PlacingObject
+	Object::Type cursorPlacingObjectType = Object::BottleType;
+
+	Object* cursorCreatingObjectPtr;
 
 	// Cursor graphics for feedback
 	SDL_Cursor* cursorSprites[NumCursorStates];

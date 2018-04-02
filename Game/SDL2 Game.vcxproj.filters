@@ -105,6 +105,9 @@
     <ClCompile Include="GooglyEye.cpp">
       <Filter>Source Files\Gameplay\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="DataFile.cpp">
+      <Filter>Source Files\Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
@@ -184,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="GooglyEye.h">
       <Filter>Source Files\Gameplay\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="DataFile.h">
+      <Filter>Source Files\Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

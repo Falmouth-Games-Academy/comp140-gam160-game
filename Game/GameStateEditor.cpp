@@ -3,6 +3,7 @@
 #include "GameStateEditor.h"
 #include "FileDialog.h"
 #include "Object.h"
+#include "DataFile.h"
 
 void GameStateEditor::Update(float deltaTime) {
 	// Update camera
@@ -48,14 +49,14 @@ void GameStateEditor::Render() {
 	Vec3 cameraPosition = game.GetCamera().GetPosition();
 
 	if (debug) {
-		debug->DrawString(StaticString<140>::FromFormat("Camera position: %.2f,%.2f,%.2f", cameraPosition.x, cameraPosition.y, cameraPosition.z));
 		debug->DrawString(StaticString<140>::FromFormat("Cursor position: %.2f,%.2f,%.2f", cursorPosition.x, cursorPosition.y, cursorPosition.z));
 		debug->DrawString(StaticString<140>::FromFormat("Select position: %.2f,%.2f", selectStartPosition.x, selectStartPosition.y, cursorScreenPosition.x, cursorScreenPosition.y));
-		debug->DrawString("");
 		debug->DrawString("LClick: Select/Drag  Space+LClick: Move away/closer S+LClick: Scale");
 		debug->DrawString("ScrollWheel: Zoom, RightClick: Pan, Z: Reset zoom, C: Centre camera on player");
+		debug->DrawString("L: Create background layer, O: Create object");
 	}
 
+	// Render the depth view box
 	if (selectedItems.GetNum()) {
 		RenderDepthView();
 	}
@@ -125,6 +126,7 @@ void GameStateEditor::UpdateCursor() {
 		case Normal:
 			// Create new layer if L key is pressed
 			if (game.GetInput().IsKeyBooped(SDLK_l)) {
+				// Open a dialogue to load the layer
 				FileDialog dialog(FileDialog::OpenFile, "Image files/*.JPG;*.PNG;*.BMP");
 
 				dialog.Open();
@@ -142,6 +144,11 @@ void GameStateEditor::UpdateCursor() {
 				}
 			}
 
+			// Create object if O key is pressed
+			else if (game.GetInput().IsKeyBooped(SDLK_o)) {
+				cursorState = PlacingObject;
+			}
+
 			// Draw collision box if C key is pressed
 			else if (game.GetInput().IsKeyDown(SDLK_c) && selectedItems.GetNum() == 1) {
 				cursorState = DrawingCollision;
@@ -150,6 +157,38 @@ void GameStateEditor::UpdateCursor() {
 			// Drag layer if nothing else is being pressed
 			else if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
 				cursorState = DraggingLayer;
+			}
+
+			// Save entire map if S key is pressed
+			else if (game.GetInput().IsKeyBooped(SDLK_s)) {
+				// Prompt the user to save the level file somewhere
+				FileDialog dialog(FileDialog::SaveFile, "Handzer Data File/*.HDF");
+
+				dialog.Open();
+
+				// Ensure the user choses a file
+				if (const char* filename = dialog.GetResult()) {
+					DataFile data;
+					DataNode& rootNode = data.GetRootNode();
+
+					// Store the level data
+					DataNode* layerPackNode = rootNode.AddNode(DataNode::Node, "background", 0);
+
+					for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
+						DataNode* layerNode = layerPackNode->AddNode(DataNode::Node, "layer", 0);
+
+						// Write position
+						DataNode* positionNode = layerNode->AddNode(DataNode::Vector3, "pos", 1);
+						positionNode->GetValues().vec3Values[0] = layer.GetPosition();
+
+						// Write scale
+						DataNode* scaleNode = layerNode->AddNode(DataNode::Vector3, "scale", 1);
+						scaleNode->GetValues().vec3Values[0] = layer.GetSprite().GetScale();
+					}
+
+					// Save the level data
+					data.Save(filename);
+				}
 			}
 
 			UpdateSelections();
@@ -165,6 +204,9 @@ void GameStateEditor::UpdateCursor() {
 			break;
 		case DrawingCollision:
 			UpdateCursorDrawingCollision();
+			break;
+		case PlacingObject:
+			UpdateCursorPlacingObject();
 			break;
 	}
 
@@ -300,6 +342,26 @@ void GameStateEditor::UpdateCursorDrawingCollision() {
 
 	// Return back to normal cursor state if necessary
 	if (!game.GetInput().IsKeyDown(SDLK_c)) {
+		cursorState = Normal;
+	}
+}
+
+#include "Bottle.h"
+
+void GameStateEditor::UpdateCursorPlacingObject() {
+	// Create object if it doesn't exist
+	if (!cursorCreatingObjectPtr) {
+		cursorCreatingObjectPtr = game.SpawnObject<Bottle>();
+	}
+
+	// Reposition object
+	if (cursorCreatingObjectPtr) {
+		cursorCreatingObjectPtr->SetPosition(cursorPosition);
+	}
+
+	// Return back to normal cursor state when object is placed
+	if (game.GetInput().IsMouseBooped(InputManager::LeftButton)) {
+		cursorCreatingObjectPtr = nullptr;
 		cursorState = Normal;
 	}
 }

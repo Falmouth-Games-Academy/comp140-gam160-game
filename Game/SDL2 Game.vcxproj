@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="Bottle.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="DataFile.cpp" />
     <ClCompile Include="FileDialog.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateEditor.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Bottle.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Containers.h" />
+    <ClInclude Include="DataFile.h" />
     <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />

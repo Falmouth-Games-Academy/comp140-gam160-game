@@ -164,23 +164,6 @@ private:
 	int32 width, height;
 };
 
-
-/*class GameObject {
-	enum Type {
-		Ball,
-		Paddle
-	};
-
-	virtual Type GetType() = 0;
-};
-
-class GameScene {
-	template <ObjectType>
-	ObjectIterator& GetObjects<ObjectType>();
-
-	Array<ObjectList*> objectListsByType;
-};*/
-
 // Inlines
 inline SDL_Renderer* Game::GetRenderer(RenderScreen screen) {
 	return sdlRenderers[screen];

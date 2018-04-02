@@ -20,6 +20,11 @@ public:
 	// Bool conversion operator, so that if (StaticString) can be used to check empty strings
 	inline operator bool() const;
 	
+public:
+	// Returns the length of the string up to the null terminator, in characters
+	inline int Length() const;
+
+public:
 	// Constructs string based on printf-style format
 	static StaticString<MaxLength> FromFormat(const char* format, ...);
 private:
@@ -70,4 +75,8 @@ template<int MaxLength> StaticString<MaxLength>::operator const char*() const {
 
 template<int MaxLength> StaticString<MaxLength>::operator bool() const {
 	return data[0] != '\0';
+}
+
+template<int MaxLength> int StaticString<MaxLength>::Length() const {
+	return strlen(data); // gg ez lawl
 }
