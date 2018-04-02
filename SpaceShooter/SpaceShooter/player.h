@@ -1,16 +1,19 @@
 #ifndef PLAYER_H
 #define PLPAYER_H
 
+#include "Sprite.h"
 #include "globals.h"
 
 class Graphics;
 
-class Player
+class Player : public Sprite
 {
 public:
 	Player();
 	Player(Graphics &graphics, float x, float y);
+	void draw(Graphics &graphics);
 	void update(float elapsedTime);
+
 
 	//Moves player left by -dx
 	void moveLeft();
@@ -19,16 +22,13 @@ public:
 	void moveRight();
 
 	//Moves player left by -dx
-	void moveLeftC();
+	void moveUp();
 
 	//Moves player right by dx
-	void moveRightC();
+	void moveDown();
 
 	//Stops the player from moving
 	void stopMoving();
-
-	//Stops the player from moving
-	void stopMovingC();
 
 private:
 	float dx, dy;

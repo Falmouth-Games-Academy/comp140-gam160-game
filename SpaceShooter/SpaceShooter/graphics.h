@@ -21,14 +21,25 @@ public:
 	Graphics();
 	~Graphics();
 
+	SDL_Surface * loadSprite(const std::string & filePath);
+
+	void blitSurface(SDL_Texture * texture, SDL_Rect * sourceRectangle, SDL_Rect * DestinationRectangle);
+
+	void flip();
+
+	void clear();
+
+	SDL_Renderer * getRenderer() const;
+
 	void UpdateGraphics();
 
-	SDL_Texture* LoadSprite(std::string file);
+	//SDL_Texture* LoadSprite(std::string file);
 
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-	SDL_Texture* sprite;
+	
+	std::map<std::string, SDL_Surface*> sprite;
 
 };
 

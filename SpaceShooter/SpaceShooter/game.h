@@ -13,14 +13,11 @@ public:
 
 private:
 	void gameLoop();
-	void draw(Graphics &graphics);
-
+	void drawGraphics(Graphics &graphics);
 	void update(float elapsedTime);
 
 	Player player;
 
 };
-
-
 
 #endif // GAME_H
