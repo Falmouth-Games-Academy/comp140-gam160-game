@@ -1,4 +1,8 @@
-﻿  game.cpp
-d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\game.cpp(97): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+﻿  player.cpp
+d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(62): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(75): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(76): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(77): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(78): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   SpaceShooter.vcxproj -> D:\DIgital\Uni stuff\COMP140\Assignments\comp140-gam160-game\SpaceShooter\Debug\SpaceShooter.exe
   SpaceShooter.vcxproj -> D:\DIgital\Uni stuff\COMP140\Assignments\comp140-gam160-game\SpaceShooter\Debug\SpaceShooter.pdb (Partial PDB)

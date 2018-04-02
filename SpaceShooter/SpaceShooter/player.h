@@ -14,7 +14,11 @@ public:
 	void draw(Graphics &graphics);
 	void update(float elapsedTime);
 
+	SDL_Rect PlayerBoxCollider;
 
+	void levelCollisions(SDL_Rect A, SDL_Rect B);
+
+	// All the movement functions
 	//Moves player left by -dx
 	void moveLeft();
 
@@ -27,8 +31,11 @@ public:
 	//Moves player right by dx
 	void moveDown();
 
-	//Stops the player from moving
-	void stopMoving();
+	//Stops the player from moving along the X axis
+	void stopMovingX();
+
+	//Stops the player from moving along the Y axis
+	void stopMovingY();
 
 private:
 	float dx, dy;
