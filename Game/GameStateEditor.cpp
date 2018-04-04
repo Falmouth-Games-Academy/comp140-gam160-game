@@ -162,7 +162,7 @@ void GameStateEditor::UpdateCursor() {
 			// Save entire map if S key is pressed
 			else if (game.GetInput().IsKeyBooped(SDLK_s)) {
 				// Prompt the user to save the level file somewhere
-				FileDialog dialog(FileDialog::SaveFile, "Handzer Data File/*.HDF");
+				FileDialog dialog(FileDialog::SaveFile, "Handzer Data File/*.hdf");
 
 				dialog.Open();
 
@@ -176,6 +176,10 @@ void GameStateEditor::UpdateCursor() {
 
 					for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
 						DataNode* layerNode = layerPackNode->AddNode(DataNode::Node, "layer", 0);
+
+						// Write sprite
+						DataNode* spriteNode = layerNode->AddNode(DataNode::String, "sprite", 0);
+						spriteNode->SetValueAsString(layer.GetSprite().GetCurrentFrame()->GetImage()->GetFilename());
 
 						// Write position
 						DataNode* positionNode = layerNode->AddNode(DataNode::Vector3, "pos", 1);

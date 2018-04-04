@@ -20,6 +20,7 @@ public:
 	// Destructor: Frees image etc
 	~SpriteFrame();
 
+private:
 	// Frees the texture cache
 	void ClearTextureCache();
 
@@ -52,6 +53,9 @@ public:
 
 	// Gets the scale of the image
 	inline const Vec2& GetScale() const;
+
+	// Returns the original image
+	inline const Image* GetImage() const;
 
 	// Returns a texture of the image, generating one if it doesn't exist
 	// Todo: true const correctness?
@@ -332,6 +336,10 @@ inline void SpriteFrame::SetScale(const Vec2& scale) {
 
 inline const Vec2& SpriteFrame::GetScale() const {
 	return scale;
+}
+
+inline const Image* SpriteFrame::GetImage() const {
+	return sourceImage;
 }
 
 inline Vec3 SpriteFrame::PixelToWorld(const Vec2& pixelPosition, const Vec3& worldPosition, float rotation) const {

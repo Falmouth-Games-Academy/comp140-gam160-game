@@ -44,17 +44,25 @@ bool Level::Load() {
 			for (int i = 0, num = layerNode->GetNum(); i < num; ++i) {
 				DataNode* node = layerNode->GetValues().nodeValues[i];
 
-				// Create the new layer
-				BackgroundLayer& layer = layers.Append(layers.GetNum(), "graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 0.0f), Vec2(1.0f, 1.0f));
-
-				// Load position
-				if (DataNode* position = node->GetNodeByName("pos")) {
-					layer.SetPosition(position->GetValues().vec3Values[0]);
+				// Load sprite image
+				const char* backgroundImage = nullptr;
+				if (DataNode* sprite = node->GetNodeByName("sprite")) {
+					backgroundImage = sprite->GetValueAsString();
 				}
 
-				// Load scale
-				if (DataNode* scale = node->GetNodeByName("scale")) {
-					layer.SetScale(scale->GetValues().vec3Values[0].xy);
+				if (backgroundImage) {
+					// Create the new layer
+					BackgroundLayer& layer = layers.Append(layers.GetNum(), "graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 0.0f), Vec2(1.0f, 1.0f));
+
+					// Load position
+					if (DataNode* position = node->GetNodeByName("pos")) {
+						layer.SetPosition(position->GetValues().vec3Values[0]);
+					}
+
+					// Load scale
+					if (DataNode* scale = node->GetNodeByName("scale")) {
+						layer.SetScale(scale->GetValues().vec3Values[0].xy);
+					}
 				}
 			}
 		}

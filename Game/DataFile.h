@@ -11,6 +11,7 @@ public:
 		Int = 'I',
 		Float = 'F',
 		Node = 'N',
+		String = 'S', // Todo: Allow square brackets in strings. Currently this is not allowed due to the formatting
 		Vector3 = 'V',
 	};
 
@@ -18,6 +19,7 @@ public:
 		uint8* byteValues;
 		int32* intValues;
 		float32* floatValues;
+		char* charValues; // used for Strings
 		Vec3* vec3Values;
 		DataNode** nodeValues;
 	};
@@ -44,6 +46,11 @@ public:
 	inline void SetNumValues(int32 numValues);
 
 public:
+	// Specific value types
+	inline void SetValueAsString(const char* string);
+	const char* GetValueAsString() const;
+
+public:
 	// Returns the tag associated with this data node
 	inline const char* GetTag() const;
 
@@ -57,7 +64,7 @@ public:
 	typedef struct _iobuf FILE;
 
 	// Attempts to write the node data to a file stream
-	bool WriteToFile(FILE* destinationFile) const;
+	bool WriteToFile(FILE* destinationFile, bool doFormatting = true, int indentationLevel = 0) const;
 
 	// Attempts to read the node data from a file stream
 	bool ReadFromFile(class DataStream* sourceFile);
@@ -156,6 +163,8 @@ public:
 			break;
 			ContinueLoop:;
 		}
+
+		return &stream[index];
 	}
 
 	// Advances until *any* of the chars within findChars are discovered, then skips past the first one
@@ -178,7 +187,27 @@ public:
 		BreakLoop:
 		++index;
 
-		return stream;
+		return &stream[index];
+	}
+
+	// If the current character is one of the chars within findChars, skip it and keep skipping until it's not
+	inline char* Skip(const char* findChars) {
+		int numFindChars = strlen(findChars);
+
+		for (index; index < length; ++index) {
+			for (int c = 0; c < numFindChars; ++c) {
+				if (stream[index] == findChars[c]) {
+					// Skip past matching characters
+					goto ContinueSkip;
+				}
+			}
+
+			// Stop if the character doesn't match
+			break;
+			ContinueSkip:;
+		}
+
+		return &stream[index];
 	}
 
 public:
@@ -251,6 +280,7 @@ void DataNode::SetNumValues(int32 newNumValues) {
 			case Byte: bytesPerItem = 1; break;
 			case Float: bytesPerItem = sizeof (float32); break;
 			case Node: bytesPerItem = sizeof (DataNode*); break;
+			case String: bytesPerItem = sizeof (values.charValues[0]); break;
 			case Int: bytesPerItem = sizeof (int32); break;
 			case Vector3: bytesPerItem = sizeof (Vec3); break;
 		}
@@ -279,6 +309,16 @@ void DataNode::SetNumValues(int32 newNumValues) {
 
 	// Update numValues
 	numValues = newNumValues;
+}
+
+inline void DataNode::SetValueAsString(const char* string) {
+	SetNumValues(strlen(string) + 1);
+
+	strcpy(values.charValues, string);
+}
+
+inline const char* DataNode::GetValueAsString() const {
+	return values.charValues;
 }
 
 const char* DataNode::GetTag() const {

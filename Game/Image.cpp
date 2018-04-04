@@ -6,11 +6,11 @@
 #include <Windows.h>
 #include <gdiplus.h>
 
-#pragma comment(lib, "gdiplus.lib")
+#pragma comment(lib, "gdiplus.lib") // todo: cross-compatibility considerations
 
 int32 Image::numRefs = 0;
 
-Image::Image(const char* filename) : pixels(nullptr) {
+Image::Image(const char* filename) : pixels(nullptr), filename("") {
 	// Add global ref
 	Image::AddRef();
 
@@ -18,7 +18,7 @@ Image::Image(const char* filename) : pixels(nullptr) {
 	Load(filename);
 }
 
-Image::Image(const Image& other) : dimensions(other.dimensions), pitch(other.pitch) {
+Image::Image(const Image& other) : dimensions(other.dimensions), pitch(other.pitch), filename("") {
 	// Add reference
 	Image::AddRef();
 
@@ -37,6 +37,8 @@ bool Image::Load(const char* filename) {
 	// Unload the previous image, if one exists
 	delete pixels;
 	pixels = nullptr;
+
+	this->filename = "";
 
 	// Try to load the file into a GDIPlus image
 	wchar_t wideName[280];
@@ -59,6 +61,9 @@ bool Image::Load(const char* filename) {
 
 			bitmap->UnlockBits(&data);
 		}
+
+		// Copy the file name
+		this->filename = filename;
 	}
 
 	// Free the bitmap

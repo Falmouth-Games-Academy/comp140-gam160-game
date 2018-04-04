@@ -37,58 +37,96 @@ DataNode* DataNode::AddNode(Type dataType, const char* tag, int32 numInitialValu
 	return values.nodeValues[numValues - 1];
 }
 
-bool DataNode::WriteToFile(FILE* destFile) const {
+bool DataNode::WriteToFile(FILE* destFile, bool doFormatting, int indentationDepth) const {
 	StaticString<maxTagLength + 3> blockOpener = StaticString<maxTagLength + 3>::FromFormat("%s:%c[", (const char*)tag, type);
+	static const char* tabs = "\t\t\t\t\t\t\t\t\t\t"; // Max indentation limit: 10 for now
+
+	// Write indentation if formatted
+	if (doFormatting) {
+		if (indentationDepth > sizeof (tabs) - 1) {
+			indentationDepth = sizeof (tabs) - 1;
+		}
+
+		fwrite(tabs, 1, indentationDepth, destFile);
+	}
+
+	// Write metadata and opening bracket
+	fwrite((char*)blockOpener, 1, blockOpener.Length(), destFile);
 
 	// Write the data in text form
 	switch (type) {
 		case Float: {
 			// Write text floats
-			fwrite((char*)blockOpener, 1, blockOpener.Length(), destFile);
-
 			for (int i = 0; i < numValues; ++i) {
-				StaticString<32> number = StaticString<32>::FromFormat(i == numValues - 1 ? "%.3f]" : "%.3f,", values.floatValues[i]);
+				StaticString<32> number = StaticString<32>::FromFormat(i == numValues - 1 ? "%.3f" : "%.3f,", values.floatValues[i]);
 				
 				fwrite((char*)number, 1, number.Length(), destFile);
 			}
 
-			return true;
+			break;
+		}
+		case String: {
+			// As a security measure, replace any closing square brackets within the string
+			for (int i = 0; i < numValues; ++i) {
+				if (values.charValues[i] == ']') {
+					values.charValues[i] = '}';
+				}
+			}
+
+			// Write the string
+			fwrite(values.charValues, 1, sizeof (values.charValues[0]) * (numValues - 1), destFile);
+			
+			break;
 		}
 		case Vector3: {
 			// Write vector with text float XYZ components
-			fwrite((char*)blockOpener, 1, blockOpener.Length(), destFile);
-
 			for (int i = 0; i < numValues; ++i) {
-				StaticString<96> vector = StaticString<96>::FromFormat(i == numValues - 1 ? "%.3f,%.3f,%.3f]" : "%.3f,%.3f,%.3f,", 
+				StaticString<96> vector = StaticString<96>::FromFormat(i == numValues - 1 ? "%.3f,%.3f,%.3f" : "%.3f,%.3f,%.3f,", 
 					values.vec3Values[i].x, values.vec3Values[i].y, values.vec3Values[i].z);
 
 				fwrite((char*)vector, 1, vector.Length(), destFile);
 			}
 
-			return true;
+			break;
 		}
 		case Node: {
-			// Write node data using DataNode::WriteToFile (deja vu!?)
-			fwrite((char*)blockOpener, 1, blockOpener.Length(), destFile);
-
-			for (int i = 0; i < numValues; ++i) {
-				values.nodeValues[i]->WriteToFile(destFile);
+			if (doFormatting) {
+				// Add a newline
+				fwrite("\r\n", 1, 2, destFile);
 			}
 
-			fwrite("]", 1, 1, destFile);
+			// Write node data using DataNode::WriteToFile (deja vu!?)
+			for (int i = 0; i < numValues; ++i) {
+				values.nodeValues[i]->WriteToFile(destFile, doFormatting, indentationDepth + 1);
+			}
 
-			return true;
+			// Tab before the closing bracket
+			if (doFormatting) {
+				fwrite(tabs, 1, indentationDepth, destFile);
+			}
+
+			break;
 		}
 	}
 
-	return false;
+	// Write closing bracket
+	fwrite("]", 1, 1, destFile);
+
+	if (doFormatting) {
+		// Add a newline
+		fwrite("\r\n", 1, 2, destFile);
+	}
+
+	return true;
 }
 
 bool DataNode::ReadFromFile(DataStream* sourceFile) {
 	StaticString<maxTagLength> tag = "";
 	Type type = Unknown;
 	int curTagIndex = 0;
-	char* stream = sourceFile->Get();
+
+	// Skip tabs and spaces
+	char* stream = sourceFile->Skip(" \t\n\r");
 
 	// Read chars from sourceFile until a colon is reached
 	while (stream[curTagIndex] != ':' && curTagIndex < maxTagLength) {
@@ -120,16 +158,44 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 		case Node: {
 			this->type = type;
 
+			// Add nodes until the closing bracket is reached
 			while (sourceFile->Get()[0] != ']' && sourceFile->Get()[0] != '\0') {
 				if (!AddNode(Unknown, "", 0)->ReadFromFile(sourceFile)) {
 					goto LoadError; // This is very harmful considering
 				}
+
+				sourceFile->Skip(" \t\r\n");
 			}
 
 			// Ensure the closing bracket was safely reached
 			char* blargh = sourceFile->Get();
 			if (sourceFile->Get()[0] == ']') {
 				sourceFile->Advance(1);
+			} else {
+				goto LoadError;
+			}
+
+			break;
+		}
+		case String: {
+			this->type = type;
+
+			// This is super easy! Just find the closing bracket
+			int index = 0;
+			for (index; stream[index] != '\0'; ++index) {
+				if (stream[index] == ']') {
+					break;
+				}
+			}
+
+			// Then set size and copy the string
+			SetNumValues(index + 1);
+			strncpy(values.charValues, stream, index);
+			values.charValues[index] = '\0';
+
+			// Test that it worked
+			if (stream[index] == ']') {
+				sourceFile->Advance(index + 1);
 			} else {
 				goto LoadError;
 			}
@@ -187,7 +253,7 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 	return true;
 
 LoadError:
-	// Cleanup after failed load
+	// todo Cleanup after failed load
 
 	return false;
 }
