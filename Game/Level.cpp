@@ -2,6 +2,8 @@
 #include "Image.h"
 #include "Game.h"
 
+#include "DataFile.h"
+
 Level::Level() {
 	; // durr
 }
@@ -24,15 +26,39 @@ void Level::RenderCollisionBoxes() const {
 }
 
 bool Level::Load() {
-	//layers.Append("Graphics/bg_layer_1.png", Vec3(-3000.0f, -2000.0f, 3.0f), Vec2(1.5f, 1.5f));
-	//layers.Append("Graphics/bg_layer_2.png", Vec3(0.0f, 850.0f, 1.0f), Vec2(0.8f, 0.8f));
-
 	BackgroundLayer& bak = layers.Append(layers.GetNum(), "Graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 3.0f), Vec2(1.5f, 1.5f));
 	BackgroundLayer& platform = layers.Append(layers.GetNum(), "Graphics/bg_layer_2.png", Vec3(0.0f, 500.0f, 1.0f), Vec2(0.8f, 0.8f));
 
 	bak.SetPosition(Vec3(bak.GetSize().x * -0.5f , bak.GetSize().y * -0.5f, 3.0f));
 
 	platform.SetCollision(&Rect2(0.0f, 60.0f, 2192.0f, 384.0f));
+
+	// Test: Load from the data file
+	DataFile levelData;
+
+	if (levelData.Load("./maps/map1.hdf")) {
+		DataNode& rootNode = levelData.GetRootNode();
+
+		// Create background layers
+		if (DataNode* layerNode = rootNode.GetNodeByName("background")) {
+			for (int i = 0, num = layerNode->GetNum(); i < num; ++i) {
+				DataNode* node = layerNode->GetValues().nodeValues[i];
+
+				// Create the new layer
+				BackgroundLayer& layer = layers.Append(layers.GetNum(), "graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 0.0f), Vec2(1.0f, 1.0f));
+
+				// Load position
+				if (DataNode* position = node->GetNodeByName("pos")) {
+					layer.SetPosition(position->GetValues().vec3Values[0]);
+				}
+
+				// Load scale
+				if (DataNode* scale = node->GetNodeByName("scale")) {
+					layer.SetScale(scale->GetValues().vec3Values[0].xy);
+				}
+			}
+		}
+	}
 
 	return true;
 }

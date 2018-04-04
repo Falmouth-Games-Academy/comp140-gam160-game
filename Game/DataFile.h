@@ -6,6 +6,7 @@
 class DataNode {
 public:
 	enum Type : uint8 {
+		Unknown = 0,
 		Byte = 'B',
 		Int = 'I',
 		Float = 'F',
@@ -32,8 +33,12 @@ public:
 	// Adds a node to the data, returning the new node. Works only if the dataType == Node.
 	DataNode* AddNode(Type dataType, const char* tag, int32 numInitialValues = 0);
 
+public:
 	// Returns the modifiable values
 	inline const DataNodeValue& GetValues();
+
+	// Returns a the first node found with a certain tag (non-recursive)
+	inline DataNode* GetNodeByName(const char* name);
 
 	// Reallocates if necessary and sets the number of values
 	inline void SetNumValues(int32 numValues);
@@ -49,9 +54,13 @@ public:
 	inline int GetNum() const;
 
 public:
-	// Attempts to write the node data to a file
 	typedef struct _iobuf FILE;
+
+	// Attempts to write the node data to a file stream
 	bool WriteToFile(FILE* destinationFile) const;
+
+	// Attempts to read the node data from a file stream
+	bool ReadFromFile(class DataStream* sourceFile);
 
 public:
 	// Maximum length of a data node tag
@@ -74,6 +83,7 @@ private:
 	int32 numValues;
 };
 
+// Text-based data file for maps and object placements, etc
 class DataFile {
 public:
 	// Loads a data file and returns whether successful
@@ -89,6 +99,102 @@ private:
 	bool8 isOpen = false;
 
 	DataNode rootNode{DataNode::Node, "Root", 0};
+};
+
+// Input data stream for data file interpretation
+class DataStream {
+public:
+	// Creates a data stream from a file
+	DataStream(const char* filename);
+
+	// Frees data stream
+	~DataStream();
+
+public:
+	// Returns the current string from the data pointer
+	char* Get() {
+		return &stream[index];
+	}
+
+	// Advances the data pointer
+	char* Advance(int offset) {
+		// Update the pointer, clamped between 0 and length
+		index += offset;
+
+		if (index < 0) {
+			index = 0;
+		} else if (index >= length) {
+			index = length;
+		}
+
+		// Return the stream from this new position
+		return &stream[index];
+	}
+
+	// Advances until *any* of the chars within findChars are discovered, then skips past them
+	inline char* AdvancePast(const char* findChars) {
+		int numFindChars = strlen(findChars);
+
+		// Advance until the characters are reached
+		for (index; index < length; ++index) {
+			for (int c = 0; c < numFindChars; ++c) {
+				if (stream[index] == findChars[c]) {
+					goto BreakLoop;
+				}
+			}
+		}
+
+		BreakLoop:
+		// Advance past the characters
+		for (index; index < length; ++index) {
+			for (int c = 0; c < numFindChars; ++c) {
+				if (stream[index] == findChars[c]) {
+					goto ContinueLoop;
+				}
+			}
+
+			break;
+			ContinueLoop:;
+		}
+	}
+
+	// Advances until *any* of the chars within findChars are discovered, then skips past the first one
+	inline char* AdvancePastSingle(const char* findChars) {
+		int numFindChars = strlen(findChars);
+
+		// Advance until the characters are reached
+		for (index; index < length; ++index) {
+			for (int c = 0; c < numFindChars; ++c) {
+				if (stream[index] == findChars[c]) {
+					goto BreakLoop;
+				}
+			}
+		}
+
+		// Not found
+		return stream;
+
+		// Found, skip once
+		BreakLoop:
+		++index;
+
+		return stream;
+	}
+
+public:
+	int Length() const {
+		return length;
+	}
+
+private:
+	// Text data contained by this stream
+	char* stream;
+
+	// Length of the text data, not including the null terminator
+	int32 length;
+
+	// Current index of the data pointer
+	int32 index;
 };
 
 DataNode& DataFile::GetRootNode() {
@@ -116,6 +222,23 @@ DataNode::~DataNode() {
 
 inline const DataNode::DataNodeValue& DataNode::GetValues() {
 	return values;
+}
+
+inline DataNode* DataNode::GetNodeByName(const char* name) {
+	if (type != Node) {
+		// Well this ain't gonna work
+		return nullptr;
+	}
+
+	// Find the node with the matching name if possible
+	for (int i = 0; i < numValues; ++i) {
+		if (!strcmp(values.nodeValues[i]->GetTag(), name)) {
+			return values.nodeValues[i];
+		}
+	}
+
+	// Nothing found
+	return nullptr;
 }
 
 void DataNode::SetNumValues(int32 newNumValues) {

@@ -260,7 +260,7 @@ inline void Sprite::SetCurrentFrame(float32 index) {
 
 inline const Vec2 Sprite::GetScale() const {
 	if (const SpriteFrame* frame = GetCurrentFrame()) {
-		return frame->GetDimensions();
+		return frame->GetScale();
 	} else {
 		return Vec2(0.0f, 0.0f);
 	}
