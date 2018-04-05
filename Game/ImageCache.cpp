@@ -34,5 +34,5 @@ int ImageCache::GetNum() const {
 }
 
 int ImageCache::GetNumReferences() const {
-	return -1; // todo
+	return cache.CountReferences();
 }

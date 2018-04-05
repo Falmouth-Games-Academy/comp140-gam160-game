@@ -4,6 +4,10 @@
 
 SpriteFrame::~SpriteFrame() {
 	ClearTextureCache();
+
+	if (sourceImage) {
+		game.GetImageCache().ReleaseImage(sourceImage);
+	}
 }
 
 void SpriteFrame::Load(const char* filename, const Vec2& origin, const Vec2& scale) {

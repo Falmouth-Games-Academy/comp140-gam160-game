@@ -28,6 +28,9 @@ void InputManager::Update() {
 
 	// Reset mouse scroll
 	mouseScroll = 0;
+
+	// Reset dropped file
+	droppedFilename = "";
 }
 
 bool InputManager::IsKeyDown(SDL_Keycode keyCode) const {
@@ -54,6 +57,14 @@ bool InputManager::IsMouseUnbooped(MouseButton button) const {
 
 Vec2 InputManager::GetMousePosition() const {
 	return mousePosition;
+}
+
+const char* InputManager::GetDroppedFile() const {
+	if (droppedFilename) {
+		return droppedFilename;
+	} else {
+		return nullptr;
+	}
 }
 
 int InputManager::GetMouseScroll() const {
@@ -113,4 +124,8 @@ void InputManager::OnInputEvent(const SDL_Event& event) {
 			break;
 		}
 	}
+}
+
+void InputManager::OnFileDropEvent(const char* filename) {
+	droppedFilename = filename;
 }

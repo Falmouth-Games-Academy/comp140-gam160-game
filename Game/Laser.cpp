@@ -86,6 +86,11 @@ void Laser::Update(float deltaTime) {
 }
 
 void Laser::UpdateEffects(float deltaTime) {
+	if (power <= 0.0f) {
+		// No need to be epic when the laser isn't firing
+		return;
+	}
+
 	// Spawn lightnings occasionally
 	if (game.GetFrameTime() >= nextLightningSpawnTime) {
 		nextLightningSpawnTime = game.GetFrameTime() + 0.1f + Math::randfloat(-0.05f, 0.05f);

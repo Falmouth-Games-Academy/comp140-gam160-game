@@ -13,10 +13,12 @@ public:
 	// Update functions
 	void UpdateCursor();
 	void UpdateCameraControls();
+	void UpdateCommands();
 	void UpdateSelections();
-	void UpdateCursorDraggingLayer();
 
 	// Cursor update functions
+	void UpdateCursorNormal();
+	void UpdateCursorDraggingLayer();
 	void UpdateCursorDrawingLayer();
 	void UpdateCursorPlacingLayer();
 	void UpdateCursorDrawingCollision();

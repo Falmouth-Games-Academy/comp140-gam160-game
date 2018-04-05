@@ -125,62 +125,7 @@ void GameStateEditor::UpdateCursor() {
 
 	switch (cursorState) {
 		case Normal:
-			// Create new layer if L key is pressed
-			if (game.GetInput().IsKeyBooped(SDLK_l)) {
-				// Open a dialogue to load the layer
-				FileDialog dialog(FileDialog::OpenFile, "Image files/*.JPG;*.PNG;*.BMP");
-
-				dialog.Open();
-
-				// Try to load the new layer
-				if (const char* filename = dialog.GetResult()) {
-					cursorCreatingLayerPtr = game.GetLevel().CreateLayer(filename, cursorPosition);
-
-					// Update the cursor state during scene layer build
-					cursorState = PlacingLayer;
-				}
-			}
-
-			// Create object if O key is pressed
-			else if (game.GetInput().IsKeyBooped(SDLK_o)) {
-				cursorState = PlacingObject;
-			}
-
-			// Draw collision box if C key is pressed
-			else if (game.GetInput().IsKeyDown(SDLK_c) && selectedItems.GetNum() == 1) {
-				cursorState = DrawingCollision;
-			}
-
-			// Drag layer if nothing else is being pressed
-			else if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
-				cursorState = DraggingLayer;
-			}
-
-			// Save entire map if S key is pressed
-			else if (game.GetInput().IsKeyBooped(SDLK_s)) {
-				// Prompt the user to save the level file somewhere
-				FileDialog dialog(FileDialog::SaveFile, "Handzer Data File/*.hdf");
-
-				dialog.Open();
-
-				// Ensure the user choses a file
-				if (const char* filename = dialog.GetResult()) {
-					game.GetLevel().Save(filename);
-				}
-			}
-
-			// Delete a layer if DEL is pressed
-			else if (game.GetInput().IsKeyBooped(SDLK_DELETE)) {
-				for (int i = 0; i < selectedItems.GetNum(); ++i) {
-					if (selectedItems[i]->GetType() == Object::BackgroundLayerType) {
-						game.GetLevel().DestroyLayer((BackgroundLayer*)selectedItems[i]);
-					} else {
-						selectedItems[i]->Destroy(); // Todo: objects should use one or the other function
-					}
-				}
-			}
-
-			UpdateSelections();
+			UpdateCursorNormal();
 			break;
 		case DraggingLayer:
 			UpdateCursorDraggingLayer();
@@ -225,6 +170,65 @@ void GameStateEditor::UpdateCameraControls() {
 	}
 }
 
+void GameStateEditor::UpdateCommands() {
+	const char* layerCreationFilename = game.GetInput().GetDroppedFile();
+
+	// If Ctrl key is pressed
+	if (game.GetInput().IsKeyDown(SDLK_LCTRL)) {
+		// Ctrl+L: Create new layer
+		if (game.GetInput().IsKeyBooped(SDLK_l)) {
+			// Open a dialogue to load the layer
+			FileDialog dialog(FileDialog::OpenFile, "Image files/*.JPG;*.PNG;*.BMP");
+
+			dialog.Open();
+
+			// Keep the filename
+			layerCreationFilename = dialog.GetResult();
+		}
+		// Ctrl+S: Save map
+		else if (game.GetInput().IsKeyBooped(SDLK_s)) {
+			// Prompt the user to save the level file somewhere
+			FileDialog dialog(FileDialog::SaveFile, "Handzer Data File/*.hdf");
+
+			dialog.Open();
+
+			// Ensure the user choses a file name
+			if (const char* filename = dialog.GetResult()) {
+				game.GetLevel().Save(filename);
+			}
+		}
+		// Ctrl+O: Open map
+		else if (game.GetInput().IsKeyBooped(SDLK_o)) {
+			FileDialog dialog(FileDialog::OpenFile, "Handzer Data File/*.hdf");
+
+			dialog.Open();
+
+			if (const char* filename = dialog.GetResult()) {
+				game.GetLevel().Load(filename);
+			}
+		}
+	}
+
+	// Create a new background layer if a layer was dropped or chosen via Ctrl+L
+	if (layerCreationFilename) {
+		cursorCreatingLayerPtr = game.GetLevel().CreateLayer(game.GetInput().GetDroppedFile(), cursorPosition);
+
+		// Update the cursor state
+		cursorState = PlacingLayer;
+	}
+
+	// DEL: Delete selected layer(s)
+	if (game.GetInput().IsKeyBooped(SDLK_DELETE)) {
+		for (int i = 0; i < selectedItems.GetNum(); ++i) {
+			if (selectedItems[i]->GetType() == Object::BackgroundLayerType) {
+				game.GetLevel().DestroyLayer((BackgroundLayer*)selectedItems[i]);
+			} else {
+				selectedItems[i]->Destroy(); // Todo: objects should use one or the other function
+			}
+		}
+	}
+}
+
 void GameStateEditor::UpdateSelections() {
 	const float singleSelectionRadius = 5.0f;
 	bool isMouseSingleSelecting = game.GetInput().IsMouseUnbooped(InputManager::LeftButton) && Vec2::Distance(selectStartPosition.xy, cursorScreenPosition.xy) <= singleSelectionRadius;
@@ -243,15 +247,43 @@ void GameStateEditor::UpdateSelections() {
 			selectedItems.Set({ layer });
 
 			cursorPosition.z = layer->GetPosition().z;
-		} else {
-			// Otherwise try and find an object instead
-			for (Object* obj : game.GetObjects()) {
-				if (game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin()).xy <= cursorScreenPosition.xy && 
-						game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin() + obj->GetSprite().GetDimensions()).xy >= cursorScreenPosition.xy) {
-					selectedItems.Append(obj);
+		}
+
+		// Look for objects to select
+		for (Object* obj : game.GetObjects()) {
+			if (game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin()).xy <= cursorScreenPosition.xy && 
+					game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin() + obj->GetSprite().GetDimensions()).xy >= cursorScreenPosition.xy) {
+				// Select this object, if it's the closest or only one under the mouse
+				if (selectedItems.GetNum() == 0 || (selectedItems[0] && selectedItems[0]->GetPosition().z > obj->GetPosition().z)) {
+					selectedItems.Set({ obj });
 				}
 			}
 		}
+	}
+}
+
+void GameStateEditor::UpdateCursorNormal() {
+	// Update selections (clicks)
+	UpdateSelections();
+
+	// Update commands (ctrl+cmds, file drops, etc)
+	UpdateCommands();
+
+	// O: Create object
+	if (!game.GetInput().IsKeyDown(SDLK_LCTRL)) {
+		if (game.GetInput().IsKeyBooped(SDLK_o)) {
+			cursorState = PlacingObject;
+		}
+
+		// C+Drag: Draw collision box onto selected layer
+		else if (game.GetInput().IsKeyDown(SDLK_c) && selectedItems.GetNum() == 1) {
+			cursorState = DrawingCollision;
+		}
+	}
+
+	// LButton alone: Drag selected layer(s)
+	if (cursorState == Normal && game.GetInput().IsMouseDown(InputManager::LeftButton)) {
+		cursorState = DraggingLayer;
 	}
 }
 

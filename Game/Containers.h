@@ -163,6 +163,19 @@ template<typename ItemType> inline int Cache<ItemType>::GetNum() const {
 	return items.GetNum();
 }
 
+template<typename ItemType> inline int Cache<ItemType>::CountReferences() const {
+	int numTotalReferers = 0;
+
+	// Tally reference counts in the item list
+	for (const CacheItem& item : items) {
+		if (item.numReferers) {
+			numTotalReferers += item.numReferers;
+		}
+	}
+
+	return numTotalReferers;
+}
+
 template <typename ItemType> uint32 Cache<ItemType>::GenerateHash(const char* tag) {
 	uint32 hash = 0x8DEFF5A1;
 	

@@ -50,8 +50,8 @@ void GameStatePlay::Render() {
 	// Render debug text
 	if (DebugStringBox* debug = game.GetDebug()) {
 		debug->DrawString(StaticString<80>::FromFormat("FPS: %f", 1.0f / game.GetDeltaTime()));
-		debug->DrawString(StaticString<80>::FromFormat("NumObjects: %i", game.GetObjects().GetNum()));
-		debug->DrawString(StaticString<80>::FromFormat("NumCachedImages: %i", game.GetImageCache().GetNum()));
+		debug->DrawString(StaticString<80>::FromFormat("NumCachedImages: %i Refs: %i NumObjects: %i", 
+			game.GetImageCache().GetNum(), game.GetImageCache().GetNumReferences(), game.GetObjects().GetNum()));
 	}
 }
 

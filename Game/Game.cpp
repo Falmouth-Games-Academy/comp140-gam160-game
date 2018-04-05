@@ -44,6 +44,9 @@ void Game::Init() {
 		}
 	}
 
+	// Enable file drop on window
+	SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
+
 	// Setup renderer hints to make stuff look pretty
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
@@ -235,6 +238,13 @@ void Game::Run() {
 					   sdlEvent.type == SDL_MOUSEMOTION || sdlEvent.type == SDL_MOUSEWHEEL) {
 				// Defer the input event to the input manager
 				input.OnInputEvent(sdlEvent);
+			// File drop event
+			} else if (sdlEvent.type == SDL_DROPFILE) {
+				// Send to the input manager
+				input.OnFileDropEvent(sdlEvent.drop.file);
+
+				// Cleanup
+				SDL_free(sdlEvent.drop.file);
 			}
 		}
 
