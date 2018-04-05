@@ -12,6 +12,7 @@ class Array {
 public:
 	Array() : items(nullptr), numItems(0), numAlloced(0) {};
 	inline Array(const Array& other);
+	inline Array(Array&& moved);
 	inline ~Array();
 
 	inline T& Append();
@@ -272,6 +273,18 @@ template<typename T> Array<T>::Array(const Array& other) : rawItems(nullptr), nu
 	
 	// We has lots of items now
 	numItems = other.numItems;
+}
+
+template<typename T> inline Array<T>::Array(Array&& moved) {
+	// Move items to this array
+	items = moved.items;
+	numItems = moved.numItems;
+	numAlloced = moved.numAlloced;
+
+	// Null out the source array
+	moved.items = nullptr;
+	moved.numItems = 0;
+	moved.numAlloced = 0;
 }
 
 template<typename T> T& Array<T>::Append() {

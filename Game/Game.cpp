@@ -202,7 +202,7 @@ void Game::Run() {
 	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 100.0f, 729.0f, -0.1f));
 
 	// Load the level
-	level.Load();
+	level.Load("maps/default.hdf");
 
 	// Begin main loop!
 	SDL_Event sdlEvent;

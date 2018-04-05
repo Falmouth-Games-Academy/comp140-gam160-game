@@ -1,0 +1,21 @@
+Root:N[
+	background:N[
+		layer:N[
+			sprite:S[C:\Users\User\Desktop\Falmouth Work\comp140-gam160-game\Game\graphics\background\kettle\kettle.png]
+			pos:V[-2587.690,-1034.102,2.255]
+			scale:V[0.862,0.862,0.000]
+		]
+		layer:N[
+			sprite:S[C:\Users\User\Desktop\Falmouth Work\comp140-gam160-game\Game\graphics\background\rocks\rock1.png]
+			pos:V[-3261.201,683.506,0.795]
+			scale:V[1.009,1.009,0.000]
+			cpos:V[636.136,135.269,0.000]
+			csize:V[2877.398,269.936,0.000]
+		]
+		layer:N[
+			sprite:S[C:\Users\User\Desktop\Falmouth Work\comp140-gam160-game\Game\graphics\background\low_stone\background.png]
+			pos:V[-6920.489,-178.415,4.220]
+			scale:V[2.111,2.111,0.000]
+		]
+	]
+]

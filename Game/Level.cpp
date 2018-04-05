@@ -25,18 +25,14 @@ void Level::RenderCollisionBoxes() const {
 	}
 }
 
-bool Level::Load() {
-	BackgroundLayer& bak = layers.Append(layers.GetNum(), "Graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 3.0f), Vec2(1.5f, 1.5f));
-	BackgroundLayer& platform = layers.Append(layers.GetNum(), "Graphics/bg_layer_2.png", Vec3(0.0f, 500.0f, 1.0f), Vec2(0.8f, 0.8f));
+bool Level::Load(const char* filename) {
+	// Unload old level
+	Unload();
 
-	bak.SetPosition(Vec3(bak.GetSize().x * -0.5f , bak.GetSize().y * -0.5f, 3.0f));
-
-	platform.SetCollision(&Rect2(0.0f, 60.0f, 2192.0f, 384.0f));
-
-	// Test: Load from the data file
+	// Load from the data file
 	DataFile levelData;
 
-	if (levelData.Load("./maps/map1.hdf")) {
+	if (levelData.Load(filename)) {
 		DataNode& rootNode = levelData.GetRootNode();
 
 		// Create background layers
@@ -52,26 +48,96 @@ bool Level::Load() {
 
 				if (backgroundImage) {
 					// Create the new layer
-					BackgroundLayer& layer = layers.Append(layers.GetNum(), "graphics/bg_layer_1.png", Vec3(0.0f, 0.0f, 0.0f), Vec2(1.0f, 1.0f));
+					BackgroundLayer* layer = CreateLayer(backgroundImage, Vec3(0.0f, 0.0f, 0.0f));
 
 					// Load position
 					if (DataNode* position = node->GetNodeByName("pos")) {
-						layer.SetPosition(position->GetValues().vec3Values[0]);
+						layer->SetPosition(position->GetValues().vec3Values[0]);
 					}
 
 					// Load scale
 					if (DataNode* scale = node->GetNodeByName("scale")) {
-						layer.SetScale(scale->GetValues().vec3Values[0].xy);
+						layer->SetScale(scale->GetValues().vec3Values[0].xy);
+					}
+
+					// Load collision box
+					DataNode* collisionPos = node->GetNodeByName("cpos"), *collisionSize = node->GetNodeByName("csize");
+					if (collisionPos && collisionSize) {
+						layer->SetCollision(&Rect2(collisionPos->GetValues().vec3Values[0].xy, collisionSize->GetValues().vec3Values[0].xy));
 					}
 				}
 			}
 		}
+	} else {
+		return false;
 	}
 
 	return true;
 }
 
+bool Level::Save(const char* filename) {
+	DataFile data;
+	DataNode& rootNode = data.GetRootNode();
+
+	// Store the level data
+	DataNode* layerPackNode = rootNode.AddNode(DataNode::Node, "background", 0);
+
+	for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
+		DataNode* layerNode = layerPackNode->AddNode(DataNode::Node, "layer", 0);
+
+		// Write sprite
+		DataNode* spriteNode = layerNode->AddNode(DataNode::String, "sprite", 0);
+		spriteNode->SetValueAsString(layer.GetSprite().GetCurrentFrame()->GetImage()->GetFilename());
+
+		// Write position
+		DataNode* positionNode = layerNode->AddNode(DataNode::Vector3, "pos", 1);
+		positionNode->GetValues().vec3Values[0] = layer.GetPosition();
+
+		// Write scale
+		DataNode* scaleNode = layerNode->AddNode(DataNode::Vector3, "scale", 1);
+		scaleNode->GetValues().vec3Values[0] = layer.GetSprite().GetScale();
+
+		// Write collision (if solid)
+		if (layer.IsSolid()) {
+			DataNode* cPosNode = layerNode->AddNode(DataNode::Vector3, "cpos", 1);
+			cPosNode->GetValues().vec3Values[0] = layer.GetCollision()->position;
+
+			DataNode* cSizeNode = layerNode->AddNode(DataNode::Vector3, "csize", 1);
+			cSizeNode->GetValues().vec3Values[0] = layer.GetCollision()->size;
+		}
+	}
+
+	// Save the level data
+	return data.Save(filename);
+}
+
 void Level::Unload() {
+	ClearLayers();
+}
+
+BackgroundLayer* Level::CreateLayer(const char* imageFilename, const Vec3& position, const Vec2& scale) {
+	BackgroundLayer& layer = layers.Append(imageFilename, position, Vec2(1.5f, 1.5f));
+	
+	return &layer;
+}
+
+void Level::DestroyLayer(BackgroundLayer* layer) {
+	// Find the layer in the layer list and strip it out
+	for (int i = 0; i < layers.GetNum(); ++i) {
+		if (&layers[i] == layer) {
+			layers.RemoveByIndex(i);
+			break;
+		}
+	}
+}
+
+void Level::ClearLayers() {
+	// Call Destroy on all layers just in case they have any cleanup to do
+	for (BackgroundLayer& layer : layers) {
+		layer.Destroy();
+	}
+
+	// Clear the layer list
 	layers.Clear();
 }
 
@@ -95,7 +161,7 @@ BackgroundLayer* Level::GetLayerAtScreenPosition(const Vec2& position) {
 	return returnLayer;
 }
 
-BackgroundLayer::BackgroundLayer(int index_, const char* imageFilename, const Vec3& position, const Vec2& scale) : Object() {
+BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec2& scale) : Object() {
 	sprite.LoadFrame(imageFilename);
 	sprite.SetScale(scale);
 	this->position = position;

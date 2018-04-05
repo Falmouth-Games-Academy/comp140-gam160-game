@@ -98,6 +98,9 @@ public:
 	// Copies a sprite
 	inline Sprite(const Sprite& other);
 
+	// Moves a sprite
+	inline Sprite(Sprite&& moved) = default;
+
 	// Unloads a sprite and frees frames from memory
 	inline ~Sprite();
 

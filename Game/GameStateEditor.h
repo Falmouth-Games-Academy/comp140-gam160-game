@@ -53,7 +53,7 @@ private:
 	Vec3 selectStartPosition;
 
 	// CursorState::CreatingLayer
-	int32 cursorCreatingLayerIndex;
+	Object* cursorCreatingLayerPtr = nullptr;
 
 	// CursorState::DrawingCollision
 	Vec3 cursorStartCollisionPosition;
@@ -61,7 +61,7 @@ private:
 	// CursorState::PlacingObject
 	Object::Type cursorPlacingObjectType = Object::BottleType;
 
-	Object* cursorCreatingObjectPtr;
+	Object* cursorCreatingObjectPtr = nullptr;
 
 	// Cursor graphics for feedback
 	SDL_Cursor* cursorSprites[NumCursorStates];

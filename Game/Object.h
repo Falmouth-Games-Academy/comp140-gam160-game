@@ -5,6 +5,13 @@
 // Base class for interactive objects in-game
 class Object {
 public:
+	// Default constructor: spawn anywhere, with random variables, durh
+	Object() = default;
+
+	// Move constructor
+	Object(Object&& moved) = default;
+
+public:
 	enum Type {
 		BackgroundLayerType = 0,
 		HandType,
@@ -79,7 +86,13 @@ public:
 public:
 	// Collision boxes and detection
 	// Sets the collision box, or if the collision box is nullptr, set as non-solid
-	void SetCollision(const Rect2* newBox, bool newIsSolid = true);
+	void SetCollision(const Rect2* newBox);
+
+	// Gets the collision box, or if non-solid, returns nullptr
+	inline const Rect2* GetCollision() const;
+
+	// Returns whether this object is solid
+	inline bool IsSolid() const;
 
 	// Renders the object's collision box as a blue bounding border
 	void RenderCollisionBox() const;
@@ -182,11 +195,23 @@ inline bool Object::IsBeingDestroyed() const {
 	return isBeingDestroyed;
 }
 
-inline void Object::SetCollision(const Rect2* newBox, bool newIsSolid) {
+inline void Object::SetCollision(const Rect2* newBox) {
 	if (newBox) {
 		collisionBox = *newBox;
-		isSolid = newIsSolid;
+		isSolid = true;
 	} else {
 		isSolid = false;
 	}
+}
+
+inline const Rect2* Object::GetCollision() const {
+	if (isSolid) {
+		return &collisionBox;
+	} else {
+		return nullptr;
+	}
+}
+
+inline bool Object::IsSolid() const {
+	return isSolid;
 }

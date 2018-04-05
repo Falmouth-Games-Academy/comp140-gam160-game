@@ -98,6 +98,7 @@ void GameStateEditor::RenderDepthView() {
 bool GameStateEditor::Enter() {
 	// Create cursors
 	memset(cursorSprites, 0, sizeof (cursorSprites));
+
 	cursorSprites[Normal] = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
 	cursorSprites[PlacingLayer] = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_SIZEALL);
 
@@ -133,11 +134,7 @@ void GameStateEditor::UpdateCursor() {
 
 				// Try to load the new layer
 				if (const char* filename = dialog.GetResult()) {
-					auto& layers = game.GetLevel().GetLayers();
-
-					layers.Append(layers.GetNum(), filename, cursorPosition, Vec2(1.0f, 1.0f));
-
-					cursorCreatingLayerIndex = layers.GetNum() - 1;
+					cursorCreatingLayerPtr = game.GetLevel().CreateLayer(filename, cursorPosition);
 
 					// Update the cursor state during scene layer build
 					cursorState = PlacingLayer;
@@ -168,30 +165,18 @@ void GameStateEditor::UpdateCursor() {
 
 				// Ensure the user choses a file
 				if (const char* filename = dialog.GetResult()) {
-					DataFile data;
-					DataNode& rootNode = data.GetRootNode();
+					game.GetLevel().Save(filename);
+				}
+			}
 
-					// Store the level data
-					DataNode* layerPackNode = rootNode.AddNode(DataNode::Node, "background", 0);
-
-					for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
-						DataNode* layerNode = layerPackNode->AddNode(DataNode::Node, "layer", 0);
-
-						// Write sprite
-						DataNode* spriteNode = layerNode->AddNode(DataNode::String, "sprite", 0);
-						spriteNode->SetValueAsString(layer.GetSprite().GetCurrentFrame()->GetImage()->GetFilename());
-
-						// Write position
-						DataNode* positionNode = layerNode->AddNode(DataNode::Vector3, "pos", 1);
-						positionNode->GetValues().vec3Values[0] = layer.GetPosition();
-
-						// Write scale
-						DataNode* scaleNode = layerNode->AddNode(DataNode::Vector3, "scale", 1);
-						scaleNode->GetValues().vec3Values[0] = layer.GetSprite().GetScale();
+			// Delete a layer if DEL is pressed
+			else if (game.GetInput().IsKeyBooped(SDLK_DELETE)) {
+				for (int i = 0; i < selectedItems.GetNum(); ++i) {
+					if (selectedItems[i]->GetType() == Object::BackgroundLayerType) {
+						game.GetLevel().DestroyLayer((BackgroundLayer*)selectedItems[i]);
+					} else {
+						selectedItems[i]->Destroy(); // Todo: objects should use one or the other function
 					}
-
-					// Save the level data
-					data.Save(filename);
 				}
 			}
 
@@ -300,14 +285,12 @@ void GameStateEditor::UpdateCursorDraggingLayer() {
 }
 
 void GameStateEditor::UpdateCursorDrawingLayer() {
-	BackgroundLayer* layer = &game.GetLevel().GetLayers()[cursorCreatingLayerIndex];
-
 	// Obtain the layer being created
-	if (game.GetLevel().GetLayers().IsIndexValid(cursorCreatingLayerIndex)) {
-		Vec2 size = cursorPosition.xy - layer->GetPosition().xy;
+	if (cursorCreatingLayerPtr) {
+		Vec2 size = cursorPosition.xy - cursorCreatingLayerPtr->GetPosition().xy;
 		
-		size.y = size.x * layer->GetSprite().GetBaseDimensions().y / layer->GetSprite().GetBaseDimensions().x;
-		layer->SetSize(size);
+		size.y = size.x * cursorCreatingLayerPtr->GetSprite().GetBaseDimensions().y / cursorCreatingLayerPtr->GetSprite().GetBaseDimensions().x;
+		cursorCreatingLayerPtr->SetSize(size);
 	}
 
 	// Update cursor state
@@ -320,8 +303,8 @@ void GameStateEditor::UpdateCursorPlacingLayer() {
 	BackgroundLayer* layer = nullptr;
 
 	// Obtain the layer being created
-	if (game.GetLevel().GetLayers().IsIndexValid(cursorCreatingLayerIndex)) {
-		game.GetLevel().GetLayers()[cursorCreatingLayerIndex].SetPosition(cursorPosition);
+	if (cursorCreatingLayerPtr) {
+		cursorCreatingLayerPtr->SetPosition(cursorPosition);
 	}
 
 	// Update cursor state upon release

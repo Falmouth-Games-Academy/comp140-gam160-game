@@ -9,17 +9,32 @@ public:
 	Level();
 	~Level();
 
-	// Loads the level into memory and returns whether the load was wholly successful
-	bool Load();
+public:
+	// Loads the level structure from a file, additionally loading the images, and returns whether wholly successful
+	bool Load(const char* filename);
+
+	// Saves the level structure into a file of the given file name, including the layer image file names, and returns whether wholly successful
+	bool Save(const char* filename);
 
 	// Frees the level
 	void Unload();
 
+public:
 	// Renders the level background
 	void Render() const;
 	
 	// Renders collision boxes in the level layers
 	void RenderCollisionBoxes() const;
+
+public:
+	// Creates a new background layer
+	class BackgroundLayer* CreateLayer(const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
+
+	// Destroys a background layer
+	void DestroyLayer(BackgroundLayer* layer);
+
+	// Destroys all layers
+	void ClearLayers();
 
 	// Returns the closest layer at the given position
 	class BackgroundLayer* GetLayerAtScreenPosition(const Vec2& position);
@@ -36,9 +51,13 @@ private:
 // Background layer for level sections
 class BackgroundLayer : public Object {
 public:
-	BackgroundLayer(int index, const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
+	// Loads a background layer with an image and position
+	BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
 	~BackgroundLayer();
 
+	BackgroundLayer(BackgroundLayer&& moved) = default;
+
+public:
 	void Render() const;
 
 	Object::Type GetType() const override {return BackgroundLayerType;}
