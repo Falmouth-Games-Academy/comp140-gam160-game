@@ -68,9 +68,12 @@ public:
 	inline constexpr float GetGravity() const;
 
 public:
-	// Object stuff
+	// Spawns an object using a template
 	template<typename ObjectType>
 	ObjectType* SpawnObject();
+
+	// Spawns an object using a type
+	Object* SpawnObject(Object::Type objectType);
 
 	// Returns the iterable object list
 	inline Array<Object*>& GetObjects();
@@ -241,6 +244,18 @@ inline ObjectType* Game::SpawnObject() {
 	object->OnSpawn();
 
 	return object;
+}
+
+inline Object* Game::SpawnObject(Object::Type objectType) {
+	if (Object* object = Object::ConstructByType(objectType)) {
+		objects.Append(object);
+
+		object->OnSpawn();
+
+		return object;
+	} else {
+		return nullptr;
+	}
 }
 
 inline Array<Object*>& Game::GetObjects() {

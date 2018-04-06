@@ -22,6 +22,9 @@ public:
 		NumTypes
 	};
 
+	// Anonymous constructor. May return nullptr if the type isn't in the type database
+	static inline Object* ConstructByType(Object::Type type);
+
 	// Returns the object type. Must be overridden by the object class type
 	virtual Type GetType() const = 0;
 
@@ -129,7 +132,27 @@ protected:
 private:
 	// Whether the object is being destroyed next frame
 	bool8 isBeingDestroyed = false;
+
+private:
+	// Object type database stuff follows (used to spawn an object when only the type enum is known)
+	struct SpawnerDatabase {
+		// Initialises the database
+		SpawnerDatabase();
+
+		Object* (*spawners[Object::NumTypes])();
+	};
+
+	static SpawnerDatabase spawners;
 };
+
+inline Object* Object::ConstructByType(Object::Type type) {
+	if (spawners.spawners[type]) {
+		// Call the spawner function which will construct the object
+		return spawners.spawners[type]();
+	} else {
+		return nullptr;
+	}
+}
 
 inline void Object::Destroy() {
 	if (!isBeingDestroyed) {

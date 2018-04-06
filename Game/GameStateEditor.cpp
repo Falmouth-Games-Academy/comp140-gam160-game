@@ -365,17 +365,32 @@ void GameStateEditor::UpdateCursorDrawingCollision() {
 	}
 }
 
-#include "Bottle.h"
-
 void GameStateEditor::UpdateCursorPlacingObject() {
 	// Create object if it doesn't exist
 	if (!cursorCreatingObjectPtr) {
-		cursorCreatingObjectPtr = game.SpawnObject<Bottle>();
+		cursorCreatingObjectPtr = game.SpawnObject(cursorCreatingObjectType);
 	}
 
 	// Reposition object
 	if (cursorCreatingObjectPtr) {
 		cursorCreatingObjectPtr->SetPosition(cursorPosition);
+	}
+
+	// Arrow keys: Change object type
+	if (game.GetInput().IsKeyBooped(SDLK_LEFT) && cursorCreatingObjectType > (Object::Type)0) {
+		if (cursorCreatingObjectPtr) {
+			cursorCreatingObjectPtr->Destroy();
+		}
+
+		cursorCreatingObjectType = (Object::Type)((int)cursorCreatingObjectType - 1);
+		cursorCreatingObjectPtr = game.SpawnObject(cursorCreatingObjectType);
+	} else if (game.GetInput().IsKeyBooped(SDLK_RIGHT) && cursorCreatingObjectType < Object::NumTypes - 1) {
+		if (cursorCreatingObjectPtr) {
+			cursorCreatingObjectPtr->Destroy();
+		}
+
+		cursorCreatingObjectType = (Object::Type)((int)cursorCreatingObjectType + 1);
+		cursorCreatingObjectPtr = game.SpawnObject(cursorCreatingObjectType);
 	}
 
 	// Return back to normal cursor state when object is placed

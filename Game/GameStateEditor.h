@@ -61,7 +61,7 @@ private:
 	Vec3 cursorStartCollisionPosition;
 
 	// CursorState::PlacingObject
-	Object::Type cursorPlacingObjectType = Object::BottleType;
+	Object::Type cursorCreatingObjectType = Object::BottleType;
 
 	Object* cursorCreatingObjectPtr = nullptr;
 

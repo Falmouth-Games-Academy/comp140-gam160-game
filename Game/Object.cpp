@@ -1,6 +1,8 @@
 #include "Object.h"
 #include "Game.h"
 
+Object::SpawnerDatabase Object::spawners;
+
 void Object::Update(float deltaTime) {
 	// Update gravity
 	velocity.y = Math::clamp(velocity.y + 3000.0f * deltaTime, -2000.0f, 6000.0f);
@@ -146,4 +148,19 @@ bool Object::Move(const Vec3& originalMoveOffset, bool doAffectVelocity, bool te
 	}
 
 	return (moveOffset == originalMoveOffset);
+}
+
+#include "Bottle.h"
+#include "GooglyEye.h"
+#include "Laser.h"
+#include "Object.h"
+
+Object::SpawnerDatabase::SpawnerDatabase() {
+	// Type definitions go here!
+#define SET_SPAWNER(TypeName) spawners[TypeName##Type] = [](){return (Object*)new TypeName;};
+
+	SET_SPAWNER(Bottle);
+	SET_SPAWNER(Laser);
+	SET_SPAWNER(GooglyEye);
+	SET_SPAWNER(Hand);
 }
