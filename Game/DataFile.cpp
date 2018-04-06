@@ -65,6 +65,16 @@ bool DataNode::WriteToFile(FILE* destFile, bool doFormatting, int indentationDep
 
 			break;
 		}
+		case Int: {
+			// Write text integers
+			for (int i = 0; i < numValues; ++i) {
+				StaticString<32> number = StaticString<32>::FromFormat(i == numValues - 1 ? "%i" : "%i,", values.intValues[i]);
+
+				fwrite((char*)number, 1, number.Length(), destFile);
+			}
+
+			break;
+		}
 		case String: {
 			// As a security measure, replace any closing square brackets within the string
 			for (int i = 0; i < numValues; ++i) {
@@ -121,8 +131,6 @@ bool DataNode::WriteToFile(FILE* destFile, bool doFormatting, int indentationDep
 }
 
 bool DataNode::ReadFromFile(DataStream* sourceFile) {
-	StaticString<maxTagLength> tag = "";
-	Type type = Unknown;
 	int curTagIndex = 0;
 
 	// Skip tabs and spaces
@@ -130,7 +138,7 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 
 	// Read chars from sourceFile until a colon is reached
 	while (stream[curTagIndex] != ':' && curTagIndex < maxTagLength) {
-		tag[curTagIndex] = stream[curTagIndex++];
+		this->tag[curTagIndex] = stream[curTagIndex++];
 	}
 
 	if (curTagIndex >= maxTagLength || !curTagIndex) {
@@ -139,10 +147,10 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 	}
 
 	// Remove the colon from the tag
-	tag[curTagIndex] = '\0';
+	this->tag[curTagIndex] = '\0';
 
 	// Read the type
-	type = (Type)stream[curTagIndex + 1];
+	this->type = (Type)stream[curTagIndex + 1];
 
 	// Safety check: ensure there's an opening bracket following the type
 	if (stream[curTagIndex + 2] != '[') {
@@ -156,8 +164,6 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 	// Read the data, if possible
 	switch (type) {
 		case Node: {
-			this->type = type;
-
 			// Add nodes until the closing bracket is reached
 			while (sourceFile->Get()[0] != ']' && sourceFile->Get()[0] != '\0') {
 				if (!AddNode(Unknown, "", 0)->ReadFromFile(sourceFile)) {
@@ -178,8 +184,6 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 			break;
 		}
 		case String: {
-			this->type = type;
-
 			// This is super easy! Just find the closing bracket
 			int index = 0;
 			for (index; stream[index] != '\0'; ++index) {
@@ -203,18 +207,8 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 			break;
 		}
 		case Vector3: {
-			this->type = type;
-
 			// Count the number of values to be read
-			int numTerminators = 0;
-			for (int index = 0; stream[index] != '\0'; ++index) {
-				if (stream[index] == ',') {
-					++numTerminators;
-				} else if (stream[index] == ']') {
-					++numTerminators;
-					break;
-				}
-			}
+			int numTerminators = sourceFile->CountCharactersUntil(",", "]") + 1;
 
 			// Make sure there's a multiple of 3 values ('cause these are 3D vectors)
 			if (numTerminators != (numTerminators / 3) * 3) {
@@ -231,6 +225,38 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 					scanResult = sscanf(buffer, "%f,", &values.floatValues[i]);
 				} else {
 					scanResult = sscanf(buffer, "%f]", &values.floatValues[i]);
+				}
+
+				if (scanResult == 1) {
+					sourceFile->AdvancePastSingle(",]");
+					continue;
+				} else {
+					goto LoadError;
+				}
+			}
+
+			break;
+		}
+		case Int:
+		case Float: {
+			// Count commas until the closing bracket
+			SetNumValues(sourceFile->CountCharactersUntil(",", "]") + 1);
+
+			for (int i = 0; i < numValues; ++i) {
+				char* buffer = sourceFile->Get();
+				int scanResult = 0;
+
+				// Use sscanf with the desired type to pull it into the value array
+				if (i == numValues - 1) {
+					switch (type) {
+						case Int: scanResult = sscanf(buffer, "%i,", &values.intValues[i]); break;
+						case Float: scanResult = sscanf(buffer, "%f,", &values.floatValues[i]); break;
+					}
+				} else {
+					switch (type) {
+						case Int: scanResult = sscanf(buffer, "%i]", &values.intValues[i]); break;
+						case Float: scanResult = sscanf(buffer, "%f]", &values.floatValues[i]); break;
+					}
 				}
 
 				if (scanResult == 1) {

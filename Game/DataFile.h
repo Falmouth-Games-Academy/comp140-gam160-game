@@ -210,6 +210,31 @@ public:
 		return &stream[index];
 	}
 
+	/* Counts any characters appearing in characersToCount (unless nullptr, wherein every character is checked)
+	   until any characters in endCharacters are reached.
+	   If a character in charactersToCount appears in charactersToStop, the character will be counted before it stops searching */
+	inline int CountCharactersUntil(const char* charactersToCount, const char* charactersToStop) {
+		int numCountableChars = charactersToCount ? strlen(charactersToCount) : 0;
+		int numStopChars = charactersToStop ? strlen(charactersToStop) : 0;
+		int tally = 0;
+
+		for (int i = index; i < length; ++i) {
+			for (int c = 0; c < numCountableChars; ++c) {
+				if (stream[i] == charactersToCount[c]) {
+					++tally;
+				}
+			}
+
+			for (int c = 0; c < numStopChars; ++c) {
+				if (stream[i] == charactersToStop[c]) {
+					return tally;
+				}
+			}
+		}
+
+		return tally;
+	}
+
 public:
 	int Length() const {
 		return length;

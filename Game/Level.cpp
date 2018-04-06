@@ -29,6 +29,9 @@ bool Level::Load(const char* filename) {
 	// Unload old level
 	Unload();
 
+	// Respawn the player first (some objects might be dependent on it)
+	game.RespawnPlayer();
+
 	// Load from the data file
 	DataFile levelData;
 
@@ -68,6 +71,39 @@ bool Level::Load(const char* filename) {
 				}
 			}
 		}
+
+		// Create objects
+		if (DataNode* objectNode = rootNode.GetNodeByName("objects")) {
+			for (int i = 0, num = objectNode->GetNum(); i < num; ++i) {
+				DataNode* node = objectNode->GetValues().nodeValues[i];
+				Object* object;
+
+				if (DataNode* type = node->GetNodeByName("type")) {
+					object = game.SpawnObject((Object::Type) type->GetValues().intValues[0]);
+				} else {
+					// Object type wasn't found
+					continue;
+				}
+
+				// Load position
+				if (DataNode* position = node->GetNodeByName("pos")) {
+					object->SetPosition(position->GetValues().vec3Values[0]);
+				}
+
+				// Load rotation
+				if (DataNode* rotation = node->GetNodeByName("rot")) {
+					object->SetRotation(rotation->GetValues().floatValues[0]);
+				}
+
+				// Load scale
+				if (DataNode* scale = node->GetNodeByName("scale")) {
+					object->SetScale(scale->GetValues().vec3Values[0].xy);
+				}
+
+				// Set spawn info
+				object->SetSpawnInfo(object->GetPosition(), true);
+			}
+		}
 	} else {
 		return false;
 	}
@@ -79,7 +115,7 @@ bool Level::Save(const char* filename) {
 	DataFile data;
 	DataNode& rootNode = data.GetRootNode();
 
-	// Store the level data
+	// Store the level layer data
 	DataNode* layerPackNode = rootNode.AddNode(DataNode::Node, "background", 0);
 
 	for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
@@ -107,11 +143,38 @@ bool Level::Save(const char* filename) {
 		}
 	}
 
+	// Store the objects
+	DataNode* objectPackNode = rootNode.AddNode(DataNode::Node, "objects", 0);
+	for (Object* object : game.GetObjects()) {
+		if (object->IsPersistent()) {
+			DataNode* objectNode = objectPackNode->AddNode(DataNode::Node, "object", 0);
+
+			// Write object type
+			DataNode* typeNode = objectNode->AddNode(DataNode::Int, "type", 1);
+			typeNode->GetValues().intValues[0] = (int)object->GetType();
+
+			// Write object spawn position
+			DataNode* positionNode = objectNode->AddNode(DataNode::Vector3, "pos", 1);
+			positionNode->GetValues().vec3Values[0] = object->GetSpawnPosition();
+
+			// Write object spawn rotation
+			DataNode* rotationNode = objectNode->AddNode(DataNode::Float, "rot", 1);
+			rotationNode->GetValues().floatValues[0] = object->GetRotation();
+
+			// Write object scale
+			DataNode* scaleNode = objectNode->AddNode(DataNode::Vector3, "scale", 1);
+			scaleNode->GetValues().vec3Values[0] = object->GetSprite().GetScale();
+		}
+	}
+
 	// Save the level data
 	return data.Save(filename);
 }
 
 void Level::Unload() {
+	// Todo: This doesn't really belong here. What do do I?
+	game.ClearObjects();
+
 	ClearLayers();
 }
 

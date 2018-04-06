@@ -71,6 +71,9 @@ public:
 	// Returns the object's rotation in degrees
 	inline float32 GetRotation() const;
 
+	// Sets the object's rotation in degrees
+	inline void SetRotation(float32 rotation);
+
 	// Returns the sprite
 	inline const Sprite& GetSprite() const;
 
@@ -110,6 +113,15 @@ public:
 	// Converts a pixel position on the object's sprite to a world position, considering the object's rotation and scale
 	virtual Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const;
 
+public:
+	// Sets the information applicable to the object when it first spawned
+	inline void SetSpawnInfo(const Vec3& spawnPosition, bool isPersistent);
+	
+	inline const Vec3& GetSpawnPosition() const;
+
+	// Returns whether the object is persistent (should be saved into the map object data)
+	inline bool IsPersistent() const;
+
 protected:
 	// Current sprite
 	Sprite sprite;
@@ -128,6 +140,12 @@ protected:
 
 	// If above 0, this is a timer, which by Object::Update counts down to 0. Once 0 is reached, the object self-destructs
 	float32 destroyTimer;
+
+	// Whether the object should be saved into the map object data
+	bool8 isPersistent = false;
+
+	// The position at which the object should spawn
+	Vec3 spawnPosition;
 
 private:
 	// Whether the object is being destroyed next frame
@@ -184,6 +202,10 @@ inline float32 Object::GetRotation() const {
 	return rotation;
 }
 
+inline void Object::SetRotation(float32 rotation) {
+	this->rotation = rotation;
+}
+
 inline const Sprite& Object::GetSprite() const {
 	return sprite;
 }
@@ -237,4 +259,17 @@ inline const Rect2* Object::GetCollision() const {
 
 inline bool Object::IsSolid() const {
 	return isSolid;
+}
+
+inline void Object::SetSpawnInfo(const Vec3& spawnPosition, bool isPersistent) {
+	this->isPersistent = isPersistent;
+	this->spawnPosition = spawnPosition;
+}
+
+inline bool Object::IsPersistent() const {
+	return isPersistent;
+}
+
+inline const Vec3& Object::GetSpawnPosition() const {
+	return spawnPosition;
 }

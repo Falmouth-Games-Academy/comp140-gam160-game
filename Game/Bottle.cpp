@@ -4,7 +4,7 @@
 void Bottle::OnSpawn() {
 	sprite.LoadFrame("graphics/objects/bottles/Budweiser.png", Vec2(230.0f, 1522.0f), Vec2(0.3f, 0.3f));
 
-	position = game.GetPlayer().GetPosition() + Vec3(Math::randfloat(-1000.0f, 1000.0f), -500.0f, 0.0f);
+	collisionBox = Rect2(Vec2(0.0f, 0.0f), Vec2(553.0f, 2184.0f));
 
 	rotationSpeed = Math::randfloat(7.0f, 11.0f) * 360.0f * (float)Math::randsign();
 

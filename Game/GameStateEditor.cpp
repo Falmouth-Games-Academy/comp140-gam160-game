@@ -128,7 +128,7 @@ void GameStateEditor::UpdateCursor() {
 			UpdateCursorNormal();
 			break;
 		case DraggingLayer:
-			UpdateCursorDraggingLayer();
+			UpdateCursorDraggingObject();
 			break;
 		case PlacingLayer:
 			UpdateCursorPlacingLayer();
@@ -180,10 +180,10 @@ void GameStateEditor::UpdateCommands() {
 			// Open a dialogue to load the layer
 			FileDialog dialog(FileDialog::OpenFile, "Image files/*.JPG;*.PNG;*.BMP");
 
-			dialog.Open();
-
-			// Keep the filename
-			layerCreationFilename = dialog.GetResult();
+			if (dialog.Open()) {
+				// Keep the filename
+				layerCreationFilename = dialog.GetResult();
+			}
 		}
 		// Ctrl+S: Save map
 		else if (game.GetInput().IsKeyBooped(SDLK_s)) {
@@ -211,7 +211,7 @@ void GameStateEditor::UpdateCommands() {
 
 	// Create a new background layer if a layer was dropped or chosen via Ctrl+L
 	if (layerCreationFilename) {
-		cursorCreatingLayerPtr = game.GetLevel().CreateLayer(game.GetInput().GetDroppedFile(), cursorPosition);
+		cursorCreatingLayerPtr = game.GetLevel().CreateLayer(layerCreationFilename, cursorPosition);
 
 		// Update the cursor state
 		cursorState = PlacingLayer;
@@ -287,7 +287,7 @@ void GameStateEditor::UpdateCursorNormal() {
 	}
 }
 
-void GameStateEditor::UpdateCursorDraggingLayer() {
+void GameStateEditor::UpdateCursorDraggingObject() {
 	if (game.GetInput().IsMouseDown(InputManager::LeftButton) && selectedItems.GetNum() >= 0) {
 		// Move layers
 		Vec2 cursorScreenDelta = cursorScreenPosition.xy - lastCursorScreenPosition.xy;
@@ -309,6 +309,11 @@ void GameStateEditor::UpdateCursorDraggingLayer() {
 					// Scale up/down
 					obj->SetSize(obj->GetSize() * (1.0f + cursorScreenDelta.y * 0.01f));
 					break;
+			}
+
+			// If this is a persistent object, update its spawn info
+			if (obj->IsPersistent()) {
+				obj->SetSpawnInfo(obj->GetPosition(), true);
 			}
 		}
 	} else {
@@ -395,6 +400,11 @@ void GameStateEditor::UpdateCursorPlacingObject() {
 
 	// Return back to normal cursor state when object is placed
 	if (game.GetInput().IsMouseBooped(InputManager::LeftButton)) {
+		// Set its spawn info indicating it's a persistent object that spawns at this position
+		if (cursorCreatingObjectPtr) {
+			cursorCreatingObjectPtr->SetSpawnInfo(cursorCreatingObjectPtr->GetPosition(), true);
+		}
+
 		cursorCreatingObjectPtr = nullptr;
 		cursorState = Normal;
 	}

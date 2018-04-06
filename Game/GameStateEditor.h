@@ -18,7 +18,7 @@ public:
 
 	// Cursor update functions
 	void UpdateCursorNormal();
-	void UpdateCursorDraggingLayer();
+	void UpdateCursorDraggingObject();
 	void UpdateCursorDrawingLayer();
 	void UpdateCursorPlacingLayer();
 	void UpdateCursorDrawingCollision();

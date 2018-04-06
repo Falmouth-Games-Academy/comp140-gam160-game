@@ -194,16 +194,6 @@ void Game::Run() {
 
 	SetGameState<GameStatePlay>();
 
-	// Spawn the player
-	player = SpawnObject<Hand>();
-
-	// Spawn the laser (possibly move this code later?)
-	SpawnObject<Laser>();
-
-	// Spawn a googly eye
-	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 470.0f, 729.0f, 0.1f));
-	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 100.0f, 729.0f, -0.1f));
-
 	// Load the level
 	level.Load("maps/default.hdf");
 
@@ -217,9 +207,16 @@ void Game::Run() {
 
 	while (appIsRunning) {
 		// Calculate current frame time
+		const float minFps = 30.0f;
 		uint64 currentPerformanceCounter = SDL_GetPerformanceCounter();
 		deltaTime = (float) (currentPerformanceCounter - lastPerformanceCounter) / performanceFrequency;
 		frameTime = (uint32) (currentPerformanceCounter * 1000 / performanceFrequency) - startFrameTime;
+
+		// Cap delta and frame time
+		if (deltaTime > (1.0f / minFps)) {
+			deltaTime = 1.0f / minFps;
+			frameTime = 1000 / minFps;
+		}
 
 		// Update the input system before sending it input events--this clears boops
 		input.Update();
@@ -317,7 +314,7 @@ void Game::RenderText(const char* string, int x, int y, RenderScreen screen) {
 }
 
 void Game::RenderDebugAppurtenances() {
-	// Yes I see you there and yes I just wanted an excuse Appurtenances
+	// Yes I see you there and yes I just wanted an excuse to say Appurtenances
 	for (Object* object : objects) {
 		object->RenderCollisionBox();
 	}
@@ -325,10 +322,30 @@ void Game::RenderDebugAppurtenances() {
 	level.RenderCollisionBoxes();
 }
 
+void Game::RespawnPlayer() {
+	// Destroy the existing player if necessary
+	if (player) {
+		player->Destroy();
+	}
+
+	// Spawn the player
+	player = SpawnObject<Hand>();
+
+	// Spawn the laser (possibly move this code later?)
+	SpawnObject<Laser>();
+
+	// Spawn a googly eye
+	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 470.0f, 729.0f, 0.1f));
+	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 100.0f, 729.0f, -0.1f));
+}
+
 void Game::ClearObjects() {
+	// Destroy every object including the player!
 	for (Object* obj : objects) {
 		delete obj;
 	}
 
 	objects.Clear();
+
+	player = nullptr; // todo: dangerous--player should always have a value right?
 }

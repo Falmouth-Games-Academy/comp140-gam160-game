@@ -47,6 +47,9 @@ public:
 	inline Hand& GetPlayer();
 	inline Level& GetLevel();
 
+	// Used on level load
+	void RespawnPlayer();
+
 	// Components
 	inline GestureManager& GetGesture();
 	inline InputManager& GetInput();
