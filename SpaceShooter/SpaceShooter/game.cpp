@@ -34,7 +34,7 @@ void Game::gameLoop()
 	Controls controls;
 	SDL_Event event;
 
-	level = Level(graphics, 0, 0);
+	level = Level(graphics, 0,0);
 	player = Player(graphics, globals::SCREEN_WIDTH / 2 - 64, 600);
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();
@@ -64,13 +64,13 @@ void Game::gameLoop()
 		// exit the game if escape is pressed
 		if (input.wasKeyPressed(SDL_SCANCODE_ESCAPE) == true)
 		{
-			//std::cout << player.sourceRect.y;
 			running = false;
 		}
 
 		// what allows the player to control the spaceship
 		controls.playerControls(player, input);
 		
+		// frame rate handler
 		const int CURENT_TIME_MS = SDL_GetTicks();
 		int ELAPSE_TIME_MS = CURENT_TIME_MS - LAST_UPDATE_TIME;
 		update(std::min(ELAPSE_TIME_MS, MAX_FRAME_TIME));
@@ -94,8 +94,9 @@ void Game::drawGraphics(Graphics &graphics)
 
 void Game::update(float elapsedTime)
 {
-	player.levelCollisions(player.sourceRect, level.levelBoxCollider);
-	//level.update(elapsedTime);
+	level.update(elapsedTime);
+
+	player.levelCollisions(player.playerBoxCollider, level.levelBoxCollider);
 	player.update(elapsedTime);
 
 }

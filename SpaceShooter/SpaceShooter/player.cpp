@@ -2,7 +2,6 @@
 
 #include "player.h"
 #include "graphics.h"
-#include "collisionBox.h"
 
 namespace player_constants
 {
@@ -16,6 +15,9 @@ Player::Player(Graphics &graphics, float x, float y) :
 	Sprite(graphics, "content/SpaceShip.png", 0, 0, 128, 128, x, y)
 {
 	graphics.loadSprite("content/SpaceShip.png");
+
+	playerBoxCollider.w = sourceRect.w;
+	playerBoxCollider.h = sourceRect.h;
 }
 
 // All the movement functions
@@ -54,6 +56,9 @@ void Player::update(float elapsedTime)
 {
 	y += dy * elapsedTime;
 	x += dx * elapsedTime;
+
+	playerBoxCollider.x = x;
+	playerBoxCollider.y = y;
 }
 
 // updates the player's sprite position on screen
@@ -72,10 +77,10 @@ void Player::levelCollisions(SDL_Rect A, SDL_Rect B)
 	int bottomA, bottomB;
 
 	//Calculate the sides of rect A
-	leftA = x;
-	rightA = x + A.w;
-	topA = y;
-	bottomA = y + A.h;
+	leftA = A.x;
+	rightA = A.x + A.w;
+	topA = A.y;
+	bottomA = A.y + A.h;
 
 	//Calculate the sides of rect B
 	leftB = B.x;

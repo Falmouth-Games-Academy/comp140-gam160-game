@@ -15,8 +15,14 @@ public:
 
 	SDL_Rect levelBoxCollider = { 0, 0, globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT };
 
+	void moveBackground();
+
+	bool movingBackground = true;
+
 private:
-	float dx, dy;
+	float dx = 0, dy = 0;
+	float x1 = 0, y1 = 0;
+	float x2 = 0, y2 = 0 -globals::SCREEN_HEIGHT;
 
 };
 

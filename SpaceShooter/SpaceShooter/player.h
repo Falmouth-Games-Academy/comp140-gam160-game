@@ -14,7 +14,7 @@ public:
 	void draw(Graphics &graphics);
 	void update(float elapsedTime);
 
-	SDL_Rect PlayerBoxCollider;
+	SDL_Rect playerBoxCollider;
 
 	void levelCollisions(SDL_Rect A, SDL_Rect B);
 
