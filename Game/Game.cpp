@@ -179,6 +179,11 @@ void Game::Render() {
 		activeGameState->Render();
 	}
 
+	// Render the debug box
+	if (debugBox) {
+		debugBox->Render();
+	}
+
 	// Finish rendering
 	for (int i = 0; i < RenderScreen::NumRenderScreens; ++i) {
 		SDL_RenderPresent(sdlRenderers[i]);
@@ -215,7 +220,7 @@ void Game::Run() {
 		// Cap delta and frame time
 		if (deltaTime > (1.0f / minFps)) {
 			deltaTime = 1.0f / minFps;
-			frameTime = 1000 / minFps;
+			frameTime = (int)(1000.0f / minFps);
 		}
 
 		// Update the input system before sending it input events--this clears boops
@@ -253,11 +258,6 @@ void Game::Run() {
 
 		// Timer update
 		lastPerformanceCounter = currentPerformanceCounter;
-
-		// Reset the debug box
-		if (debugBox) {
-			debugBox->Reset();
-		}
 	}
 
 	// Game has ended

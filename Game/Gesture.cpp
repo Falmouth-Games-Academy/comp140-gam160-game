@@ -333,7 +333,7 @@ GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTi
 		if (accelHistory[i].timestamp < absoluteTimeStart) {
 			continue;
 		} else if (accelHistory[i].timestamp > absoluteTimeEnd) {
-			break;
+			continue;
 		}
 
 		// Update max extent

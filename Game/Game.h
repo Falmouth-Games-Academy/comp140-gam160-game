@@ -139,11 +139,11 @@ private:
 extern Game game;
 
 // Debug string box: Box on the screen containing debug text
+#include <cassert>
+
 class DebugStringBox {
 public:
-	DebugStringBox(RenderScreen screen_, int x_, int y_, int width_, int height_) : screen(screen_), x(x_), y(y_), width(width_), height(height_), 
-			currentTextY(y_) {
-
+	DebugStringBox(RenderScreen screen_, int x_, int y_, int width_, int height_) : screen(screen_), x(x_), y(y_), width(width_), height(height_) {
 		if (SDL_Renderer* renderer = game.GetRenderer(screen)) {
 			SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
 
@@ -152,20 +152,48 @@ public:
 		}
 	}
 
-	// Draws a string in the box and advances the line pointer
-	void DrawString(const char* string) {
-		game.RenderText(string, x, currentTextY, screen);
-		currentTextY += 20;
+	~DebugStringBox() {
+		ClearStrings();
 	}
 
-	// Resets the line pointer--can be done every frame
-	void Reset() {
-		currentTextY = 0;
+	// Renders the strings and resets the line pointer
+	void Render(bool flushStrings = true) {
+		int currentTextY = 0;
+
+		for (char* string : strings) {
+			game.RenderText(string, x, y + currentTextY, screen);
+			currentTextY += 20;
+		}
+
+		if (flushStrings) {
+			ClearStrings();
+		}
+	}
+
+	// Draws a string in the box and advances the line pointer
+	void DrawString(const char* string) {
+		assert(strings.GetNum() < 30); // Idiot programmer probably forgot to flush the string buffer, who's writing this!?
+
+		const int stringSize = strlen(string) + 1;
+		char* deferredString = strings.Append(new char[stringSize]);
+
+		memcpy(deferredString, string, stringSize);
+	}
+
+	// Clears the deferred string list
+	void ClearStrings() {
+		for (char* string : strings) {
+			delete[] string;
+		}
+
+		strings.Clear();
 	}
 
 private:
 	RenderScreen screen;
-	int32 currentTextY;
+
+	Array<char*> strings;
+
 	int32 x, y;
 	int32 width, height;
 };

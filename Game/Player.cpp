@@ -31,7 +31,7 @@ void Hand::Render() {
 
 	// Draw relevant debug info
 	if (DebugStringBox* debug = game.GetDebug()) {
-		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", position.x, position.y, position.z));
+		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", velocity.x, velocity.y, velocity.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
 		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
 
@@ -46,10 +46,9 @@ void Hand::Update(float deltaTime) {
 	const float maxY = 900.0f;
 
 	// Update rotation
-	Vec3 currentAccel = game.GetGesture().GetAverageAccel(100, 0);
-	Vec3 lastAccel = game.GetGesture().GetAverageAccel(200, 100);
+	Vec3 currentAccel = game.GetGesture().GetAverageAccel(500, 0);
+	float lastRotation = rotation;
 
-	float lastRotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-lastAccel.y, -lastAccel.z)) * Math::degs;
 	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
 
 	// A tilt back must be a powerslide!!!
@@ -70,31 +69,41 @@ void Hand::Update(float deltaTime) {
 	// Update laser power
 	laserPower = Math::clamp(game.GetGesture().GetFlexAngle() / 90.0f, 0.0f, 1.0f);
 
-	// Open mouth
+	// Update mouse openness
 	sprite.SetCurrentFrame(Math::clampmax(Math::round(laserPower * sprite.GetNumFrames(), 1.0f), (float)(sprite.GetNumFrames() - 1)));
 
 	// Do gesture movement
 	bool doFriction = false;
 	GestureManager& gesture = game.GetGesture();
-	auto accel = gesture.GetAccelHistory();
-	const float xScale = 0.2f, yScale = 1.0f;
-	static uint32 lastThresholdReached = 0;
+
+	// Calculate target speed based on rate and amplitude of hand bounces
+	const float maxHandzerSpeed = 5000.0f;
+	const float minBounceSpeed = 80000.0f;
+	const float maxBounceSpeed = 300000.0f;
+
+	GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(500, 0);
+
+	float targetSpeed = -Math::lerpfloat(Math::clamp(bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude, minBounceSpeed, maxBounceSpeed), 
+							MinMax<float>(minBounceSpeed, maxBounceSpeed), MinMax<float>(0.0f, maxHandzerSpeed));
+
+	// Move in reverse if tilted back
+	if (rotation > 8.0f) {
+		targetSpeed = -targetSpeed;
+	}
+
+	if (game.GetDebug()) {
+		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce speed: %.2f", bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude));
+		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Player target speed: %.2f", targetSpeed));
+	}
+
+	if (abs(velocity.x) < abs(targetSpeed)) {
+		velocity.x += deltaTime * 5000.0f * Math::getsign(targetSpeed);
+	} else {
+		doFriction = true;
+	}
 
 	// Bob the head
 	headBob.y = (gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 240.0f;
-
-	// Check if the bounce force threshold was reached
-	if (abs(gesture.GetAverageAccel(25, 0).z - gesture.GetAverageAccel(50, 0).z) >= 500.0f) {
-		lastThresholdReached = game.GetFrameTimeMs();
-	}
-
-	// Keep moving as long as the force was above the threshold in the last 1000 ms
-	if (game.GetFrameTimeMs() < lastThresholdReached + 1000) {
-		position.x += abs((gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 10.0f) * direction * deltaTime;
-	} else {
-		// There hasn't been much movement for a while, so start slowing down
-		doFriction = true;
-	}
 
 	// Do gravity
 	velocity.y += game.GetGravity() * deltaTime;
@@ -117,7 +126,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Perform friction
-	const float frictionRate = 1000.0f; // in pixel/s/s
+	const float frictionRate = 4000.0f; // in pixel/s/s
 	float velocitySign = Math::getsign(velocity.x);
 
 	// Slow down if speed is > or < 0
