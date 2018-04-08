@@ -40,11 +40,12 @@ public:
 	// Get the minimum and maximum accelerometer values across a span of time
 	MinMax<Vec3> GetMinMaxAccel(uint32 timeStart, uint32 timeEnd) const;
 
-	// Gets the number of accel stamps recorded historically--this may be more than the array contains
+	// Gets the total number of accel stamps recorded historically
 	int GetNumRecordedAccels() const;
 
 	// Gets the current bend angle of the flex sensor, in degrees
 	float32 GetFlexAngle() const;
+
 public:
 	// Gesture enum
 	enum GestureCode {
@@ -58,6 +59,22 @@ public:
 
 	int GetWalkRate() const;
 	int GetWalkIntensity() const;
+
+public:
+	// Nvm let's try this boiz
+	struct BounceInfo {
+		// Number of bounces occurred in this time frame
+		int32 numBounces;
+
+		// Average bounces per second
+		float32 averageBounceHz;
+
+		// Average bounce amplitude (in m/s/s)
+		float32 averageBounceAmplitude;
+	};
+
+	// Calculates bounce info across a span of time, relative to the current time, and returns the result
+	BounceInfo CalculateBounceInfo(uint32 timeStart, uint32 timeEnd);
 
 private:
 	StaticCircularArray<AccelStamp, maxNumAccelStamps> accelHistory;

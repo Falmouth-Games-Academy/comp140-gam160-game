@@ -161,7 +161,7 @@ void GestureManager::RenderDebugVectors() {
 	for (uint32 i = game.GetFrameTimeMs() % historicalDrawIntervalMs; i < historicalMs; i += historicalDrawIntervalMs) {
 		Vec3 force = game.GetGesture().GetAverageAccel(i + historicalDrawIntervalMs, i);
 
-		points[i / historicalDrawIntervalMs].x = box.x + halfSize + (int)(force.x * vectorScale);
+		points[i / historicalDrawIntervalMs].x = box.x + halfSize + (int)(force.y * vectorScale);
 		points[i / historicalDrawIntervalMs].y = box.y + halfSize + (int)(force.z * vectorScale);
 	}
 
@@ -170,13 +170,7 @@ void GestureManager::RenderDebugVectors() {
 	
 	// Draw the XZ vector
 	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 0);
-	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + (int)(average.x * vectorScale), box.y + halfSize + (int)(average.z * vectorScale));
-
-	// Draw the XZ vector compensating for changes in length
-	MinMax<Vec3> minMax = GetMinMaxAccel(50, 0);
-	Vec3 test = minMax.min + minMax.max / 2;
-
-	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + (int)(test.x * vectorScale), box.y + halfSize + (int)(test.z * vectorScale));
+	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + (int)(average.y * vectorScale), box.y + halfSize + (int)(average.z * vectorScale));
 }
 
 void GestureManager::RenderDebugText() {
@@ -315,4 +309,77 @@ int GestureManager::GetNumRecordedAccels() const {
 
 float32 GestureManager::GetFlexAngle() const {
 	return flexAngle;
+}
+
+GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTimeStart, uint32 relativeTimeEnd) {
+	uint32 absoluteTimeStart = game.GetFrameTimeMs() - relativeTimeStart, absoluteTimeEnd = game.GetFrameTimeMs() - relativeTimeEnd;
+	
+	const float bounceDistanceThreshold = 1000.0f; // The distance from the peak point until a bounce is registered (should this be a percentage?)
+	int currentDirection = 1;
+	float32 currentExtent = -100000.0f;
+
+	uint32 lastBounceTime = 0;
+	float32 lastBounceExtent = 0.0f;
+	uint32 totalBounceTimeDifferences = 0;
+	float32 totalBounceAmplitudes = 0.0f;
+
+	BounceInfo info;
+	info.numBounces = 0;
+
+	for (int i = 0; i < accelHistory.GetNum(); ++i) {
+		const Vec3& accel = accelHistory[i].direction;
+
+		// Only look through the given time range
+		if (accelHistory[i].timestamp < absoluteTimeStart) {
+			continue;
+		} else if (accelHistory[i].timestamp > absoluteTimeEnd) {
+			break;
+		}
+
+		// Update max extent
+
+		// Detect whether a bounce is occurring
+		// Bounces are recorded through a change in direction that goes below the peak by a certain threshold (bounceDistanceThreshold)
+		bool hasBounced = false;
+		if (currentDirection == 1) {
+			if (accel.z > currentExtent) {
+				currentExtent = accel.z;
+			} else if (accel.z < currentExtent - bounceDistanceThreshold) {
+				hasBounced = true;
+			}
+		} else if (currentDirection == -1) {
+			if (accel.z < currentExtent) {
+				currentExtent = accel.z;
+			} else if (accel.z > currentExtent + bounceDistanceThreshold) {
+				hasBounced = true;
+			}
+		}
+
+		// If this was found to be a bounce, register its info
+		if (hasBounced) {
+			if (info.numBounces > 0) {
+				totalBounceTimeDifferences += accelHistory[i].timestamp - lastBounceTime;
+				totalBounceAmplitudes += abs(currentExtent - lastBounceExtent);
+			}
+
+			lastBounceTime = accelHistory[i].timestamp;
+			lastBounceExtent = currentExtent;
+
+			currentDirection = -currentDirection;
+			currentExtent = 100000.0f * -currentDirection;
+			++info.numBounces;
+		}
+	}
+
+	// Update BounceInfo bounce was info
+	if (info.numBounces > 1) {
+		info.averageBounceHz = 1000.0f / (float)(totalBounceTimeDifferences / (info.numBounces - 1));
+		info.averageBounceAmplitude = totalBounceAmplitudes / (float)(info.numBounces - 1);
+	} else {
+		info.averageBounceHz = 0.0f;
+		info.averageBounceAmplitude = 0.0f;
+	}
+
+	// Done
+	return info;
 }

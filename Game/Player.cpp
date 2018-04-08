@@ -34,30 +34,23 @@ void Hand::Render() {
 		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", position.x, position.y, position.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
 		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
+
+		// Debug bounce info
+		GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(1000, 0);
+		debug->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
+			bounceInfo.numBounces, bounceInfo.averageBounceHz, bounceInfo.averageBounceAmplitude));
 	}
 }
 
 void Hand::Update(float deltaTime) {
 	const float maxY = 900.0f;
 
-	// Spawn bottles
-	static float lastBottleSpawnTime = 0.0f;
-	/*
-	if (game.GetFrameTime() > lastBottleSpawnTime + 1.0f) {
-		lastBottleSpawnTime = game.GetFrameTime();
-
-		// Spawn a bottle in a random direction and speed
-		auto newBottle = game.SpawnObject<Bottle>();
-		newBottle->SetPosition(position);
-		newBottle->SetVelocity(Vec3(Math::randfloat(-5000.0f, 5000.0f), Math::randfloat(-6000.0f, -4000.0f), Math::randfloat(-1.0f, 1.0f)));
-	}*/
-
 	// Update rotation
 	Vec3 currentAccel = game.GetGesture().GetAverageAccel(100, 0);
 	Vec3 lastAccel = game.GetGesture().GetAverageAccel(200, 100);
 
-	float lastRotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-lastAccel.x, -lastAccel.z)) * Math::degs;
-	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.x, -currentAccel.z)) * Math::degs;
+	float lastRotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-lastAccel.y, -lastAccel.z)) * Math::degs;
+	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
 
 	// A tilt back must be a powerslide!!!
 	// Note for calculating the angle: this is influenced heavily when the player is bouncing up and down
@@ -143,8 +136,7 @@ void Hand::Update(float deltaTime) {
 	this->Move(velocity * deltaTime);
 }
 
-Vec3 Hand::SpritePointToWorldPoint(const Vec2& spritePoint) const
-{
+Vec3 Hand::SpritePointToWorldPoint(const Vec2& spritePoint) const {
 	if (sprite.GetCurrentFrame()) {
 		return sprite.GetCurrentFrame()->PixelToWorld(spritePoint, position + headBob, rotation);
 	} else {
