@@ -10,7 +10,7 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM5";
+const char* port = "COM3";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;
@@ -200,7 +200,7 @@ void Game::Run() {
 	SetGameState<GameStatePlay>();
 
 	// Load the level
-	level.Load("maps/default.hdf");
+	level.Load("./maps/default.hdf");
 
 	// Begin main loop!
 	SDL_Event sdlEvent;
@@ -330,6 +330,8 @@ void Game::RespawnPlayer() {
 
 	// Spawn the player
 	player = SpawnObject<Hand>();
+
+	player->SetPosition(Vec3(7275.0f, 735.0f, 1.0f)); // If there's time, todo use a spawn point object for this
 
 	// Spawn the laser (possibly move this code later?)
 	SpawnObject<Laser>();

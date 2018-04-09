@@ -37,6 +37,9 @@
     <Filter Include="Source Files\Gameplay\GameStates">
       <UniqueIdentifier>{837c5a79-143f-40b6-801f-3cac1cac13d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Gameplay\Enemies">
+      <UniqueIdentifier>{132d30d9-b11f-41da-b5b0-e26c651f1595}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gesture.cpp">
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="DataFile.cpp">
       <Filter>Source Files\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Bigfoot.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="DataFile.h">
       <Filter>Source Files\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Bigfoot.h">
+      <Filter>Source Files\Gameplay\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

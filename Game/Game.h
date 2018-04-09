@@ -252,7 +252,7 @@ inline float Game::GetDeltaTime() const {
 }
 
 inline constexpr float Game::GetGravity() const {
-	return 1800.0f;
+	return 32340.0f;
 }
 
 template<typename StateType>

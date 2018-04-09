@@ -19,6 +19,7 @@ public:
 		BottleFragmentType,
 		LaserType,
 		GooglyEyeType,
+		BigfootType,
 		NumTypes
 	};
 
@@ -137,6 +138,9 @@ protected:
 	// Dimensions of the collision box, relative to this object's unscaled sprite pixels
 	Rect2 collisionBox;
 	bool8 isSolid = false;
+
+	// Whether the object is on the ground (simulated objects only)
+	bool8 isOnGround = false;
 
 	// If above 0, this is a timer, which by Object::Update counts down to 0. Once 0 is reached, the object self-destructs
 	float32 destroyTimer;

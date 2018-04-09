@@ -24,8 +24,7 @@ GestureManager::GestureManager() {
 	}
 
 	// Set debug keyboard value
-	isKeyboardEnabled = true; // ...to true cuz yush
-
+	isKeyboardEnabled = false;
 }
 
 void GestureManager::Update() {
@@ -34,7 +33,7 @@ void GestureManager::Update() {
 	Serial* serial = game.GetSerialStream();
 
 	// Read data from the serial port
-	if (serial->IsConnected()) {
+	if (serial->IsConnected() && !isKeyboardEnabled) {
 		int numPendingBytes = 0;
 
 		// Collect bytes into the circular data array
@@ -98,16 +97,16 @@ void GestureManager::Update() {
 				debugGraphs[1].PushValue((int)totalValueSum / numFound);
 			}
 		}
-	} else if (isKeyboardEnabled) {
+	} else {
 		// Use debug keyboard controls in place of the arduino
 		if (game.GetInput().IsKeyDown(SDLK_UP)) {
 			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 12000.0f), game.GetFrameTimeMs()));
 		} else if (game.GetInput().IsKeyDown(SDLK_DOWN)) {
 			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 6000.0f), game.GetFrameTimeMs()));
-		} else if (game.GetInput().IsKeyDown(SDLK_k)) {
+		} else if (game.GetInput().IsKeyDown(SDLK_r)) {
 			// Mouse tilt controls then?
 			Vec3 playerScreenPosition = game.GetCamera().WorldToScreen(game.GetPlayer().GetPosition());
-			accelHistory.Append(AccelStamp(Vec3((game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 10, 0.0f, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 10), game.GetFrameTimeMs()));
+			accelHistory.Append(AccelStamp(Vec3(0.0f, (game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 10, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 10), game.GetFrameTimeMs()));
 		} else {
 			// Perform accurate gravity simulation to the nearest whatevs units of meh
 			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 9000.0f), game.GetFrameTimeMs()));
@@ -124,6 +123,11 @@ void GestureManager::Update() {
 	// Toggle debug mode
 	if (game.GetInput().IsKeyBooped(SDLK_d)) {
 		debugMode = !debugMode;
+	}
+
+	// Toggle keyboard mode
+	if (game.GetInput().IsKeyBooped(SDLK_k)) {
+		isKeyboardEnabled = !isKeyboardEnabled;
 	}
 }
 
@@ -188,6 +192,8 @@ void GestureManager::RenderDebugText() {
 	strings.DrawString(StaticString<60>::FromFormat("AllAxes force: %.3f m/s/s", accelHistory[-1].direction.Length()));
 	strings.DrawString(StaticString<80>::FromFormat("Total accelstamps received: %i", numAccelsRecordedTotal));
 	strings.DrawString(StaticString<80>::FromFormat("Flex angle: %.2f\n", flexAngle));
+
+	strings.Render();
 }
 
 const StaticCircularArray<GestureManager::AccelStamp, GestureManager::maxNumAccelStamps>& GestureManager::GetAccelHistory() const {

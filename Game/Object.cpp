@@ -154,6 +154,7 @@ bool Object::Move(const Vec3& originalMoveOffset, bool doAffectVelocity, bool te
 #include "GooglyEye.h"
 #include "Laser.h"
 #include "Object.h"
+#include "Bigfoot.h"
 
 Object::SpawnerDatabase::SpawnerDatabase() {
 	// Type definitions go here!
@@ -163,4 +164,5 @@ Object::SpawnerDatabase::SpawnerDatabase() {
 	SET_SPAWNER(Laser);
 	SET_SPAWNER(GooglyEye);
 	SET_SPAWNER(Hand);
+	SET_SPAWNER(Bigfoot);
 }

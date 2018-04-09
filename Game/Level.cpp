@@ -111,19 +111,26 @@ bool Level::Load(const char* filename) {
 	return true;
 }
 
-bool Level::Save(const char* filename) {
+bool Level::Save(const char* filename) const {
 	DataFile data;
 	DataNode& rootNode = data.GetRootNode();
 
 	// Store the level layer data
 	DataNode* layerPackNode = rootNode.AddNode(DataNode::Node, "background", 0);
 
-	for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
+	for (const BackgroundLayer& layer : game.GetLevel().GetLayers()) {
 		DataNode* layerNode = layerPackNode->AddNode(DataNode::Node, "layer", 0);
 
 		// Write sprite
-		DataNode* spriteNode = layerNode->AddNode(DataNode::String, "sprite", 0);
-		spriteNode->SetValueAsString(layer.GetSprite().GetCurrentFrame()->GetImage()->GetFilename());
+		if (const SpriteFrame* frame = layer.GetSprite().GetCurrentFrame()) {
+			if (const Image* image = frame->GetImage()) {
+				if (const char* imageFilename = image->GetFilename()) {
+					// So many safety checks zomg
+					DataNode* spriteNode = layerNode->AddNode(DataNode::String, "sprite", 0);
+					spriteNode->SetValueAsString(imageFilename);
+				}
+			}
+		}
 
 		// Write position
 		DataNode* positionNode = layerNode->AddNode(DataNode::Vector3, "pos", 1);

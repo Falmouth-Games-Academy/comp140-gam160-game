@@ -14,7 +14,7 @@ public:
 	bool Load(const char* filename);
 
 	// Saves the level structure into a file of the given file name, including the layer image file names, and returns whether wholly successful
-	bool Save(const char* filename);
+	bool Save(const char* filename) const;
 
 	// Frees the level
 	void Unload();

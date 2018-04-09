@@ -19,9 +19,6 @@ void Hand::OnSpawn() {
 	collisionBox = Rect2(157, 701, 2509, 1661);
 	isSolid = true;
 
-	// Set position
-	position = Vec3(0.0f, -500.0f, 1.0f);
-
 	direction = -1;
 }
 

@@ -245,8 +245,6 @@ void GameStateEditor::UpdateSelections() {
 		// Find a layer underneath the mouse and select it
 		if (BackgroundLayer* layer = game.GetLevel().GetLayerAtScreenPosition(cursorScreenPosition.xy)) {
 			selectedItems.Set({ layer });
-
-			cursorPosition.z = layer->GetPosition().z;
 		}
 
 		// Look for objects to select
@@ -258,6 +256,18 @@ void GameStateEditor::UpdateSelections() {
 					selectedItems.Set({ obj });
 				}
 			}
+		}
+
+		// Update cursor position
+		if (selectedItems.GetNum()) {
+			float averageZ = 0.0f;
+			for (Object* obj : selectedItems) {
+				averageZ += obj->GetPosition().z;
+			}
+
+			cursorPosition.z = averageZ / (float)selectedItems.GetNum();
+		} else {
+			cursorPosition.z = 1.0f;
 		}
 	}
 }

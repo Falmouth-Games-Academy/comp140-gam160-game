@@ -165,6 +165,8 @@ bool DataNode::ReadFromFile(DataStream* sourceFile) {
 	switch (type) {
 		case Node: {
 			// Add nodes until the closing bracket is reached
+			sourceFile->Skip(" \t\r\n");
+
 			while (sourceFile->Get()[0] != ']' && sourceFile->Get()[0] != '\0') {
 				if (!AddNode(Unknown, "", 0)->ReadFromFile(sourceFile)) {
 					goto LoadError; // This is very harmful considering

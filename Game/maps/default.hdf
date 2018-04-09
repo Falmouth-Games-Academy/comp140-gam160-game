@@ -1,35 +1,47 @@
 Root:N[
 	background:N[
 		layer:N[
-			sprite:S[C:\Users\User\Desktop\Falmouth Work\comp140-gam160-game\Game\graphics\background\kettle\kettle.png]
-			pos:V[-2587.690,-1034.102,2.255]
-			scale:V[0.862,0.862,0.000]
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\rocks\rock_3.png]
+			pos:V[2735.216,762.547,0.990]
+			scale:V[0.728,0.728,0.000]
 		]
 		layer:N[
-			sprite:S[C:\Users\User\Desktop\Falmouth Work\comp140-gam160-game\Game\graphics\background\rocks\rock1.png]
-			pos:V[-3261.201,683.506,0.795]
-			scale:V[1.009,1.009,0.000]
-			cpos:V[1253.925,101.717,0.000]
-			csize:V[1878.062,252.706,0.000]
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\ground\grass_1_tiled.png]
+			pos:V[315.163,144.541,1.645]
+			scale:V[1.491,1.491,0.000]
 		]
 		layer:N[
-			sprite:S[C:\Users\User\Desktop\Falmouth Work\comp140-gam160-game\Game\graphics\background\low_stone\background.png]
-			pos:V[-6920.489,-178.415,4.220]
-			scale:V[2.111,2.111,0.000]
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\skies\sky_1_tiled.png]
+			pos:V[-1138.129,-2694.706,2.695]
+			scale:V[2.059,2.059,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\props\postbox_1.png]
+			pos:V[5059.333,-804.255,1.415]
+			scale:V[0.635,0.635,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\props\streetsign_1.png]
+			pos:V[4797.886,185.937,1.285]
+			scale:V[0.854,0.854,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\rocks\rock_1.png]
+			pos:V[4699.223,713.785,0.990]
+			scale:V[0.873,0.873,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\ground\grass_1_tiled.png]
+			pos:V[8229.440,145.946,1.645]
+			scale:V[1.492,1.492,0.000]
 		]
 	]
 	objects:N[
 		object:N[
-			type:I[2]
-			pos:V[-1717.960,604.986,0.805]
-			rot:F[236.075]
-			scale:V[0.300,0.300,0.000]
-		]
-		object:N[
-			type:I[2]
-			pos:V[-317.609,-1055.911,0.880]
+			type:I[6]
+			pos:V[4421.744,962.183,0.995]
 			rot:F[0.000]
-			scale:V[0.300,0.300,0.000]
+			scale:V[0.615,0.615,0.000]
 		]
 	]
 ]
