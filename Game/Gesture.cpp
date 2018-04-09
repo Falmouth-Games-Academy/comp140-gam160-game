@@ -314,21 +314,22 @@ float32 GestureManager::GetFlexAngle() const {
 GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTimeStart, uint32 relativeTimeEnd) {
 	uint32 absoluteTimeStart = game.GetFrameTimeMs() - relativeTimeStart, absoluteTimeEnd = game.GetFrameTimeMs() - relativeTimeEnd;
 	
-	const float bounceDistanceThreshold = 1000.0f; // The distance from the peak point until a bounce is registered (should this be a percentage?)
+	const float bounceDistanceThreshold = 100.0f; // The distance from the peak point until a bounce is registered (should this be a percentage?)
 	int currentDirection = 1;
 	float32 currentExtent = -100000.0f;
 
-	uint32 lastBounceTime = 0;
-	float32 lastBounceExtent = 0.0f;
+	uint32 lastBounceTime;
+	float32 lastBounceExtent;
+	Vec3 lastBouncePosition;
 	uint32 totalBounceTimeDifferences = 0;
 	float32 totalBounceAmplitudes = 0.0f;
+	Vec3 totalBouncePositions = Vec3(0.0f, 0.0f, 0.0f);
 
 	BounceInfo info;
 	info.numBounces = 0;
+	info.maxBounceAmplitude = 0.0f;
 
-	for (int i = 0; i < accelHistory.GetNum(); ++i) {
-		const Vec3& accel = accelHistory[i].direction;
-
+	for (int i = -accelHistory.GetNum(); i < 0; ++i) {
 		// Only look through the given time range
 		if (accelHistory[i].timestamp < absoluteTimeStart) {
 			continue;
@@ -336,21 +337,23 @@ GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTi
 			continue;
 		}
 
-		// Update max extent
+		// Estimate the current bounce level
+		const Vec3& accel = accelHistory[i].direction;
+		float currentForce = Vec2::Distance(Vec2(0.0f, 0.0f), Vec2(accel.z, accel.y));
 
 		// Detect whether a bounce is occurring
 		// Bounces are recorded through a change in direction that goes below the peak by a certain threshold (bounceDistanceThreshold)
 		bool hasBounced = false;
 		if (currentDirection == 1) {
-			if (accel.z > currentExtent) {
-				currentExtent = accel.z;
-			} else if (accel.z < currentExtent - bounceDistanceThreshold) {
+			if (currentForce > currentExtent) {
+				currentExtent = currentForce;
+			} else if (currentForce < currentExtent - bounceDistanceThreshold) {
 				hasBounced = true;
 			}
 		} else if (currentDirection == -1) {
-			if (accel.z < currentExtent) {
-				currentExtent = accel.z;
-			} else if (accel.z > currentExtent + bounceDistanceThreshold) {
+			if (currentForce  < currentExtent) {
+				currentExtent = currentForce;
+			} else if (currentForce > currentExtent + bounceDistanceThreshold) {
 				hasBounced = true;
 			}
 		}
@@ -359,11 +362,20 @@ GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTi
 		if (hasBounced) {
 			if (info.numBounces > 0) {
 				totalBounceTimeDifferences += accelHistory[i].timestamp - lastBounceTime;
-				totalBounceAmplitudes += abs(currentExtent - lastBounceExtent);
+				info.lastCentralForce = (accel + lastBouncePosition) * 0.5f;
+				totalBouncePositions += info.lastCentralForce;
+
+				float currentAmplitude = abs(currentExtent - lastBounceExtent);
+				totalBounceAmplitudes += currentAmplitude;
+
+				if (currentAmplitude > info.maxBounceAmplitude) {
+					info.maxBounceAmplitude = currentAmplitude;
+				}
 			}
 
 			lastBounceTime = accelHistory[i].timestamp;
 			lastBounceExtent = currentExtent;
+			lastBouncePosition = accel;
 
 			currentDirection = -currentDirection;
 			currentExtent = 100000.0f * -currentDirection;
@@ -375,9 +387,11 @@ GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTi
 	if (info.numBounces > 1) {
 		info.averageBounceHz = 1000.0f / (float)(totalBounceTimeDifferences / (info.numBounces - 1));
 		info.averageBounceAmplitude = totalBounceAmplitudes / (float)(info.numBounces - 1);
+		info.averageCentralForce = totalBouncePositions / (float)(info.numBounces - 1);
 	} else {
 		info.averageBounceHz = 0.0f;
 		info.averageBounceAmplitude = 0.0f;
+		info.averageCentralForce = Vec3(0.0f, 0.0f, 0.0f);
 	}
 
 	// Done

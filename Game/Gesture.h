@@ -71,6 +71,15 @@ public:
 
 		// Average bounce amplitude (in m/s/s)
 		float32 averageBounceAmplitude;
+
+		// Max bounce amplitude (in m/s/s)
+		float32 maxBounceAmplitude;
+
+		// The average force (presumably of gravity) across the centre of each bounce
+		Vec3 averageCentralForce;
+
+		// The average central force recorded in the last bounce
+		Vec3 lastCentralForce;
 	};
 
 	// Calculates bounce info across a span of time, relative to the current time, and returns the result

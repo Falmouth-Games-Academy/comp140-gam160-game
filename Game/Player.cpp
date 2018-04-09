@@ -34,11 +34,6 @@ void Hand::Render() {
 		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", velocity.x, velocity.y, velocity.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
 		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
-
-		// Debug bounce info
-		GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(1000, 0);
-		debug->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
-			bounceInfo.numBounces, bounceInfo.averageBounceHz, bounceInfo.averageBounceAmplitude));
 	}
 }
 
@@ -46,7 +41,7 @@ void Hand::Update(float deltaTime) {
 	const float maxY = 900.0f;
 
 	// Update rotation
-	Vec3 currentAccel = game.GetGesture().GetAverageAccel(500, 0);
+	Vec3 currentAccel = game.GetGesture().GetAverageAccel(100, 0);
 	float lastRotation = rotation;
 
 	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
@@ -74,30 +69,57 @@ void Hand::Update(float deltaTime) {
 
 	// Do gesture movement
 	bool doFriction = false;
+	bool doJump = false;
 	GestureManager& gesture = game.GetGesture();
 
 	// Calculate target speed based on rate and amplitude of hand bounces
 	const float maxHandzerSpeed = 5000.0f;
-	const float minBounceSpeed = 80000.0f;
-	const float maxBounceSpeed = 300000.0f;
+	const float minBounceSpeed = 20000.0f;
+	const float maxBounceSpeed = 240000.0f;
+	const float minBounceAmplitude = 1000.0f;
+	const float minAcceleration = 2000.0f;
+	const float maxAcceleration = 5000.0f;
+	const float minBounceAcceleration = minBounceSpeed;
+	const float maxBounceAcceleration = 200000.0f;
 
-	GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(500, 0);
+	GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(300, 0);
 
-	float targetSpeed = -Math::lerpfloat(Math::clamp(bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude, minBounceSpeed, maxBounceSpeed), 
+	float targetSpeed = 0.0f;
+	float acceleration = 0.0f;
+	
+	if (bounceInfo.averageBounceAmplitude >= minBounceAmplitude) {
+		float bounceSpeed = bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude;
+
+		targetSpeed = -Math::lerpfloat(Math::clamp(bounceSpeed, minBounceSpeed, maxBounceSpeed), 
 							MinMax<float>(minBounceSpeed, maxBounceSpeed), MinMax<float>(0.0f, maxHandzerSpeed));
+
+		acceleration = Math::lerpfloat(bounceSpeed, MinMax<float>(minBounceAcceleration, maxBounceAcceleration), MinMax<float>(minAcceleration, maxAcceleration));
+	}
+
+	if (bounceInfo.numBounces > 1) {
+		rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs - 35.0f;
+	}
 
 	// Move in reverse if tilted back
 	if (rotation > 8.0f) {
 		targetSpeed = -targetSpeed;
 	}
 
+	// Jump if an unusually large amount of force was applied in a short time
+	if (bounceInfo.maxBounceAmplitude >= 14000.0f) {
+		doJump = true;
+	}
+
 	if (game.GetDebug()) {
+		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
+			bounceInfo.numBounces, bounceInfo.averageBounceHz, bounceInfo.averageBounceAmplitude));
 		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce speed: %.2f", bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude));
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Player target speed: %.2f", targetSpeed));
+		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Player target speed: %.2f  accel: %.2f", targetSpeed, acceleration));
+		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Amplitude deviation: %.2f", bounceInfo.maxBounceAmplitude - bounceInfo.averageBounceAmplitude));
 	}
 
 	if (abs(velocity.x) < abs(targetSpeed)) {
-		velocity.x += deltaTime * 5000.0f * Math::getsign(targetSpeed);
+		velocity.x += deltaTime * acceleration * Math::getsign(targetSpeed);
 	} else {
 		doFriction = true;
 	}
@@ -121,24 +143,26 @@ void Hand::Update(float deltaTime) {
 		velocity.x = 900.0f;
 	}
 
-	if (game.GetInput().IsKeyBooped(SDLK_SPACE)) {
+	if (game.GetInput().IsKeyBooped(SDLK_SPACE) || doJump) {
 		velocity.y = -1000.0f;
 	}
 
 	// Perform friction
-	const float frictionRate = 4000.0f; // in pixel/s/s
-	float velocitySign = Math::getsign(velocity.x);
+	if (doFriction) {
+		const float frictionRate = 4000.0f; // in pixel/s/s
+		float velocitySign = Math::getsign(velocity.x);
 
-	// Slow down if speed is > or < 0
-	if (velocitySign > 0.0f) {
-		velocity.x -= frictionRate * deltaTime;
-	} else if (velocitySign < 0.0f) {
-		velocity.x += frictionRate * deltaTime;
-	}
+		// Slow down if speed is > or < 0
+		if (velocitySign > 0.0f) {
+			velocity.x -= frictionRate * deltaTime;
+		} else if (velocitySign < 0.0f) {
+			velocity.x += frictionRate * deltaTime;
+		}
 
-	// Stop speed at 0 if we crossed between negative and positive speed
-	if (Math::getsign(velocity.x) != velocitySign) {
-		velocity.x = 0.0f;
+		// Stop speed at 0 if we crossed between negative and positive speed
+		if (Math::getsign(velocity.x) != velocitySign) {
+			velocity.x = 0.0f;
+		}
 	}
 
 	// Perform final collision-checked movement
