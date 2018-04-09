@@ -3,6 +3,14 @@
 
 Object::SpawnerDatabase Object::spawners;
 
+void Object::OnSpawn() {
+	return;
+}
+
+void Object::OnDestroy() {
+	return;
+}
+
 void Object::Update(float deltaTime) {
 	// Update gravity
 	velocity.y = Math::clamp(velocity.y + 3000.0f * deltaTime, -2000.0f, 6000.0f);
@@ -21,10 +29,24 @@ void Object::Update(float deltaTime) {
 			Destroy();
 		}
 	}
+
+	// Countdown visual hurt flash timer
+	if (hurtFlashTimer > 0.0f) {
+		hurtFlashTimer -= deltaTime;
+
+		Colour blendColour = Colour::Red();
+		blendColour.g = blendColour.b = (uint8)((maxHurtFlashTimer - hurtFlashTimer) * 255.0f / maxHurtFlashTimer);
+		sprite.SetBlendColour(blendColour);
+	} else {
+		sprite.SetBlendColour(Colour::White());
+	}
 }
 
 void Object::Render() {
 	game.GetCamera().RenderSprite(sprite, position, rotation);
+}
+
+void Object::OnDamage() {
 }
 
 void Object::RenderCollisionBox() const {
@@ -81,6 +103,14 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 
 		return true;
 	}
+}
+
+void Object::ChangeHealth(float healthDelta) {
+	// Affect health
+	health += healthDelta;
+
+	// Do flash visual feedback
+	hurtFlashTimer = maxHurtFlashTimer;
 }
 
 Vec3 Object::SpritePointToWorldPoint(const Vec2& spritePoint) const {

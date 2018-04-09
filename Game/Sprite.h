@@ -90,7 +90,7 @@ private:
 class Sprite {
 public:
 	/* Construction and destruction */
-	inline Sprite() : currentFrame(0) {};
+	inline Sprite() = default;
 
 	// Load a single-frame sprite with an origin and scale
 	inline Sprite(const char* filename, const Vec2& origin_ = Vec2(0.0f, 0.0f), const Vec2& scale_ = Vec2(1.0f, 1.0f));
@@ -165,6 +165,12 @@ public:
 	// Gets the origin of the current frame
 	const Vec2 GetOrigin() const;
 
+	// Sets the colour blend of the sprite (modulated into the image when rendered)
+	inline void SetBlendColour(const Colour& colour);
+
+	// Returns the blend factor
+	inline const Colour& GetBlendColour() const;
+
 	// Todo standardise which frames are being affected/used lol
 
 private:
@@ -176,6 +182,9 @@ private:
 
 	// Animation speed in frames/sec
 	float32 frameRate = 10.0f;
+
+	// Colour blend
+	Colour colourBlend = Colour::White();
 };
 
 inline Sprite::Sprite(const char* filename, const Vec2& origin, const Vec2& scale) {
@@ -279,6 +288,14 @@ inline const Vec2 Sprite::GetOrigin() const {
 	} else {
 		return Vec2(0.0f, 0.0f);
 	}
+}
+
+inline void Sprite::SetBlendColour(const Colour& colour) {
+	colourBlend = colour;
+}
+
+inline const Colour& Sprite::GetBlendColour() const {
+	return colourBlend;
 }
 
 inline bool SpriteFrame::IsLoaded() const {

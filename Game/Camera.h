@@ -62,7 +62,7 @@ public:
 		@param position: The position to render the sprite at
 		@param rotation: The rotation of the sprite, in clockwise degrees
 		@param flipFlags: Which axes to flip the image, if any (of FlipFlags)
-		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image 
+		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image
 	*/
 	void RenderSprite(const class Sprite& sprite, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr);
 
@@ -72,8 +72,9 @@ public:
 		@param rotation: The rotation of the sprite, in clockwise degrees
 		@param flipFlags: Which axes to flip the image, if any (of FlipFlags)
 		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image 
+		@param blendColour: An optional colour to modulate the sprite by during render
 	*/
-	void RenderSpriteFrame(const class SpriteFrame& sprite, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr);
+	void RenderSpriteFrame(const class SpriteFrame& sprite, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr, const Colour& blendColour = Colour::White());
 
 	/* Renders a single sprite frame at a given position in the world
 		@param sprite: The sprite to render
@@ -82,13 +83,15 @@ public:
 		@param rotation: The rotation of the sprite, in clockwise degrees
 		@param flipFlags: Which axes to flip the image, if any (of FlipFlags)
 		@param region: The region of the sprite to draw, in pixel coordinates of the original unscaled image 
+		@param blendColour: An optional colour to modulate the sprite by during render
 	*/
-	void RenderSpriteFrame(const class Sprite& sprite, int frameIndex, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr);
+	void RenderSpriteFrame(const class Sprite& sprite, int frameIndex, const Vec3& position, float rotation = 0.0f, uint32 flipFlags = 0, const Rect2* region = nullptr, const Colour& blendColour = Colour::White());
 
 	/* Renders a rectangle at a given position in the world 
 		@param position: Position that the rectangle should be drawn
 		@param size: Dimensions of the rectangle
 		@param colour: The colour of the rectangle
+		@param blendColour: An optional colour to modulate the sprite by during render
 	*/
 	void RenderRectangle(const Vec3& position, const Vec2& size, Colour colour);
 
@@ -144,8 +147,10 @@ private:
 
 struct RenderCall {
 	// Default constructor
-	RenderCall(float32 depth_, const struct SDL_Texture* texture_, const Rect2* srcRect_, const Rect2& destRect_, const float rotation_, const Vec2& rotationOrigin_, uint32 flipFlags_) : 
-		depth(depth_), texture(texture_), destRect(destRect_), rotation(rotation_), flipFlags(flipFlags_), rotationOrigin(rotationOrigin_) {
+	RenderCall(float32 depth_, const struct SDL_Texture* texture_, const Rect2* srcRect_, const Rect2& destRect_, const float rotation_, const Vec2& rotationOrigin_, uint32 flipFlags_, 
+		const Colour& colourBlend_) : 
+			depth(depth_), texture(texture_), destRect(destRect_), rotation(rotation_), flipFlags(flipFlags_), rotationOrigin(rotationOrigin_), 
+			colourBlend(colourBlend_) {
 		if (srcRect_) {
 			srcRect = *srcRect_;
 			useFullRegion = false;
@@ -159,9 +164,14 @@ struct RenderCall {
 	// Parameters for the draw call
 	const struct SDL_Texture* texture;
 	Rect2 srcRect, destRect;
+
 	float32 rotation;
 	Vec2 rotationOrigin;
+
 	uint32 flipFlags;
+
+	Colour colourBlend;
+
 	Rect2 region;
 	bool8 useFullRegion;
 };

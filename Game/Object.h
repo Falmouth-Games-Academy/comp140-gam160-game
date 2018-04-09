@@ -36,10 +36,10 @@ public:
 public:
 	// Events
 	// Called when the object spawns. Default action: None
-	virtual void OnSpawn() {return;}
+	virtual void OnSpawn();
 
 	// Called when the object is destroyed. Default action: None
-	virtual void OnDestroy() {return;}
+	virtual void OnDestroy();
 
 public:
 	// Main functions
@@ -48,6 +48,10 @@ public:
 
 	// Renders the object. Default action: Render the sprite at the current position
 	virtual void Render();
+
+public:
+	// Combat virtuals
+	virtual void OnDamage();
 
 public:
 	// Positioning and movement
@@ -110,6 +114,10 @@ public:
 	bool IsColliding(const Object& otherObject, Bounds2* borderOffsets = nullptr);
 
 public:
+	// Health and combat
+	void ChangeHealth(float healthDelta);
+
+public:
 	// Sprite position calculations
 	// Converts a pixel position on the object's sprite to a world position, considering the object's rotation and scale
 	virtual Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const;
@@ -135,12 +143,35 @@ protected:
 	float32 rotation = 0.0f;
 	float32 rotationSpeed = 0.0f; // deg/sec
 
+	// Flags determining what actions Update will undertake
+	enum UpdateFlags {
+		UpdateGravity = 1,
+		UpdateRotation = 2,
+		UpdatePhysics = UpdateGravity | UpdateRotation,
+		UpdateDeathTimer = 4,
+		UpdateHurtFlashes = 8,
+
+		UpdateAll = 0xFFFF,
+	};
+
+	uint32 updateFlags;
+
 	// Dimensions of the collision box, relative to this object's unscaled sprite pixels
 	Rect2 collisionBox;
 	bool8 isSolid = false;
 
 	// Whether the object is on the ground (simulated objects only)
 	bool8 isOnGround = false;
+
+	// Health of the object (if applicable)
+	float32 health = 100.0f;
+
+	// Whether or not this object uses health
+	bool8 isHurtable = false;
+
+	// A timer representing the red flash indicated when damage is dealt
+	float32 hurtFlashTimer = 0.0f;
+	float32 maxHurtFlashTimer = 0.2f;
 
 	// If above 0, this is a timer, which by Object::Update counts down to 0. Once 0 is reached, the object self-destructs
 	float32 destroyTimer;

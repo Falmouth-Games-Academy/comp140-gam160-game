@@ -103,6 +103,9 @@ void Camera::FlushLayeredRenders() {
 				call->rotation += 180.0f; // This little detail might be why SDL doesn't have SDL_FLIP_BOTH
 			}
 
+			// Setup render colour blend
+			SDL_SetTextureColorMod(const_cast<SDL_Texture*>(call->texture), call->colourBlend.r, call->colourBlend.g, call->colourBlend.b);
+
 			// If a sprite region was specified, draw the sprite with wrapping enabled
 			if (!call->useFullRegion) {
 				SDL_Rect sdlSourceRect = {(int)call->region.x, (int)call->region.y, (int)call->region.width, (int)call->region.height};
@@ -166,42 +169,26 @@ void Camera::StartShake(float32 time, float32 rate, float32 magnitude) {
 	shakeInitialMagnitude = magnitude;
 }
 
-/*void Camera::RenderSprite(SDL_Texture* texture, const Vec3& position, const Vec2& size, float rotation, const Vec2& rotationOrigin, bool hFlip, bool vFlip) {
-	if (position.z <= this->position.z) {
-		// Don't render things behind the camera!
-		return;
-	}
-
-	float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
-	Vec2 origin = (position.xy - this->position.xy) * zScale + (viewBox.size / 2);
-	SDL_Rect destRect = {(int)origin.x, (int)origin.y, (int)(size.x * zScale), (int)(size.y * zScale)};
-	SDL_Point sdlRotationOrigin = {(int)(rotationOrigin.x * zScale), (int)(rotationOrigin.y * zScale)};
-
-	SDL_RenderCopyEx(game.GetRenderer(), texture, nullptr, &destRect, rotation, &sdlRotationOrigin, 
-		(SDL_RendererFlip)((hFlip ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE) | (vFlip ? SDL_FLIP_VERTICAL : SDL_FLIP_NONE)));
-}*/
-
 void Camera::RenderSprite(const Sprite& sprite, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region) {
 	// Simply render the sprite's current frame
 	if (sprite.GetCurrentFrame() != nullptr) {
-		RenderSpriteFrame(*sprite.GetCurrentFrame(), position, rotation, flipFlags, region);
+		RenderSpriteFrame(*sprite.GetCurrentFrame(), position, rotation, flipFlags, region, sprite.GetBlendColour());
 	}
 }
 
-void Camera::RenderSpriteFrame(const Sprite& sprite, int frameIndex, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region) {
+void Camera::RenderSpriteFrame(const Sprite& sprite, int frameIndex, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region, const Colour& blendColour) {
 	if (sprite.GetFrame(frameIndex)) {
-		RenderSpriteFrame(*sprite.GetFrame(frameIndex), position, rotation, flipFlags, region);
+		RenderSpriteFrame(*sprite.GetFrame(frameIndex), position, rotation, flipFlags, region, blendColour);
 	}
 }
 
-void Camera::RenderSpriteFrame(const SpriteFrame& sprite, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region) {
+void Camera::RenderSpriteFrame(const SpriteFrame& sprite, const Vec3& position, float rotation, uint32 flipFlags, const Rect2* region, const Colour& blendColour) {
 	if (position.z <= this->position.z) {
 		// Don't render things behind the camera!
 		return;
 	}
 
 	// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
-
 	if (SDL_Texture* texture = sprite.GetSDLTexture()) {
 		float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
 		Vec2 cameraOrigin = this->position.xy - (viewBox.size * 0.5f) / zScale;
@@ -228,16 +215,14 @@ void Camera::RenderSpriteFrame(const SpriteFrame& sprite, const Vec3& position, 
 			sdlDestRect.h -= sdlSourceRect.y;
 			// Todo make this actually work
 
-			//SDL_RenderCopyEx(game.GetRenderer(), texture, &sdlSourceRect, &sdlDestRect, rotation, &sdlRotationOrigin, sdlFlip);
-			InsertNewRenderCall(new RenderCall(position.z - this->position.z, texture, region, Rect2(origin, sprite.GetDimensions() * zScale), rotation, sprite.GetOrigin() * zScale, sdlFlip));
+			InsertNewRenderCall(new RenderCall(position.z - this->position.z, texture, region, Rect2(origin, sprite.GetDimensions() * zScale), rotation, sprite.GetOrigin() * zScale, sdlFlip, blendColour));
 		} else {
 			// Otherwise draw it normally
-			//SDL_RenderCopyEx(game.GetRenderer(), texture, nullptr, &sdlDestRect, rotation, &sdlRotationOrigin, sdlFlip);
-			InsertNewRenderCall(new RenderCall(position.z - this->position.z, texture, nullptr, Rect2(origin, sprite.GetDimensions() * zScale), rotation, sprite.GetOrigin() * zScale, sdlFlip));
+			InsertNewRenderCall(new RenderCall(position.z - this->position.z, texture, nullptr, Rect2(origin, sprite.GetDimensions() * zScale), rotation, sprite.GetOrigin() * zScale, sdlFlip, blendColour));
 		}
 	}
 }
-	
+
 void Camera::RenderRectangle(const Vec3& position, const Vec2& size, Colour colour) {
 	float zScale = Math::clampmax(1.0f / (position.z - this->position.z), 10.0f);
 

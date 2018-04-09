@@ -40,4 +40,12 @@ struct Colour {
 	static constexpr Colour Blue() {
 		return Colour(0xFF0000FF);
 	}
+
+	static constexpr Colour Black() {
+		return Colour(0xFF000000);
+	}
+
+	static constexpr Colour White() {
+		return Colour(0xFFFFFFFF);
+	}
 };
