@@ -66,7 +66,11 @@ namespace Math {
 	}
 
 	// Lerping
+	// Lerp a value from an old range to a new range
 	inline float lerpfloat(float value, const MinMax<float>& oldRange, const MinMax<float>& newRange);
+
+	// Lerp a value from 0-1 to a range
+	inline float lerpfloat(float value, const MinMax<float>& newRange);
 
 	// Random number gesus
 	// Returns a random floating-point number between min and max (max exclusive)
@@ -144,8 +148,11 @@ public:
 	// Normalises the vector. If it has no length, sets it to an up vector (y=-1).
 	Vec2& Normalise() {float length = (float)sqrt((x * x) + (y * y)); if (length > 0.0f) {x /= length; y /= length;} else {y = -1.0f;}; return *this;}
 
-	// Returns a rotated copy of the vector
+	// Returns a rotated copy of the vector, in degrees
 	Vec2 Rotated(float angle) const {float s = sin(angle * Math::rads), c = cos(angle * Math::rads); return Vec2(x * c - y * s, x * s + y * c);}
+
+	// Returns a vecotr lerped toward vecB by factor
+	Vec2 Lerped(const Vec2& vecB, float factor) const {return Vec2(vecB.x * factor + x * (1.0f - factor), vecB.y * factor + y * (1.0f - factor));};
 
 	// Generator functions
 	static Vec2 FromRotation(float angle, float magnitude = 1.0f) {
@@ -190,6 +197,11 @@ public:
 
 	// Extremely amazing advanced vector code
 	float Length() const {return (float)sqrt((x * x) + (y * y) + (z * z));}
+
+	// Returns a vector lerped toward vecB by factor
+	Vec3 Lerped(const Vec3& vecB, float factor) const {
+		return Vec3(vecB.x * factor + x * (1.0f - factor), vecB.y * factor + y * (1.0f - factor), vecB.z * factor + z * (1.0f - factor));
+	}
 
 	// Static functions
 	static Vec3 Lerp(const Vec3& vecA, const Vec3& vecB, float bFactor) {
@@ -277,4 +289,8 @@ public:
 // Math definitions that couldn't be done because due to incomplete class/struct types
 inline float Math::lerpfloat(float value, const MinMax<float>& oldRange, const MinMax<float>& newRange) {
 	return newRange.min + (value - oldRange.min) * (newRange.max - newRange.min) / (oldRange.max - oldRange.min);
+}
+
+inline float Math::lerpfloat(float value, const MinMax<float>& newRange) {
+	return newRange.min + value * (newRange.max - newRange.min);
 }

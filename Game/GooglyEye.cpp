@@ -11,7 +11,7 @@ void GooglyEye::OnSpawn() {
 	pupilRadius = 55.0f;
 	pupilEdgeScale = 0.7f;
 
-	pupilRestingDirection = Vec2(-1.0f, 0.0f) * game.GetGravity();
+	pupilLookForce = Vec2(0.0f, 1.0f) * game.GetGravity();
 	pupilFriction = 800.0f;
 }
 
@@ -22,7 +22,7 @@ void GooglyEye::Update(float deltaTime) {
 	//position = game.GetCamera().ScreenToWorld(Vec3(game.GetInput().GetMousePosition(), 1.0f));
 
 	// Update position to player position
-	position = game.GetPlayer().SpritePointToWorldPoint(playerOffset.xy) + Vec3(0.0f, 0.0f, playerOffset.z);
+	position = game.GetPlayer().SpritePointToWorldPoint(parentOffset.xy) + Vec3(0.0f, 0.0f, parentOffset.z);
 
 	const float forceMultiplier = 0.4f;
 
@@ -48,7 +48,7 @@ void GooglyEye::Render() {
 
 void GooglyEye::UpdatePupilPhysics(float deltaTime) {
 	// Do gravity
-	pupilVelocity += pupilRestingDirection * deltaTime;
+	pupilVelocity += pupilLookForce * deltaTime;
 
 	// Move the pupil
 	pupilPosition += pupilVelocity * deltaTime;

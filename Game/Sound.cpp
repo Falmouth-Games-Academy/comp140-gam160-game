@@ -26,6 +26,8 @@ bool SoundManager::Init() {
 		printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
 		goto InitError;
 	}
+
+	// Latency should be pretty low
 	system->setDSPBufferSize(256, 2);
 
 	// It worked!

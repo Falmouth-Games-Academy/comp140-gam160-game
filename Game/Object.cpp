@@ -12,33 +12,43 @@ void Object::OnDestroy() {
 }
 
 void Object::Update(float deltaTime) {
-	// Update gravity
-	velocity.y = Math::clamp(velocity.y + 3000.0f * deltaTime, -2000.0f, 6000.0f);
+	if (updateFlags & UpdateGravity) {
+		// Update gravity
+		velocity.y = Math::clamp(velocity.y + 3000.0f * deltaTime, -2000.0f, 6000.0f);
+	}
 	
-	// Move object
-	Move(velocity * deltaTime, true);
+	if (updateFlags & UpdatePhysics) {
+		// Move object
+		Move(velocity * deltaTime, true);
+	}
 
-	// Spin object
-	rotation = Math::circleclamp(rotation + rotationSpeed * deltaTime, 360.0f);
+	if (updateFlags & UpdateRotation) {
+		// Spin object
+		rotation = Math::circleclamp(rotation + rotationSpeed * deltaTime, 360.0f);
+	}
 
-	// Countdown destruction timer and destroy self if it reaches 0
-	if (destroyTimer > 0.0f) {
-		destroyTimer -= deltaTime;
+	if (updateFlags & UpdateDeathTimer) {
+		// Countdown destruction timer and destroy self if it reaches 0
+		if (destroyTimer > 0.0f) {
+			destroyTimer -= deltaTime;
 
-		if (destroyTimer <= 0.0f) {
-			Destroy();
+			if (destroyTimer <= 0.0f) {
+				Destroy();
+			}
 		}
 	}
 
-	// Countdown visual hurt flash timer
-	if (hurtFlashTimer > 0.0f) {
-		hurtFlashTimer -= deltaTime;
+	if (updateFlags & UpdateHurtFlashes) {
+		// Countdown visual hurt flash timer
+		if (hurtFlashTimer > 0.0f) {
+			hurtFlashTimer -= deltaTime;
 
-		Colour blendColour = Colour::Red();
-		blendColour.g = blendColour.b = (uint8)((maxHurtFlashTimer - hurtFlashTimer) * 255.0f / maxHurtFlashTimer);
-		sprite.SetBlendColour(blendColour);
-	} else {
-		sprite.SetBlendColour(Colour::White());
+			Colour blendColour = Colour::Red();
+			blendColour.g = blendColour.b = (uint8)((maxHurtFlashTimer - hurtFlashTimer) * 255.0f / maxHurtFlashTimer);
+			sprite.SetBlendColour(blendColour);
+		} else {
+			sprite.SetBlendColour(Colour::White());
+		}
 	}
 }
 

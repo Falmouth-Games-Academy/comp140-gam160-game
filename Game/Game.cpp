@@ -190,9 +190,6 @@ void Game::Render() {
 	}
 }
 
-#include "Laser.h"
-#include "GooglyEye.h"
-
 void Game::Run() {
 	// Initialise engine
 	Init();
@@ -332,13 +329,6 @@ void Game::RespawnPlayer() {
 	player = SpawnObject<Hand>();
 
 	player->SetPosition(Vec3(7275.0f, 735.0f, 1.0f)); // If there's time, todo use a spawn point object for this
-
-	// Spawn the laser (possibly move this code later?)
-	SpawnObject<Laser>();
-
-	// Spawn a googly eye
-	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 470.0f, 729.0f, 0.1f));
-	SpawnObject<GooglyEye>()->SetPlayerOffset(Vec3(2010.0f - 100.0f, 729.0f, -0.1f));
 }
 
 void Game::ClearObjects() {

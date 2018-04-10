@@ -34,7 +34,7 @@ void Laser::OnSpawn() {
 
 void Laser::Update(float deltaTime) {
 	// Move to player mouth position and angle
-	position = game.GetPlayer().SpritePointToWorldPoint(Vec2(1480.0f, 1345.0f));
+	position = game.GetPlayer().SpritePointToWorldPoint(Vec2(792.0f, 628.0f).Lerped(Vec2(668.0f, 820.0f), power));
 
 	rotation = game.GetPlayer().GetRotation();
 
@@ -46,7 +46,7 @@ void Laser::Update(float deltaTime) {
 	power = game.GetPlayer().GetLaserPower();
 	sprite.GetFrame(StartFiery)->SetScale(Vec2(power * 2.0f, power));
 	sprite.GetFrame(CentreFiery)->SetScale(Vec2(2000.0f, power));
-	sprite.GetFrame(StartRainbow)->SetScale(Vec2(power * 2.0f, power));
+	sprite.GetFrame(StartRainbow)->SetScale(Vec2(power * 2.0f * (220.0f / 250.0f), power));
 	sprite.GetFrame(CentreRainbow)->SetScale(Vec2(2000.0f, power));
 	sprite.GetFrame(EdgeFlames)->SetScale(Vec2(2.0f, power));
 	sprite.GetFrame(LightBall)->SetScale(Vec2(power * 2.0f, power * 2.0f));

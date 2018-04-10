@@ -5,7 +5,7 @@
 
 class Hand : public Object {
 public:
-	Hand() : headBob(0.0f, 0.0f), powerslideTimeRemaining(0.0f), direction(-1) {};
+	Hand() {};
 	virtual ~Hand();
 
 	void OnSpawn();
@@ -30,17 +30,24 @@ public:
 	inline Vec3 GetBobbedPosition() const;
 
 private:
+	// Sprite for the arm
+	Sprite armSprite;
+
+	// Eyes
+	class GooglyEye* leftEye = nullptr;
+	class GooglyEye* rightEye = nullptr;
+
 	// Offset of the head according to the animated head bob
-	Vec2 headBob;
+	Vec2 headBob = Vec2(0.0f, 0.0f);
 
 	// Direction (-1 left, +1 right)
-	int32 direction;
+	int32 direction = -1;
 
 	// Power of the laser currently being fired, or 0.0 if no laser is being fired
-	float32 laserPower;
+	float32 laserPower = 0.0f;
 
 	// Time remaining, in seconds, before powerslide ends
-	float32 powerslideTimeRemaining;
+	float32 powerslideTimeRemaining = 0.0f;
 };
 
 inline int Hand::GetDirection() const {

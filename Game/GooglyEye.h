@@ -25,11 +25,25 @@ public:
 	void UpdatePupilPhysics(float deltaTime);
 
 public:
-	inline void SetPlayerOffset(const Vec3& offset);
+	// Sets the object that owns these googly eyes
+	inline void SetParent(const Object* parent);
+
+	// Sets the offset relative to the object's sprite frame, that these eyes are positioned
+	inline void SetParentOffset(const Vec3& offset);
+
+	// Sets dimensions of the eyeballs
+	inline void SetPupilRadius(float32 radius);
+	inline void SetEyeballRadius(float32 radius);
+
+	// Sets the look force (a force where the eyes try to look, in m/s/s. For hyper-realistic googly eyes, set this to Vec2(0.0f, game.GetGravity());
+	inline void SetLookForce(const Vec2& lookForce);
 
 private:
-	// Positional eye offset, relative to the player's central singular cyclops eye socket, if it had one, in player sprite pixels.
-	Vec3 playerOffset = Vec3(0.0f, 0.0f);
+	// Owner of the eyes
+	const Object* parent = nullptr;
+
+	// Positional eye offset, relative to the parent object in sprite pixels (if applicable)
+	Vec3 parentOffset = Vec3(0.0f, 0.0f);
 
 	// Radius of eye and pupil
 	float32 eyeRadius;
@@ -45,12 +59,28 @@ private:
 	Vec2 pupilVelocity;
 
 	// Direction that the pupil tends to rest at (is actually a replacement for gravity)
-	Vec2 pupilRestingDirection;
+	Vec2 pupilLookForce;
 
 	// Friction of the pupil, in pixels/sec/sec, when scraping against the edge of the eyeball
 	float32 pupilFriction;
 };
 
-inline void GooglyEye::SetPlayerOffset(const Vec3& offset) {
-	this->playerOffset = offset;
+inline void GooglyEye::SetParentOffset(const Vec3& offset_) {
+	this->parentOffset = offset_;
+}
+
+inline void GooglyEye::SetParent(const Object* parent_) {
+	this->parent = parent_;
+}
+
+inline void GooglyEye::SetPupilRadius(float32 radius) {
+	pupilRadius = radius;
+}
+
+inline void GooglyEye::SetEyeballRadius(float32 radius) {
+	eyeRadius = radius;
+}
+
+inline void GooglyEye::SetLookForce(const Vec2& lookForce_) {
+	pupilLookForce = lookForce_;
 }

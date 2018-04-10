@@ -3,6 +3,8 @@
 #include "Game.h"
 #include "SDL.h"
 #include "Image.h"
+#include "GooglyEye.h"
+#include "Laser.h"
 
 #include "Bottle.h" // Test bottle spawning
  
@@ -13,16 +15,37 @@ Hand::~Hand() {
 
 void Hand::OnSpawn() {
 	// Load player sprite
-	sprite.LoadFrames("Graphics/player/laser/handzer", 5, Vec2(2496.0, 2102.0), Vec2(0.2f, 0.2f)/*Vec2(222.0f, 154.0f), Vec2(1.5f, 1.5f)*/);
+	//sprite.LoadFrames("Graphics/player/laser/handzer", 5, Vec2(2496.0, 2102.0), Vec2(0.2f, 0.2f));
+	sprite.LoadFrames("Graphics/player/laser_test/handzer", 9, Vec2(1268.0f, 988.0f), Vec2(0.5f, 0.5f));
 	
+	// And arm sprite
+	armSprite.LoadFrame("graphics/player/laser_test/arm_1.png", Vec2(190.0f, 180.0f), Vec2(0.5f, 0.5f));
+
 	// Setup collision box
 	collisionBox = Rect2(157, 701, 2509, 1661);
 	isSolid = true;
 
+	// Start going left!
 	direction = -1;
+
+	// Custom simulation used
+	updateFlags = UpdateFlags::UpdateHurtFlashes;
+
+	// Create googly eyes
+	leftEye = game.SpawnObject<GooglyEye>();
+	rightEye = game.SpawnObject<GooglyEye>();
+
+	leftEye->SetParentOffset(Vec3(1104.0f - 100.0f, 348.0f, 0.2f));
+	rightEye->SetParentOffset(Vec3(1104.0f, 348.0f, 0.0f));
+
+	// Create the laser
+	game.SpawnObject<Laser>();
 }
 
 void Hand::Render() {
+	// Draw the arm
+	game.GetCamera().RenderSprite(armSprite, position + headBob, 0.0f, (direction == 1) ? true : false);
+
 	// Draw the player
 	game.GetCamera().RenderSprite(sprite, position + headBob, rotation, (direction == 1) ? true : false);
 
@@ -35,7 +58,12 @@ void Hand::Render() {
 }
 
 void Hand::Update(float deltaTime) {
-	const float maxY = 900.0f;
+	// Super update
+	Object::Update(deltaTime);
+
+	if (game.GetInput().IsKeyBooped(SDLK_h)) {
+		ChangeHealth(-1.0f);
+	}
 
 	// Update rotation
 	Vec3 currentAccel = game.GetGesture().GetAverageAccel(100, 0);
@@ -122,12 +150,14 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Bob the head
-	headBob.y = (gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 240.0f;
+	headBob.y = (gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 50.0f;
 
 	// Do gravity
 	velocity.y += game.GetGravity() * deltaTime;
 
 	// Do collision
+	const float maxY = 900.0f;
+
 	if (position.y > maxY) {
 		position.y = maxY;
 		velocity.y = 0.0f;
@@ -141,7 +171,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	if (game.GetInput().IsKeyBooped(SDLK_SPACE) || doJump) {
-		velocity.y = -1000.0f;
+		velocity.y = -game.GetGravity() * 0.25f;
 	}
 
 	// Perform friction
@@ -164,6 +194,22 @@ void Hand::Update(float deltaTime) {
 
 	// Perform final collision-checked movement
 	this->Move(velocity * deltaTime);
+
+	// Update eye positions
+	leftEye->SetParentOffset(Vec3(1104.0f - 100.0f, 348.0f, 0.2f).Lerped(Vec3(900.0f - 100.0f, 476.0f, 0.2f), laserPower));
+	rightEye->SetParentOffset(Vec3(1104.0f, 348.0f, 0.0f).Lerped(Vec3(900.0f, 476.0f, 0.0f), laserPower));
+
+	// Update eye direction
+	const float googlyStrength = 4000.0f;
+	leftEye->SetLookForce(Vec2(-1.0f, 0.0f).Rotated(rotation - 40.0f).Lerped(Vec2(1.0f, -1.0f), laserPower) * googlyStrength);
+	rightEye->SetLookForce(Vec2(-1.0f, 0.0f).Rotated(rotation).Lerped(Vec2(1.0f, -1.0f), laserPower) * googlyStrength);
+
+	// Not to mention pupil size
+	leftEye->SetPupilRadius(Math::lerpfloat(laserPower, MinMax<float>(40.0f, 80.0f)));
+	rightEye->SetPupilRadius(Math::lerpfloat(laserPower, MinMax<float>(34.0f, 65.0f)));
+
+	leftEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(80.0f, 120.0f)));
+	rightEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(70.0f, 100.0f)));
 }
 
 Vec3 Hand::SpritePointToWorldPoint(const Vec2& spritePoint) const {
