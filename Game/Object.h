@@ -115,7 +115,8 @@ public:
 
 public:
 	// Health and combat
-	void ChangeHealth(float healthDelta);
+	// Changes the health by healthData. hurtInvincibilityTime gives an invincibility timer if not -1.0f. If it is -1.0f, the default invincibility time is used.
+	void ChangeHealth(float32 healthDelta, float32 hurtInvincibilityTime = -1.0f);
 
 public:
 	// Sprite position calculations
@@ -150,11 +151,12 @@ protected:
 		UpdatePhysics = UpdateGravity | UpdateRotation,
 		UpdateDeathTimer = 4,
 		UpdateHurtFlashes = 8,
+		UpdateInvincibilityTimer = 16,
 
 		UpdateAll = 0xFFFF,
 	};
 
-	uint32 updateFlags;
+	uint32 updateFlags = UpdateAll;
 
 	// Dimensions of the collision box, relative to this object's unscaled sprite pixels
 	Rect2 collisionBox;
@@ -172,6 +174,12 @@ protected:
 	// A timer representing the red flash indicated when damage is dealt
 	float32 hurtFlashTimer = 0.0f;
 	float32 maxHurtFlashTimer = 0.2f;
+
+	// A timer counting down the short invincibility period after being hurt
+	float32 hurtInvincibilityTimer = 0.0f;
+
+	// The default invincibility time after being hurt, in seconds
+	float32 defaultHurtInvincibilityTime = 0.0f;
 
 	// If above 0, this is a timer, which by Object::Update counts down to 0. Once 0 is reached, the object self-destructs
 	float32 destroyTimer;

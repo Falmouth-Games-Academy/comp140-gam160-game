@@ -16,20 +16,22 @@ Hand::~Hand() {
 void Hand::OnSpawn() {
 	// Load player sprite
 	//sprite.LoadFrames("Graphics/player/laser/handzer", 5, Vec2(2496.0, 2102.0), Vec2(0.2f, 0.2f));
-	sprite.LoadFrames("Graphics/player/laser_test/handzer", 9, Vec2(1268.0f, 988.0f), Vec2(0.5f, 0.5f));
+	sprite.LoadFrames("Graphics/player/laser/handzer", 9, Vec2(1268.0f, 988.0f), Vec2(0.5f, 0.5f));
 	
 	// And arm sprite
-	armSprite.LoadFrame("graphics/player/laser_test/arm_1.png", Vec2(190.0f, 180.0f), Vec2(0.5f, 0.5f));
+	armSprite.LoadFrame("graphics/player/laser/arm_1.png", Vec2(190.0f, 180.0f), Vec2(0.5f, 0.5f));
 
 	// Setup collision box
 	collisionBox = Rect2(157, 701, 2509, 1661);
 	isSolid = true;
 
+	// Setup other defaults
+	defaultHurtInvincibilityTime = 1.0f;
+
+	updateFlags = UpdateHurtFlashes | UpdateInvincibilityTimer;
+
 	// Start going left!
 	direction = -1;
-
-	// Custom simulation used
-	updateFlags = UpdateFlags::UpdateHurtFlashes;
 
 	// Create googly eyes
 	leftEye = game.SpawnObject<GooglyEye>();
@@ -58,9 +60,7 @@ void Hand::Render() {
 }
 
 void Hand::Update(float deltaTime) {
-	// Super update
-	Object::Update(deltaTime);
-
+	// Test damage
 	if (game.GetInput().IsKeyBooped(SDLK_h)) {
 		ChangeHealth(-1.0f);
 	}
@@ -150,7 +150,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Bob the head
-	headBob.y = (gesture.GetAverageAccel(50, 0).z - gesture.GetAverageAccel(1000, 0).z) / 50.0f;
+	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.1f;
 
 	// Do gravity
 	velocity.y += game.GetGravity() * deltaTime;
@@ -194,6 +194,9 @@ void Hand::Update(float deltaTime) {
 
 	// Perform final collision-checked movement
 	this->Move(velocity * deltaTime);
+
+	// Perform super update
+	Object::Update(deltaTime);
 
 	// Update eye positions
 	leftEye->SetParentOffset(Vec3(1104.0f - 100.0f, 348.0f, 0.2f).Lerped(Vec3(900.0f - 100.0f, 476.0f, 0.2f), laserPower));

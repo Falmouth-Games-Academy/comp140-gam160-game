@@ -112,7 +112,10 @@
       <Filter>Source Files\Resources</Filter>
     </ClCompile>
     <ClCompile Include="Bigfoot.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Gameplay\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

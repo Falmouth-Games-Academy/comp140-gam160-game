@@ -213,11 +213,19 @@ public:
 		struct {
 			float32 x;
 			float32 y;
+			float32 z;
 		};
-		Vec2 xy;
-	};
 
-	float32 z;
+		struct {
+			Vec2 xy;
+			float32 _pad;
+		};
+
+		struct {
+			float32 __pad;
+			Vec2 yz;
+		};
+	};
 };
 
 // 2D Rectangle

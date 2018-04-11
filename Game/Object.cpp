@@ -50,6 +50,12 @@ void Object::Update(float deltaTime) {
 			sprite.SetBlendColour(Colour::White());
 		}
 	}
+
+	if (updateFlags & UpdateInvincibilityTimer) {
+		if (hurtInvincibilityTimer > 0.0f) {
+			hurtInvincibilityTimer -= deltaTime;
+		}
+	}
 }
 
 void Object::Render() {
@@ -115,12 +121,23 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 	}
 }
 
-void Object::ChangeHealth(float healthDelta) {
+void Object::ChangeHealth(float32 healthDelta, float32 hurtInvincibilityTime) {
+	if (hurtInvincibilityTimer > 0.0f && healthDelta < 0.0f) {
+		return; // You can't hurt me while I'm invincible, fool!
+	}
+
 	// Affect health
 	health += healthDelta;
 
 	// Do flash visual feedback
 	hurtFlashTimer = maxHurtFlashTimer;
+
+	// Apply invincibility
+	if (hurtInvincibilityTime != -1.0f) {
+		hurtInvincibilityTimer = hurtInvincibilityTime;
+	} else {
+		hurtInvincibilityTimer = defaultHurtInvincibilityTime;
+	}
 }
 
 Vec3 Object::SpritePointToWorldPoint(const Vec2& spritePoint) const {
