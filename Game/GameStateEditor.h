@@ -23,6 +23,7 @@ public:
 	void UpdateCursorPlacingLayer();
 	void UpdateCursorDrawingCollision();
 	void UpdateCursorPlacingObject();
+	void UpdateCursorDuplicatingStuff();
 
 	// Additional render functions
 	void RenderDepthView();
@@ -38,14 +39,18 @@ private:
 		DrawingLayer,
 		DrawingCollision,
 		PlacingObject,
+		DuplicatingStuff,
 		NumCursorStates,
 	};
 
 	// Current cursor state
 	CursorState cursorState = Normal;
 
-	// Current position of the mouse cursor, in level units
+	// Current position of the mouse cursor, in world units
 	Vec3 cursorPosition;
+
+	// Previous position of the mouse curosr, in world units
+	Vec3 lastCursorPosition;
 
 	// Current position of the mouse cursor, in screen units
 	Vec3 cursorScreenPosition;

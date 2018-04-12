@@ -45,9 +45,9 @@ void Laser::Update(float deltaTime) {
 	// Resize based on player mouth dimensions
 	power = game.GetPlayer().GetLaserPower();
 	sprite.GetFrame(StartFiery)->SetScale(Vec2(power * 2.0f, power));
-	sprite.GetFrame(CentreFiery)->SetScale(Vec2(2000.0f, power));
+	sprite.GetFrame(CentreFiery)->SetScale(Vec2(5000.0f, power));
 	sprite.GetFrame(StartRainbow)->SetScale(Vec2(power * 2.0f * (220.0f / 250.0f), power));
-	sprite.GetFrame(CentreRainbow)->SetScale(Vec2(2000.0f, power));
+	sprite.GetFrame(CentreRainbow)->SetScale(Vec2(5000.0f, power));
 	sprite.GetFrame(EdgeFlames)->SetScale(Vec2(2.0f, power));
 	sprite.GetFrame(LightBall)->SetScale(Vec2(power * 2.0f, power * 2.0f));
 

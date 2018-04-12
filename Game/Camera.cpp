@@ -44,13 +44,6 @@ void Camera::Update(float deltaTime) {
 }
 
 void Camera::Render() {
-	// Render ordered render call shoite
-
-	// Render debug information
-	if (DebugStringBox* debug = game.GetDebug()) {
-		debug->DrawString(StaticString<80>::FromFormat("Camera pos: %f %f %f", position.x, position.y, position.z));
-	}
-
 	// Render layers
 	FlushLayeredRenders();
 }

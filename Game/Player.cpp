@@ -56,7 +56,6 @@ void Hand::Render() {
 		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", velocity.x, velocity.y, velocity.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
 		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
-		debug->DrawString(StaticString<80>::FromFormat("Player on ground: %i", isOnGround));
 	}
 }
 

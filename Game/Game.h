@@ -30,15 +30,6 @@ public:
 	void Run();
 	
 public:
-	// Get renderer
-	inline SDL_Renderer* GetRenderer(RenderScreen screen = RenderScreen::Main);
-	
-	// Specialised render stuff. In the game class. Ask no questions, just accept fate.
-	void RenderText(const char* text, int x, int y, RenderScreen screen = RenderScreen::Main);
-	void RenderRectangle(bool filled = false);
-
-	void RenderDebugAppurtenances();
-
 	// Game states
 	template<typename StateType>
 	inline void SetGameState();
@@ -83,6 +74,19 @@ public:
 
 	// Destroys all objects
 	void ClearObjects();
+
+public:
+	// Renderer and window stuff
+	// Get renderer
+	inline SDL_Renderer* GetRenderer(RenderScreen screen = RenderScreen::Main);
+
+	// Specialised render stuff. In the game class. Ask no questions, just accept fate.
+	void RenderText(const char* text, int x, int y, RenderScreen screen = RenderScreen::Main);
+	void RenderRectangle(bool filled = false);
+
+	void RenderDebugAppurtenances();
+
+	Dimensions2 GetScreenSize(RenderScreen screen = RenderScreen::Main);
 
 private:
 	// Game renderers, one for each window

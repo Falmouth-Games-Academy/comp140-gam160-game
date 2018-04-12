@@ -319,6 +319,13 @@ void Game::RenderDebugAppurtenances() {
 	level.RenderCollisionBoxes();
 }
 
+Dimensions2 Game::GetScreenSize(RenderScreen screen) {
+	SDL_Rect sdlSize;
+
+	SDL_RenderGetViewport(sdlRenderers[screen], &sdlSize);
+	return Dimensions2(sdlSize.w, sdlSize.h);
+}
+
 void Game::RespawnPlayer() {
 	// Destroy the existing player if necessary
 	if (player) {

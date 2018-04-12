@@ -30,5 +30,5 @@ private:
 	float32 secsPerJump = 0.5f;
 
 	// Amount of time in the air per jump
-	float32 airTime = 0.5f;
+	float32 airTime = 1.0f;
 };

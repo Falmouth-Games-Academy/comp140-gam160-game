@@ -50,10 +50,9 @@ void GameStateEditor::Render() {
 
 	if (debug) {
 		debug->DrawString(StaticString<140>::FromFormat("Cursor position: %.2f,%.2f,%.2f", cursorPosition.x, cursorPosition.y, cursorPosition.z));
-		debug->DrawString(StaticString<140>::FromFormat("Select position: %.2f,%.2f", selectStartPosition.x, selectStartPosition.y, cursorScreenPosition.x, cursorScreenPosition.y));
-		debug->DrawString("LClick: Select/Drag  Space+LClick: Move away/closer S+LClick: Scale");
-		debug->DrawString("ScrollWheel: Zoom, RightClick: Pan, Z: Reset zoom, C: Centre camera on player");
-		debug->DrawString("L: Create background layer, O: Create object");
+		debug->DrawString("MLB: Select/Drag -- Space+LMB: Move away/closer -- S+LMB: Scale -- C+LMB: Draw collision box");
+		debug->DrawString("MSCRL: Zoom -- RMB: Pan -- Z: Reset zoom");
+		debug->DrawString("Ctrl+S: Save map -- Ctrl+O: Open map -- Ctrl+L: Create background layer -- O: Create object");
 	}
 
 	// Render the depth view box
@@ -63,11 +62,12 @@ void GameStateEditor::Render() {
 }
 
 void GameStateEditor::RenderDepthView() {
-	const Vec3 depthRectSize(100.0f, 100.0f, 20.0f);
+	const Vec3 depthRectSize(200.0f, 150.0f, 20.0f);
 
 	// Render the depth screen background
+	Dimensions2 screenSize = game.GetScreenSize();
 	SDL_Renderer* renderer = game.GetRenderer();
-	SDL_Rect depthRect = {0, 0, (int)depthRectSize.x, (int)depthRectSize.y};
+	SDL_Rect depthRect = {(int)screenSize.width - (int)depthRectSize.x, 0, (int)depthRectSize.x, (int)depthRectSize.y};
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderFillRect(renderer, &depthRect);
@@ -81,16 +81,14 @@ void GameStateEditor::RenderDepthView() {
 	// Render background layers
 	for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
 		// Check the layer is in view
-		if (layer.GetPosition().x + layer.GetSprite().GetDimensions().x >= depthXRange.min && 
-			layer.GetPosition().x <= depthXRange.max) {
-
+		if (layer.GetPosition().x + layer.GetSprite().GetDimensions().x >= depthXRange.min && layer.GetPosition().x <= depthXRange.max) {
 			// Scale the layer into the depthRect for a top-down view
 			Vec2 lineStart((layer.GetPosition().x - depthXRange.min) * depthRectSize.x / depthXRange.GetRange(), 
-				depthRectSize.y - layer.GetPosition().z * depthRectSize.y / depthRectSize.z);
+							depthRectSize.y - layer.GetPosition().z * depthRectSize.y / depthRectSize.z);
 			Vec2 lineEnd = lineStart + Vec2(layer.GetSprite().GetDimensions().x * depthRectSize.x / depthXRange.GetRange(), 0.0f);
 
 			// Render
-			SDL_RenderDrawLine(renderer, (int)lineStart.x, (int)lineStart.y, (int)lineEnd.x, (int)lineEnd.y);
+			SDL_RenderDrawLine(renderer, (int)lineStart.x + depthRect.x, (int)lineStart.y + depthRect.y, (int)lineEnd.x + depthRect.x, (int)lineEnd.y + depthRect.y);
 		}
 	}
 }
@@ -115,6 +113,7 @@ void GameStateEditor::Exit() {
 
 void GameStateEditor::UpdateCursor() {
 	// Update cursor position!
+	lastCursorPosition = cursorPosition;
 	lastCursorScreenPosition = cursorScreenPosition;
 	
 	cursorScreenPosition = Vec3(game.GetInput().GetMousePosition(), cursorPosition.z);
@@ -141,6 +140,9 @@ void GameStateEditor::UpdateCursor() {
 			break;
 		case PlacingObject:
 			UpdateCursorPlacingObject();
+			break;
+		case DuplicatingStuff:
+			UpdateCursorDuplicatingStuff();
 			break;
 	}
 
@@ -292,21 +294,47 @@ void GameStateEditor::UpdateCursorNormal() {
 	}
 
 	// LButton alone: Drag selected layer(s)
-	if (cursorState == Normal && game.GetInput().IsMouseDown(InputManager::LeftButton)) {
+	if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
 		cursorState = DraggingLayer;
 	}
 }
 
 void GameStateEditor::UpdateCursorDraggingObject() {
 	if (game.GetInput().IsMouseDown(InputManager::LeftButton) && selectedItems.GetNum() >= 0) {
-		// Move layers
-		Vec2 cursorScreenDelta = cursorScreenPosition.xy - lastCursorScreenPosition.xy;
-		float cameraZ = game.GetCamera().GetPosition().z;
-		enum DragType {Move, Depth, Scale};
-		DragType dragType = (game.GetInput().IsKeyDown(SDLK_SPACE) ? Depth : (game.GetInput().IsKeyDown(SDLK_s) ? Scale : Move));
+		// Check if the user wants to make aduplicate
+		if (game.GetInput().IsKeyDown(SDLK_LSHIFT) || game.GetInput().IsKeyDown(SDLK_RSHIFT)) {
+			// Duplicate the stuff here I guess?
+			// Replace all the selected items with new duplicates of the original selected items
+			for (int i = 0; i < selectedItems.GetNum(); ++i) {
+				Object* object = selectedItems[i];
 
-		for (Object* obj : selectedItems) {
-			switch (dragType) {
+				if (object->GetType() == Object::BackgroundLayerType) {
+					// Duplicate a background layer
+					if (const SpriteFrame* frame = object->GetSprite().GetFrame(0)) {
+						selectedItems[i] = game.GetLevel().CreateLayer(object->GetSprite().GetFrame(0)->GetImage()->GetFilename(), object->GetPosition());
+						selectedItems[i]->SetScale(object->GetSprite().GetScale());
+					}
+				} else {
+					// Duplicate an object
+					selectedItems[i] = game.SpawnObject(object->GetType());
+
+					selectedItems[i]->SetPosition(object->GetPosition());
+					selectedItems[i]->SetRotation(object->GetRotation());
+					selectedItems[i]->SetScale(object->GetSprite().GetScale());
+				}
+			}
+			
+			// Update cursor state
+			cursorState = DuplicatingStuff;
+		} else {
+			// Move layers
+			Vec2 cursorScreenDelta = cursorScreenPosition.xy - lastCursorScreenPosition.xy;
+			float cameraZ = game.GetCamera().GetPosition().z;
+			enum DragType { Move, Depth, Scale };
+			DragType dragType = (game.GetInput().IsKeyDown(SDLK_SPACE) ? Depth : (game.GetInput().IsKeyDown(SDLK_s) ? Scale : Move));
+
+			for (Object* obj : selectedItems) {
+				switch (dragType) {
 				case Move:
 					// Drag to the sides
 					obj->SetPosition(obj->GetPosition() + cursorScreenDelta * (obj->GetPosition().z - cameraZ));
@@ -319,11 +347,12 @@ void GameStateEditor::UpdateCursorDraggingObject() {
 					// Scale up/down
 					obj->SetSize(obj->GetSize() * (1.0f + cursorScreenDelta.y * 0.01f));
 					break;
-			}
+				}
 
-			// If this is a persistent object, update its spawn info
-			if (obj->IsPersistent()) {
-				obj->SetSpawnInfo(obj->GetPosition(), true);
+				// If this is a persistent object, update its spawn info
+				if (obj->IsPersistent()) {
+					obj->SetSpawnInfo(obj->GetPosition(), true);
+				}
 			}
 		}
 	} else {
@@ -425,6 +454,20 @@ void GameStateEditor::UpdateCursorPlacingObject() {
 		}
 
 		cursorCreatingObjectPtr = nullptr;
+		cursorState = Normal;
+	}
+}
+
+void GameStateEditor::UpdateCursorDuplicatingStuff() {
+	// Update object positions
+	Vec3 cursorDelta = cursorPosition - lastCursorPosition;
+
+	for (Object* obj : selectedItems) {
+		obj->SetPosition(obj->GetPosition() + cursorDelta);
+	}
+
+	// Reset cursor state if mouse button released
+	if (!game.GetInput().IsMouseDown(InputManager::LeftButton)) {
 		cursorState = Normal;
 	}
 }

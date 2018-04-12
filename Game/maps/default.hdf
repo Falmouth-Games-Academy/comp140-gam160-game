@@ -37,11 +37,42 @@ Root:N[
 			pos:V[8229.440,145.946,1.645]
 			scale:V[1.492,1.492,0.000]
 		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\tables\picnic_table_1.png]
+			pos:V[7753.704,779.552,1.005]
+			scale:V[1.435,1.435,0.000]
+			cpos:V[266.789,42.191,0.000]
+			csize:V[2245.827,74.402,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\props\oneway_1.png]
+			pos:V[2181.138,-1643.552,1.010]
+			scale:V[1.805,1.805,0.000]
+			cpos:V[355.220,11.773,0.000]
+			csize:V[127.649,1656.660,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\ground\stone_walk_1_tiled.png]
+			pos:V[16068.293,-810.179,1.505]
+			scale:V[1.540,1.540,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\props\plantpot_1.png]
+			pos:V[17115.164,536.114,1.405]
+			scale:V[0.818,0.818,0.000]
+		]
+		layer:N[
+			sprite:S[U:\comp140-gam160-game\Game\graphics\background\tables\stone_table_1.png]
+			pos:V[17094.123,2272.329,0.985]
+			scale:V[1.927,1.927,0.000]
+			cpos:V[25.699,24.700,0.000]
+			csize:V[2870.544,205.039,0.000]
+		]
 	]
 	objects:N[
 		object:N[
 			type:I[6]
-			pos:V[4421.744,962.183,0.995]
+			pos:V[19631.109,1838.250,0.995]
 			rot:F[0.000]
 			scale:V[0.615,0.615,0.000]
 		]

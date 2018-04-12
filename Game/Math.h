@@ -208,6 +208,10 @@ public:
 		return Vec3(vecB.x * bFactor + vecA.x * (1.0f - bFactor), vecB.y * bFactor + vecA.y * (1.0f - bFactor), vecB.z * bFactor + vecA.z * (1.0f - bFactor));
 	};
 
+	static float Vec3::Distance(const Vec3& vecA, const Vec3& vecB) {
+		return (float)sqrt((vecA.x - vecB.x) * (vecA.x - vecB.x) + (vecA.y - vecB.y) * (vecA.y - vecB.y) + (vecA.z - vecB.z) * (vecA.z - vecB.z));
+	}
+
 	// Variables
 	union {
 		struct {

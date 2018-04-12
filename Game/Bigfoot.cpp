@@ -10,7 +10,7 @@ void Bigfoot::OnSpawn() {
 	collisionFlags = SolidEnv | OverlapObjs | PreserveXVelocity;
 
 	// Set update flags
-	updateFlags = UpdateAll;
+	updateFlags = UpdateAll;;
 
 	// Prepare to jump!!
 	jumpTimer = secsPerJump;
@@ -41,8 +41,12 @@ void Bigfoot::Update(float deltaTime) {
 
 	// Handle landings
 	if (isOnGround && !wasOnGround) {
+		const float32 shakeMaxRange = 3000.0f; // Max range from which the player will notice a camera shake
+		const float32 shakeMaxMagnitude = 1000.0f; // Shake magnitude at the closest range
+
 		// Shake the camera when landing. Boom!!
-		game.GetCamera().StartShake(0.75f, 18.0f, 1000.0f);
+		game.GetCamera().StartShake(0.75f, 18.0f, 
+			Math::clamp((shakeMaxRange - Vec3::Distance(position, game.GetCamera().GetPosition())) / shakeMaxRange * shakeMaxMagnitude, 0.0f, shakeMaxMagnitude));
 
 		// Get ready for the next jump
 		jumpTimer = secsPerJump;
