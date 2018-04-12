@@ -71,20 +71,7 @@ void Hand::Update(float deltaTime) {
 
 	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
 
-	// A tilt back must be a powerslide!!!
-	// Note for calculating the angle: this is influenced heavily when the player is bouncing up and down
-	// Todo, the average from a time when the range of force (max - min) is low?
-	if (powerslideTimeRemaining > 0.0f) {
-		powerslideTimeRemaining -= deltaTime;
-
-		position.x += 1000.0f * direction * deltaTime;
-	} else {
-		// Detect powerslide
-
-		if (Math::circlediff(lastRotation, rotation, 360.0f) >= 8.0f) {
-			;//powerslideTimeRemaining = 0.3f;
-		}
-	}
+	// Todo maybe: powerslides
 
 	// Update laser power
 	laserPower = Math::clamp(game.GetGesture().GetFlexAngle() / 90.0f, 0.0f, 1.0f);
@@ -99,14 +86,12 @@ void Hand::Update(float deltaTime) {
 
 	// Calculate target speed based on rate and amplitude of hand bounces
 	const float maxHandzerSpeed = 5000.0f;
-	const float minBounceSpeed = 20000.0f;
-	const float maxBounceSpeed = 240000.0f;
+	const float minBounceSpeed = 20000.0f, maxBounceSpeed = 240000.0f;
+	const float minAcceleration = 2000.0f, maxAcceleration = 5000.0f;
+	const float minBounceAcceleration = minBounceSpeed, maxBounceAcceleration = 200000.0f;
 	const float minBounceAmplitude = 2000.0f;
-	const float minAcceleration = 2000.0f;
-	const float maxAcceleration = 5000.0f;
-	const float minBounceAcceleration = minBounceSpeed;
-	const float maxBounceAcceleration = 200000.0f;
 
+	// Bounce along!
 	GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(300, 0);
 
 	float targetSpeed = 0.0f;
@@ -131,10 +116,11 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Jump if an unusually large amount of force was applied in a short time
-	if (bounceInfo.maxBounceAmplitude >= 14000.0f) {
+	if (bounceInfo.maxBounceAmplitude >= 18000.0f) {
 		doJump = true;
 	}
 
+	// Draw debug stuff?
 	if (game.GetDebug()) {
 		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
 			bounceInfo.numBounces, bounceInfo.averageBounceHz, bounceInfo.averageBounceAmplitude));
@@ -151,13 +137,6 @@ void Hand::Update(float deltaTime) {
 
 	// Bob the head
 	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.01f;
-
-	// Do debug keyboard movement
-	if (game.GetInput().IsKeyDown(SDLK_LEFT)) {
-		velocity.x = -900.0f;
-	} else if (game.GetInput().IsKeyDown(SDLK_RIGHT)) {
-		velocity.x = 900.0f;
-	}
 
 	if (game.GetInput().IsKeyBooped(SDLK_SPACE) || doJump) {
 		velocity.y = -game.GetGravity() * 0.25f;

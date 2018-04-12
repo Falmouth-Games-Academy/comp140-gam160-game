@@ -99,21 +99,41 @@ void GestureManager::Update() {
 		}
 	} else {
 		// Use debug keyboard controls in place of the arduino
+		Vec3 nextForce = Vec3(0.0f, -9800.0f * sin(30.0f * Math::rads), 9800.0f * cos(30.0f * Math::rads));
+
+		// Bounce
 		if (game.GetInput().IsKeyDown(SDLK_UP)) {
-			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 12000.0f), game.GetFrameTimeMs()));
+			nextForce = Vec3(0.0f, 0.0f, 18000.0f);
 		} else if (game.GetInput().IsKeyDown(SDLK_DOWN)) {
-			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 6000.0f), game.GetFrameTimeMs()));
-		} else if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
-			// Mouse tilt controls then?
-			Vec3 playerScreenPosition = game.GetCamera().WorldToScreen(game.GetPlayer().GetPosition());
-			accelHistory.Append(AccelStamp(Vec3(0.0f, (game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 10, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 10), game.GetFrameTimeMs()));
-		} else {
-			// Perform accurate gravity simulation to the nearest whatevs units of meh
-			accelHistory.Append(AccelStamp(Vec3(0.0f, 0.0f, 9000.0f), game.GetFrameTimeMs()));
+			nextForce = Vec3(0.0f, 0.0f, 2000.0f);
 		}
 
+		// AutoBounce
+		const float bounceHz = 5.0f, bounceAmp = 8000.0f;
+		float bouncePosition = sin(Math::circleclamp(2.0f * Math::pi * game.GetFrameTime() * bounceHz, 2.0f * Math::pi)) * bounceAmp;
+
+		if (game.GetInput().IsKeyDown(SDLK_LEFT)) {
+			Vec2 tiltedDownVector = Vec2(0.0f, 9800.0f).Rotated(30.0f);
+
+			nextForce = Vec3(0.0f, tiltedDownVector.x, tiltedDownVector.y) + Vec3(0.0f, 0.0f, bouncePosition);
+		} else if (game.GetInput().IsKeyDown(SDLK_RIGHT)) {
+			Vec2 tiltedDownVector = Vec2(0.0f, 9800.0f).Rotated(50.0f);
+
+			nextForce = Vec3(0.0f, tiltedDownVector.x, tiltedDownVector.y) + Vec3(0.0f, 0.0f, bouncePosition);
+		}
+
+		// Mouse tilt controls
+		if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
+			Vec3 playerScreenPosition = game.GetCamera().WorldToScreen(game.GetPlayer().GetPosition());
+
+			nextForce = Vec3(0.0f, (game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 30, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 30);
+		}
+
+		// Append the force
+		accelHistory.Append(AccelStamp(nextForce, game.GetFrameTimeMs()));
+
 		// Simulate flex sensor
-		flexAngle = Math::round(flexAngle + (float)game.GetInput().GetMouseScroll() * 10.0f, 10.0f);
+		flexAngle = Math::clamp(Math::round(flexAngle + (float)game.GetInput().GetMouseScroll() * 10.0f, 10.0f), 0.0f, 180.0f);
 	}
 
 	// Update average graph value
