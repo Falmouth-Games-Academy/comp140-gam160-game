@@ -10,7 +10,7 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM3";
+const char* port = "COM6";
 
 static HFONT defaultFont;
 HDC textSurfaceDc;

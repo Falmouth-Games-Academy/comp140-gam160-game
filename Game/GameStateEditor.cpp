@@ -369,8 +369,17 @@ void GameStateEditor::UpdateCursorDrawingCollision() {
 	// Check if mouse is down
 	if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
 		if (selectedItems.GetNum() == 1) {
-			selectedItems[0]->SetCollision(&Rect2((cursorStartCollisionPosition.xy - selectedItems[0]->GetPosition().xy) / selectedItems[0]->GetSprite().GetScale(), 
-												  ((cursorPosition - cursorStartCollisionPosition).xy) / selectedItems[0]->GetSprite().GetScale()));
+			selectedItems[0]->SetCollisionBox(Rect2((cursorStartCollisionPosition.xy - selectedItems[0]->GetPosition().xy) / selectedItems[0]->GetSprite().GetScale(), 
+												   ((cursorPosition - cursorStartCollisionPosition).xy) / selectedItems[0]->GetSprite().GetScale()));
+
+			// Enable collision on this if it's a background layer with a significant box size
+			if (selectedItems[0]->GetType() == Object::BackgroundLayerType) {
+				if (Vec2::Distance(cursorPosition.xy, cursorStartCollisionPosition.xy) >= 50.0f) {
+					selectedItems[0]->SetCollisionFlags(Object::SolidObjs);
+				} else {
+					selectedItems[0]->SetCollisionFlags(0);
+				}
+			}
 		}
 	}
 

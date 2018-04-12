@@ -149,7 +149,7 @@ void GestureManager::RenderDebugGraphs() {
 
 void GestureManager::RenderDebugVectors() {
 	float vectorScale = 0.01f;
-	Vec3 average = GetAverageAccel(50, 0);
+	Vec3 average = GetAverageAccel(25, 0);
 	SDL_Renderer* renderer = game.GetRenderer(RenderScreen::Debug);
 	const int halfSize = 150;
 	SDL_Rect box = {300, 300, halfSize * 2, halfSize * 2};
@@ -175,6 +175,22 @@ void GestureManager::RenderDebugVectors() {
 	// Draw the XZ vector
 	SDL_SetRenderDrawColor(renderer, 255, 255, 0, 0);
 	SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + (int)(average.y * vectorScale), box.y + halfSize + (int)(average.z * vectorScale));
+
+	// Draw the expected rotation of the hand
+	GestureManager::BounceInfo bounceInfo = CalculateBounceInfo(300, 0);
+
+	float targetSpeed = 0.0f;
+	float acceleration = 0.0f;
+
+	float bounceSpeed = bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude;
+
+	float rotation;
+	if (bounceInfo.numBounces > 0) {
+		rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs - 35.0f;
+
+		SDL_RenderDrawLine(renderer, box.x + halfSize, box.y + halfSize, box.x + halfSize + (int)(-bounceInfo.lastCentralForce.y * vectorScale), box.y + halfSize + (int)(-bounceInfo.lastCentralForce.z * vectorScale));
+	}
+
 }
 
 void GestureManager::RenderDebugText() {
@@ -320,7 +336,7 @@ float32 GestureManager::GetFlexAngle() const {
 GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTimeStart, uint32 relativeTimeEnd) {
 	uint32 absoluteTimeStart = game.GetFrameTimeMs() - relativeTimeStart, absoluteTimeEnd = game.GetFrameTimeMs() - relativeTimeEnd;
 	
-	const float bounceDistanceThreshold = 100.0f; // The distance from the peak point until a bounce is registered (should this be a percentage?)
+	const float bounceDistanceThreshold = 500.0f; // The distance from the peak point until a bounce is registered (should this be a percentage?)
 	int currentDirection = 1;
 	float32 currentExtent = -100000.0f;
 
@@ -345,7 +361,7 @@ GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTi
 
 		// Estimate the current bounce level
 		const Vec3& accel = accelHistory[i].direction;
-		float currentForce = Vec2::Distance(Vec2(0.0f, 0.0f), Vec2(accel.z, accel.y));
+		float currentForce = accel.z;// Vec2::Distance(Vec2(0.0f, 0.0f), Vec2(accel.z, accel.y));
 
 		// Detect whether a bounce is occurring
 		// Bounces are recorded through a change in direction that goes below the peak by a certain threshold (bounceDistanceThreshold)

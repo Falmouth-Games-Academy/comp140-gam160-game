@@ -4,6 +4,8 @@ Root:N[
 			sprite:S[U:\comp140-gam160-game\Game\graphics\background\rocks\rock_3.png]
 			pos:V[2735.216,762.547,0.990]
 			scale:V[0.728,0.728,0.000]
+			cpos:V[167.598,214.396,0.000]
+			csize:V[7086.027,604.904,0.000]
 		]
 		layer:N[
 			sprite:S[U:\comp140-gam160-game\Game\graphics\background\ground\grass_1_tiled.png]

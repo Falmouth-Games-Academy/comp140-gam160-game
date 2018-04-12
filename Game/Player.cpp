@@ -22,13 +22,13 @@ void Hand::OnSpawn() {
 	armSprite.LoadFrame("graphics/player/laser/arm_1.png", Vec2(190.0f, 180.0f), Vec2(0.5f, 0.5f));
 
 	// Setup collision box
-	collisionBox = Rect2(157, 701, 2509, 1661);
-	isSolid = true;
+	collisionBox = Rect2(187.0f, 357.0f, 1217.0f, 760.0f);
+	collisionFlags = SolidOverlaps;
 
 	// Setup other defaults
 	defaultHurtInvincibilityTime = 1.0f;
 
-	updateFlags = UpdateHurtFlashes | UpdateInvincibilityTimer;
+	updateFlags = UpdateHurtFlashes | UpdateInvincibilityTimer | UpdatePhysics;
 
 	// Start going left!
 	direction = -1;
@@ -56,6 +56,7 @@ void Hand::Render() {
 		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", velocity.x, velocity.y, velocity.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
 		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
+		debug->DrawString(StaticString<80>::FromFormat("Player on ground: %i", isOnGround));
 	}
 }
 
@@ -66,7 +67,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Update rotation
-	Vec3 currentAccel = game.GetGesture().GetAverageAccel(100, 0);
+	Vec3 currentAccel = game.GetGesture().GetAverageAccel(200, 0);
 	float lastRotation = rotation;
 
 	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
@@ -101,7 +102,7 @@ void Hand::Update(float deltaTime) {
 	const float maxHandzerSpeed = 5000.0f;
 	const float minBounceSpeed = 20000.0f;
 	const float maxBounceSpeed = 240000.0f;
-	const float minBounceAmplitude = 1000.0f;
+	const float minBounceAmplitude = 2000.0f;
 	const float minAcceleration = 2000.0f;
 	const float maxAcceleration = 5000.0f;
 	const float minBounceAcceleration = minBounceSpeed;
@@ -119,10 +120,10 @@ void Hand::Update(float deltaTime) {
 							MinMax<float>(minBounceSpeed, maxBounceSpeed), MinMax<float>(0.0f, maxHandzerSpeed));
 
 		acceleration = Math::lerpfloat(bounceSpeed, MinMax<float>(minBounceAcceleration, maxBounceAcceleration), MinMax<float>(minAcceleration, maxAcceleration));
-	}
 
-	if (bounceInfo.numBounces > 1) {
-		rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs - 35.0f;
+		if (bounceInfo.numBounces > 1) {
+			rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs - 35.0f;
+		}
 	}
 
 	// Move in reverse if tilted back
@@ -150,18 +151,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Bob the head
-	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.1f;
-
-	// Do gravity
-	velocity.y += game.GetGravity() * deltaTime;
-
-	// Do collision
-	const float maxY = 900.0f;
-
-	if (position.y > maxY) {
-		position.y = maxY;
-		velocity.y = 0.0f;
-	}
+	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.01f;
 
 	// Do debug keyboard movement
 	if (game.GetInput().IsKeyDown(SDLK_LEFT)) {
@@ -191,9 +181,6 @@ void Hand::Update(float deltaTime) {
 			velocity.x = 0.0f;
 		}
 	}
-
-	// Perform final collision-checked movement
-	this->Move(velocity * deltaTime);
 
 	// Perform super update
 	Object::Update(deltaTime);

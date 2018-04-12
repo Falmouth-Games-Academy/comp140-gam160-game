@@ -5,33 +5,19 @@ void Bigfoot::OnSpawn() {
 	// Load Bigfoot sprite
 	sprite.LoadFrame("./graphics/enemies/bigfoot/bigfoot.png", Vec2(1707.0f, 5291.0f));
 
-	jumpTimer = 1.0f;
+	// Set collision boundary
+	collisionBox = Rect2(61.0f, 4793.0f, 3490.0f, 495.0f);
+	collisionFlags = SolidEnv | OverlapObjs | PreserveXVelocity;
+
+	// Set update flags
+	updateFlags = UpdateAll;
+
+	// Prepare to jump!!
+	jumpTimer = secsPerJump;
 }
 
 void Bigfoot::Update(float deltaTime) {
-	const float groundY = 950.0f;
-
-	// Update simulation (this should really be done in Objects)
-	bool wasOnGround = isOnGround;
-
-	if (position.y > groundY) {
-		if (!isOnGround) {
-			jumpTimer = secsPerJump;
-			velocity.x = 0.0f;
-		}
-
-		isOnGround = true;
-
-		position.y = groundY;
-		velocity.y = 0.0f;
-	} else {
-		isOnGround = false;
-	}
-
-	if (isOnGround && !wasOnGround) {
-		// Shake the camera when landing. Boom!!
-		game.GetCamera().StartShake(0.75f, 18.0f, 1000.0f);
-	}
+	const float groundY = 2000.0f;
 
 	if (jumpTimer >= 0.0f) {
 		jumpTimer -= deltaTime;
@@ -41,11 +27,27 @@ void Bigfoot::Update(float deltaTime) {
 		}
 	}
 
-	// Do gravity (if not on ground)
-	velocity.y += game.GetGravity() * deltaTime;
+	// Update simulation (this should really be done in Objects)
+	bool wasOnGround = isOnGround;
 
-	// Move
-	Move(velocity * deltaTime);
+	Object::Update(deltaTime);
+
+	// Don't die tho
+	if (position.y > groundY) {
+		position.y = groundY;
+		velocity.y = 0.0f;
+		isOnGround = true;
+	}
+
+	// Handle landings
+	if (isOnGround && !wasOnGround) {
+		// Shake the camera when landing. Boom!!
+		game.GetCamera().StartShake(0.75f, 18.0f, 1000.0f);
+
+		// Get ready for the next jump
+		jumpTimer = secsPerJump;
+		velocity.x = 0.0f;
+	}
 }
 
 void Bigfoot::Jump() {
@@ -54,4 +56,11 @@ void Bigfoot::Jump() {
 
 	// Jump toward the player
 	velocity.x = (game.GetPlayer().GetPosition().x - position.x) / airTime;
+}
+
+void Bigfoot::OnOverlap(Object& other) {
+	// Hurt the player when stomping
+	if (velocity.y > 0.0f && other.GetType() == HandType) {
+		other.ChangeHealth(-10.0f);
+	}
 }

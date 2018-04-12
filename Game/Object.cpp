@@ -14,12 +14,21 @@ void Object::OnDestroy() {
 void Object::Update(float deltaTime) {
 	if (updateFlags & UpdateGravity) {
 		// Update gravity
-		velocity.y = Math::clamp(velocity.y + 3000.0f * deltaTime, -2000.0f, 6000.0f);
+		velocity.y = Math::clamp(velocity.y + game.GetGravity() * deltaTime, -40000.0f, 40000.0f);
 	}
 	
 	if (updateFlags & UpdatePhysics) {
+		Vec3 expectedPosition = position + velocity * deltaTime;
+
 		// Move object
-		Move(velocity * deltaTime, true);
+		bool wasMoveUnobstructed = Move(velocity * deltaTime, true);
+
+		// Check if the object has landed on the ground
+		if (!wasMoveUnobstructed && position.y < expectedPosition.y) {
+			isOnGround = true;
+		} else if (wasMoveUnobstructed && velocity.y != 0.0f) {
+			isOnGround = false;
+		}
 	}
 
 	if (updateFlags & UpdateRotation) {
@@ -79,7 +88,7 @@ void Object::RenderCollisionBox() const {
 
 bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 	// A collision can only happen if both objects are solid
-	if (!(isSolid && otherObject.isSolid)) {
+	if (!((collisionFlags & (SolidObjs | OverlapObjs)) && (otherObject.collisionFlags & (SolidObjs | OverlapObjs)))) {
 		return false;
 	}
 
@@ -114,7 +123,7 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 		return false;
 	} else {
 		if (borderOffsets) {
-			*borderOffsets = Bounds2(otherR - selfL, otherB - selfT, otherL - selfR, otherT - selfB);
+			*borderOffsets = Bounds2(otherR - (selfL - 0.1f), otherB - (selfT - 0.1f), otherL - (selfR + 0.1f), otherT - (selfB + 0.1f)); // the 0.1fs are for precision
 		}
 
 		return true;
@@ -149,10 +158,16 @@ Vec3 Object::SpritePointToWorldPoint(const Vec2& spritePoint) const {
 	}
 }
 
-bool Object::Move(const Vec3& originalMoveOffset, bool doAffectVelocity, bool teleport) {
+void Object::OnOverlap(Object& otherObject) {
+	// Compute the answer to life the universe and everything
+	return;
+}
+
+bool Object::Move(const Vec3& originalMoveOffset, bool teleport) {
 	// NewMoveOffset
 	Vec3 originalPosition = position;
 	Vec3 moveOffset(originalMoveOffset.x, 0.0f, originalMoveOffset.z);
+	Bounds2 pushbackOffsets;
 
 	// Perform two movements, first on the X axis and next on the Y axis
 	// Very lazy collision system that hurts my brain to know it wouldn't work with any kind of slope
@@ -160,18 +175,19 @@ bool Object::Move(const Vec3& originalMoveOffset, bool doAffectVelocity, bool te
 	// Move to the desired X position first
 	position += moveOffset;
 
-	// Check collisions in this new position and move back if they exist
-	Bounds2 pushbackOffsets;
-	for (::BackgroundLayer& layer : game.GetLevel().GetLayers()) {
-		if (IsColliding(layer, &pushbackOffsets)) {
-			// Push back on X axis
-			if (moveOffset.x > 0.0f) {
-				moveOffset.x += pushbackOffsets.right;
-			} else {
-				moveOffset.x += pushbackOffsets.left;
-			}
+	if (collisionFlags & SolidEnv) {
+		// Check collisions in this new position and move back if they exist
+		for (BackgroundLayer& layer : game.GetLevel().GetLayers()) {
+			if (IsColliding(layer, &pushbackOffsets)) {
+				// Push back on X axis
+				if (moveOffset.x > 0.0f) {
+					moveOffset.x += pushbackOffsets.right;
+				} else {
+					moveOffset.x += pushbackOffsets.left;
+				}
 
-			position = originalPosition + moveOffset;
+				position = originalPosition + moveOffset;
+			}
 		}
 	}
 
@@ -179,29 +195,45 @@ bool Object::Move(const Vec3& originalMoveOffset, bool doAffectVelocity, bool te
 	moveOffset.y = originalMoveOffset.y;
 	position = originalPosition + moveOffset;
 	
-	for (::BackgroundLayer& layer : game.GetLevel().GetLayers()) {
-		if (IsColliding(layer, &pushbackOffsets)) {
-			// Push back on X axis
-			if (moveOffset.y > 0.0f) {
-				moveOffset.y += pushbackOffsets.bottom;
-			} else {
-				moveOffset.y += pushbackOffsets.top;
-			}
+	if (collisionFlags & SolidEnv) {
+		for (::BackgroundLayer& layer : game.GetLevel().GetLayers()) {
+			if (IsColliding(layer, &pushbackOffsets)) {
+				// Push back on X axis
+				if (moveOffset.y > 0.0f) {
+					moveOffset.y += pushbackOffsets.bottom;
+				} else {
+					moveOffset.y += pushbackOffsets.top;
+				}
 
-			position = originalPosition + moveOffset;
+				position = originalPosition + moveOffset;
+			}
 		}
 	}
 
-	// Done!
+	// Do overlap events
+	if (collisionFlags & OverlapObjs) {
+		for (Object* object : game.GetObjects()) {
+			if (IsColliding(*object)) {
+				// Hack: check if it was colliding before
+				position = originalPosition;
+				bool wasColliding = IsColliding(*object);
+				position = originalPosition + moveOffset;
+
+				if (!wasColliding) {
+					// Call the overlap events
+					object->OnOverlap(*this);
+					this->OnOverlap(*object);
+				}
+			}
+		}
+	}
 
 	// Stop the object on the offending axis
-	if (doAffectVelocity) {
-		if (moveOffset.x != originalMoveOffset.x) {
-			velocity.x = 0.0f;
-		}
-		if (moveOffset.y != originalMoveOffset.y) {
-			velocity.y = 0.0f;
-		}
+	if (!(collisionFlags & PreserveXVelocity) && moveOffset.x != originalMoveOffset.x) {
+		velocity.x = 0.0f;
+	}
+	if (!(collisionFlags & PreserveYVelocity) && moveOffset.y != originalMoveOffset.y) {
+		velocity.y = 0.0f;
 	}
 
 	return (moveOffset == originalMoveOffset);

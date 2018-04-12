@@ -13,6 +13,8 @@ public:
 public:
 	void Jump();
 
+	void OnOverlap(Object& other) override;
+
 private:
 	enum BigfootState : uint8 {
 		Waiting = 0,

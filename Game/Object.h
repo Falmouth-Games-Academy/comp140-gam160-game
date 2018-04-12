@@ -63,7 +63,7 @@ public:
 
 	// Attempts to move to a position. If teleport is false, collision detection is applied if the object is solid
 	// Returns whether the move was fully successful without any collisions
-	bool Move(const Vec3& moveOffset, bool doAffectVelocity = true, bool teleport = false);
+	bool Move(const Vec3& moveOffset, bool teleport = false);
 
 	// Returns the object's velocity
 	inline const Vec3& GetVelocity() const;
@@ -96,14 +96,28 @@ public:
 
 public:
 	// Collision boxes and detection
-	// Sets the collision box, or if the collision box is nullptr, set as non-solid
-	void SetCollision(const Rect2* newBox);
+	enum CollisionFlags {
+		SolidEnv = 1,			// Solid against the environment
+		SolidObjs = 2,			// Solid against objects
+		Solid = 3,				// Blocked by other objects and blocks other objects (unless PhaseSelf is set); sends and receives collision events
+		OverlapEnv = 4,			// Sends and receives collision events involving the environment
+		OverlapObjs = 8,		// Sends and receives collision events involving other objects
+		SolidOverlaps = 15,     // Solid and overlaps everything
+		PreserveXVelocity = 16, // Conserves X velocity after colliding with something solid
+		PreserveYVelocity = 32, // Conserves Y velocity after colliding with something solid
+	};
+
+	// Sets the collision box, if non-null, and sets whether the object is solid
+	void SetCollisionBox(const Rect2& newBox);
 
 	// Gets the collision box, or if non-solid, returns nullptr
-	inline const Rect2* GetCollision() const;
+	inline const Rect2& GetCollisionBox() const;
 
-	// Returns whether this object is solid
-	inline bool IsSolid() const;
+	// Sets the collision flags
+	inline void SetCollisionFlags(uint32 flags);
+
+	// Returns collision flags
+	inline uint32 GetCollisionFlags() const;
 
 	// Renders the object's collision box as a blue bounding border
 	void RenderCollisionBox() const;
@@ -122,6 +136,10 @@ public:
 	// Sprite position calculations
 	// Converts a pixel position on the object's sprite to a world position, considering the object's rotation and scale
 	virtual Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const;
+
+public:
+	// Called when the object overlaps another object or scene layer
+	virtual void OnOverlap(Object& otherObject);
 
 public:
 	// Sets the information applicable to the object when it first spawned
@@ -160,7 +178,9 @@ protected:
 
 	// Dimensions of the collision box, relative to this object's unscaled sprite pixels
 	Rect2 collisionBox;
-	bool8 isSolid = false;
+
+	// Collision flags that specify collision behaviours
+	uint32 collisionFlags;
 
 	// Whether the object is on the ground (simulated objects only)
 	bool8 isOnGround = false;
@@ -283,25 +303,20 @@ inline bool Object::IsBeingDestroyed() const {
 	return isBeingDestroyed;
 }
 
-inline void Object::SetCollision(const Rect2* newBox) {
-	if (newBox) {
-		collisionBox = *newBox;
-		isSolid = true;
-	} else {
-		isSolid = false;
-	}
+inline void Object::SetCollisionBox(const Rect2& newBox) {
+	collisionBox = newBox;
 }
 
-inline const Rect2* Object::GetCollision() const {
-	if (isSolid) {
-		return &collisionBox;
-	} else {
-		return nullptr;
-	}
+inline const Rect2& Object::GetCollisionBox() const {
+	return collisionBox;
 }
 
-inline bool Object::IsSolid() const {
-	return isSolid;
+inline uint32 Object::GetCollisionFlags() const {
+	return collisionFlags;
+}
+
+inline void Object::SetCollisionFlags(uint32 flags) {
+	collisionFlags = flags;
 }
 
 inline void Object::SetSpawnInfo(const Vec3& spawnPosition, bool isPersistent) {

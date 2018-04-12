@@ -66,7 +66,8 @@ bool Level::Load(const char* filename) {
 					// Load collision box
 					DataNode* collisionPos = node->GetNodeByName("cpos"), *collisionSize = node->GetNodeByName("csize");
 					if (collisionPos && collisionSize) {
-						layer->SetCollision(&Rect2(collisionPos->GetValues().vec3Values[0].xy, collisionSize->GetValues().vec3Values[0].xy));
+						layer->SetCollisionBox(Rect2(collisionPos->GetValues().vec3Values[0].xy, collisionSize->GetValues().vec3Values[0].xy));
+						layer->SetCollisionFlags(Object::SolidOverlaps);
 					}
 				}
 			}
@@ -141,12 +142,12 @@ bool Level::Save(const char* filename) const {
 		scaleNode->GetValues().vec3Values[0] = layer.GetSprite().GetScale();
 
 		// Write collision (if solid)
-		if (layer.IsSolid()) {
+		if (layer.GetCollisionFlags()) {
 			DataNode* cPosNode = layerNode->AddNode(DataNode::Vector3, "cpos", 1);
-			cPosNode->GetValues().vec3Values[0] = layer.GetCollision()->position;
+			cPosNode->GetValues().vec3Values[0] = layer.GetCollisionBox().position;
 
 			DataNode* cSizeNode = layerNode->AddNode(DataNode::Vector3, "csize", 1);
-			cSizeNode->GetValues().vec3Values[0] = layer.GetCollision()->size;
+			cSizeNode->GetValues().vec3Values[0] = layer.GetCollisionBox().size;
 		}
 	}
 
@@ -234,6 +235,7 @@ BackgroundLayer* Level::GetLayerAtScreenPosition(const Vec2& position) {
 BackgroundLayer::BackgroundLayer(const char* imageFilename, const Vec3& position, const Vec2& scale) : Object() {
 	sprite.LoadFrame(imageFilename);
 	sprite.SetScale(scale);
+
 	this->position = position;
 }
 
