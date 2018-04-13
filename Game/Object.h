@@ -132,6 +132,9 @@ public:
 	// Changes the health by healthData. hurtInvincibilityTime gives an invincibility timer if not -1.0f. If it is -1.0f, the default invincibility time is used.
 	void ChangeHealth(float32 healthDelta, float32 hurtInvincibilityTime = -1.0f);
 
+	// Returns current health value
+	float32 GetHealth() const;
+
 public:
 	// Sprite position calculations
 	// Converts a pixel position on the object's sprite to a world position, considering the object's rotation and scale
@@ -140,6 +143,9 @@ public:
 public:
 	// Called when the object overlaps another object or scene layer
 	virtual void OnOverlap(Object& otherObject);
+
+	// Called when the object runs out of health. Default action: Destroy self
+	virtual void OnDeath();
 
 public:
 	// Sets the information applicable to the object when it first spawned
@@ -330,4 +336,8 @@ inline bool Object::IsPersistent() const {
 
 inline const Vec3& Object::GetSpawnPosition() const {
 	return spawnPosition;
+}
+
+inline float32 Object::GetHealth() const {
+	return health;
 }

@@ -7,6 +7,8 @@ public:
 
 	void Update(float deltaTime) override;
 
+	void OnDeath() override;
+
 	Object::Type GetType() const override {return BottleType;}
 
 public:

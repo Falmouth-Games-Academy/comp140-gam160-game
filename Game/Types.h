@@ -28,7 +28,11 @@ struct Colour {
 	// RGB values
 	uint8 r, g, b, a;
 
-	// Default colours
+	// Functions
+	// Returns a lerped copy of a colour
+	inline Colour Lerped(const Colour& otherColour, float factor) const;
+
+	// Common colours
 	static constexpr Colour Red() {
 		return Colour(0xFFFF0000);
 	}
@@ -49,3 +53,11 @@ struct Colour {
 		return Colour(0xFFFFFFFF);
 	}
 };
+
+Colour Colour::Lerped(const Colour& otherColour, float factor) const {
+	int src = (int)((1.0f - factor) * 255.0f), dest = (int)(factor * 255.0f);
+
+	// r * src / 255 + g * dest / 255 == (r * src + g * dest) / 255
+	return Colour((r * src + otherColour.r * dest) / 255, (g * src + otherColour.g * dest) / 255, 
+				  (b * src + otherColour.b * dest) / 255, (a * src + otherColour.a * dest) / 255);
+}

@@ -13,6 +13,7 @@
 #include "Game.h"
 #include "ImageCache.h"
 #include "Sound.h"
+#include "HUD.h"
 
 // Main game (singleton class)
 // Contains the objects and methods to render and update objects
@@ -38,18 +39,23 @@ public:
 	inline Hand& GetPlayer();
 	inline Level& GetLevel();
 
-	// Used on level load
-	void RespawnPlayer();
-
 	// Components
 	inline GestureManager& GetGesture();
 	inline InputManager& GetInput();
 	inline SoundManager& GetSound();
 	inline Camera& GetCamera();
+	inline Hud& GetHud();
 	inline Serial* GetSerialStream(); // Todo: class to handle this
 	inline ImageCache& GetImageCache();
 	inline class DebugStringBox* GetDebug();
 
+public:
+	// Actions
+
+	// Used on level load
+	void RespawnPlayer();
+
+public:
 	// Time
 	inline float GetFrameTime() const;
 	inline uint32 GetFrameTimeMs() const;
@@ -119,6 +125,9 @@ private:
 
 	// Da camera tho
 	Camera camera;
+
+	// Da HUD
+	Hud hud;
 
 	// The objects
 	Array<Object*> objects;
@@ -229,7 +238,11 @@ inline SoundManager& Game::GetSound() {
 
 inline Camera& Game::GetCamera() {
 	return camera;
-};
+}
+
+inline Hud& Game::GetHud() {
+	return hud;
+}
 
 inline Hand& Game::GetPlayer() {
 	return *player;

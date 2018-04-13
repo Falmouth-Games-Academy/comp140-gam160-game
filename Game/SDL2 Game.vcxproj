@@ -183,6 +183,7 @@
     <ClInclude Include="GooglyEye.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="Bigfoot.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="ImageCache.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Image.h" />

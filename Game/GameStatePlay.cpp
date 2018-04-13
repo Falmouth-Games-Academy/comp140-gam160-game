@@ -47,6 +47,9 @@ void GameStatePlay::Render() {
 	// Render camera (layered and debug stuff)
 	game.GetCamera().Render();
 
+	// Render HUD
+	game.GetHud().Render();
+
 	// Render debug text
 	if (DebugStringBox* debug = game.GetDebug()) {
 		debug->DrawString(StaticString<80>::FromFormat("FPS: %f", 1.0f / game.GetDeltaTime()));

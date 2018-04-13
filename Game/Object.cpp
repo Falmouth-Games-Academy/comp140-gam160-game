@@ -131,12 +131,18 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 }
 
 void Object::ChangeHealth(float32 healthDelta, float32 hurtInvincibilityTime) {
-	if (hurtInvincibilityTimer > 0.0f && healthDelta < 0.0f) {
+	if ((hurtInvincibilityTimer > 0.0f && healthDelta < 0.0f) || !isHurtable) {
 		return; // You can't hurt me while I'm invincible, fool!
 	}
 
 	// Affect health
-	health += healthDelta;
+	health = Math::clamp(health + healthDelta, 0.0f, 100.0f);
+
+	// Die if dead
+	if (health <= 0.0f) {
+		OnDeath();
+		return;
+	}
 
 	// Do flash visual feedback
 	hurtFlashTimer = maxHurtFlashTimer;
@@ -161,6 +167,10 @@ Vec3 Object::SpritePointToWorldPoint(const Vec2& spritePoint) const {
 void Object::OnOverlap(Object& otherObject) {
 	// Compute the answer to life the universe and everything
 	return;
+}
+
+void Object::OnDeath() {
+	Destroy();
 }
 
 bool Object::Move(const Vec3& originalMoveOffset, bool teleport) {

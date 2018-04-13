@@ -8,9 +8,12 @@ void Bigfoot::OnSpawn() {
 	// Set collision boundary
 	collisionBox = Rect2(61.0f, 4793.0f, 3490.0f, 495.0f);
 	collisionFlags = SolidEnv | OverlapObjs | PreserveXVelocity;
+	
+	// Misc init
+	isHurtable = true;
 
 	// Set update flags
-	updateFlags = UpdateAll;;
+	updateFlags = UpdateAll;
 
 	// Prepare to jump!!
 	jumpTimer = secsPerJump;
@@ -52,6 +55,8 @@ void Bigfoot::Update(float deltaTime) {
 		jumpTimer = secsPerJump;
 		velocity.x = 0.0f;
 	}
+
+	game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bigfoot on ground: %i", isOnGround));
 }
 
 void Bigfoot::Jump() {

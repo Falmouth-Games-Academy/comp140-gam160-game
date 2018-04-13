@@ -22,7 +22,9 @@ void GooglyEye::Update(float deltaTime) {
 	//position = game.GetCamera().ScreenToWorld(Vec3(game.GetInput().GetMousePosition(), 1.0f));
 
 	// Update position to player position
-	position = game.GetPlayer().SpritePointToWorldPoint(parentOffset.xy) + Vec3(0.0f, 0.0f, parentOffset.z);
+	if (parent) {
+		position = parent->SpritePointToWorldPoint(parentOffset.xy) + Vec3(0.0f, 0.0f, parentOffset.z);
+	}
 
 	const float forceMultiplier = 0.4f;
 

@@ -59,29 +59,10 @@ void Laser::Update(float deltaTime) {
 		nextCameraShake = game.GetFrameTime() + Math::randfloat(0.4f, 0.5f);
 	}
 
-	// Destroy any bottles in range of the laser
-	if (power >= 0.5f) {
-		for (int i = 0; i < game.GetObjects().GetNum(); ++i) {
-			Object* obj = game.GetObjects()[i];
-			if (obj->GetType() == BottleType) {
-				float distance = Vec2::Distance(position.xy, obj->GetPosition().xy);
-				float dot = Vec2::Dot(obj->GetPosition().xy - position.xy, Vec2::FromRotation(rotation + 90.0f));
+	// Update damage on other objects
+	UpdateDamage(deltaTime);
 
-				if (distance >= 600.0f && dot / distance >= 0.95f) {
-					((Bottle*)obj)->Smash();
-				}
-			}
-		}
-	}
-
-	// Test shake camera
-	/*static uint32 lastShakeTime = game.GetFrameTime();
-
-	if (game.GetFrameTime() - lastShakeTime >= 2000) {
-		//game.GetCamera().StartShake(0.4f, 20.0f, 150.0f);;
-		lastShakeTime = game.GetFrameTime();
-	}*/
-
+	// Update special effects
 	UpdateEffects(deltaTime);
 }
 
@@ -112,6 +93,61 @@ void Laser::UpdateEffects(float deltaTime) {
 		if (effects[i]->GetAge() >= 1.0f) {
 			delete effects[i];
 			effects.RemoveByIndex(i--);
+		}
+	}
+}
+
+void Laser::UpdateDamage(float deltaTime) {
+	if (!power) {
+		// No damage to deal
+		return;
+	}
+
+	// Damage all objects in range
+	Vec2 shootVector = Vec2::FromRotation(rotation + 90.0f);
+	float shootDot = Vec2::Dot(shootVector, position.xy);
+	Array<Object*>& gameObjects = game.GetObjects();
+
+	for (int i = 0; i < gameObjects.GetNum(); ++i) {
+		Object* object = gameObjects[i];
+
+		// Don't attack yourself
+		if (object == this || object == &game.GetPlayer()) {
+			continue;
+		}
+
+		// Don't attack objects behind you
+		if (Vec2::Dot(object->GetPosition().xy, shootVector) < shootDot) {
+			continue;
+		}
+
+		// if (!object->IsInView())
+		if (object->GetCollisionFlags() & (Object::OverlapObjs | Object::SolidObjs)) {
+			// Check collision using lasy method
+			// Check cross of the plane perpendicular to the laser, centering on the middle of the object's collision box
+			const Rect2& collisionBox = object->GetCollisionBox();
+			Vec3 objectOrigin = object->GetPosition() - object->GetSprite().GetOrigin();
+			Vec3 collisionTopLeft = objectOrigin + Vec2(collisionBox.x, collisionBox.y) * object->GetSprite().GetScale();
+			Vec3 collisionBottomRight = collisionTopLeft + Vec2(collisionBox.width, collisionBox.height) * object->GetSprite().GetScale();
+			Vec3 collisionCentre = (collisionTopLeft + collisionBottomRight) / 2.0f;
+
+			// Find where the laser crosses with the centre of the object
+			Vec2 verticalCrossPoint = position.xy + shootVector * (collisionCentre.x - position.x) / Vec2::Dot(Vec2(1.0f, 0.0f), shootVector);
+			Vec2 horizontalCrossPoint = position.xy + shootVector * (collisionCentre.y - position.y) / Vec2::Dot(Vec2(0.0f, 1.0f), shootVector);
+
+			// Expand the collision boundaries slightly
+			collisionTopLeft -= Vec2(width, width);
+			collisionBottomRight += Vec2(width, width);
+
+			// Check if the object crosses the laser
+			if (	(horizontalCrossPoint.x >= collisionTopLeft.x && horizontalCrossPoint.x <= collisionBottomRight.x && 
+					 horizontalCrossPoint.y >= collisionTopLeft.y && horizontalCrossPoint.y <= collisionBottomRight.y) || 
+					(verticalCrossPoint.x >= collisionTopLeft.x && verticalCrossPoint.x <= collisionBottomRight.x && 
+					 verticalCrossPoint.y >= collisionTopLeft.y && verticalCrossPoint.y <= collisionBottomRight.y)) {
+
+				// Deal damage to the object
+				object->ChangeHealth(-Math::lerpfloat(power, dpsRange) * deltaTime);
+			}
 		}
 	}
 }

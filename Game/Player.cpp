@@ -37,6 +37,9 @@ void Hand::OnSpawn() {
 	leftEye = game.SpawnObject<GooglyEye>();
 	rightEye = game.SpawnObject<GooglyEye>();
 
+	leftEye->SetParent(this);
+	rightEye->SetParent(this);
+
 	leftEye->SetParentOffset(Vec3(1104.0f - 100.0f, 348.0f, 0.2f));
 	rightEye->SetParentOffset(Vec3(1104.0f, 348.0f, 0.0f));
 
@@ -138,7 +141,8 @@ void Hand::Update(float deltaTime) {
 	// Bob the head
 	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.01f;
 
-	if (game.GetInput().IsKeyBooped(SDLK_SPACE) || doJump) {
+	// Jump
+	if (isOnGround && (game.GetInput().IsKeyBooped(SDLK_SPACE) || doJump)) {
 		velocity.y = -game.GetGravity() * 0.25f;
 	}
 
@@ -173,11 +177,11 @@ void Hand::Update(float deltaTime) {
 	rightEye->SetLookForce(Vec2(-1.0f, 0.0f).Rotated(rotation).Lerped(Vec2(1.0f, -1.0f), laserPower) * googlyStrength);
 
 	// Not to mention pupil size
-	leftEye->SetPupilRadius(Math::lerpfloat(laserPower, MinMax<float>(40.0f, 80.0f)));
-	rightEye->SetPupilRadius(Math::lerpfloat(laserPower, MinMax<float>(34.0f, 65.0f)));
+	leftEye->SetPupilRadius(Math::lerpfloat(laserPower, MinMax<float>(50.0f, 85.0f)));
+	rightEye->SetPupilRadius(Math::lerpfloat(laserPower, MinMax<float>(42.0f, 70.0f)));
 
-	leftEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(80.0f, 120.0f)));
-	rightEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(70.0f, 100.0f)));
+	leftEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(90.0f, 130.0f)));
+	rightEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(80.0f, 100.0f)));
 }
 
 Vec3 Hand::SpritePointToWorldPoint(const Vec2& spritePoint) const {

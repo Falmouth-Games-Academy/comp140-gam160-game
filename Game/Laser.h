@@ -12,6 +12,7 @@ public:
 	void Render() override;
 
 	void UpdateEffects(float deltaTime);
+	void UpdateDamage(float deltaTime);
 
 	Object::Type GetType() const override {
 		return LaserType;
@@ -26,6 +27,9 @@ private:
 
 	// Laser power, a scalar between 0 and 1 where 0 is baby alligator and 1 is thermonuclear warhead
 	float32 power = 1.0f;
+
+	// Damage per second range, scaled according to power
+	MinMax<float> dpsRange = MinMax<float>(1.0f, 20.0f);
 
 	// All sprite frames
 	enum SpriteFrameId {

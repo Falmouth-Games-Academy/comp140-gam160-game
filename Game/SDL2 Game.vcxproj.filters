@@ -203,5 +203,8 @@
     <ClInclude Include="Bigfoot.h">
       <Filter>Source Files\Gameplay\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Source Files\Gameplay</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -63,7 +63,7 @@ Root:N[
 		]
 		layer:N[
 			sprite:S[U:\comp140-gam160-game\Game\graphics\background\tables\stone_table_1.png]
-			pos:V[17094.123,2272.329,0.985]
+			pos:V[17094.123,2272.329,1.020]
 			scale:V[1.927,1.927,0.000]
 			cpos:V[25.699,24.700,0.000]
 			csize:V[2870.544,205.039,0.000]
@@ -75,6 +75,12 @@ Root:N[
 			pos:V[19631.109,1838.250,0.995]
 			rot:F[0.000]
 			scale:V[0.615,0.615,0.000]
+		]
+		object:N[
+			type:I[2]
+			pos:V[8534.576,719.162,0.985]
+			rot:F[0.000]
+			scale:V[0.157,0.157,0.000]
 		]
 	]
 ]
