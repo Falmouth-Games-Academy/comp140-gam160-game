@@ -8,7 +8,10 @@ public:
 	Hand() {};
 	virtual ~Hand();
 
-	void OnSpawn();
+	void OnSpawn() override;
+	void OnDestroy() override;
+
+	void OnDeath() override;
 
 	void Update(float deltaTime) override;
 	void Render() override;
@@ -16,6 +19,9 @@ public:
 	Object::Type GetType() const override {return Object::HandType;}
 
 public:
+	// Respawns the plyaer at the level start
+	void Respawn();
+
 	// Returns a point on the hand, considering its bobbed position
 	Vec3 SpritePointToWorldPoint(const Vec2& spritePoint) const override;
 
@@ -36,6 +42,9 @@ private:
 	// Eyes
 	class GooglyEye* leftEye = nullptr;
 	class GooglyEye* rightEye = nullptr;
+
+	// Laser
+	class Laser* laser = nullptr;
 
 	// Offset of the head according to the animated head bob
 	Vec2 headBob = Vec2(0.0f, 0.0f);

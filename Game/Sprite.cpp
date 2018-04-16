@@ -39,7 +39,7 @@ void SpriteFrame::Load(const char* filename, const Vec2& origin, const Vec2& sca
 SDL_Texture* SpriteFrame::GetSDLTexture(RenderScreen screen) const {
 	// Try to create the texture if it doesn't already exist
 	if (!textures[screen] && sourceImage) {
-		textures[screen] = sourceImage->CreateSDLTexture(game.GetRenderer(screen));
+		textures[screen] = sourceImage->CreateSDLTexture(game.GetSDLRenderer(screen));
 	}
 
 	return textures[screen];

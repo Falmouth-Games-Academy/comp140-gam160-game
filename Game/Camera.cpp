@@ -4,7 +4,7 @@
 void Camera::Update(float deltaTime) {
 	// Get the viewport size
 	SDL_Rect renderViewport;
-	SDL_RenderGetViewport(game.GetRenderer(), &renderViewport);
+	SDL_RenderGetViewport(game.GetSDLRenderer(), &renderViewport);
 
 	// Update the camera viewport size based on scaling etc
 	viewBox.size = Vec2((float)renderViewport.w, (float)renderViewport.h);
@@ -107,10 +107,10 @@ void Camera::FlushLayeredRenders() {
 				sdlDestRect.h -= sdlSourceRect.y;
 				// Todo make this actually work
 
-				SDL_RenderCopyEx(game.GetRenderer(), const_cast<SDL_Texture*>(call->texture), &sdlSourceRect, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+				SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), &sdlSourceRect, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
 			} else {
 				// Otherwise draw it normally
-				SDL_RenderCopyEx(game.GetRenderer(), const_cast<SDL_Texture*>(call->texture), nullptr, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+				SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), nullptr, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
 			}
 
 			// Update major item
@@ -222,8 +222,8 @@ void Camera::RenderRectangle(const Vec3& position, const Vec2& size, Colour colo
 	Vec2 origin = WorldToScreen(position).xy;
 	SDL_Rect sdlDestRect = {(int)origin.x, (int)origin.y, (int)(size.x * zScale), (int)(size.y * zScale)}; // todo: consider rounding up so things don't go invisible
 
-	SDL_SetRenderDrawColor(game.GetRenderer(), colour.r, colour.g, colour.b, colour.a);
-	SDL_RenderDrawRect(game.GetRenderer(), &sdlDestRect);
+	SDL_SetRenderDrawColor(game.GetSDLRenderer(), colour.r, colour.g, colour.b, colour.a);
+	SDL_RenderDrawRect(game.GetSDLRenderer(), &sdlDestRect);
 }
 
 Vec3 Camera::ScreenToWorld(const Vec3& screenPoint) const {

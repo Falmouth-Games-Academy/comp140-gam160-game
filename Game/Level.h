@@ -27,6 +27,10 @@ public:
 	void RenderCollisionBoxes() const;
 
 public:
+	// Gets the player start position
+	inline const Vec3& GetPlayerStart();
+
+public:
 	// Creates a new background layer
 	class BackgroundLayer* CreateLayer(const char* imageFilename, const Vec3& position, const Vec2& scale = Vec2(1.0f, 1.0f));
 
@@ -44,7 +48,11 @@ public:
 	inline Array<class BackgroundLayer>& GetLayers();
 
 private:
+	// Array of background layer objects that comprise the level background
 	Array<class BackgroundLayer> layers;
+
+	// The starting position of the player
+	Vec3 playerStart;
 };
 
 
@@ -69,4 +77,8 @@ inline Array<class BackgroundLayer>& Level::GetLayers() {
 
 inline const Array<class BackgroundLayer>& Level::GetLayers() const {
 	return layers;
+}
+
+inline const Vec3& Level::GetPlayerStart() {
+	return playerStart;
 }

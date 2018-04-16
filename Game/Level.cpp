@@ -29,9 +29,6 @@ bool Level::Load(const char* filename) {
 	// Unload old level
 	Unload();
 
-	// Respawn the player first (some objects might be dependent on it)
-	game.RespawnPlayer();
-
 	// Load from the data file
 	DataFile levelData;
 
@@ -105,9 +102,19 @@ bool Level::Load(const char* filename) {
 				object->SetSpawnInfo(object->GetPosition(), true);
 			}
 		}
+
+		// Set player start
+		if (DataNode* playerStartNode = rootNode.GetNodeByName("playerstart")) {
+			playerStart = playerStartNode->GetValues().vec3Values[0];
+		} else {
+			playerStart = Vec3(0.0f, 0.0f, 1.0f);
+		}
 	} else {
 		return false;
 	}
+
+	// Respawn the player
+	game.RespawnPlayer();
 
 	return true;
 }
@@ -115,6 +122,10 @@ bool Level::Load(const char* filename) {
 bool Level::Save(const char* filename) const {
 	DataFile data;
 	DataNode& rootNode = data.GetRootNode();
+
+	// Store the player start
+	DataNode* playerStartNode = rootNode.AddNode(DataNode::Vector3, "playerstart", 1);
+	playerStartNode->GetValues().vec3Values[0] = playerStart;
 
 	// Store the level layer data
 	DataNode* layerPackNode = rootNode.AddNode(DataNode::Node, "background", 0);

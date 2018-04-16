@@ -65,11 +65,16 @@ void Bigfoot::Jump() {
 
 	// Jump toward the player
 	velocity.x = (game.GetPlayer().GetPosition().x - position.x) / airTime;
+
+	// Cap jump distance
+	if (abs(velocity.x * airTime) >= maxJumpDistance) {
+		velocity.x = Math::getsign(velocity.x) * maxJumpDistance / airTime;
+	}
 }
 
 void Bigfoot::OnOverlap(Object& other) {
 	// Hurt the player when stomping
 	if (velocity.y > 0.0f && other.GetType() == HandType) {
-		other.ChangeHealth(-10.0f);
+		other.ChangeHealth(-25.0f);
 	}
 }

@@ -1,6 +1,7 @@
 #include "Types.h"
 #include "Game.h"
 #include "GameStatePlay.h"
+#include "SDL.h"
 
 #include "Graph.h"
 
@@ -11,12 +12,6 @@
 Game game;
 
 const char* port = "COM6";
-
-static HFONT defaultFont;
-HDC textSurfaceDc;
-HBITMAP textSurfaceBitmap;
-uint8* textSurfaceBits; // todo declare variables in the right place
-const int textSurfaceSize = 1024;
 
 void Game::Init() {
 	AllocConsole();
@@ -31,18 +26,8 @@ void Game::Init() {
 	SDL_Rect screenBounds;
 	SDL_GetDisplayBounds(0, &screenBounds);
 
-	int screenCentreX = screenBounds.w / 2, screenCentreY = screenBounds.h / 2;
-	
-	struct ScreenInitInfo {RenderScreen screen; const char* windowTitle; int x, y; int width, height;};
-	for (const ScreenInitInfo& init : {ScreenInitInfo{Main, "Handzer", -2, -1, 640, 480}, ScreenInitInfo{Debug, "Debug graphs", 0, -1, 600, 600}}) {
-		sdlWindows[init.screen] = SDL_CreateWindow(init.windowTitle, screenCentreX + init.x * (init.width / 2), screenCentreY + init.y * (init.height / 2), 
-												   init.width, init.height, SDL_WINDOW_RESIZABLE);
-	
-		if (sdlWindows[init.screen]) {
-			sdlRenderers[init.screen] = SDL_CreateRenderer(sdlWindows[init.screen], -1, SDL_RENDERER_ACCELERATED);
-			sdlTextSurfaces[init.screen] = SDL_CreateTexture(sdlRenderers[init.screen], SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, textSurfaceSize, textSurfaceSize);
-		}
-	}
+	renderers[RenderScreen::Main].Init("Handzer", (screenBounds.w / 2) - 2 * (640 / 2), (screenBounds.h / 2) - 480 / 2, 640, 480);
+	renderers[RenderScreen::Debug].Init("Debug graphs", screenBounds.w / 2, (screenBounds.h / 2) - 480 / 2, 640, 480);
 
 	// Enable file drop on window
 	SDL_EventState(SDL_DROPFILE, SDL_ENABLE);
@@ -50,56 +35,22 @@ void Game::Init() {
 	// Setup renderer hints to make stuff look pretty
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
-	// Create default font
-	printf("Creating additional text rendering assets that nobody wants in their life ever\n");
-	defaultFont = CreateFont(20, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, ANTIALIASED_QUALITY, DEFAULT_PITCH | FF_DONTCARE, "Arial");
-
-	// Create text render DC
-	textSurfaceDc = CreateCompatibleDC(NULL);
-
-	// Create and select a bitmap into that DC
-	int infiniteData[sizeof (BITMAPINFO) + 256 * sizeof (RGBQUAD)]; // lol (needed for bmiColors, prefer not to allocate memory when I can use stack memory)
-	BITMAPINFO& bi = *(BITMAPINFO*)infiniteData;
-	memset(&bi, 0, sizeof (bi));
-
-	bi.bmiHeader.biSize = sizeof (bi.bmiHeader);
-	bi.bmiHeader.biWidth = textSurfaceSize;
-	bi.bmiHeader.biHeight = -textSurfaceSize;
-	bi.bmiHeader.biPlanes = 1;
-	bi.bmiHeader.biBitCount = 8;
-	bi.bmiHeader.biCompression = BI_RGB;
-	bi.bmiHeader.biClrUsed = 256;
-	bi.bmiHeader.biClrImportant = 256;
-	
-	// Give the bitmap a basic monochrome gradient palette
-	for (uint32 i = 0; i < 256; ++i) {
-		bi.bmiColors[i] = RGBQUAD{(BYTE)i, (BYTE)i, (BYTE)i, 0};
-	}
-
-	// Setup GDI objects
-	textSurfaceBitmap = CreateDIBSection(0, &bi, DIB_RGB_COLORS, (void**) &textSurfaceBits, nullptr, 0);
-
-	SelectObject(textSurfaceDc, (HGDIOBJ) textSurfaceBitmap);
-	SelectObject(textSurfaceDc, (HGDIOBJ) defaultFont);
-	SetBkColor(textSurfaceDc, RGB(0, 0, 0));
-	SetTextColor(textSurfaceDc, RGB(255, 255, 255));
-
 	// Init sound engine
 	sound.Init();
 
 	// Initialise Arduino if possible
-	printf("Init Arduino\n");
-
 	arduino = new Serial(port);
 
-	if (arduino->IsConnected())
-		printf("Cereal is served!\n");
-	else
-		printf("Arduino couldn't open. Serial killer on the loose!!\n");
+	if (arduino->IsConnected()) {
+		printf("Arduino init successful: Serial is served!\n");
+	} else {
+		printf("Arduino init failed: Serial killer on the loose!\n");
+	}
 
 	// Create the debug box
 	debugBox = new DebugStringBox(RenderScreen::Main, 0, 0, 500, 500);
 
+	// Done
 	printf("Init complete\n");
 }
 
@@ -116,16 +67,9 @@ void Game::Shutdown() {
 	// Shutdown Arduino
 	delete arduino;
 
-	// Shutdown dumb WinGDI stuff
-	DeleteDC(textSurfaceDc);
-	DeleteObject(defaultFont);
-	DeleteObject(textSurfaceBitmap);
-
-	// Shutdown SDL components
-	for (int i = 0; i < NumRenderScreens; ++i) {
-		SDL_DestroyRenderer(sdlRenderers[i]);
-		SDL_DestroyWindow(sdlWindows[i]);
-		SDL_DestroyTexture(sdlTextSurfaces[i]);
+	// Shutdown renderer
+	for (RenderManager& renderer : renderers) {
+		renderer.Shutdown();
 	}
 
 	SDL_Quit();
@@ -170,8 +114,7 @@ void Game::Update(float deltaTime) {
 void Game::Render() {
 	// Start rendering
 	for (int i = 0; i < RenderScreen::NumRenderScreens; ++i) {
-		SDL_SetRenderDrawColor(sdlRenderers[i], 255, 255, 255, 255);
-		SDL_RenderClear(sdlRenderers[i]);
+		renderers[i].RenderBegin();
 	}
 	
 	// Call current game state's render function
@@ -186,7 +129,7 @@ void Game::Render() {
 
 	// Finish rendering
 	for (int i = 0; i < RenderScreen::NumRenderScreens; ++i) {
-		SDL_RenderPresent(sdlRenderers[i]);
+		renderers[i].RenderEnd();
 	}
 }
 
@@ -265,51 +208,6 @@ void Game::Run() {
 	Shutdown();
 }
 
-void Game::RenderText(const char* string, int x, int y, RenderScreen screen) {
-	// Get text bounds
-	RECT r{0, 0, 0, 0};
-
-	DrawTextEx(textSurfaceDc, const_cast<LPSTR>(string), -1, &r, DT_CALCRECT, NULL);
-
-	// Draw the text to the GDI DC
-	DrawTextEx(textSurfaceDc, const_cast<LPSTR>(string), -1, &r, 0, NULL);
-
-	GdiFlush();
-
-	// Don't try to render if the size is 0! This causes a crash!
-	if (r.right == 0 || r.bottom == 0) {
-		return;
-	}
-
-	// Copy the GDI text to the SDL texture
-	SDL_Rect textureRect{0, 0, r.right, r.bottom};
-	uint32* pixels;
-	int pitch;
-	if (!SDL_LockTexture(sdlTextSurfaces[screen], &textureRect, (void**)&pixels, &pitch)) {
-		int textWidth = r.right, textHeight = r.bottom;
-		for (int i = 0; i < textHeight; ++i) {
-			uint32* pDest = &pixels[i * pitch / 4];
-			uint8* pSrc = &textSurfaceBits[i * textSurfaceSize];
-
-			for (int i = 0; i < textWidth; ++i) {
-				pDest[i] = pSrc[i] << 24;
-			}
-		}
-
-		SDL_UnlockTexture(sdlTextSurfaces[screen]);
-	}
-
-	if (!SDL_LockTexture(SDL_GetRenderTarget(sdlRenderers[screen]), &textureRect, (void**)&pixels, &pitch)) {
-		SDL_UnlockTexture(SDL_GetRenderTarget(sdlRenderers[screen]));
-	}
-
-	// Render the SDL texture
-	SDL_Rect src = {0, 0, r.right, r.bottom}, dest = {x, y, r.right, r.bottom};
-
-	SDL_SetTextureBlendMode(sdlTextSurfaces[screen], SDL_BLENDMODE_BLEND);
-	SDL_RenderCopy(sdlRenderers[screen], sdlTextSurfaces[screen], &src, &dest);
-}
-
 void Game::RenderDebugAppurtenances() {
 	// Yes I see you there and yes I just wanted an excuse to say Appurtenances
 	for (Object* object : objects) {
@@ -317,13 +215,6 @@ void Game::RenderDebugAppurtenances() {
 	}
 
 	level.RenderCollisionBoxes();
-}
-
-Dimensions2 Game::GetScreenSize(RenderScreen screen) {
-	SDL_Rect sdlSize;
-
-	SDL_RenderGetViewport(sdlRenderers[screen], &sdlSize);
-	return Dimensions2(sdlSize.w, sdlSize.h);
 }
 
 void Game::RespawnPlayer() {
@@ -335,7 +226,8 @@ void Game::RespawnPlayer() {
 	// Spawn the player
 	player = SpawnObject<Hand>();
 
-	player->SetPosition(Vec3(7275.0f, 735.0f, 1.0f)); // If there's time, todo use a spawn point object for this
+	// uh
+	player->Respawn();
 }
 
 void Game::ClearObjects() {

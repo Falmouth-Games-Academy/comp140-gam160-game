@@ -1,7 +1,7 @@
 #include "Game.h"
 
 void Hud::Render() {
-	SDL_Renderer* renderer = game.GetRenderer();
+	SDL_Renderer* renderer = game.GetSDLRenderer();
 
 	// Draw healthbar
 	float32 health = game.GetPlayer().GetHealth();
@@ -11,7 +11,7 @@ void Hud::Render() {
 	const Colour healthColour = Colour::Green();
 	const Colour criticalHealthColour = Colour::Red();
 
-	Dimensions2 screenSize = game.GetScreenSize();
+	Dimensions2 screenSize = game.GetRenderer(Main).GetScreenSize();
 	SDL_Rect sdlHealthRect = {(int)(healthbarRect.x * (float)screenSize.width), (int)(healthbarRect.y * (float)screenSize.height), 
 							  (int)(healthbarRect.width * (float)screenSize.width), (int)(healthbarRect.height * (float)screenSize.height)};
 

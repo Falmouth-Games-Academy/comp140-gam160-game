@@ -75,7 +75,7 @@ void Object::OnDamage() {
 }
 
 void Object::RenderCollisionBox() const {
-	SDL_Renderer* renderer = game.GetRenderer(RenderScreen::Main);
+	SDL_Renderer* renderer = game.GetSDLRenderer(RenderScreen::Main);
 	Vec2 spriteOrigin(0.0f, 0.0f), spriteScale(0.0f, 0.0f);
 
 	if (sprite.GetFrame(0)) {

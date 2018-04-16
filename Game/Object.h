@@ -20,6 +20,7 @@ public:
 		LaserType,
 		GooglyEyeType,
 		BigfootType,
+		GooseType,
 		NumTypes
 	};
 
@@ -81,6 +82,7 @@ public:
 
 	// Returns the sprite
 	inline const Sprite& GetSprite() const;
+	inline Sprite& GetSprite();
 
 	// Sets the size of the object in pixels (calculates scale)
 	inline void SetSize(const Vec2& size);
@@ -279,6 +281,10 @@ inline const Sprite& Object::GetSprite() const {
 	return sprite;
 }
 
+inline Sprite& Object::GetSprite() {
+	return sprite;
+}
+
 inline void Object::SetScale(const Vec2& scale) {
 	for (SpriteFrame* frame : sprite.GetFrames()) {
 		frame->SetScale(scale);
@@ -306,7 +312,7 @@ inline const Vec2 Object::GetSize() const {
 }
 
 inline bool Object::IsBeingDestroyed() const {
-	return isBeingDestroyed;
+	return (bool)(isBeingDestroyed);
 }
 
 inline void Object::SetCollisionBox(const Rect2& newBox) {
@@ -331,7 +337,7 @@ inline void Object::SetSpawnInfo(const Vec3& spawnPosition, bool isPersistent) {
 }
 
 inline bool Object::IsPersistent() const {
-	return isPersistent;
+	return (bool)(isPersistent);
 }
 
 inline const Vec3& Object::GetSpawnPosition() const {

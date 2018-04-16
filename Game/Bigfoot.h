@@ -31,4 +31,7 @@ private:
 
 	// Amount of time in the air per jump
 	float32 airTime = 1.0f;
+
+	// Maximum distance, in pixels, that BigFoot can jump towrad the player
+	float32 maxJumpDistance = 2000.0f;
 };

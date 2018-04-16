@@ -5,8 +5,7 @@
 #include "Image.h"
 #include "GooglyEye.h"
 #include "Laser.h"
-
-#include "Bottle.h" // Test bottle spawning
+#include "GameStateDed.h"
  
 // Hand width: 9 1/2cm
 Hand::~Hand() {
@@ -26,6 +25,7 @@ void Hand::OnSpawn() {
 	collisionFlags = SolidOverlaps;
 
 	// Setup other defaults
+	isHurtable = true;
 	defaultHurtInvincibilityTime = 1.0f;
 
 	updateFlags = UpdateHurtFlashes | UpdateInvincibilityTimer | UpdatePhysics;
@@ -44,7 +44,22 @@ void Hand::OnSpawn() {
 	rightEye->SetParentOffset(Vec3(1104.0f, 348.0f, 0.0f));
 
 	// Create the laser
-	game.SpawnObject<Laser>();
+	laser = game.SpawnObject<Laser>();
+
+	// Do first respawn (which is technically a spawn but imma let it finish)
+	Respawn();
+}
+
+void Hand::OnDestroy() {
+	leftEye->Destroy();
+	rightEye->Destroy();
+
+	laser->Destroy();
+}
+
+void Hand::OnDeath() {
+	// Set the game state to the death state
+	game.SetGameState<GameStateDed>();
 }
 
 void Hand::Render() {
@@ -182,6 +197,16 @@ void Hand::Update(float deltaTime) {
 
 	leftEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(90.0f, 130.0f)));
 	rightEye->SetEyeballRadius(Math::lerpfloat(laserPower, MinMax<float>(80.0f, 100.0f)));
+}
+
+void Hand::Respawn() {
+	// Just reappear at the start of the level
+	position = game.GetLevel().GetPlayerStart();
+
+	// Restore health
+	health = 100.0f;
+
+	// I think that's all?
 }
 
 Vec3 Hand::SpritePointToWorldPoint(const Vec2& spritePoint) const {

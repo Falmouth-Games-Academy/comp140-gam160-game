@@ -170,7 +170,7 @@ void GestureManager::RenderDebugGraphs() {
 void GestureManager::RenderDebugVectors() {
 	float vectorScale = 0.01f;
 	Vec3 average = GetAverageAccel(25, 0);
-	SDL_Renderer* renderer = game.GetRenderer(RenderScreen::Debug);
+	SDL_Renderer* renderer = game.GetSDLRenderer(RenderScreen::Debug);
 	const int halfSize = 150;
 	SDL_Rect box = {300, 300, halfSize * 2, halfSize * 2};
 

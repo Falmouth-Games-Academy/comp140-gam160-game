@@ -117,6 +117,18 @@
     <ClCompile Include="HUD.cpp">
       <Filter>Source Files\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="GameStateDed.cpp">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugStringBox.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Goose.cpp">
+      <Filter>Source Files\Gameplay\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
@@ -205,6 +217,15 @@
     </ClInclude>
     <ClInclude Include="HUD.h">
       <Filter>Source Files\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateDed.h">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugStringBox.h">
+      <Filter>Source Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Goose.h">
+      <Filter>Source Files\Gameplay\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
