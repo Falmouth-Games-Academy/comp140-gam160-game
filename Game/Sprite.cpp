@@ -82,7 +82,13 @@ void Sprite::RemoveFrame(int frameIndex) {
 }
 
 void Sprite::TickAnimation(float deltaTime) {
-	currentFrame = Math::circleclamp(currentFrame + frameRate * deltaTime, (float)frames.GetNum());
+	if (animEndFrame == -1) {
+		// Use the full range of frames
+		currentFrame = animStartFrame + Math::circleclamp((currentFrame - animStartFrame) + frameRate * deltaTime, (float)frames.GetNum() - (float)animStartFrame);
+	} else {
+		// Use a specified range of frames
+		currentFrame = animStartFrame + Math::circleclamp((currentFrame - animStartFrame) + frameRate * deltaTime, (float)(animEndFrame + 1.0f) - (float)animStartFrame);
+	}
 }
 
 void Sprite::SetScale(const Vec2& scale) {

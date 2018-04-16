@@ -65,6 +65,10 @@ void Object::Update(float deltaTime) {
 			hurtInvincibilityTimer -= deltaTime;
 		}
 	}
+
+	if (updateFlags & UpdateAnimation) {
+		sprite.TickAnimation(deltaTime);
+	}
 }
 
 void Object::Render() {
@@ -254,6 +258,7 @@ bool Object::Move(const Vec3& originalMoveOffset, bool teleport) {
 #include "Laser.h"
 #include "Object.h"
 #include "Bigfoot.h"
+#include "Goose.h"
 
 Object::SpawnerDatabase::SpawnerDatabase() {
 	// Type definitions go here!
@@ -264,4 +269,5 @@ Object::SpawnerDatabase::SpawnerDatabase() {
 	SET_SPAWNER(GooglyEye);
 	SET_SPAWNER(Hand);
 	SET_SPAWNER(Bigfoot);
+	SET_SPAWNER(Goose);
 }

@@ -178,6 +178,7 @@ protected:
 		UpdateDeathTimer = 4,
 		UpdateHurtFlashes = 8,
 		UpdateInvincibilityTimer = 16,
+		UpdateAnimation = 32,
 
 		UpdateAll = 0xFFFF,
 	};

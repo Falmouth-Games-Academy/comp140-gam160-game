@@ -1,5 +1,5 @@
 Root:N[
-	playerstart:V[10854.0, 690.0, 1.000]
+	playerstart:V[10854.000,690.000,1.000]
 	background:N[
 		layer:N[
 			sprite:S[U:\comp140-gam160-game\Game\graphics\background\rocks\rock_3.png]
@@ -73,7 +73,7 @@ Root:N[
 	objects:N[
 		object:N[
 			type:I[6]
-			pos:V[9191.090,484.736,0.995]
+			pos:V[4780.332,-137.699,0.995]
 			rot:F[0.000]
 			scale:V[0.615,0.615,0.000]
 		]
@@ -82,6 +82,12 @@ Root:N[
 			pos:V[8534.576,719.162,0.985]
 			rot:F[0.000]
 			scale:V[0.157,0.157,0.000]
+		]
+		object:N[
+			type:I[7]
+			pos:V[9917.373,630.252,1.075]
+			rot:F[0.000]
+			scale:V[0.500,0.500,0.000]
 		]
 	]
 ]

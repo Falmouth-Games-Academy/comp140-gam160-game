@@ -152,7 +152,10 @@ public:
 	void TickAnimation(float deltaTime);
 
 	// Sets the animation speed in frames/sec
-	void SetFrameRate(float32 fps);
+	inline void SetFrameRate(float32 fps);
+
+	// Sets the animation start and end frames (inclusive). If endFrame is -1, the full range of frames will be used
+	inline void SetFrameRange(int32 startFrame, int32 endFrame);
 
 public:
 	/* Scaling and other effects */
@@ -182,6 +185,10 @@ private:
 
 	// Animation speed in frames/sec
 	float32 frameRate = 10.0f;
+
+	// Animation cycle start and end frames
+	int32 animStartFrame = 0;
+	int32 animEndFrame = -1;
 
 	// Colour blend
 	Colour colourBlend = Colour::White();
@@ -312,6 +319,11 @@ inline int Sprite::GetNumFrames() const {
 
 inline void Sprite::SetFrameRate(float32 fps) {
 	frameRate = fps;
+}
+
+inline void Sprite::SetFrameRange(int32 startFrame, int32 endFrame) {
+	animStartFrame = startFrame;
+	animEndFrame = endFrame;
 }
 
 inline SpriteFrame::SpriteFrame(const char* filename, const Vec2& origin_, const Vec2& scale_) : textures{nullptr} {
