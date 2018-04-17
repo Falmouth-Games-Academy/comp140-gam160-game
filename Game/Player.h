@@ -57,6 +57,9 @@ private:
 
 	// Time remaining, in seconds, before powerslide ends
 	float32 powerslideTimeRemaining = 0.0f;
+
+	// Angle range expected for the bend sensor
+	MinMax<float32> flexRange = MinMax<float32>(50.0f, 50.0f);
 };
 
 inline int Hand::GetDirection() const {

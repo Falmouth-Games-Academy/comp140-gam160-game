@@ -34,4 +34,7 @@ private:
 
 	// Maximum distance, in pixels, that BigFoot can jump towrad the player
 	float32 maxJumpDistance = 2000.0f;
+
+	// Initial health value
+	float32 initialHealth = 40.0f;
 };

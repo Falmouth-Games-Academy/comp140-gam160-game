@@ -12,6 +12,8 @@ Root:N[
 			sprite:S[U:\comp140-gam160-game\Game\graphics\background\ground\grass_1_tiled.png]
 			pos:V[315.163,144.541,1.645]
 			scale:V[1.491,1.491,0.000]
+			cpos:V[-36.137,780.071,0.000]
+			csize:V[11437.120,664.627,0.000]
 		]
 		layer:N[
 			sprite:S[U:\comp140-gam160-game\Game\graphics\background\skies\sky_1_tiled.png]
@@ -75,13 +77,7 @@ Root:N[
 			type:I[6]
 			pos:V[4780.332,-137.699,0.995]
 			rot:F[0.000]
-			scale:V[0.615,0.615,0.000]
-		]
-		object:N[
-			type:I[2]
-			pos:V[8534.576,719.162,0.985]
-			rot:F[0.000]
-			scale:V[0.157,0.157,0.000]
+			scale:V[0.694,0.694,0.000]
 		]
 		object:N[
 			type:I[7]

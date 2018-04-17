@@ -91,8 +91,26 @@ void Hand::Update(float deltaTime) {
 
 	// Todo maybe: powerslides
 
+
+	// Update flex sensor range
+	float32 flexAngle = game.GetGesture().GetFlexAngle();
+	const float32 angleLeeway = 8.0f;
+	
+	if (game.GetInput().IsKeyBooped(SDLK_r)) {
+		// Reset flex range
+		flexRange.max = flexRange.min = flexAngle;
+	}
+
+	if (flexAngle - 8.0f > flexRange.max) {
+		flexRange.max = flexAngle - 8.0f;
+	}
+
+	if (flexAngle + 8.0f < flexRange.min) {
+		flexRange.min = flexAngle + 8.0f;
+	}
+
 	// Update laser power
-	laserPower = Math::clamp(game.GetGesture().GetFlexAngle() / 90.0f, 0.0f, 1.0f);
+	laserPower = 1.0f - Math::clamp(Math::lerpfloat(flexAngle, flexRange, MinMax<float32>(0.0f, 1.0f)), 0.0f, 1.0f);
 
 	// Update mouse openness
 	sprite.SetCurrentFrame(Math::clampmax(Math::round(laserPower * sprite.GetNumFrames(), 1.0f), (float)(sprite.GetNumFrames() - 1)));

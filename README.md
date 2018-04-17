@@ -37,6 +37,14 @@ Vin/Brown:  5V (3V may also work)
 SDA/Yellow: A4  
 SCL/Grey: A5  
 
+## Flex sensor
+Connections are as follows:
+2 -> Flex Sensor -> Resistor -> GND  
+                 ^-> A3 (shared with the Flex Sensor -> Resistor connection)  
+
+See the diagram for clarification:  
+![Where's the diagram lol](https://github.com/LXShades/comp140-gam160-game/raw/master/Diagrams/flex.png "Flex Sensor Setup")
+
 # Extra to the Page (no need to read this)
 We were asked to write a page for the proposals, and indeed, all of the text below is part of the page. I have cut it out so that this page does not exceed a page, however, either way it is unlikely to exceed a page as it is, indeed, a page. Further to this though, one could observe that this page does not fit within one monitor screen. This is true, however it could be strongly argued that a monitor is not a page. To exceed a page would require that more than one page be stuck to the screen, perhaps with some sticky tape.  
 

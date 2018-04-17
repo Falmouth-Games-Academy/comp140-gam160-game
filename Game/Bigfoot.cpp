@@ -12,6 +12,8 @@ void Bigfoot::OnSpawn() {
 	// Misc init
 	isHurtable = true;
 
+	health = initialHealth;
+
 	// Set update flags
 	updateFlags = UpdateAll;
 
@@ -57,6 +59,9 @@ void Bigfoot::Update(float deltaTime) {
 	}
 
 	game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bigfoot on ground: %i", isOnGround));
+
+	// Shrink according to health
+	sprite.SetScale(Vec2(health / initialHealth));
 }
 
 void Bigfoot::Jump() {
