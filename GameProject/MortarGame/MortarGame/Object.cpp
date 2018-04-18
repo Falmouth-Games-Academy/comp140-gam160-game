@@ -1,13 +1,14 @@
 #include "Object.h"
 #include "GraphicsManager.h"
 
+
 Object::Object(const char* texturesheet, int x, int y)
 {
 	objTexture = GraphicsManager::LoadImage(texturesheet);
 
 	xpos = x;
 	ypos = y;
-
+	serialInterface = new SerialInterface();
 }
 
 Object::Object()
@@ -27,8 +28,22 @@ Object::~Object()
 
 void Object::Update()
 {
-	//xpos++;
-	//ypos++;
+	
+
+	serialInterface->getValues();
+	thisRot1 = serialInterface->getRot1();
+
+	if (thisRot1 > lastRot1)
+	{
+		ypos = ypos + 5;
+	}
+
+	if (thisRot1 < lastRot1)
+	{
+		ypos = ypos - 5;
+	}
+
+	lastRot1 = serialInterface->getRot1();
 
 	sourceRect.h = 64;
 	sourceRect.w = 64;
@@ -37,24 +52,13 @@ void Object::Update()
 
 	destRect.x = xpos;
 	destRect.y = ypos;
-	destRect.h = sourceRect.h * 2;
-	destRect.w = sourceRect.w * 2;
-	/*
-	serialInterface->getValues();
-	thisRot1 = serialInterface->getRot1();
+	destRect.h = sourceRect.h;
+	destRect.w = sourceRect.w;
+	
+	
 
-	if (thisRot1 > lastRot1)
-	{
-		ypos++;
-	}
 
-	if (thisRot1 < lastRot1)
-	{
-		ypos--;
-	}
-
-	lastRot1 = serialInterface->getRot1();
-	*/
+	
 }
 
 void Object::Render()

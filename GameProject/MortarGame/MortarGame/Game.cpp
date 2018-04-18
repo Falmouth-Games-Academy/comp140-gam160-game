@@ -5,6 +5,7 @@
 #include "Player.h"
 #include <iostream>
 
+
 using std::cout;
 using std::endl;
 
@@ -138,7 +139,7 @@ void Game::update()
 	cnt++;
 
 	player->Update();
-	enemy->Update();
+	//enemy->Update();
 
 	cout << cnt << endl;
 }

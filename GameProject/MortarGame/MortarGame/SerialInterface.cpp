@@ -9,6 +9,8 @@ using std::exception;
 using std::stoi;
 using std::string;
 
+const int RotStartIndex = 0;
+const int RotDataSize = 4;
 
 SerialInterface::SerialInterface()
 {
@@ -63,21 +65,21 @@ void SerialInterface::getValues()
 
 		if (result.length() >= 6)
 		{
-			string sub1 = result.substr(0, 4);
+			string sub1 = result.substr(RotStartIndex, RotDataSize);
 			if (sub1 != "")
 			{
 				rot1 = std::stoi(sub1);
 			}
 
 
-			string sub2 = result.substr(5, 1);
+			string sub2 = result.substr(4, 1);
 			if (sub2 != "")
 			{
 				swtch1 = std::stoi(sub2);
 			}
 
 
-			string sub3 = result.substr(6, 1);
+			string sub3 = result.substr(5, 1);
 			if (sub3 != "")
 			{
 				swtch2 = std::stoi(sub3);
