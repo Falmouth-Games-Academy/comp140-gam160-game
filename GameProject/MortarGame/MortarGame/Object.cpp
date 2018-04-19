@@ -32,18 +32,49 @@ void Object::Update()
 
 	serialInterface->getValues();
 	thisRot1 = serialInterface->getRot1();
-
-	if (thisRot1 > lastRot1)
+	swtch1 = serialInterface->getSwtch1();
+	swtch2 = serialInterface->getSwtch2();
+	
+	if (swtch2 == 0)
 	{
-		ypos = ypos + 5;
+		if (thisRot1 > lastRot1)
+		{
+			ypos = ypos + 5;
+		}
+
+		if (thisRot1 < lastRot1)
+		{
+			ypos = ypos - 5;
+		}
+
+		lastRot1 = serialInterface->getRot1();
 	}
 
-	if (thisRot1 < lastRot1)
+	if (swtch2 == 1)
 	{
-		ypos = ypos - 5;
+		if (thisRot1 > lastRot1)
+		{
+			xpos = xpos + 5;
+		}
+
+		if (thisRot1 < lastRot1)
+		{
+			xpos = xpos - 5;
+		}
+
+		lastRot1 = serialInterface->getRot1();
 	}
 
-	lastRot1 = serialInterface->getRot1();
+	if (swtch1 == 1)
+	{
+		xpos = xpos + 30;
+
+		
+	}
+
+	
+
+	
 
 	sourceRect.h = 64;
 	sourceRect.w = 64;

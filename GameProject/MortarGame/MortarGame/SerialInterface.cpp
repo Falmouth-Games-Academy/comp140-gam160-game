@@ -11,6 +11,11 @@ using std::string;
 
 const int RotStartIndex = 0;
 const int RotDataSize = 4;
+const int Swtch1StartIndex = 4;
+const int Swtch1DataSize = 1;
+const int Swtch2StartIndex = 5;
+const int Swtch2DataSize = 1;
+
 
 SerialInterface::SerialInterface()
 {
@@ -72,14 +77,14 @@ void SerialInterface::getValues()
 			}
 
 
-			string sub2 = result.substr(4, 1);
+			string sub2 = result.substr(Swtch1StartIndex, Swtch1DataSize);
 			if (sub2 != "")
 			{
 				swtch1 = std::stoi(sub2);
 			}
 
 
-			string sub3 = result.substr(5, 1);
+			string sub3 = result.substr(Swtch2StartIndex, Swtch2DataSize);
 			if (sub3 != "")
 			{
 				swtch2 = std::stoi(sub3);
