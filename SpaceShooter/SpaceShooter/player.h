@@ -18,6 +18,9 @@ public:
 
 	void levelCollisions(SDL_Rect A, SDL_Rect B);
 
+	// float MAX_MOVE_SPEED = 0.8f;
+	//float MOVE_SPEED = 0.5f;
+
 	// All the movement functions
 	//Moves player left by -dx
 	void moveLeft();

@@ -13,9 +13,11 @@ public:
 	void draw(Graphics &graphics);
 	void update(float elapsedTime);
 
-	SDL_Rect levelBoxCollider = { 0, 0, globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT };
+	const static std::string listOfMaps[4];
+	const static std::string listOf;
 
-	void moveBackground();
+
+	SDL_Rect levelBoxCollider = { 0, 0, globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT };
 
 	bool movingBackground = true;
 
@@ -23,6 +25,8 @@ private:
 	float dx = 0, dy = 0;
 	float x1 = 0, y1 = 0;
 	float x2 = 0, y2 = 0 -globals::SCREEN_HEIGHT;
+
+	void moveBackground();
 
 };
 

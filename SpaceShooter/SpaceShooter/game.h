@@ -3,11 +3,14 @@
 
 #include "player.h"
 #include "level.h"
+//#include "serialInterface.h"
 
 class Graphics;
 
 class Game {
 public:
+	//SerialInterface *serialInterface;
+
 	Game();
 	~Game();
 	bool running = true;

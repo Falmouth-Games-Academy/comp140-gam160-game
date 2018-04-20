@@ -5,7 +5,8 @@
 
 namespace player_constants
 {
-	const float MOVE_SPEED = 0.5f;
+	const float MAX_MOVE_SPEED = 0.8f;
+	 float MOVE_SPEED = 0.5f;
 }
 
 Player::Player() {}
@@ -41,6 +42,9 @@ void Player::moveDown()
 	dy = +player_constants::MOVE_SPEED;
 }
 
+// fast moveing
+
+
 void Player::stopMovingX()
 {
 	dx = 0.0f;
@@ -54,8 +58,8 @@ void Player::stopMovingY()
 // updates the player's x y positions
 void Player::update(float elapsedTime)
 {
-	y += dy * elapsedTime;
 	x += dx * elapsedTime;
+	y += dy * elapsedTime;
 
 	playerBoxCollider.x = x;
 	playerBoxCollider.y = y;

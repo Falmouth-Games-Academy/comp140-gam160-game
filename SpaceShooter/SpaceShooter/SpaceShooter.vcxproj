@@ -69,17 +69,20 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\DIgital\Uni stuff\COMP140\Assignments\comp140-gam160-game\SpaceShooter\SpaceShooter\serial\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\DIgital\Uni stuff\COMP140\Assignments\comp140-gam160-game\SpaceShooter\SpaceShooter\serial\visual_studio\Debug;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\DIgital\Development Librairies\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\DIgital\Development Librairies\boost_1_67_0;D:\DIgital\Development Librairies\socket.io-client-cpp\src;D:\DIgital\Development Librairies\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\DIgital\Development Librairies\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\DIgital\Development Librairies\boost_1_67_0\stage\lib;D:\DIgital\Development Librairies\boost_1_67_0\boost;D:\DIgital\Development Librairies\socket.io-client-cpp\Debug;D:\DIgital\Uni stuff\COMP140\Assignments\comp140-gam160-game\SpaceShooter\SpaceShooter\serial\include;D:\DIgital\Development Librairies\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libboost_system-vc141-mt-gd-x32-1_67.lib;sioclient.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -118,6 +121,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="collisionBox.cpp" />
+    <ClCompile Include="connectionListener.cpp" />
     <ClCompile Include="controls.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="graphics.cpp" />
@@ -125,10 +129,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="serialInterface.cpp" />
+    <ClCompile Include="serverConnect.cpp" />
     <ClCompile Include="sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="collisionBox.h" />
+    <ClInclude Include="connectionListener.h" />
     <ClInclude Include="controls.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="globals.h" />
@@ -136,6 +143,8 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="serialInterface.h" />
+    <ClInclude Include="serverConnect.h" />
     <ClInclude Include="sprite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

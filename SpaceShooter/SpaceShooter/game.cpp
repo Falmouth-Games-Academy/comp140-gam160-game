@@ -7,6 +7,11 @@
 #include "input.h"
 #include "controls.h"
 
+//Graphics graphics;
+//Input input;
+//Controls controls;
+//SDL_Event event;
+
 //Game class
 //Holds all the information for the main game loop, it's essentially a game manager
 
@@ -18,7 +23,9 @@ namespace
 
 Game::Game()
 {
+	//serialInterface = new SerialInterface;
 	SDL_Init(SDL_INIT_EVERYTHING);
+	srand(SDL_GetPerformanceCounter());
 	gameLoop();
 }
 
