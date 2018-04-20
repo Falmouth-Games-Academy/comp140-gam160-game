@@ -3,14 +3,16 @@
 #include "GraphicsManager.h"
 #include "Object.h"
 #include "Player.h"
+#include "Enemy.h"
 #include <iostream>
 
 
 using std::cout;
 using std::endl;
 
-Object* player;
-Object* enemy;
+Player* player;
+Enemy* enemy;
+Enemy* enemy2;
 
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
@@ -92,8 +94,9 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	//instantiate serial here
 
-	player = new Object("Assets/Crosshair.png", 800 / 2, 640 / 2);
-	enemy = new Object("Assets/Enemy.png", 800 / 3, 640 / 2);
+	player = new Player("Assets/Crosshair.png", 800 / 2, 640 / 2);
+	enemy = new Enemy("Assets/Enemy.png", 500, -64);
+	enemy2 = new Enemy("Assets/Enemy3.png", 864, 200);
 	
 
 	return true;
@@ -139,7 +142,8 @@ void Game::update()
 	cnt++;
 
 	player->Update();
-	//enemy->Update();
+	enemy->MoveDown();
+	enemy2->MoveLeft();
 
 	cout << cnt << endl;
 }
@@ -153,10 +157,11 @@ void Game::render()
 	// clear previous frame
 	SDL_RenderClear(renderer);
 
-	player->Render();
+	
 	enemy->Render();
+	enemy2->Render();
 
-
+	player->Render();
 
 
 

@@ -9,11 +9,11 @@ public:
 	Object();
 	~Object();
 
-	void Update();
 	void Render();
+	virtual void Update();
 
+	SerialInterface* serialInterface;
 
-private:
 
 	int xpos;
 	int ypos;
@@ -27,5 +27,5 @@ private:
 	SDL_Rect sourceRect, destRect;
 	
 
-	SerialInterface* serialInterface;
+	//SerialInterface* serialInterface;
 };
