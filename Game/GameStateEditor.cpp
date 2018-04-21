@@ -15,7 +15,7 @@ void GameStateEditor::Update(float deltaTime) {
 	UpdateSelections();
 
 	// Switch back to gameplay if the editor button was pressed
-	if (game.GetInput().IsKeyBooped(SDLK_e)) {
+	if (game.CheckDebugPassword("edit")) {
 		game.SetGameState<GameStatePlay>();
 	}
 }
@@ -45,7 +45,7 @@ void GameStateEditor::Render() {
 	//game.GetCamera().RenderRectangle(start3D, (end3D - start3D).xy, clrRed);
 
 	// Draw debug information
-	DebugStringBox* debug = game.GetDebug();
+	DebugStringBox* debug = game.GetDebugBox();
 	Vec3 cameraPosition = game.GetCamera().GetPosition();
 
 	if (debug) {

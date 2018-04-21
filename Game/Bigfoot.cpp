@@ -58,10 +58,13 @@ void Bigfoot::Update(float deltaTime) {
 		velocity.x = 0.0f;
 	}
 
-	game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bigfoot on ground: %i", isOnGround));
+	game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Bigfoot on ground: %i", isOnGround));
 
 	// Shrink according to health
 	sprite.SetScale(Vec2(health / initialHealth));
+
+	// If close enough to the player, request camera focus
+	game.GetCamera().AddViewTarget(position, GetSize());
 }
 
 void Bigfoot::Jump() {

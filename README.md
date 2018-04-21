@@ -3,8 +3,17 @@ GitHub URL: https://github.com/LXShades/comp140-gam160-game
 # Compiling
 Required FMOD API, v1.10.04 recommended.
 
-# The Page
-## Proposal: Hand Puppet The Game
+# Handzer
+## How to play
+Bounce your hand up and down to move! Tilt your hand back while doing this to move backwards!  
+Open your mouth to shoot lasers!  
+
+**Debug passwords:**  
+debug: Enable debug string boxes  
+edit: Enable level editor  
+record: Enable voice recorder (unfinished)
+
+## Original Proposal: Hand Puppet The Game
 ### Concept
 You play as a hand with a laser-beam spewing mouth in a 2D side-scrolling platform game taking place on campus. Using a bareboned motion controller of straps and rings--with your hand shaped like a talking mouth--you bounce up and down to move along, and use a crouch-jump motion to jump. To use your laser beam, open your mouth wide. The laser beam will make a satisfying BLAAAAAARGH with a vibration feedback effect, and an additional effect of vaporising any enemy foolish enough to stand in your way.  
 

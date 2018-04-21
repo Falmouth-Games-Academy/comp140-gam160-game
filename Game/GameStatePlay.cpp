@@ -23,11 +23,11 @@ void GameStatePlay::Update(float deltaTime) {
 	game.GetCamera().Update(deltaTime);
 
 	// Switch game states if the editor button was pressed
-	if (game.GetInput().IsKeyBooped(SDLK_e)) {
+	if (game.CheckDebugPassword("edit")) {
 		game.SetGameState<GameStateEditor>();
 	}
 
-	if (game.GetInput().IsKeyBooped(SDLK_r)) {
+	if (game.CheckDebugPassword("record")) {
 		game.SetGameState<GameStateRecordSpeech>();
 	}
 }
@@ -51,7 +51,7 @@ void GameStatePlay::Render() {
 	game.GetHud().Render();
 
 	// Render debug text
-	if (DebugStringBox* debug = game.GetDebug()) {
+	if (DebugStringBox* debug = game.GetDebugBox()) {
 		debug->DrawString(StaticString<80>::FromFormat("FPS: %f", 1.0f / game.GetDeltaTime()));
 		debug->DrawString(StaticString<80>::FromFormat("NumCachedImages: %i Refs: %i NumObjects: %i", 
 			game.GetImageCache().GetNum(), game.GetImageCache().GetNumReferences(), game.GetObjects().GetNum()));

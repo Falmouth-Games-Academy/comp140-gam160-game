@@ -48,7 +48,7 @@ public:
 	inline Hud& GetHud();
 	inline Serial* GetSerialStream(); // Todo: class to handle this
 	inline ImageCache& GetImageCache();
-	inline class DebugStringBox* GetDebug();
+	inline class DebugStringBox* GetDebugBox();
 
 public:
 	// Actions
@@ -91,6 +91,11 @@ public:
 
 	// Shortcut to get the SDL renderer
 	inline SDL_Renderer* GetSDLRenderer(RenderScreen screen = RenderScreen::Main);
+
+public:
+	// Debug
+	// Checks the last keys pressed for a debug password. If 'persistent' is false, this is only triggered when the password is finished entering
+	bool CheckDebugPassword(const char* password, bool persistent = false);
 
 private:
 	// Additional system components
@@ -138,6 +143,15 @@ private:
 
 	// Box for debug strings
 	DebugStringBox* debugBox;
+
+	// Debug password stream
+	static const int debugPasswordLength = 32;
+	char debugPassword[debugPasswordLength];
+
+	bool8 isDebugPasswordTriggered = false;
+
+	// Debug string box
+	bool isDebugBoxEnabled = false;
 };
 
 // The only global variable in the entire game. Justified by the fact that it's the only global variable in the entire game as a rule.
@@ -156,7 +170,7 @@ inline Serial* Game::GetSerialStream() {
 	return arduino;
 }
 
-inline DebugStringBox* Game::GetDebug() {
+inline DebugStringBox* Game::GetDebugBox() {
 	return debugBox;
 }
 

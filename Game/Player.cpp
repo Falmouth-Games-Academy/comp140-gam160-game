@@ -70,7 +70,7 @@ void Hand::Render() {
 	game.GetCamera().RenderSprite(sprite, position + headBob, rotation, (direction == 1) ? true : false);
 
 	// Draw relevant debug info
-	if (DebugStringBox* debug = game.GetDebug()) {
+	if (DebugStringBox* debug = game.GetDebugBox()) {
 		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", velocity.x, velocity.y, velocity.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
 		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
@@ -78,11 +78,6 @@ void Hand::Render() {
 }
 
 void Hand::Update(float deltaTime) {
-	// Test damage
-	if (game.GetInput().IsKeyBooped(SDLK_h)) {
-		ChangeHealth(-1.0f);
-	}
-
 	// Update rotation
 	Vec3 currentAccel = game.GetGesture().GetAverageAccel(200, 0);
 	float lastRotation = rotation;
@@ -90,7 +85,6 @@ void Hand::Update(float deltaTime) {
 	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
 
 	// Todo maybe: powerslides
-
 
 	// Update flex sensor range
 	float32 flexAngle = game.GetGesture().GetFlexAngle();
@@ -157,12 +151,12 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Draw debug stuff?
-	if (game.GetDebug()) {
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
+	if (game.GetDebugBox()) {
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
 			bounceInfo.numBounces, bounceInfo.averageBounceHz, bounceInfo.averageBounceAmplitude));
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce speed: %.2f", bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude));
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Player target speed: %.2f  accel: %.2f", targetSpeed, acceleration));
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Amplitude deviation: %.2f", bounceInfo.maxBounceAmplitude - bounceInfo.averageBounceAmplitude));
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Bounce speed: %.2f", bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude));
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Player target speed: %.2f  accel: %.2f", targetSpeed, acceleration));
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Amplitude deviation: %.2f", bounceInfo.maxBounceAmplitude - bounceInfo.averageBounceAmplitude));
 	}
 
 	if (abs(velocity.x) < abs(targetSpeed)) {

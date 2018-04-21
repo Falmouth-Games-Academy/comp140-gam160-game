@@ -6,25 +6,11 @@ void Camera::Update(float deltaTime) {
 	SDL_Rect renderViewport;
 	SDL_RenderGetViewport(game.GetSDLRenderer(), &renderViewport);
 
-	// Update the camera viewport size based on scaling etc
-	viewBox.size = Vec2((float)renderViewport.w, (float)renderViewport.h);
-	viewBox.position = position.xy - viewBox.size * 0.5f;
-
-	// Move the camera gradually to the target point
-	position += (targetPosition - position) * 10.0f * deltaTime;
-	
-	// Follow the player
-	if (isFollowingPlayer) {
-		playerFollowOffset.xy = viewBox.size * Vec2(-0.3f, -0.4f);
-
-		position = game.GetPlayer().GetPosition() + playerFollowOffset;
-	}
-
 	// Apply shake effect
-	if (shakeRate >= 0.002f /* no division by 0 */ && shakeTimer > 0.0f) {
+	if (shakeRate >= 0.002f /* no division by 0 */ && shakeTimer > 0.0f && 0) {
 		Vec3 lastShakeOffset = shakeOffset;
 		float shakeMagnitude = shakeInitialMagnitude * shakeTimer / shakeInitialTimer;
-		
+
 		// Determine the current shake offest
 		shakeOffset.y = sin((shakeInitialTimer - shakeTimer) * Math::pi * 2.0f * shakeRate) * shakeMagnitude;
 
@@ -33,14 +19,34 @@ void Camera::Update(float deltaTime) {
 
 		// Count down the shake timer
 		shakeTimer -= deltaTime;
-	} else {
+	}
+	else {
 		shakeOffset = Vec3(0.0f, 0.0f, 0.0f);
 	}
 
+	// Update the camera viewport size based on scaling etc
+	viewBox.size = Vec2((float)renderViewport.w, (float)renderViewport.h);
+	viewBox.position = position.xy - viewBox.size * 0.5f;
+
 	// Zoom in/out
-	if (game.GetInput().IsKeyDown(SDLK_c) && game.GetInput().GetMouseScroll()) {
+	if (game.GetInput().IsKeyDown(SDLK_z) && game.GetInput().GetMouseScroll()) {
 		playerFollowOffset.z += game.GetInput().GetMouseScroll() * 0.5f;
 	}
+
+	// Move the camera gradually to the target point
+	position += (targetPosition - position) * 10.0f * deltaTime;
+	position = targetPosition;
+
+	// Follow the player for the next frame
+	// This is done here because other objects may change the view zoom with AddViewTarget
+	if (isFollowingPlayer) {
+		playerFollowOffset.xy = viewBox.size * Vec2(-0.3f, -0.4f) * (-playerFollowOffset.z);
+
+		// Expand view bounds
+		GoToPosition(game.GetPlayer().GetPosition() + playerFollowOffset);
+	}
+
+	game.GetDebugBox()->DrawString(StaticString<180>::FromFormat("Cam %.2f %.2f %.2f", position.x, position.y, position.z));
 }
 
 void Camera::Render() {
@@ -137,7 +143,7 @@ void Camera::SetPosition(const Vec3& position) {
 }
 
 void Camera::GoToPosition(const Vec3& position, float speed) {
-	this->targetPosition = position;
+	targetPosition = position;
 }
 
 const Vec3& Camera::GetTargetPosition() const {
@@ -148,12 +154,31 @@ const Vec2& Camera::GetViewSize() const {
 	return viewBox.size;
 }
 
+const Vec2 Camera::GetViewSize(float z) const {
+	return viewBox.size * (z - position.z);
+}
+
 void Camera::SetZoomIntoCentre(float targetZoom) {
 	position.z = targetZoom;
 }
 
 void Camera::SetFollowingPlayer(bool isFollowingPlayer) {
 	this->isFollowingPlayer = isFollowingPlayer;
+}
+
+void Camera::AddViewTarget(const Vec3& target, const Vec2& targetSize) {
+	// Target position = position + (target_.xy - position.xy) / (target_.z - position.z)
+	// The Z required to fit the target in the view
+	float potentialZByX = 1.0f - (abs(target.x - targetPosition.x) + abs(targetSize.x)) / viewBox.size.x;
+	float potentialZByY = 1.0f - (abs(target.y - targetPosition.y) + abs(targetSize.y)) / viewBox.size.y;
+
+	/*if (potentialZByX < position.z) {
+		targetPosition.z = Math::clampmin(potentialZByX, minZ);
+	}*/
+	
+	if (potentialZByY < targetPosition.z) {
+		targetPosition.z = Math::clampmin(potentialZByY, minZ);
+	}
 }
 
 void Camera::StartShake(float32 time, float32 rate, float32 magnitude) {
