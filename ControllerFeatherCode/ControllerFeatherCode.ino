@@ -52,7 +52,7 @@ void setup(void)
 }
 
 void loop(void) 
-{  
+{
   /* Get a new sensor event */
   sensors_event_t event; 
   accel.getEvent(&event);

@@ -4,7 +4,7 @@
 
 namespace level_constants
 {
-	const float MOVE_SPEED = 0.05f;
+	float MOVE_SPEED = 0.05f;
 }
 
 Level::Level() {}

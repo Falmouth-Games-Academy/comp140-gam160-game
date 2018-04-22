@@ -129,6 +129,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="projectile.cpp" />
     <ClCompile Include="serialInterface.cpp" />
     <ClCompile Include="serverConnect.cpp" />
     <ClCompile Include="sprite.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="serialInterface.h" />
     <ClInclude Include="serverConnect.h" />
     <ClInclude Include="sprite.h" />

@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "controls.h"
+#include "graphics.h"
 #include "globals.h"
 #include "player.h"
 #include "input.h"
@@ -30,15 +31,8 @@ Controls::Controls()
 
 Controls::~Controls() {}
 
-void Controls::playerControls(Player &player, Input &input)
+void Controls::playerControls(Player &player, Input &input, Graphics &graphics)
 {
-
-	// Controller Controls from wireless
-	if (controllerActive == false)
-	{
-
-	}
-
 
 	// Controller Controls
 	if (controllerActive == true)
@@ -47,17 +41,28 @@ void Controls::playerControls(Player &player, Input &input)
 		serial.getButton();
 		//std::cout << player.MOVE_SPEED << std::endl;
 
+		//---------------------------------------------------------------------
+		// SHOOTING
+		//---------------------------------------------------------------------
 		if (serial.button2 == 0)
 		{
-			std::cout << "IT WORKED!!!" << std::endl;
+			std::cout << "Button2 works" << std::endl;
+			player.shoot2(graphics);
 		}
-
-
+		if (serial.button1 == 0)
+		{
+			std::cout << "BUtton1 works" << std::endl;
+			player.shoot1(graphics);
+		}
+		
+		//initially stop the player before moveing, helps with not getting stuck in a movement loop
 		player.stopMovingX();
 		player.stopMovingY();
 
-		
-		// X movement
+		//---------------------------------------------------------------------
+		// MOVEMENT
+		//---------------------------------------------------------------------
+		// X movement code
 		if (-3 > serial.x > 3)
 		{
 			//player.stopMovingY();	
@@ -66,16 +71,16 @@ void Controls::playerControls(Player &player, Input &input)
 		else if (serial.x < -3)
 		{
 			//player.MOVE_SPEED = serial.x * player.MAX_MOVE_SPEED;
-			player.moveLeft();
+			player.moveRight();
 		}
 
 		else if (serial.x > 3)
 		{
 			//player.MOVE_SPEED = serial.x * player.MAX_MOVE_SPEED;
-			player.moveRight();
+			player.moveLeft();
 		}
 
-		// Y movement
+		// Y movement code
 		if (-3 > serial.y > 3)
 		{
 			//player.stopMovingY();
@@ -92,9 +97,14 @@ void Controls::playerControls(Player &player, Input &input)
 		}
 		
 	}
+
 	// Keyboard Controls
 	if (!controllerActive)
 	{
+		
+		//---------------------------------------------------------------------
+		// MOVEMENT
+		//---------------------------------------------------------------------
 		if (input.isKeyHeld(SDL_SCANCODE_LEFT) == true || input.isKeyHeld(SDL_SCANCODE_A) == true)
 		{
 			player.moveLeft();
@@ -129,6 +139,19 @@ void Controls::playerControls(Player &player, Input &input)
 			!input.isKeyHeld(SDL_SCANCODE_S))
 		{
 			player.stopMovingY();
+		}
+
+		//---------------------------------------------------------------------
+		// SHOOTING
+		//---------------------------------------------------------------------
+		if (input.wasKeyPressed(SDL_SCANCODE_Q) == true)
+		{
+			player.shoot1(graphics);
+		}
+
+		if (input.wasKeyPressed(SDL_SCANCODE_E) == true)
+		{
+			player.shoot2(graphics);
 		}
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 class Player;
 class Input;
+class Graphics;
 
 #include "serialInterface.h"
 #include "serverConnect.h"
@@ -14,7 +15,7 @@ public:
 	SerialInterface serial;
 	ServerConnect server;
 
-	void playerControls(Player &player, Input &input);
+	void playerControls(Player &player, Input &input, Graphics &graphics);
 
 	bool controllerActive = false;
 	bool serverActive = false;

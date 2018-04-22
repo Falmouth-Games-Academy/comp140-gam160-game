@@ -2,14 +2,13 @@
 #define GAME_H
 
 #include "player.h"
+#include "Projectile.h"
 #include "level.h"
-//#include "serialInterface.h"
 
 class Graphics;
 
 class Game {
 public:
-	//SerialInterface *serialInterface;
 
 	Game();
 	~Game();
@@ -22,6 +21,7 @@ private:
 
 	Player player;
 	Level level;
+	Projectile projectile;
 
 };
 

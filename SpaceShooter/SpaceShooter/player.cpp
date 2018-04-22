@@ -55,12 +55,34 @@ void Player::stopMovingY()
 	dy = 0.0f;
 }
 
+void Player::shoot1(Graphics &graphics)
+{
+	Projectile* newBullet1 = new Projectile(graphics, 100, 400);
+	newBullet1->draw(graphics);
+}
+
+void Player::shoot2(Graphics &graphics)
+{
+	Projectile* newBullet2 = new Projectile(graphics, gun2.x, gun2.y);
+}
+
 // updates the player's x y positions
 void Player::update(float elapsedTime)
 {
 	x += dx * elapsedTime;
 	y += dy * elapsedTime;
+	
+	//setup gun positions for each frame
+	gun1.x = x + 12;
+	gun1.y = y + 12;
 
+	gun2.x = x + 20;
+	gun2.y = y + 20;
+
+	//update bullet position
+	bullet.update(elapsedTime);
+
+	//resets the player's collider for each frame
 	playerBoxCollider.x = x;
 	playerBoxCollider.y = y;
 }

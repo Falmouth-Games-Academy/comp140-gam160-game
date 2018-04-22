@@ -7,11 +7,6 @@
 #include "input.h"
 #include "controls.h"
 
-//Graphics graphics;
-//Input input;
-//Controls controls;
-//SDL_Event event;
-
 //Game class
 //Holds all the information for the main game loop, it's essentially a game manager
 
@@ -23,7 +18,6 @@ namespace
 
 Game::Game()
 {
-	//serialInterface = new SerialInterface;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	srand(SDL_GetPerformanceCounter());
 	gameLoop();
@@ -42,7 +36,9 @@ void Game::gameLoop()
 	SDL_Event event;
 
 	level = Level(graphics, 0,0);
+	projectile = Projectile(graphics, 100, 400);
 	player = Player(graphics, globals::SCREEN_WIDTH / 2 - 64, 600);
+
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 	//Start of the game loop
@@ -75,7 +71,7 @@ void Game::gameLoop()
 		}
 
 		// what allows the player to control the spaceship
-		controls.playerControls(player, input);
+		controls.playerControls(player, input, graphics);
 		
 		// frame rate handler
 		const int CURENT_TIME_MS = SDL_GetTicks();
@@ -95,6 +91,7 @@ void Game::drawGraphics(Graphics &graphics)
 
 	level.draw(graphics);
 	player.draw(graphics);
+	projectile.draw(graphics);
 
 	graphics.flip();
 }
@@ -102,8 +99,10 @@ void Game::drawGraphics(Graphics &graphics)
 void Game::update(float elapsedTime)
 {
 	level.update(elapsedTime);
-
+	//projectile.update(elapsedTime);
 	player.levelCollisions(player.playerBoxCollider, level.levelBoxCollider);
 	player.update(elapsedTime);
+	
+	
 
 }

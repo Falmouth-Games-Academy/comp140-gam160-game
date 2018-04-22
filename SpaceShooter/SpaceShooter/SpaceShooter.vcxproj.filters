@@ -51,6 +51,9 @@
     <ClCompile Include="connectionListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="connectionListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
