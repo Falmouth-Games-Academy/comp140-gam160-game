@@ -1,7 +1,7 @@
 GitHub URL: https://github.com/LXShades/comp140-gam160-game
 
 # Compiling
-Required FMOD API, v1.10.04 recommended.
+Requires FMOD API, v1.10.04 recommended.
 
 # Handzer
 ## How to play
@@ -11,11 +11,13 @@ Open your mouth to shoot lasers!
 **Debug passwords:**  
 debug: Enable debug string boxes  
 edit: Enable level editor  
-record: Enable voice recorder (unfinished)
-
+record: Enable voice recorder (unfinished)  
+# Credits
+Interfacing class for Arduino, author unknown: https://playground.arduino.cc/Interfacing/CPPWindows  
+Windows GDI+ for image loading  
+FMOD API for sounds: https://www.fmod.com/
 ## Original Proposal: Hand Puppet The Game
-### Concept
-You play as a hand with a laser-beam spewing mouth in a 2D side-scrolling platform game taking place on campus. Using a bareboned motion controller of straps and rings--with your hand shaped like a talking mouth--you bounce up and down to move along, and use a crouch-jump motion to jump. To use your laser beam, open your mouth wide. The laser beam will make a satisfying BLAAAAAARGH with a vibration feedback effect, and an additional effect of vaporising any enemy foolish enough to stand in your way.  
+### ConceptYou play as a hand with a laser-beam spewing mouth in a 2D side-scrolling platform game taking place on campus. Using a bareboned motion controller of straps and rings--with your hand shaped like a talking mouth--you bounce up and down to move along, and use a crouch-jump motion to jump. To use your laser beam, open your mouth wide. The laser beam will make a satisfying BLAAAAAARGH with a vibration feedback effect, and an additional effect of vaporising any enemy foolish enough to stand in your way.  
 
 The storyline is brief but simple: the assignment is due tomorrow and the game hasn't been made yet. Your goal is to get to the studio on time to make the game before it's too late. The gameplay revolves around destroying evil mutant 'animals' (shadow puppets) with your laser, but there may be some RPG elements. For example, you may be sent on a mission by the Monday sock to find his missing partner. In fact, socks might be a regular collectible. Getting a pair will unleash new powers.  
 
@@ -25,7 +27,7 @@ The character art style will be photos of hands, while the background art style 
 
 The target audience is the people at this university--most likely the more zany and creative of them. Despite this being an adult demographic, there is minimal gory violence and a lot of silliness and explosions. My rationale is that there is little time to make this project, meaning an ambitious one will be less likely to be completed to the quality desired by the players. Instead, a project centred on a fun novelty, meanwhile, can lower the player's expectations of quality whilst being highly enjoyable regardless. It'll also be much more finished--so it should feel more like a complete experience to anyone playing it in a showroom.
 
-### Controller overview
+## Controller overview
 The controller will require the following components:  
 
 **Flex sensor:**: To detect whether your mouth is open, or your trigger finger is being pulled. This must be connected between the player's thumb and middle finger somehow.  

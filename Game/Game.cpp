@@ -11,8 +11,6 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM6";
-
 void Game::Init() {
 	AllocConsole();
 	freopen("conout$", "w", stdout);
@@ -38,8 +36,11 @@ void Game::Init() {
 	// Init sound engine
 	sound.Init();
 
+	// Try and discover the Arduino
+	StaticString<128> mostLikelyPort = Serial::GetMostLikelyArduinoPort();
+
 	// Initialise Arduino if possible
-	arduino = new Serial(port);
+	arduino = new Serial(mostLikelyPort);
 
 	if (arduino->IsConnected()) {
 		printf("Arduino init successful: Serial is served!\n");

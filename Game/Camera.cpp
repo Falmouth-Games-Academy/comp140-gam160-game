@@ -7,7 +7,7 @@ void Camera::Update(float deltaTime) {
 	SDL_RenderGetViewport(game.GetSDLRenderer(), &renderViewport);
 
 	// Apply shake effect
-	if (shakeRate >= 0.002f /* no division by 0 */ && shakeTimer > 0.0f && 0) {
+	if (shakeRate >= 0.002f /* no division by 0 */ && shakeTimer > 0.0f) {
 		Vec3 lastShakeOffset = shakeOffset;
 		float shakeMagnitude = shakeInitialMagnitude * shakeTimer / shakeInitialTimer;
 
@@ -35,7 +35,6 @@ void Camera::Update(float deltaTime) {
 
 	// Move the camera gradually to the target point
 	position += (targetPosition - position) * 10.0f * deltaTime;
-	position = targetPosition;
 
 	// Follow the player for the next frame
 	// This is done here because other objects may change the view zoom with AddViewTarget
@@ -172,9 +171,9 @@ void Camera::AddViewTarget(const Vec3& target, const Vec2& targetSize) {
 	float potentialZByX = 1.0f - (abs(target.x - targetPosition.x) + abs(targetSize.x)) / viewBox.size.x;
 	float potentialZByY = 1.0f - (abs(target.y - targetPosition.y) + abs(targetSize.y)) / viewBox.size.y;
 
-	/*if (potentialZByX < position.z) {
+	if (potentialZByX < targetPosition.z) {
 		targetPosition.z = Math::clampmin(potentialZByX, minZ);
-	}*/
+	}
 	
 	if (potentialZByY < targetPosition.z) {
 		targetPosition.z = Math::clampmin(potentialZByY, minZ);

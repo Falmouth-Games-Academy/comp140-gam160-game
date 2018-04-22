@@ -6,7 +6,7 @@ void Bigfoot::OnSpawn() {
 	sprite.LoadFrame("./graphics/enemies/bigfoot/bigfoot.png", Vec2(1707.0f, 5291.0f));
 
 	// Set collision boundary
-	collisionBox = Rect2(61.0f, 4793.0f, 3490.0f, 495.0f);
+	collisionBox = Rect2(433.0f, 9.0f, 2401.0f, 5289.0f);
 	collisionFlags = SolidEnv | OverlapObjs | PreserveXVelocity;
 	
 	// Misc init
