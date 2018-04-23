@@ -129,6 +129,9 @@
     <ClCompile Include="Goose.cpp">
       <Filter>Source Files\Gameplay\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="GameStateCalibrate.cpp">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="Goose.h">
       <Filter>Source Files\Gameplay\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateCalibrate.h">
+      <Filter>Source Files\Gameplay\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@ enum GameStateType {
 	Editor = 1,
 	RecordSpeech = 2,
 	Ded = 3,
+	Calibrate = 4,
 };
 
 class GameState {

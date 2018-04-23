@@ -12,6 +12,9 @@ Open your mouth to shoot lasers!
 debug: Enable debug string boxes  
 edit: Enable level editor  
 record: Enable voice recorder (unfinished)  
+kb: Toggle keyboard mode  
+graphs: View debug Arduino graphs  
+
 # Credits
 Interfacing class for Arduino, author unknown: https://playground.arduino.cc/Interfacing/CPPWindows  
 Windows GDI+ for image loading  

@@ -82,29 +82,11 @@ void Hand::Update(float deltaTime) {
 	Vec3 currentAccel = game.GetGesture().GetAverageAccel(200, 0);
 	float lastRotation = rotation;
 
-	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
+	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs;
 
 	// Todo maybe: powerslides
-
-	// Update flex sensor range
-	float32 flexAngle = game.GetGesture().GetFlexAngle();
-	const float32 angleLeeway = 8.0f;
-	
-	if (game.GetInput().IsKeyBooped(SDLK_r)) {
-		// Reset flex range
-		flexRange.max = flexRange.min = flexAngle;
-	}
-
-	if (flexAngle - 8.0f > flexRange.max) {
-		flexRange.max = flexAngle - 8.0f;
-	}
-
-	if (flexAngle + 8.0f < flexRange.min) {
-		flexRange.min = flexAngle + 8.0f;
-	}
-
 	// Update laser power
-	laserPower = 1.0f - Math::clamp(Math::lerpfloat(flexAngle, flexRange, MinMax<float32>(0.0f, 1.0f)), 0.0f, 1.0f);
+	laserPower = game.GetGesture().GetHandOpenness();
 
 	// Update mouse openness
 	sprite.SetCurrentFrame(Math::clampmax(Math::round(laserPower * sprite.GetNumFrames(), 1.0f), (float)(sprite.GetNumFrames() - 1)));
@@ -136,7 +118,7 @@ void Hand::Update(float deltaTime) {
 		acceleration = Math::lerpfloat(bounceSpeed, MinMax<float>(minBounceAcceleration, maxBounceAcceleration), MinMax<float>(minAcceleration, maxAcceleration));
 
 		if (bounceInfo.numBounces > 1) {
-			rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs - 35.0f;
+			rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs;
 		}
 	}
 

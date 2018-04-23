@@ -11,7 +11,7 @@ bool RenderManager::Init(const char* windowTitle, int winX, int winY, int winWid
 	if (sdlWindow) {
 		// Create render resources
 		sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, SDL_RENDERER_ACCELERATED);
-		sdlTextSurface = SDL_CreateTexture(sdlRenderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, textSurfaceSize, textSurfaceSize);
+		sdlTextSurface = SDL_CreateTexture(sdlRenderer, SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STREAMING, textSurfaceWidth, textSurfaceHeight);
 
 		// Init text render resources
 		InitTextRenderer();
@@ -37,8 +37,8 @@ bool RenderManager::InitTextRenderer() {
 	memset(&bi, 0, sizeof (bi));
 
 	bi.bmiHeader.biSize = sizeof (bi.bmiHeader);
-	bi.bmiHeader.biWidth = textSurfaceSize;
-	bi.bmiHeader.biHeight = -textSurfaceSize;
+	bi.bmiHeader.biWidth = textSurfaceWidth;
+	bi.bmiHeader.biHeight = -textSurfaceHeight;
 	bi.bmiHeader.biPlanes = 1;
 	bi.bmiHeader.biBitCount = 8;
 	bi.bmiHeader.biCompression = BI_RGB;
@@ -86,7 +86,7 @@ void RenderManager::Shutdown() {
 	SDL_DestroyTexture(sdlTextSurface);
 }
 
-void RenderManager::RenderText(const char* string, int x, int y, bool isCentered, bool isLarge) {
+void RenderManager::RenderText(const char* string, int x, int y, const Colour& colour, bool isCentered, bool isLarge) {
 	// Set the font
 	if (isLarge) {
 		SelectObject(textSurfaceDc, largeFont);
@@ -98,6 +98,12 @@ void RenderManager::RenderText(const char* string, int x, int y, bool isCentered
 	RECT textBounds{0, 0, 0, 0};
 
 	DrawTextEx(textSurfaceDc, const_cast<LPSTR>(string), -1, &textBounds, DT_CALCRECT, NULL);
+
+	// Clamp the text bounds
+	textBounds.right = Math::clamp((int)textBounds.right, 0, textSurfaceWidth);
+	textBounds.bottom = Math::clamp((int)textBounds.bottom, 0, textSurfaceHeight);
+	textBounds.top = Math::clamp((int)textBounds.top, 0, textSurfaceHeight);
+	textBounds.left = Math::clamp((int)textBounds.left, 0, textSurfaceWidth);
 
 	// Draw the text to the GDI DC
 	DrawTextEx(textSurfaceDc, const_cast<LPSTR>(string), -1, &textBounds, 0, NULL);
@@ -112,23 +118,20 @@ void RenderManager::RenderText(const char* string, int x, int y, bool isCentered
 	// Copy the GDI text to the SDL texture
 	SDL_Rect textureRect{0, 0, textBounds.right, textBounds.bottom};
 	uint32* pixels;
+	uint32 colourBits = ((colour.r << 16) | (colour.g << 8) | colour.b);
 	int pitch;
 	if (!SDL_LockTexture(sdlTextSurface, &textureRect, (void**)&pixels, &pitch)) {
 		int textWidth = textBounds.right, textHeight = textBounds.bottom;
 		for (int i = 0; i < textHeight; ++i) {
 			uint32* pDest = &pixels[i * pitch / 4];
-			uint8* pSrc = &textSurfaceBits[i * textSurfaceSize];
+			uint8* pSrc = &textSurfaceBits[i * textSurfaceWidth];
 
 			for (int i = 0; i < textWidth; ++i) {
-				pDest[i] = pSrc[i] << 24;
+				pDest[i] = (pSrc[i] << 24) | colourBits;
 			}
 		}
 
 		SDL_UnlockTexture(sdlTextSurface);
-	}
-
-	if (!SDL_LockTexture(SDL_GetRenderTarget(sdlRenderer), &textureRect, (void**)&pixels, &pitch)) {
-		SDL_UnlockTexture(SDL_GetRenderTarget(sdlRenderer));
 	}
 
 	// Render the SDL texture

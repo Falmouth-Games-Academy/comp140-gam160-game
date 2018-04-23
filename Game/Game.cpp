@@ -1,6 +1,7 @@
 #include "Types.h"
 #include "Game.h"
 #include "GameStatePlay.h"
+#include "GameStateCalibrate.h"
 #include "SDL.h"
 
 #include "Graph.h"
@@ -148,7 +149,7 @@ void Game::Run() {
 	// Initialise engine
 	Init();
 
-	SetGameState<GameStatePlay>();
+	SetGameState<GameStateCalibrate>();
 
 	// Load the level
 	level.Load("./maps/default.hdf");

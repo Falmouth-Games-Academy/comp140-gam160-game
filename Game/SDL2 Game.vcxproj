@@ -149,6 +149,7 @@
     <ClCompile Include="DebugStringBox.cpp" />
     <ClCompile Include="FileDialog.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameStateCalibrate.cpp" />
     <ClCompile Include="GameStateDed.cpp" />
     <ClCompile Include="GameStateEditor.cpp" />
     <ClCompile Include="GameStatePlay.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateCalibrate.h" />
     <ClInclude Include="GameStateDed.h" />
     <ClInclude Include="GameStateEditor.h" />
     <ClInclude Include="GameStatePlay.h" />

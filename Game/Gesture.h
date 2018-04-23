@@ -11,6 +11,13 @@ public:
 	void Update();
 	void Render();
 	
+public:
+	void UpdateArduinoInput();
+	void UpdateKeyboardInput();
+
+public:
+	void UpdateDebugGraphs();
+
 private:
 	void RenderDebugGraphs();
 	void RenderDebugVectors();
@@ -20,9 +27,15 @@ public:
 	// Acceleration data
 	struct AccelStamp {
 		AccelStamp() = default;
-		AccelStamp(const Vec3& direction_, uint32 timestamp_) : direction(direction_), timestamp(timestamp_) {};
+		AccelStamp(const Vec3& direction_, const Vec3& baseDirection_, uint32 timestamp_) : direction(direction_), baseDirection(baseDirection_), timestamp(timestamp_) {};
 
+		// Direction transformed by the default known down vector
 		Vec3 direction;
+
+		// Untransformed raw direction
+		Vec3 baseDirection;
+
+		// Time that this accelstamp was taken
 		uint32 timestamp;
 	};
 
@@ -40,11 +53,25 @@ public:
 	// Get the minimum and maximum accelerometer values across a span of time
 	MinMax<Vec3> GetMinMaxAccel(uint32 timeStart, uint32 timeEnd) const;
 
+	// Resets the accelerometer's down, forward and right vectors according to the current gravity force
+	void ResetAccelLocalVectors();
+
 	// Gets the total number of accel stamps recorded historically
 	int GetNumRecordedAccels() const;
 
+public:
 	// Gets the current bend angle of the flex sensor, in degrees
 	float32 GetFlexAngle() const;
+
+	// Sets the believed flex angle for the hand to be closed
+	void SetHandClosedAngle(float32 flexAngle);
+
+	// Sets the believed flex angle for the hand to be open
+	void SetHandOpenAngle(float32 max);
+
+	// Guesses the hand's open-ness, using the known min and max angles, in a range of 0 (closed) to 1 (fully open).
+	// 'Error' is a scalar multiplier of the total range that reflects the leeway
+	float32 GetHandOpenness(float32 error = 0.1f) const;
 
 public:
 	// Gesture enum
@@ -86,13 +113,22 @@ public:
 	BounceInfo CalculateBounceInfo(uint32 timeStart, uint32 timeEnd);
 
 private:
-	StaticCircularArray<AccelStamp, maxNumAccelStamps> accelHistory;
+	StaticCircularArray<AccelStamp, maxNumAccelStamps> accelStamps;
 	int32 numAccelsRecordedTotal = 0;
 
 	bool8 gestureDown[NumGestureCodes] = {0}; // Whether a gesture is being done
 
 	// Angle, in degrees, of the flex sensor
 	float32 flexAngle;
+
+	// Flex angles for whether the hand's open or closed
+	float32 handClosedFlexAngle;
+	float32 handOpenFlexAngle;
+
+	// Accelerometer vectors for internal transformation
+	Vec3 accelRight = Vec3(1.0f, 1.0f, 0.0f);
+	Vec3 accelForward = Vec3(0.0f, 1.0f, 0.0f);
+	Vec3 accelDown = Vec3(0.0f, 0.0f, 1.0f);
 
 	// Debug stuff
 	bool8 debugMode = false;

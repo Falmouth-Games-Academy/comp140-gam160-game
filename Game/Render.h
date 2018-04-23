@@ -38,7 +38,7 @@ public:
 	void RenderEnd();
 
 	// Renders text at the default size
-	void RenderText(const char* text, int x, int y, bool isCentered = false, bool isLarge = false);
+	void RenderText(const char* text, int x, int y, const Colour& colour = Colour(0, 0, 0, 255), bool isCentered = false, bool isLarge = false);
 	void RenderRectangle(bool filled = false);
 
 	Dimensions2 GetScreenSize();
@@ -63,7 +63,8 @@ private:
 	uint8* textSurfaceBits;
 
 	// Default text surface size (this defines the maximum size you can render text along)
-	const int textSurfaceSize = 1024;
+	const int textSurfaceWidth = 1920;
+	const int textSurfaceHeight = 240;
 };
 
 inline struct SDL_Window* RenderManager::GetSDLWindow() {
