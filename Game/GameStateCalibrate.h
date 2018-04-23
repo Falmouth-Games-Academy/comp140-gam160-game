@@ -23,5 +23,5 @@ private:
 	Sprite handzerClosed;
 	Sprite handzerOpen;
 
-	const int numStates = 3;
+	const int numStates = 4;
 };

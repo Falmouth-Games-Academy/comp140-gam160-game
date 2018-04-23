@@ -52,7 +52,7 @@ void SoundManager::Shutdown() {
 #include "Game.h"
 
 void SoundManager::Update() {
-	// Play blargh sound
+	// Play blargh sound (very much debug)
 	FMOD_RESULT result;
 	static FMOD::Sound* imASound;
 	static FMOD::Sound* recordedSound;
@@ -87,7 +87,6 @@ void SoundManager::Update() {
 			channel = nullptr;
 		}
 	}
-
 }
 
 FMOD::System* SoundManager::GetSystem() {

@@ -1,7 +1,10 @@
 GitHub URL: https://github.com/LXShades/comp140-gam160-game
 
 # Compiling
-Requires FMOD API, v1.10.04 recommended.
+Requires SDL 2.0.7 and the FMOD API (v1.10.04 recommended).  
+Place FMOD libraries in Game/fmod_lib.  
+Place FMOD includes in Game/fmod_include  
+Place SDL in Game/SDL-2.0.7  
 
 # Handzer
 ## How to play

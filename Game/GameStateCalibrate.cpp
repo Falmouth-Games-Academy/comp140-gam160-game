@@ -99,6 +99,18 @@ void GameStateCalibrate::Render() {
 			game.GetCamera().RenderSprite(handzerOpen, Vec3((screenSize.width - handzerClosed.GetDimensions().x) * 0.5f, 0.0f, 1.0f));
 			break;
 		}
+		case 3: {
+			int textX = screenSize.width / 2, textY = screenSize.height * 3 / 5 / textHeight;;
+
+			game.GetRenderer().RenderText("Great! You're ready.", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("Bounce your hand rapidly to move", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("Tilt back whilst bouncing to move backwards!", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("Press Space to start.", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+
+			game.GetCamera().RenderSprite(handzerOpen, Vec3((screenSize.width - handzerClosed.GetDimensions().x) * 0.5f, 0.0f, 1.0f));
+			break;
+		}
+
 	}
 
 	// Render the camera cause we need to

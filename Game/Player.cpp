@@ -107,6 +107,8 @@ void Hand::Update(float deltaTime) {
 	const float minAcceleration = 2000.0f, maxAcceleration = 5000.0f;
 	const float minBounceAcceleration = minBounceSpeed, maxBounceAcceleration = 200000.0f;
 	const float minBounceAmplitude = 2000.0f;
+	const float bounceTiltAmpThreshold = 4000.0f; // confusing, but this is the minimum bounce amp before the player's angle is calculated using the bounces
+	const int bounceTiltNumThreshold = 3;
 	const float jumpAmplitude = 18000.0f;
 
 	// Bounce along!
@@ -123,7 +125,7 @@ void Hand::Update(float deltaTime) {
 
 		acceleration = Math::lerpfloat(bounceSpeed, MinMax<float>(minBounceAcceleration, maxBounceAcceleration), MinMax<float>(minAcceleration, maxAcceleration));
 
-		if (bounceInfo.numBounces > 1) {
+		if (bounceInfo.numBounces > bounceTiltNumThreshold && bounceInfo.averageBounceAmplitude >= bounceTiltAmpThreshold) {
 			rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs;
 		}
 	}
@@ -154,7 +156,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Bob the head
-	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.01f;
+	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.03f;
 
 	// Jump
 	if (isOnGround && (game.GetInput().IsKeyBooped(SDLK_SPACE) || doJump)) {

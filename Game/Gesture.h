@@ -71,7 +71,7 @@ public:
 
 	// Guesses the hand's open-ness, using the known min and max angles, in a range of 0 (closed) to 1 (fully open).
 	// 'Error' is a scalar multiplier of the total range that reflects the leeway
-	float32 GetHandOpenness(float32 error = 0.1f) const;
+	float32 GetHandOpenness(float32 error = 0.2f) const;
 
 public:
 	// Gesture enum

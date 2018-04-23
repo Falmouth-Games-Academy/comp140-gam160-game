@@ -32,7 +32,7 @@ void Bigfoot::Update(float deltaTime) {
 		}
 	}
 
-	// Update simulation (this should really be done in Objects)
+	// Update simulation
 	bool wasOnGround = isOnGround;
 
 	Object::Update(deltaTime);
@@ -51,14 +51,13 @@ void Bigfoot::Update(float deltaTime) {
 
 		// Shake the camera when landing. Boom!!
 		game.GetCamera().StartShake(0.75f, 18.0f, 
-			Math::clamp((shakeMaxRange - Vec3::Distance(position, game.GetCamera().GetPosition())) / shakeMaxRange * shakeMaxMagnitude, 0.0f, shakeMaxMagnitude));
+			Math::clamp((shakeMaxRange - Vec3::Distance(position, game.GetCamera().GetPosition())) / shakeMaxRange * shakeMaxMagnitude, 0.0f, shakeMaxMagnitude)
+				* (health / initialHealth));
 
 		// Get ready for the next jump
 		jumpTimer = secsPerJump;
 		velocity.x = 0.0f;
 	}
-
-	game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Bigfoot on ground: %i", isOnGround));
 
 	// Shrink according to health
 	sprite.SetScale(Vec2(health / initialHealth));
@@ -81,8 +80,8 @@ void Bigfoot::Jump() {
 }
 
 void Bigfoot::OnOverlap(Object& other) {
-	// Hurt the player when stomping
+	// Hurt the player when stomping (but hurt them less if we're unhealthy)
 	if (velocity.y > 0.0f && other.GetType() == HandType) {
-		other.ChangeHealth(-25.0f);
+		other.ChangeHealth(-25.0f * (health / initialHealth));
 	}
 }
