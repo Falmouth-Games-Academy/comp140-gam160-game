@@ -178,6 +178,14 @@ void Game::update()
 			lives--;
 			cout << "Lives left: " << lives << endl;
 
+			if (lives == 0)
+			{
+				cout << "Game Over!" << endl;
+				cout << "Final Score: " << score << endl;
+				score = 0;
+				lives = 3;
+			}
+
 		}
 	}
 
