@@ -96,7 +96,8 @@ void Object::RenderCollisionBox() const {
 
 bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 	// A collision can only happen if both objects are solid
-	if (!((collisionFlags & (SolidObjs | OverlapObjs)) && (otherObject.collisionFlags & (SolidObjs | OverlapObjs)))) {
+	if (!((collisionFlags & (SolidObjs | OverlapObjs)) && (otherObject.collisionFlags & (SolidObjs | OverlapObjs))) && 
+		!((collisionFlags & (SolidEnv | OverlapEnv)) && otherObject.GetType() == Object::BackgroundLayerType && otherObject.collisionFlags)) {
 		return false;
 	}
 
@@ -131,7 +132,8 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 		return false;
 	} else {
 		if (borderOffsets) {
-			*borderOffsets = Bounds2(otherR - (selfL - 0.1f), otherB - (selfT - 0.1f), otherL - (selfR + 0.1f), otherT - (selfB + 0.1f)); // the 0.1fs are for precision
+			*borderOffsets = Bounds2(otherR - (selfL - 0.001f), otherB - (selfT - 0.001f), otherL - (selfR + 0.001f), otherT - (selfB + 0.001f));
+			 // the 0.1fs are for glorious hacky precision
 		}
 
 		return true;

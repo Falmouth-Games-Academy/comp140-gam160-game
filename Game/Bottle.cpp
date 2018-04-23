@@ -7,6 +7,7 @@ void Bottle::OnSpawn() {
 
 	// Setup deafults
 	collisionBox = Rect2(Vec2(0.0f, 0.0f), Vec2(553.0f, 2184.0f));
+	collisionFlags = SolidEnv | OverlapObjs;
 
 	isHurtable = true;
 	health = 1.0f;
@@ -19,6 +20,12 @@ void Bottle::Update(float deltaTime) {
 		// Stop spinning
 		rotation = 0.0f;
 		rotationSpeed = 0.0f;
+
+		// Stop sliding!
+		velocity.x = 0.0f;
+	} else {
+		// Try and stay in view so the player can shoot it down
+		game.GetCamera().AddViewTarget(position, sprite.GetDimensions());
 	}
 
 	if (rotationSpeed) {
@@ -43,7 +50,7 @@ void Bottle::Toss(Vec3 force) {
 	rotationSpeed = Math::randfloat(7.0f, 11.0f) * 360.0f * (float)Math::randsign(); // wheee
 
 	// Grow while spinning
-	sprite.SetScale(Vec2(0.0f, 0.0f));
+	//sprite.SetScale(Vec2(0.0f, 0.0f));
 }
 
 void Bottle::Smash() {

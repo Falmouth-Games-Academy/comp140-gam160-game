@@ -16,14 +16,24 @@ void BottleThrower::Update(float deltaTime) {
 		bottleSpawnTimer -= deltaTime;
 
 		if (bottleSpawnTimer <= 0.0f) {
-			// Spawn a bottle!
-			Bottle* bottle = game.SpawnObject<Bottle>();
+			// Count the number of bottles first
+			int numBottles = 0;
+			for (Object* obj : game.GetObjects()) {
+				if (obj->GetType() == Object::BottleType) {
+					++numBottles;
+				}
+			}
 
-			bottle->SetPosition(Vec3(position.xy, game.GetPlayer().GetPosition().z));
+			if (numBottles < maxNumBottles) {
+				// Spawn a bottle!
+				Bottle* bottle = game.SpawnObject<Bottle>();
 
-			// Toss it in a random upward direction
-			const float tossSpeed = 5000.0f;
-			bottle->Toss(Vec3(Math::randfloat(-1.0f, 1.0f), Math::randfloat(-1.0f, -0.3f), 0.0f).Normalised() * tossSpeed);
+				bottle->SetPosition(Vec3(position.xy, game.GetPlayer().GetPosition().z));
+
+				// Toss it in a random upward direction
+				const float tossSpeed = 7000.0f;
+				bottle->Toss(Vec3(Math::randfloat(-1.0f, 1.0f), Math::randfloat(-2.0f, -0.5f), 0.0f) * tossSpeed);
+			}
 			
 			// Reset the timer
 			bottleSpawnTimer = bottleSpawnRate;

@@ -11,7 +11,7 @@ public:
 
 public:
 	// Maximum number of bottles allowed to live in the world before the spawner stops
-	int32 maxNumBottles = 10;
+	int32 maxNumBottles = 4;
 
 	// Seconds per bottle spawn
 	float32 bottleSpawnRate = 1.0f;

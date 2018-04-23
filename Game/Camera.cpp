@@ -176,16 +176,20 @@ void Camera::SetFollowingPlayer(bool isFollowingPlayer) {
 
 void Camera::AddViewTarget(const Vec3& target, const Vec2& targetSize) {
 	// Target position = position + (target_.xy - position.xy) / (target_.z - position.z)
-	// The Z required to fit the target in the view
+	// The Z position required by this camera to fit the target in the view
 	float potentialZByX = 1.0f - (abs(target.x - targetPosition.x) + abs(targetSize.x)) / viewBox.size.x;
 	float potentialZByY = 1.0f - (abs(target.y - targetPosition.y) + abs(targetSize.y)) / viewBox.size.y;
 
-	if (potentialZByX < targetPosition.z) {
-		targetPosition.z = Math::clampmin(potentialZByX, minZ);
+	float smallestZ = potentialZByX < potentialZByY ? potentialZByX : potentialZByY;
+
+	if (smallestZ < minZ) {
+		// Too far zoomed out--don't bother trying to fit this in the view
+		return;
 	}
-	
-	if (potentialZByY < targetPosition.z) {
-		targetPosition.z = Math::clampmin(potentialZByY, minZ);
+
+	if (smallestZ < targetPosition.z) {
+		// Zoom out
+		targetPosition.z = smallestZ;
 	}
 }
 

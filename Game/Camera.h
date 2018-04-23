@@ -129,7 +129,7 @@ private:
 	bool8 isFollowingPlayer;
 
 	// The offset of the camera relative to the player, when following
-	Vec3 playerFollowOffset = (Vec3(0.0f, 0.0f, -1.5f));
+	Vec3 playerFollowOffset = (Vec3(0.0f, 0.0f, -3.0f));
 
 	// Shake effect stuff
 	// Current time, in secs, until the shake is finished
@@ -153,7 +153,7 @@ private:
 	const float scalePerZ = 1.0f;
 
 	// Min and maximum zooms
-	const float minZ = -10.0f;
+	const float minZ = -15.0f;
 	const float maxZ = 10.0f;
 };
 
