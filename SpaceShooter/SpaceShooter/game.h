@@ -4,6 +4,7 @@
 #include "player.h"
 #include "Projectile.h"
 #include "level.h"
+#include "enemy.h"
 
 class Graphics;
 
@@ -22,6 +23,9 @@ private:
 	Player player;
 	Level level;
 	Projectile projectile;
+	Enemy enemy;
+
+	std::vector<Enemy*> enemyList;
 
 };
 

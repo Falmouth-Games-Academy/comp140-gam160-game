@@ -14,9 +14,12 @@ class Player : public Sprite
 {
 public:
 	Player();
+	~Player();
 	Player(Graphics &graphics, float x, float y);
 	void draw(Graphics &graphics);
 	void update(float elapsedTime);
+
+	void initBullets(Graphics &graphics);
 
 	SDL_Rect playerBoxCollider;
 
@@ -47,6 +50,11 @@ public:
 	//shooting functions for the player to shoot
 	void shoot1(Graphics &graphics);
 	void shoot2(Graphics &graphics);
+
+	std::vector<Projectile*>& getBullets()
+	{
+		return playerBullets;
+	};
 
 private:
 	float dx, dy;

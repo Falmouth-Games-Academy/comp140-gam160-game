@@ -16,10 +16,10 @@ Controls::Controls()
 		controllerActive = true;
 	}
 	
-	else if (server.isConnected())
-	{
-		serverActive = true;
-	}
+	//else if (server.isConnected())
+	//{
+	//	serverActive = true;
+	//}
 
 	else
 	{

@@ -20,10 +20,13 @@ public:
 	virtual void update();
 	void draw(Graphics &graphics, float x, float y);
 
+	SDL_Rect destRect;
 	SDL_Rect sourceRect;
 	SDL_Texture* sprite;
 
 	float x, y;
+
+	bool checkCollision(Sprite* sprite);
 };
 
 #endif // !SPRITE_H

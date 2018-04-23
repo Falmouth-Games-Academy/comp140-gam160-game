@@ -32,7 +32,7 @@ void Projectile::update(float elapsedTime)
 void Projectile::draw(Graphics & graphics)
 {
 	if (isActive == true)
-		Sprite::draw(graphics, px, y);
+		Sprite::draw(graphics, x, y);
 }
 
 //spawns and shoots the projectile forwards
@@ -48,7 +48,7 @@ void Projectile::disableProjectile()
 
 void Projectile::spawnPos(float Spawnx, float Spawny)
 {
-	px = Spawnx;
+	x = Spawnx;
 	y = Spawny;
 
 	isActive = true;

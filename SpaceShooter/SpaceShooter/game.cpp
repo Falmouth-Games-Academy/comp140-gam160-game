@@ -25,7 +25,20 @@ Game::Game()
 
 Game::~Game()
 {
+	for (auto iter = enemyList.begin(); iter != enemyList.end(); )
+	{
+		if ((*iter))
+		{
+			delete (*iter);
+			(*iter) = nullptr;
+			iter = enemyList.erase(iter);
+		}
+		else
+		{
+			iter++;
+		}
 
+	}
 }
 
 void Game::gameLoop()
@@ -39,7 +52,18 @@ void Game::gameLoop()
 	level = Level(graphics, 0,0);
 	//projectile = Projectile(graphics, 100, 400);
 	player = Player(graphics, globals::SCREEN_WIDTH / 2 - 64, 600);
-
+	
+	player.initBullets(graphics);
+	
+	for (int i = 0; i < 5; i++)
+	{
+		Enemy* newEnemy = new Enemy(graphics, 0, 0);
+		enemyList.push_back(newEnemy);
+		newEnemy->respawn();
+	}
+	
+	//enemy = Enemy(graphics, 0, 0);
+	//enemy.respawn();
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 	//Start of the game loop
@@ -92,7 +116,12 @@ void Game::drawGraphics(Graphics &graphics)
 
 	level.draw(graphics);
 	player.draw(graphics);
-	//projectile.draw(graphics);
+	//enemy.draw(graphics);
+
+	for (Enemy* enemy : enemyList)
+	{
+		enemy->draw(graphics);
+	}
 
 	graphics.flip();
 }
@@ -100,10 +129,39 @@ void Game::drawGraphics(Graphics &graphics)
 void Game::update(float elapsedTime)
 {
 	level.update(elapsedTime);
-	//projectile.update(elapsedTime);
 	player.levelCollisions(player.playerBoxCollider, level.levelBoxCollider);
 	player.update(elapsedTime);
-	
-	
+	//enemy.update(elapsedTime);
 
+	for (Enemy* enemy : enemyList)
+	{
+		enemy->update(elapsedTime);
+	}
+
+	for (Projectile* bullet : player.getBullets())
+	{
+
+		if (bullet->isActive)
+		{
+			for (Enemy* enemy : enemyList)
+			{
+				if (bullet->checkCollision(enemy))
+				{
+					bullet->isActive = false;
+					enemy->respawn();
+				}
+			}
+		}
+
+	}
+	
+	for (Enemy* enemy : enemyList)
+	{
+		if (player.checkCollision(enemy))
+		{
+			enemy->respawn();
+		}
+	}
+
+	
 }

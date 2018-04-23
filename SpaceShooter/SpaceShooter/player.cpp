@@ -11,6 +11,23 @@ namespace player_constants
 
 Player::Player() {}
 
+Player::~Player()
+{
+	for (auto iter = playerBullets.begin(); iter != playerBullets.end(); )
+	{
+		if ((*iter))
+		{
+			delete (*iter);
+			(*iter) = nullptr;
+			iter = playerBullets.erase(iter);
+		}
+		else
+		{
+			iter++;
+		}
+	}
+}
+
 // intiates the player in a certain position with a sprite
 Player::Player(Graphics &graphics, float x, float y) : 
 	Sprite(graphics, "content/SpaceShip.png", 0, 0, 128, 128, x, y)
@@ -19,10 +36,13 @@ Player::Player(Graphics &graphics, float x, float y) :
 
 	playerBoxCollider.w = sourceRect.w;
 	playerBoxCollider.h = sourceRect.h;
+}
 
+void Player::initBullets(Graphics &graphics)
+{
 	for (int i = 0; i < 10; i++)
 	{
-		Projectile* newBullet = new Projectile(graphics, 100, 400);
+		Projectile* newBullet = new Projectile(graphics, 0, 0);
 		playerBullets.push_back(newBullet);
 	}
 }
