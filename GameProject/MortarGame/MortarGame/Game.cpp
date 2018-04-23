@@ -147,7 +147,7 @@ void Game::update()
 
 
 
-	cnt++;
+	//cnt++;
 
 	player->Update();
 	if (player->hasFired())
@@ -160,18 +160,29 @@ void Game::update()
 				//Look at SDL_TTF for drawing text!!!
 				currentEnemy->ypos = -64;
 				currentEnemy->xpos = rand() % 736 + 1;
+				score++;
+				cout << "Score: " << score << endl;
+
 			}
 		}
-		
 	}
-	//enemy->MoveDown();
-	//enemy2->MoveDown();
 
 	for (Enemy* currentEnemy : enemylist)
 	{
 		currentEnemy->MoveDown();
+
+		if (currentEnemy->ypos > 704)
+		{
+			currentEnemy->ypos = -64;
+			currentEnemy->xpos = rand() % 736 + 1;
+			lives--;
+			cout << "Lives left: " << lives << endl;
+
+		}
 	}
-	cout << cnt << endl;
+
+	
+
 }
 
 
@@ -187,34 +198,8 @@ void Game::render()
 	{
 		currentEnemy->Render();
 	}
-	
-	//enemy->Render();
-	//enemy2->Render();
 
 	player->Render();
-
-
-
-	/*
-	// draw to the screen here!
-	SDL_Rect player1;
-	player1.x = 50;
-	player1.y = serialInterface->getPot1();
-	player1.w = 30;
-	player1.h = 80;
-
-	SDL_SetRenderDrawColor(mainRenderer, 255, 0, 0, 255);
-	SDL_RenderFillRect(mainRenderer, &player1);
-
-	SDL_Rect player2;
-	player2.x = 590;
-	player2.y = serialInterface->getPot2();
-	player2.w = 30;
-	player2.h = 80;
-
-	SDL_SetRenderDrawColor(mainRenderer, 255, 0, 0, 255);
-	SDL_RenderFillRect(mainRenderer, &player2);
-	*/
 
 	// render new frame
 	SDL_RenderPresent(renderer);

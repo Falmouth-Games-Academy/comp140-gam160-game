@@ -12,6 +12,10 @@ public:
 	Game();
 	~Game();
 
+	int score = 0;
+
+	int lives = 3;
+
 	bool init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
 	void handleEvents();
