@@ -19,6 +19,12 @@ Player::Player(Graphics &graphics, float x, float y) :
 
 	playerBoxCollider.w = sourceRect.w;
 	playerBoxCollider.h = sourceRect.h;
+
+	for (int i = 0; i < 10; i++)
+	{
+		Projectile* newBullet = new Projectile(graphics, 100, 400);
+		playerBullets.push_back(newBullet);
+	}
 }
 
 // All the movement functions
@@ -57,13 +63,26 @@ void Player::stopMovingY()
 
 void Player::shoot1(Graphics &graphics)
 {
-	Projectile* newBullet1 = new Projectile(graphics, 100, 400);
-	newBullet1->draw(graphics);
+	for (int i = 0; i < 10; i++)
+	{
+		if (playerBullets[i]->isActive == true)
+			continue;
+
+		playerBullets[i]->spawnPos(gun1.x, gun1.y);
+		break;
+	}
 }
 
 void Player::shoot2(Graphics &graphics)
 {
-	Projectile* newBullet2 = new Projectile(graphics, gun2.x, gun2.y);
+	for (int i = 0; i < 10; i++)
+	{
+		if (playerBullets[i]->isActive == true)
+			continue;
+
+		playerBullets[i]->spawnPos(gun2.x, gun2.y);
+		break;
+	}
 }
 
 // updates the player's x y positions
@@ -73,14 +92,17 @@ void Player::update(float elapsedTime)
 	y += dy * elapsedTime;
 	
 	//setup gun positions for each frame
-	gun1.x = x + 12;
-	gun1.y = y + 12;
+	gun1.x = x + 32 - 13;
+	gun1.y = y + 40;
 
-	gun2.x = x + 20;
-	gun2.y = y + 20;
+	gun2.x = x + 96 - 13;
+	gun2.y = y + 40;
 
 	//update bullet position
-	bullet.update(elapsedTime);
+	for (int i = 0; i < 10; i++)
+	{
+		playerBullets[i]->update(elapsedTime);
+	}
 
 	//resets the player's collider for each frame
 	playerBoxCollider.x = x;
@@ -91,6 +113,10 @@ void Player::update(float elapsedTime)
 void Player::draw(Graphics & graphics)
 {
 	Sprite::draw(graphics, x, y);
+	for (int i = 0; i < 10; i++)
+	{
+		playerBullets[i]->draw(graphics);
+	}
 }
 
 

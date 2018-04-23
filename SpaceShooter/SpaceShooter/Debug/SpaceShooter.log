@@ -1,6 +1,6 @@
 ﻿  player.cpp
 d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\projectile.h(16): warning C4305: 'initializing': truncation from 'double' to 'float'
-d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(86): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(87): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(108): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\digital\uni stuff\comp140\assignments\comp140-gam160-game\spaceshooter\spaceshooter\player.cpp(109): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   SpaceShooter.vcxproj -> D:\DIgital\Uni stuff\COMP140\Assignments\comp140-gam160-game\SpaceShooter\Debug\SpaceShooter.exe
   SpaceShooter.vcxproj -> D:\DIgital\Uni stuff\COMP140\Assignments\comp140-gam160-game\SpaceShooter\Debug\SpaceShooter.pdb (Partial PDB)

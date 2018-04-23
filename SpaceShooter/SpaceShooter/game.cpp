@@ -34,9 +34,10 @@ void Game::gameLoop()
 	Input input;
 	Controls controls;
 	SDL_Event event;
+	
 
 	level = Level(graphics, 0,0);
-	projectile = Projectile(graphics, 100, 400);
+	//projectile = Projectile(graphics, 100, 400);
 	player = Player(graphics, globals::SCREEN_WIDTH / 2 - 64, 600);
 
 
@@ -91,7 +92,7 @@ void Game::drawGraphics(Graphics &graphics)
 
 	level.draw(graphics);
 	player.draw(graphics);
-	projectile.draw(graphics);
+	//projectile.draw(graphics);
 
 	graphics.flip();
 }

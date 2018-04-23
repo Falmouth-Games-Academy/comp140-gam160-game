@@ -10,7 +10,6 @@
 Controls::Controls() 
 {
 	//server.connectToServer("http://192.168.43.26:3000");
-
 	
 	if (serial.connect == true)
 	{

@@ -19,7 +19,6 @@ public:
 	void update(float elapsedTime);
 
 	SDL_Rect playerBoxCollider;
-	Projectile bullet;
 
 	void levelCollisions(SDL_Rect A, SDL_Rect B);
 
@@ -51,6 +50,8 @@ public:
 
 private:
 	float dx, dy;
+
+	std::vector<Projectile*> playerBullets;
 
 	struct gunPos
 	{

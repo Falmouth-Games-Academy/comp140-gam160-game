@@ -14,17 +14,25 @@ Projectile::Projectile(Graphics &graphics, float x, float y) :
 // updates the projectile's x y positions
 void Projectile::update(float elapsedTime)
 {
-	shootUp();
+	if (isActive == true)
+	{
+		shootUp();
 
-	//x += px * elapsedTime;
-	y += py * elapsedTime;
+		y += py * elapsedTime;
 
+		if (y < -28)
+		{
+			disableProjectile();
+			std::cout << "Bullet was disabled" << std::endl;
+		}
+	}
 }
 
 // updates the player's sprite position on screen
 void Projectile::draw(Graphics & graphics)
 {
-	Sprite::draw(graphics, x, y);
+	if (isActive == true)
+		Sprite::draw(graphics, px, y);
 }
 
 //spawns and shoots the projectile forwards
@@ -33,7 +41,15 @@ void Projectile::shootUp()
 	py = -moveSpeed;
 }
 
-void Projectile::deleteProjectile()
+void Projectile::disableProjectile()
 {
-	//if()
+	isActive = false;
+}
+
+void Projectile::spawnPos(float Spawnx, float Spawny)
+{
+	px = Spawnx;
+	y = Spawny;
+
+	isActive = true;
 }

@@ -60,7 +60,8 @@ void loop(void)
   if(Serial.available() > 0)
   {
     inByte = Serial.read();
-    
+
+    //AccelerometerCode, inputting P to the serial will indicate the X and Y rotations as decimal numbers
     if (inByte == 'P')
     {
       //Display the results (acceleration is measured in m/s^2)
@@ -70,7 +71,7 @@ void loop(void)
       //Serial.println("m/s^2 ");
     }
 
-        //buttonCode
+    //buttonCode, inputting B to the serial will indicate wether a button has been pressed or not
     if (inByte == 'B')
     {
         Serial.print(button1Active);
@@ -90,7 +91,7 @@ void loop(void)
     
     previousState1 = button1State;
 
-        int button2State = digitalRead(button2);
+    int button2State = digitalRead(button2);
     
     if (button2State == 0 && button2State != previousState2) 
     {

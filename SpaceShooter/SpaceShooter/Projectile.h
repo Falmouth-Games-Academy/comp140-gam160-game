@@ -17,7 +17,12 @@ public:
 
 	void shootUp();
 
-	void deleteProjectile();
+	void disableProjectile();
+
+	bool isActive = false;
+
+	void spawnPos(float Spawnx, float Spawnxy);
+
 
 private:
 	float px, py;
