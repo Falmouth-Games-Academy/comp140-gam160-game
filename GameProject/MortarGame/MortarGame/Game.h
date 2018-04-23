@@ -14,7 +14,7 @@ public:
 
 	int score = 0;
 
-	int lives = 3;
+	int lives = 4;
 
 	bool init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen);
 
@@ -23,7 +23,7 @@ public:
 	void update();
 
 	void render();
-	
+
 	void clean();
 
 	bool running()

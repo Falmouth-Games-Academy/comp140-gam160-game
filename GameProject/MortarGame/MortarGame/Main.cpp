@@ -1,5 +1,6 @@
 
-//Using SDL and standard IO
+// Using SDL and standard IO
+// Parts of Arduino code take from playground.arduino.cc and altered to work with the specifics of my controller.
 #include <SDL.h>
 #include "Game.h"
 #include "stdafx.h"
@@ -27,7 +28,7 @@ int main(int argc, char* argv[])
 	game->init("Mortar Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, false);
 
 	// create a game loop
-	while (game->running()) 
+	while (game->running())
 	{
 
 		frameStart = SDL_GetTicks();
@@ -49,7 +50,7 @@ int main(int argc, char* argv[])
 		{
 			SDL_Delay(frameDelay - frameTime);
 		}
-		//}
+
 	}
 
 	// when the game ends clean SDL and Serial

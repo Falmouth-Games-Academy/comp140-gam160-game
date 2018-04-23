@@ -83,7 +83,7 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 			return false;
 		}
 
-		
+
 	}
 	else
 	{
@@ -101,8 +101,8 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	//enemy = new Enemy("Assets/Enemy.png", rand()%800+1, -64);
 	//enemy2 = new Enemy("Assets/Enemy3.png", rand()%800+1, -64);
-	
-	for (int i = 0; i < 4; i++)
+
+	for (int i = 0; i < 5; i++)
 	{
 		enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
 	}
@@ -142,12 +142,12 @@ void Game::handleEvents()
 */
 void Game::update()
 {
-	
 
 
 
 
-	//cnt++;
+
+
 
 	player->Update();
 	if (player->hasFired())
@@ -169,27 +169,44 @@ void Game::update()
 
 	for (Enemy* currentEnemy : enemylist)
 	{
-		currentEnemy->MoveDown();
+		if (score < 5)
+		{
+			currentEnemy->MoveDown();
+		}
+		if ((score >= 5) && (score < 11))
+		{
+			currentEnemy->MoveDown2();
+		}
+		if (score >= 11)
+		{
+			currentEnemy->MoveDown2();
+		}
+		if (lives == 0)
+		{
+			currentEnemy->StopMoving();
+		}
 
 		if (currentEnemy->ypos > 704)
 		{
 			currentEnemy->ypos = -64;
 			currentEnemy->xpos = rand() % 736 + 1;
 			lives--;
-			cout << "Lives left: " << lives << endl;
+			cout << "Lives left: " << lives - 1 << endl;
 
 			if (lives == 0)
 			{
 				cout << "Game Over!" << endl;
 				cout << "Final Score: " << score << endl;
 				score = 0;
-				lives = 3;
+
+
+
 			}
 
 		}
 	}
 
-	
+
 
 }
 

@@ -4,7 +4,7 @@
 #include <SDL.h>
 
 
-class Object 
+class Object
 {
 public:
 	Object(const char* texturesheet, int x, int y);
@@ -30,7 +30,7 @@ public:
 
 	SDL_Texture* objTexture;
 	SDL_Rect sourceRect, destRect;
-	
+
 
 	//SerialInterface* serialInterface;
 };

@@ -18,7 +18,7 @@ Object::Object()
 	ypos = 0;
 	objTexture = nullptr;
 
-	
+
 
 }
 
@@ -35,7 +35,7 @@ void Object::Update()
 		swtch1 = serialInterface->getSwtch1();
 		swtch2 = serialInterface->getSwtch2();
 	}
-	
+
 
 
 	sourceRect.h = 64;
@@ -47,11 +47,11 @@ void Object::Update()
 	destRect.y = ypos;
 	destRect.h = sourceRect.h;
 	destRect.w = sourceRect.w;
-	
-	
 
 
-	
+
+
+
 }
 
 bool Object::isPointInside(int x, int y)

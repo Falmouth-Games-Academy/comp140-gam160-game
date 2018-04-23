@@ -2,7 +2,7 @@
 
 #include "Object.h"
 
-class Enemy:public Object
+class Enemy :public Object
 {
 public:
 	Enemy();
@@ -12,6 +12,12 @@ public:
 	void Update() override;
 
 	void MoveDown();
+
+	void MoveDown2();
+
+	void MoveDown3();
+
+	void StopMoving();
 
 	void MoveLeft();
 

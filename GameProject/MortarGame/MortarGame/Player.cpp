@@ -5,8 +5,8 @@
 
 Player::Player()
 {
-	
-	
+
+
 
 }
 
@@ -18,12 +18,12 @@ void Player::Update()
 	{
 		if (thisRot1 > lastRot1)
 		{
-			ypos = ypos + 5;
+			ypos = ypos + 10;
 		}
 
 		if (thisRot1 < lastRot1)
 		{
-			ypos = ypos - 5;
+			ypos = ypos - 10;
 		}
 
 		lastRot1 = serialInterface->getRot1();
@@ -33,12 +33,12 @@ void Player::Update()
 	{
 		if (thisRot1 > lastRot1)
 		{
-			xpos = xpos + 5;
+			xpos = xpos + 10;
 		}
 
 		if (thisRot1 < lastRot1)
 		{
-			xpos = xpos - 5;
+			xpos = xpos - 10;
 		}
 
 		lastRot1 = serialInterface->getRot1();

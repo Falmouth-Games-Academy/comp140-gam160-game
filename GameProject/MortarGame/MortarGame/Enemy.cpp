@@ -4,12 +4,12 @@
 
 Enemy::Enemy()
 {
-	
+
 }
 
-Enemy::Enemy(const char * texturesheet, int x, int y):Object(texturesheet, x, y)
+Enemy::Enemy(const char * texturesheet, int x, int y) :Object(texturesheet, x, y)
 {
-	
+
 }
 
 void Enemy::Update()
@@ -25,6 +25,30 @@ void Enemy::MoveDown()
 	Object::Update();
 
 	ypos++;
+
+}
+
+void Enemy::MoveDown2()
+{
+	Object::Update();
+
+	ypos = ypos + 2;
+
+}
+
+void Enemy::MoveDown3()
+{
+	Object::Update();
+
+	ypos = ypos + 3;
+
+}
+
+void Enemy::StopMoving()
+{
+	Object::Update();
+
+	ypos = 0;
 
 }
 
