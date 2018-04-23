@@ -56,21 +56,24 @@ void GameStateCalibrate::Update(float deltaTime) {
 
 	// Scale images
 	handzerSetup.SetScale(Vec2((float)screenSize.width / 1920.0f, (float)screenSize.height / 1080.0f));
+	handzerOpen.SetScale(Vec2((float)screenSize.width / 1920.0f, (float)screenSize.height / 1080.0f));
+	handzerClosed.SetScale(Vec2((float)screenSize.width / 1920.0f, (float)screenSize.height / 1080.0f));
 }
 
 
 void GameStateCalibrate::Render() {
 	Dimensions2 screenSize = game.GetRenderer().GetScreenSize();
-	int textHeight = 100;
+	bool textSize = (screenSize.width >= 1280 && screenSize.height >= 720);
+	int textHeight = textSize ? 100 : 40;
 
 	switch (state) {
 		case 0: {
 			int textX = screenSize.width / 2, textY = screenSize.height * 7 / 10 / textHeight;
 
 			// Draw setup text
-			game.GetRenderer().RenderText("Hi there! Welcome to Handzer!", textX, (textY++) * textHeight, Colour::Black(), true, true);
-			game.GetRenderer().RenderText("Fasten the sensors to your right hand as shown", textX, (textY++) * textHeight, Colour::Black(), true, true);
-			game.GetRenderer().RenderText("When done, press Space", textX, (textY++) * textHeight, Colour::Black(), true, true);
+			game.GetRenderer().RenderText("Hi there! Welcome to Handzer!", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("Fasten the sensors to your right hand as shown", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("When done, press Space", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
 
 			game.GetCamera().RenderSprite(handzerSetup, Vec3((screenSize.width - handzerSetup.GetDimensions().x) * 0.5f, 0.0f, 1.0f));
 
@@ -79,9 +82,9 @@ void GameStateCalibrate::Render() {
 		case 1: {
 			int textX = screenSize.width / 2, textY = screenSize.height * 7 / 10 / textHeight;
 
-			game.GetRenderer().RenderText("Great! Now move your hand into the position shown", textX, (textY++) * textHeight, Colour::Black(), true, true);
-			game.GetRenderer().RenderText("While holding your hand in this position, press Space", textX, (textY++) * textHeight, Colour::Black(), true, true);
-			game.GetRenderer().RenderText("(.....with your other hand)", textX, (textY++) * textHeight, Colour::Black(), true, true);
+			game.GetRenderer().RenderText("Great! Now move your hand into the position shown", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("While holding your hand in this position, press Space", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("(.....with your other hand)", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
 
 			game.GetCamera().RenderSprite(handzerClosed, Vec3((screenSize.width - handzerClosed.GetDimensions().x) * 0.5f, 0.0f, 1.0f));
 
@@ -90,8 +93,8 @@ void GameStateCalibrate::Render() {
 		case 2: {
 			int textX = screenSize.width / 2, textY = screenSize.height * 4 / 5 / textHeight;
 
-			game.GetRenderer().RenderText("Nearly there! Now open your hand as wide as you can!", textX, (textY++) * textHeight, Colour::Black(), true, true);
-			game.GetRenderer().RenderText("While holding this position, press Space to start!", textX, (textY++) * textHeight, Colour::Black(), true, true);
+			game.GetRenderer().RenderText("Nearly there! Now open your hand as wide as you can!", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
+			game.GetRenderer().RenderText("While holding this position, press Space to start!", textX, (textY++) * textHeight, Colour::Black(), true, textSize);
 
 			game.GetCamera().RenderSprite(handzerOpen, Vec3((screenSize.width - handzerClosed.GetDimensions().x) * 0.5f, 0.0f, 1.0f));
 			break;

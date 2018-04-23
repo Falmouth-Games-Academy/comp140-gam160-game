@@ -36,6 +36,8 @@ public:
 	template<typename StateType>
 	inline void SetGameState();
 
+	inline GameState* GetGameState();
+
 	// Gameplay objects
 	inline Hand& GetPlayer();
 	inline Level& GetLevel();
@@ -232,6 +234,10 @@ void Game::SetGameState() {
 
 	// Prepare the next game state
 	nextGameState = new StateType();
+}
+
+inline GameState* Game::GetGameState() {
+	return activeGameState;
 }
 
 template<typename ObjectType>

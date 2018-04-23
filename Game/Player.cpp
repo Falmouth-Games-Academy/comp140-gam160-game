@@ -88,8 +88,13 @@ void Hand::Update(float deltaTime) {
 	// Update laser power
 	laserPower = game.GetGesture().GetHandOpenness();
 
-	// Update mouse openness
-	sprite.SetCurrentFrame(Math::clampmax(Math::round(laserPower * sprite.GetNumFrames(), 1.0f), (float)(sprite.GetNumFrames() - 1)));
+	// Hack: Fix infinite power glitch
+	if (laserPower != laserPower) {
+		laserPower = 0.0f;
+	}
+
+	// Change sprite to open or closed
+	sprite.SetCurrentFrame(Math::round(laserPower * (sprite.GetNumFrames() - 1), 1.0f));
 
 	// Do gesture movement
 	bool doFriction = false;
@@ -102,6 +107,7 @@ void Hand::Update(float deltaTime) {
 	const float minAcceleration = 2000.0f, maxAcceleration = 5000.0f;
 	const float minBounceAcceleration = minBounceSpeed, maxBounceAcceleration = 200000.0f;
 	const float minBounceAmplitude = 2000.0f;
+	const float jumpAmplitude = 18000.0f;
 
 	// Bounce along!
 	GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(300, 0);
@@ -128,7 +134,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Jump if an unusually large amount of force was applied in a short time
-	if (bounceInfo.maxBounceAmplitude >= 18000.0f) {
+	if (bounceInfo.maxBounceAmplitude >= jumpAmplitude) {
 		doJump = true;
 	}
 

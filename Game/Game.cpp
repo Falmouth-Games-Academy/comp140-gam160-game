@@ -152,6 +152,7 @@ void Game::Run() {
 	SetGameState<GameStateCalibrate>();
 
 	// Load the level
+	printf("Loading the level...\n");
 	level.Load("./maps/default.hdf");
 
 	// Begin main loop!

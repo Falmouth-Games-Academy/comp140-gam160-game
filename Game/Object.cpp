@@ -72,7 +72,11 @@ void Object::Update(float deltaTime) {
 }
 
 void Object::Render() {
-	game.GetCamera().RenderSprite(sprite, position, rotation);
+	if (sprite.GetCurrentFrame() && sprite.GetCurrentFrame()->GetScale() > Vec2(0.0f, 0.0f)) {
+		game.GetCamera().RenderSprite(sprite, position, rotation);
+	} else if (game.GetGameState() && game.GetGameState()->GetType() == GameStateType::Editor && editorLabel[0]) {
+		game.GetCamera().RenderText(editorLabel, position);
+	}
 }
 
 void Object::OnDamage() {
@@ -259,6 +263,7 @@ bool Object::Move(const Vec3& originalMoveOffset, bool teleport) {
 #include "Object.h"
 #include "Bigfoot.h"
 #include "Goose.h"
+#include "BottleThrower.h"
 
 Object::SpawnerDatabase::SpawnerDatabase() {
 	// Type definitions go here!
@@ -270,4 +275,5 @@ Object::SpawnerDatabase::SpawnerDatabase() {
 	SET_SPAWNER(Hand);
 	SET_SPAWNER(Bigfoot);
 	SET_SPAWNER(Goose);
+	SET_SPAWNER(BottleThrower);
 }

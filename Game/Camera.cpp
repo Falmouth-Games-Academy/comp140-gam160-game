@@ -82,45 +82,54 @@ void Camera::FlushLayeredRenders() {
 		if (lastMinorItem != -1) {
 			RenderCall* call = renderCalls[lastMinorItem];
 
-			if (!call->texture) {
-				continue;
+			if (call->type == RenderCall::Sprite) {
+				if (!call->texture) {
+					continue;
+				}
+
+				// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
+				SDL_Point sdlRotationOrigin = {(int)call->rotationOrigin.x, (int)call->rotationOrigin.y};
+				SDL_Rect sdlDestRect = {(int)call->destRect.x, (int)call->destRect.y, (int)call->destRect.width, (int)call->destRect.height};
+
+				// Setup flip flags
+				SDL_RendererFlip sdlFlip = SDL_FLIP_NONE;
+
+				if (call->flipFlags == FlipFlags::Horizontal) {
+					sdlFlip = SDL_FLIP_HORIZONTAL;
+				} else if (call->flipFlags == FlipFlags::Vertical) {
+					sdlFlip = SDL_FLIP_VERTICAL;
+				} else if (call->flipFlags == (FlipFlags::Vertical | FlipFlags::Horizontal)) {
+					call->rotation += 180.0f; // This little detail might be why SDL doesn't have SDL_FLIP_BOTH
+				}
+
+				// Setup render colour blend
+				SDL_SetTextureColorMod(const_cast<SDL_Texture*>(call->texture), call->colourBlend.r, call->colourBlend.g, call->colourBlend.b);
+
+				// If a sprite region was specified, draw the sprite with wrapping enabled
+				if (!call->useFullRegion) {
+					SDL_Rect sdlSourceRect = {(int)call->region.x, (int)call->region.y, (int)call->region.width, (int)call->region.height};
+
+					sdlDestRect.w -= sdlSourceRect.x;
+					sdlDestRect.h -= sdlSourceRect.y;
+					// Todo make this actually work
+
+					SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), &sdlSourceRect, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+				} else {
+					// Otherwise draw it normally
+					SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), nullptr, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+				}
+
+				// Update major item
+				lastMajorDepth = lastMinorDepth;
+				lastMajorItem = lastMinorItem;
+			} else if (call->type == RenderCall::Text) {
+				Vec3 renderTextPoint = game.GetCamera().WorldToScreen(call->textPosition);
+
+				if (renderTextPoint.xy >= Vec2(0.0f, 0.0f) &&
+					renderTextPoint.x < game.GetRenderer().GetScreenSize().width && renderTextPoint.y < game.GetRenderer().GetScreenSize().height) {
+					game.GetRenderer().RenderText(call->textContents, renderTextPoint.x, renderTextPoint.y, Colour::Black(), call->textIsCentered, call->textIsLarge);
+				}
 			}
-
-			// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
-			SDL_Point sdlRotationOrigin = {(int)call->rotationOrigin.x, (int)call->rotationOrigin.y};
-			SDL_Rect sdlDestRect = {(int)call->destRect.x, (int)call->destRect.y, (int)call->destRect.width, (int)call->destRect.height};
-
-			// Setup flip flags
-			SDL_RendererFlip sdlFlip = SDL_FLIP_NONE;
-
-			if (call->flipFlags == FlipFlags::Horizontal) {
-				sdlFlip = SDL_FLIP_HORIZONTAL;
-			} else if (call->flipFlags == FlipFlags::Vertical) {
-				sdlFlip = SDL_FLIP_VERTICAL;
-			} else if (call->flipFlags == (FlipFlags::Vertical | FlipFlags::Horizontal)) {
-				call->rotation += 180.0f; // This little detail might be why SDL doesn't have SDL_FLIP_BOTH
-			}
-
-			// Setup render colour blend
-			SDL_SetTextureColorMod(const_cast<SDL_Texture*>(call->texture), call->colourBlend.r, call->colourBlend.g, call->colourBlend.b);
-
-			// If a sprite region was specified, draw the sprite with wrapping enabled
-			if (!call->useFullRegion) {
-				SDL_Rect sdlSourceRect = {(int)call->region.x, (int)call->region.y, (int)call->region.width, (int)call->region.height};
-
-				sdlDestRect.w -= sdlSourceRect.x;
-				sdlDestRect.h -= sdlSourceRect.y;
-				// Todo make this actually work
-
-				SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), &sdlSourceRect, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
-			} else {
-				// Otherwise draw it normally
-				SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), nullptr, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
-			}
-
-			// Update major item
-			lastMajorDepth = lastMinorDepth;
-			lastMajorItem = lastMinorItem;
 		}
 	}
 
@@ -248,6 +257,10 @@ void Camera::RenderRectangle(const Vec3& position, const Vec2& size, Colour colo
 
 	SDL_SetRenderDrawColor(game.GetSDLRenderer(), colour.r, colour.g, colour.b, colour.a);
 	SDL_RenderDrawRect(game.GetSDLRenderer(), &sdlDestRect);
+}
+
+void Camera::RenderText(const char* string, const Vec3& position, const Colour& colour, bool isCentered, bool isLarge) {
+	InsertNewRenderCall(new RenderCall(position, string, isCentered, isLarge));
 }
 
 Vec3 Camera::ScreenToWorld(const Vec3& screenPoint) const {

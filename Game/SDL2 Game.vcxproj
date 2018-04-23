@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="Bigfoot.cpp" />
     <ClCompile Include="Bottle.cpp" />
+    <ClCompile Include="BottleThrower.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DataFile.cpp" />
     <ClCompile Include="DebugStringBox.cpp" />
@@ -175,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bottle.h" />
+    <ClInclude Include="BottleThrower.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Containers.h" />
     <ClInclude Include="DataFile.h" />

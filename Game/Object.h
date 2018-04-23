@@ -21,6 +21,7 @@ public:
 		GooglyEyeType,
 		BigfootType,
 		GooseType,
+		BottleThrowerType,
 		NumTypes
 	};
 
@@ -158,6 +159,12 @@ public:
 	// Returns whether the object is persistent (should be saved into the map object data)
 	inline bool IsPersistent() const;
 
+public:
+	static const int maxEditorLabelLength = 32;
+
+	// Returns this object's editor label if applicable
+	inline StaticString<maxEditorLabelLength> GetEditorLabel() const;
+
 protected:
 	// Current sprite
 	Sprite sprite;
@@ -218,6 +225,9 @@ protected:
 
 	// The position at which the object should spawn
 	Vec3 spawnPosition;
+
+	// A debugging label to display in the editor (for invisible objects)
+	StaticString<maxEditorLabelLength> editorLabel;
 
 private:
 	// Whether the object is being destroyed next frame
@@ -339,6 +349,10 @@ inline void Object::SetSpawnInfo(const Vec3& spawnPosition, bool isPersistent) {
 
 inline bool Object::IsPersistent() const {
 	return (bool)(isPersistent);
+}
+
+inline StaticString<Object::maxEditorLabelLength> Object::GetEditorLabel() const {
+	return editorLabel;
 }
 
 inline const Vec3& Object::GetSpawnPosition() const {

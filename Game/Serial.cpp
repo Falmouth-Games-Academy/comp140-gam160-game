@@ -203,7 +203,7 @@ StaticString<128> Serial::GetMostLikelyArduinoPort() {
 		}
 
 		// Check if this is maybe possibly meh who knows the Arduino:
-		if (!strncmp(friendlyName, "USB Serial Device", 17)) {
+		if (!strncmp(friendlyName, "USB Serial Device", 17) || !strncmp(friendlyName, "Arduino", 7)) {
 			// OK this is totally 100% guaranteed NO-BS absolutely certainly the Arduino yep
 			return portName;
 		}

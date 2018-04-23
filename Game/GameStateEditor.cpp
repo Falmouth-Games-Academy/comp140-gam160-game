@@ -251,9 +251,17 @@ void GameStateEditor::UpdateSelections() {
 
 		// Look for objects to select
 		for (Object* obj : game.GetObjects()) {
+			Vec2 dimensions = obj->GetSprite().GetDimensions();
+
+			if (dimensions <= Vec2(1.0f, 1.0f) && obj->GetEditorLabel()) {
+				// Invisible objects get a little border around them!
+				dimensions = Vec2(50.0f, 50.0f);
+			}
+
+			// Check that the object is under the mouse
 			if (game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin()).xy <= cursorScreenPosition.xy && 
-					game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin() + obj->GetSprite().GetDimensions()).xy >= cursorScreenPosition.xy) {
-				// Select this object, if it's the closest or only one under the mouse
+					game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin() + dimensions).xy >= cursorScreenPosition.xy) {
+				// Select this object, if it's the closest
 				if (selectedItems.GetNum() == 0 || (selectedItems[0] && selectedItems[0]->GetPosition().z > obj->GetPosition().z)) {
 					selectedItems.Set({ obj });
 				}

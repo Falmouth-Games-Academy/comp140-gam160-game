@@ -119,7 +119,7 @@ void GestureManager::UpdateArduinoInput() {
 
 void GestureManager::UpdateKeyboardInput() {
 	// Use debug keyboard controls in place of the arduino
-	Vec3 nextForce = Vec3(0.0f, -9800.0f * sin(30.0f * Math::rads), 9800.0f * cos(30.0f * Math::rads));
+	Vec3 nextForce = Vec3(0.0f, 0.0f, 9800.0f);
 
 	// Bounce
 	if (game.GetInput().IsKeyDown(SDLK_UP)) {
@@ -132,14 +132,12 @@ void GestureManager::UpdateKeyboardInput() {
 	const float bounceHz = 5.0f, bounceAmp = 8000.0f;
 	float bouncePosition = sin(Math::circleclamp(2.0f * Math::pi * game.GetFrameTime() * bounceHz, 2.0f * Math::pi)) * bounceAmp;
 
-	if (game.GetInput().IsKeyDown(SDLK_LEFT)) {
+	if (game.GetInput().IsKeyDown(SDLK_RIGHT)) {
 		Vec2 tiltedDownVector = Vec2(0.0f, 9800.0f).Rotated(30.0f);
 
 		nextForce = Vec3(0.0f, tiltedDownVector.x, tiltedDownVector.y) + Vec3(0.0f, 0.0f, bouncePosition);
-	} else if (game.GetInput().IsKeyDown(SDLK_RIGHT)) {
-		Vec2 tiltedDownVector = Vec2(0.0f, 9800.0f).Rotated(50.0f);
-
-		nextForce = Vec3(0.0f, tiltedDownVector.x, tiltedDownVector.y) + Vec3(0.0f, 0.0f, bouncePosition);
+	} else if (game.GetInput().IsKeyDown(SDLK_LEFT)) {
+		nextForce = Vec3(0.0f, 0.0f, 9800.0f) + Vec3(0.0f, 0.0f, bouncePosition);
 	}
 
 	// Mouse tilt controls
@@ -398,10 +396,12 @@ GestureManager::BounceInfo GestureManager::CalculateBounceInfo(uint32 relativeTi
 	float32 totalBounceAmplitudes = 0.0f;
 	Vec3 totalBouncePositions = Vec3(0.0f, 0.0f, 0.0f);
 
+	// Setup bounce info
 	BounceInfo info;
 	info.numBounces = 0;
 	info.maxBounceAmplitude = 0.0f;
 
+	// Iterate through the history to find a bouncing pattern
 	for (int i = -accelStamps.GetNum(); i < 0; ++i) {
 		// Only look through the given time range
 		if (accelStamps[i].timestamp < absoluteTimeStart) {

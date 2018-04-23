@@ -1,6 +1,7 @@
 #pragma once
 #include "Math.h"
 #include "Containers.h"
+#include "String.h"
 
 namespace FlipFlags {
 	const uint32
@@ -90,6 +91,15 @@ public:
 	*/
 	void RenderRectangle(const Vec3& position, const Vec2& size, Colour colour);
 
+	/* Renders a text at a given position in the world 
+		@param string: Text to render
+		@param position: Position of the text to render
+		@param colour: Colour of the text
+		@param isCentered: Whether the text is centered on the position given 
+		@param isLarge: Whether the text uses the large font 
+	*/
+	void RenderText(const char* string, const Vec3& position, const Colour& colour = Colour::Black(), bool isCentered = false, bool isLarge = false);
+
 public:
 	// Converts a pixel relative to a window to a world coordinate and returns the result
 	Vec3 ScreenToWorld(const Vec3& screenPoint) const;
@@ -148,11 +158,17 @@ private:
 };
 
 struct RenderCall {
-	// Default constructor
+	// Type of render call
+	enum Type : uint8 {
+		Sprite,
+		Text
+	};
+
+	// Sprite draw constructor
 	RenderCall(float32 depth_, const struct SDL_Texture* texture_, const Rect2* srcRect_, const Rect2& destRect_, const float rotation_, const Vec2& rotationOrigin_, uint32 flipFlags_, 
 		const Colour& colourBlend_) : 
 			depth(depth_), texture(texture_), destRect(destRect_), rotation(rotation_), flipFlags(flipFlags_), rotationOrigin(rotationOrigin_), 
-			colourBlend(colourBlend_) {
+			colourBlend(colourBlend_), type(Sprite) {
 		if (srcRect_) {
 			srcRect = *srcRect_;
 			useFullRegion = false;
@@ -160,12 +176,22 @@ struct RenderCall {
 			useFullRegion = true;
 		}
 	}
+	
+	// Text draw constructor
+	RenderCall(const Vec3& position, const char* text, bool isCentered, bool isLarge) : textPosition(position), textContents(text), textIsLarge(isLarge), textIsCentered(isCentered), 
+			type(Text) {
+		depth = position.z;
+	}
 
-	float32 depth;
+	// Text draw constructor
 
 	// Parameters for the draw call
+	Type type;
+
 	const struct SDL_Texture* texture;
 	Rect2 srcRect, destRect;
+
+	float32 depth;
 
 	float32 rotation;
 	Vec2 rotationOrigin;
@@ -176,4 +202,11 @@ struct RenderCall {
 
 	Rect2 region;
 	bool8 useFullRegion;
+
+	StaticString<256> textContents;
+
+	Vec3 textPosition;
+
+	bool8 textIsLarge;
+	bool8 textIsCentered;
 };

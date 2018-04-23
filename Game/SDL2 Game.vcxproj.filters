@@ -132,6 +132,9 @@
     <ClCompile Include="GameStateCalibrate.cpp">
       <Filter>Source Files\Gameplay\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="BottleThrower.cpp">
+      <Filter>Source Files\Gameplay\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Types.h">
@@ -232,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="GameStateCalibrate.h">
       <Filter>Source Files\Gameplay\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BottleThrower.h">
+      <Filter>Source Files\Gameplay\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

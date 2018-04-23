@@ -118,7 +118,7 @@ void RenderManager::RenderText(const char* string, int x, int y, const Colour& c
 	// Copy the GDI text to the SDL texture
 	SDL_Rect textureRect{0, 0, textBounds.right, textBounds.bottom};
 	uint32* pixels;
-	uint32 colourBits = ((colour.r << 16) | (colour.g << 8) | colour.b);
+	uint32 colourBits = ((colour.b << 16) | (colour.g << 8) | colour.r);
 	int pitch;
 	if (!SDL_LockTexture(sdlTextSurface, &textureRect, (void**)&pixels, &pitch)) {
 		int textWidth = textBounds.right, textHeight = textBounds.bottom;
