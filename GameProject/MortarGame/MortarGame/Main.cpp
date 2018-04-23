@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 	game = new Game();
 
 	// initialise the game
-	game->init("Mortar Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, false);
+	game->init("Mortar Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, true);
 
 	// create a game loop
 	while (game->running())

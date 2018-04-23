@@ -18,6 +18,8 @@ Enemy* enemy2;
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
 
+int numberofenemies = 5;
+
 
 /*
 * Constructor - not used in this case
@@ -99,10 +101,7 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 	player = new Player("Assets/Crosshair.png", 800 / 2, 640 / 2);
 	player->serialInterface = serialInterface;
 
-	//enemy = new Enemy("Assets/Enemy.png", rand()%800+1, -64);
-	//enemy2 = new Enemy("Assets/Enemy3.png", rand()%800+1, -64);
-
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < numberofenemies; i++)
 	{
 		enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
 	}
@@ -142,50 +141,52 @@ void Game::handleEvents()
 */
 void Game::update()
 {
-
-
-
-
-
-
-
+	//update player positions
 	player->Update();
+
+	//if player fires the cannon while intersecting with an enemy, reset that enemy's
+	//position to the top of the screen and increase player score
 	if (player->hasFired())
 	{
-		cout << "has fired" << endl;
 		for (Enemy* currentEnemy : enemylist)
 		{
 			if (currentEnemy->isPointInside(player->xpos + 32, player->ypos + 32))
 			{
-				//Look at SDL_TTF for drawing text!!!
 				currentEnemy->ypos = -64;
 				currentEnemy->xpos = rand() % 736 + 1;
 				score++;
 				cout << "Score: " << score << endl;
-
 			}
 		}
 	}
 
+	// Using the console to show the scoring and lives left.
 	for (Enemy* currentEnemy : enemylist)
 	{
+		//change the enemies speed depending on how high the players score is
 		if (score < 5)
 		{
 			currentEnemy->MoveDown();
 		}
+
 		if ((score >= 5) && (score < 11))
 		{
 			currentEnemy->MoveDown2();
 		}
+
 		if (score >= 11)
 		{
 			currentEnemy->MoveDown2();
 		}
+
+		//at end of game stop all enemies
 		if (lives == 0)
 		{
 			currentEnemy->StopMoving();
 		}
 
+		//respawn the enemy at the top of the screen if the player misses it and
+		//lower the players number of lives by one 
 		if (currentEnemy->ypos > 704)
 		{
 			currentEnemy->ypos = -64;
@@ -193,21 +194,15 @@ void Game::update()
 			lives--;
 			cout << "Lives left: " << lives - 1 << endl;
 
+			//end of game, show final score
 			if (lives == 0)
 			{
 				cout << "Game Over!" << endl;
 				cout << "Final Score: " << score << endl;
 				score = 0;
-
-
-
 			}
-
 		}
 	}
-
-
-
 }
 
 
@@ -219,11 +214,13 @@ void Game::render()
 	// clear previous frame
 	SDL_RenderClear(renderer);
 
+	//render enemies from vector
 	for (Enemy* currentEnemy : enemylist)
 	{
 		currentEnemy->Render();
 	}
 
+	//render player
 	player->Render();
 
 	// render new frame
@@ -237,6 +234,7 @@ void Game::render()
 */
 void Game::clean()
 {
+	// delete player and enemies
 	delete player;
 	for (auto iter = enemylist.begin(); iter != enemylist.end(); )
 	{
@@ -245,6 +243,7 @@ void Game::clean()
 			delete (*iter);
 			iter = enemylist.erase(iter);
 		}
+
 		else
 		{
 			iter++;

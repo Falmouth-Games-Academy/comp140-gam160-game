@@ -58,6 +58,10 @@ void SerialInterface::send(string msg)
 	}
 }
 
+/* break the string of numbers recieved from the arduino down to 3 substrings, one for the
+rotary encoder, one for the lever switch and one for the slider switch, then convert these to 
+integers that can be used to move the player */
+
 void SerialInterface::getValues()
 {
 	if (connected)

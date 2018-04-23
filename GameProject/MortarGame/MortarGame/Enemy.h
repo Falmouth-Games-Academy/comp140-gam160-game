@@ -19,8 +19,6 @@ public:
 
 	void StopMoving();
 
-	void MoveLeft();
-
 	~Enemy();
 };
 

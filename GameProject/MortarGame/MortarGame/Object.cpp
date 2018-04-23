@@ -8,7 +8,7 @@ Object::Object(const char* texturesheet, int x, int y)
 
 	xpos = x;
 	ypos = y;
-	//serialInterface = new SerialInterface();
+
 	serialInterface = nullptr;
 }
 
@@ -29,14 +29,13 @@ Object::~Object()
 
 void Object::Update()
 {
+	//gets the values from the arduino code
 	if (serialInterface) {
 		serialInterface->getValues();
 		thisRot1 = serialInterface->getRot1();
 		swtch1 = serialInterface->getSwtch1();
 		swtch2 = serialInterface->getSwtch2();
 	}
-
-
 
 	sourceRect.h = 64;
 	sourceRect.w = 64;
@@ -47,11 +46,6 @@ void Object::Update()
 	destRect.y = ypos;
 	destRect.h = sourceRect.h;
 	destRect.w = sourceRect.w;
-
-
-
-
-
 }
 
 bool Object::isPointInside(int x, int y)
@@ -67,5 +61,4 @@ void Object::Render()
 {
 	//SDL_SetTextureColorMod(objTexture, 255, 0, 0);
 	SDL_RenderCopy(Game::renderer, objTexture, &sourceRect, &destRect);
-
 }

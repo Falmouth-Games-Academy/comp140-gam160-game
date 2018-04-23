@@ -43,12 +43,6 @@ void Player::Update()
 
 		lastRot1 = serialInterface->getRot1();
 	}
-
-	if (swtch1 == 1)
-	{
-		//ypos = ypos + 30;
-
-	}
 }
 
 bool Player::hasFired()

@@ -1,5 +1,6 @@
-﻿  GraphicsManager.cpp
-  LINK : D:\New folder (2)\comp140-gam160-game\GameProject\MortarGame\Debug\MortarGame.exe not found or not built by the last incremental link; performing full link
-     Creating library D:\New folder (2)\comp140-gam160-game\GameProject\MortarGame\Debug\MortarGame.lib and object D:\New folder (2)\comp140-gam160-game\GameProject\MortarGame\Debug\MortarGame.exp
+﻿  Main.cpp
+  Game.cpp
+d:\new folder (2)\comp140-gam160-game\gameproject\mortargame\mortargame\game.cpp(47): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
   MortarGame.vcxproj -> D:\New folder (2)\comp140-gam160-game\GameProject\MortarGame\Debug\MortarGame.exe
   MortarGame.vcxproj -> D:\New folder (2)\comp140-gam160-game\GameProject\MortarGame\Debug\MortarGame.pdb (Partial PDB)
