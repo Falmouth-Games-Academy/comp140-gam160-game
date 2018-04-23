@@ -1,6 +1,8 @@
 #pragma once
+
 #include "SerialInterface.h"
-#include "Game.h"
+#include <SDL.h>
+
 
 class Object 
 {
@@ -13,6 +15,9 @@ public:
 	virtual void Update();
 
 	SerialInterface* serialInterface;
+
+	bool isPointInside(int x, int y);
+
 
 
 	int xpos;

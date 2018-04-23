@@ -46,9 +46,18 @@ void Player::Update()
 
 	if (swtch1 == 1)
 	{
-		ypos = ypos + 30;
+		//ypos = ypos + 30;
 
 	}
+}
+
+bool Player::hasFired()
+{
+	if (swtch1 == 1)
+	{
+		return true;
+	}
+	return false;
 }
 
 Player::~Player()

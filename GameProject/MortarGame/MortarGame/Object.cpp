@@ -8,7 +8,8 @@ Object::Object(const char* texturesheet, int x, int y)
 
 	xpos = x;
 	ypos = y;
-	serialInterface = new SerialInterface();
+	//serialInterface = new SerialInterface();
+	serialInterface = nullptr;
 }
 
 Object::Object()
@@ -28,11 +29,12 @@ Object::~Object()
 
 void Object::Update()
 {
-	
-	serialInterface->getValues();
-	thisRot1 = serialInterface->getRot1();
-	swtch1 = serialInterface->getSwtch1();
-	swtch2 = serialInterface->getSwtch2();
+	if (serialInterface) {
+		serialInterface->getValues();
+		thisRot1 = serialInterface->getRot1();
+		swtch1 = serialInterface->getSwtch1();
+		swtch2 = serialInterface->getSwtch2();
+	}
 	
 
 
@@ -52,8 +54,18 @@ void Object::Update()
 	
 }
 
+bool Object::isPointInside(int x, int y)
+{
+	SDL_Point point;
+	point.x = x;
+	point.y = y;
+
+	return SDL_PointInRect(&point, &destRect);
+}
+
 void Object::Render()
 {
+	//SDL_SetTextureColorMod(objTexture, 255, 0, 0);
 	SDL_RenderCopy(Game::renderer, objTexture, &sourceRect, &destRect);
 
 }

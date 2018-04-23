@@ -1,9 +1,13 @@
-#include "Enemy.h"
 #include "Object.h"
-
+#include "Enemy.h"
 
 
 Enemy::Enemy()
+{
+	
+}
+
+Enemy::Enemy(const char * texturesheet, int x, int y):Object(texturesheet, x, y)
 {
 	
 }

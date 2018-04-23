@@ -1,10 +1,12 @@
 #pragma once
+
 #include "Object.h"
-class Enemy : public Object
+
+class Enemy:public Object
 {
 public:
 	Enemy();
-	Enemy(const char* texturesheet, int x, int y) : Object(texturesheet, x, y) {};
+	Enemy(const char* texturesheet, int x, int y);
 
 
 	void Update() override;

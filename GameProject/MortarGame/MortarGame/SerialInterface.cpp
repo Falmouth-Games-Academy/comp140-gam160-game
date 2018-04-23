@@ -36,8 +36,6 @@ SerialInterface::SerialInterface()
 			{
 				cout << "Connection successful: " << port << "\n";
 				connected = true;
-
-				break;
 			}
 		}
 		catch (exception &e)

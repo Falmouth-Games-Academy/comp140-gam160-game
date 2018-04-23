@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include <iostream>
+#include <time.h>       /* time */
 
 
 using std::cout;
@@ -41,6 +42,7 @@ Game::~Game()
 */
 bool Game::init(const char * title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
+	srand(time(NULL));
 	int flags = 0;
 	if (fullscreen)
 	{
@@ -95,9 +97,15 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 	//instantiate serial here
 
 	player = new Player("Assets/Crosshair.png", 800 / 2, 640 / 2);
-	enemy = new Enemy("Assets/Enemy.png", 500, -64);
-	enemy2 = new Enemy("Assets/Enemy3.png", 864, 200);
+	player->serialInterface = serialInterface;
+
+	//enemy = new Enemy("Assets/Enemy.png", rand()%800+1, -64);
+	//enemy2 = new Enemy("Assets/Enemy3.png", rand()%800+1, -64);
 	
+	for (int i = 0; i < 4; i++)
+	{
+		enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
+	}
 
 	return true;
 }
@@ -142,9 +150,27 @@ void Game::update()
 	cnt++;
 
 	player->Update();
-	enemy->MoveDown();
-	enemy2->MoveLeft();
+	if (player->hasFired())
+	{
+		cout << "has fired" << endl;
+		for (Enemy* currentEnemy : enemylist)
+		{
+			if (currentEnemy->isPointInside(player->xpos + 32, player->ypos + 32))
+			{
+				//Look at SDL_TTF for drawing text!!!
+				currentEnemy->ypos = -64;
+				currentEnemy->xpos = rand() % 736 + 1;
+			}
+		}
+		
+	}
+	//enemy->MoveDown();
+	//enemy2->MoveDown();
 
+	for (Enemy* currentEnemy : enemylist)
+	{
+		currentEnemy->MoveDown();
+	}
 	cout << cnt << endl;
 }
 
@@ -157,9 +183,13 @@ void Game::render()
 	// clear previous frame
 	SDL_RenderClear(renderer);
 
+	for (Enemy* currentEnemy : enemylist)
+	{
+		currentEnemy->Render();
+	}
 	
-	enemy->Render();
-	enemy2->Render();
+	//enemy->Render();
+	//enemy2->Render();
 
 	player->Render();
 
@@ -197,6 +227,20 @@ void Game::render()
 */
 void Game::clean()
 {
+	delete player;
+	for (auto iter = enemylist.begin(); iter != enemylist.end(); )
+	{
+		if ((*iter))
+		{
+			delete (*iter);
+			iter = enemylist.erase(iter);
+		}
+		else
+		{
+			iter++;
+		}
+	}
+	enemylist.clear();
 	serialInterface->close();
 	cout << "Cleaning SDL \n";
 	SDL_DestroyWindow(mainWindow);

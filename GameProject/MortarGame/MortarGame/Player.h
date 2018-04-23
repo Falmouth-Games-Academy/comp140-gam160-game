@@ -8,6 +8,8 @@ public:
 
 	void Update() override;
 
+	bool hasFired();
+
 	~Player();
 };
 

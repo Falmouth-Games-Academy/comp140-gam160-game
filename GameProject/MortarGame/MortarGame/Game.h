@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include "SerialInterface.h"
 #include "SDL_image.h"
+#include <vector>
+#include "Enemy.h"
 
 class Game
 {
@@ -42,4 +44,5 @@ private:
 
 	SerialInterface* serialInterface; //should really be put after SDL runs
 
+	std::vector<Enemy*> enemylist;
 };
