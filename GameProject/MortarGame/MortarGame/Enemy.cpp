@@ -7,7 +7,7 @@ Enemy::Enemy()
 
 }
 
-Enemy::Enemy(const char * texturesheet, int x, int y) :Object(texturesheet, x, y)
+Enemy::Enemy(const char * texturesheet, float x, float y) :Object(texturesheet, x, y)
 {
 
 }
@@ -19,35 +19,20 @@ void Enemy::Update()
 }
 
 //function to move enemy down the screen
-void Enemy::MoveDown()
+void Enemy::MoveDown(float speed)
 {
 	Object::Update();
 
-	ypos++;
+	ypos = ypos + speed;
 }
 
-//function to move enemy down the screen faster
-void Enemy::MoveDown2()
-{
-	Object::Update();
-
-	ypos = ypos + 2;
-}
-
-//function to move enemy down the screen at maximum speed
-void Enemy::MoveDown3()
-{
-	Object::Update();
-
-	ypos = ypos + 3;
-}
 
 //function to respawn and stop the enemy
 void Enemy::StopMoving()
 {
 	Object::Update();
 
-	ypos = 0;
+	ypos = -64;
 }
 
 

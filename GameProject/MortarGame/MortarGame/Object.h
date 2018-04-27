@@ -7,7 +7,7 @@
 class Object
 {
 public:
-	Object(const char* texturesheet, int x, int y);
+	Object(const char* texturesheet, float x, float y);
 	Object();
 	~Object();
 
@@ -16,12 +16,12 @@ public:
 
 	SerialInterface* serialInterface;
 
-	bool isPointInside(int x, int y);
+	bool isPointInside(float x, float y);
 
 
 
-	int xpos;
-	int ypos;
+	float xpos;
+	float ypos;
 
 	int lastRot1 = 5000;
 	int thisRot1;

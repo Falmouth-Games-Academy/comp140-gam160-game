@@ -1,12 +1,12 @@
 #pragma once
-
 #include "Object.h"
 
-class Enemy :public Object
+
+class Boss :public Object
 {
 public:
-	Enemy();
-	Enemy(const char* texturesheet, float x, float y);
+	Boss();
+	Boss(const char* texturesheet, float x, float y);
 
 
 	void Update() override;
@@ -15,6 +15,6 @@ public:
 
 	void StopMoving();
 
-	~Enemy();
+	~Boss();
 };
 

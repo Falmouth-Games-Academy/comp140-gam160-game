@@ -30,13 +30,14 @@ SerialInterface::SerialInterface()
 
 		try
 		{
-			mySerial = new serial::Serial(port, 115200, serial::Timeout::simpleTimeout(250));
+			mySerial = new serial::Serial("COM3", 115200, serial::Timeout::simpleTimeout(250));
 
 			if (mySerial->isOpen())
 			{
 				cout << "Connection successful: " << port << "\n";
 				connected = true;
 			}
+			
 		}
 		catch (exception &e)
 		{

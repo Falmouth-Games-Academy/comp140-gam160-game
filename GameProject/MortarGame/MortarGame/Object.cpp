@@ -2,7 +2,7 @@
 #include "GraphicsManager.h"
 
 
-Object::Object(const char* texturesheet, int x, int y)
+Object::Object(const char* texturesheet, float x, float y)
 {
 	objTexture = GraphicsManager::LoadImage(texturesheet);
 
@@ -17,6 +17,8 @@ Object::Object()
 	xpos = 0;
 	ypos = 0;
 	objTexture = nullptr;
+
+	
 
 
 
@@ -48,7 +50,7 @@ void Object::Update()
 	destRect.w = sourceRect.w;
 }
 
-bool Object::isPointInside(int x, int y)
+bool Object::isPointInside(float x, float y)
 {
 	SDL_Point point;
 	point.x = x;

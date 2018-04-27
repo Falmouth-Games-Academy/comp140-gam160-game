@@ -2,8 +2,10 @@
 #include "Game.h"
 #include "GraphicsManager.h"
 #include "Object.h"
+#include "Background.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Boss.h"
 #include <iostream>
 #include <time.h>       /* time */
 
@@ -13,12 +15,18 @@ using std::endl;
 
 Player* player;
 Enemy* enemy;
-Enemy* enemy2;
+Boss* boss;
+Object* explosion;
+Object* restart;
+Background* background;
+Object* redCrosshair;
 
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
 
-int numberofenemies = 5;
+int numberofenemies = 2;
+int numberofbosses = 1;
+int bossHealth = 2;
 
 
 /*
@@ -100,10 +108,20 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, b
 
 	player = new Player("Assets/Crosshair.png", 800 / 2, 640 / 2);
 	player->serialInterface = serialInterface;
+	explosion = new Object("Assets/Explosion2.png", player->xpos, player->ypos);
+	restart = new Object("Assets/RestartButton.png", 0, 0);
+	redCrosshair = new Object("Assets/CrosshairRed.png", player->xpos, player->ypos);
+
+	background = new Background("Assets/Grass.png", 0, 0);
 
 	for (int i = 0; i < numberofenemies; i++)
 	{
 		enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
+	}
+
+	for (int i = 0; i < numberofbosses; i++)
+	{
+		bosslist.push_back(new Boss("Assets/Boss.png", 277, -256));
 	}
 
 	return true;
@@ -144,10 +162,24 @@ void Game::update()
 	//update player positions
 	player->Update();
 
+	explosion->Update();
+	redCrosshair->Update();
+
+	background->Update();
+
+	restart->Update();
+
+	explosion->xpos = player->xpos;
+	explosion->ypos = player->ypos;
+
+	redCrosshair->xpos = player->xpos;
+	redCrosshair->ypos = player->ypos;
+
 	//if player fires the cannon while intersecting with an enemy, reset that enemy's
 	//position to the top of the screen and increase player score
 	if (player->hasFired())
 	{
+		cout << "Fired!!!" << endl;
 		for (Enemy* currentEnemy : enemylist)
 		{
 			if (currentEnemy->isPointInside(player->xpos + 32, player->ypos + 32))
@@ -158,27 +190,157 @@ void Game::update()
 				cout << "Score: " << score << endl;
 			}
 		}
+
+		for (Boss* currentBoss : bosslist)
+		{
+			if (currentBoss->isPointInside(player->xpos + 32, player->ypos + 32))
+			{
+				//reduce health of boss
+				if (bossHealth > 0)
+				{
+					bossHealth--;
+				}
+				if (bossHealth <= 0)
+				{
+					bossHealth = 2;
+					currentBoss->ypos = -256;
+					currentBoss->xpos = 277;
+					score = score + 3;
+					cout << "Score: " << score << endl;
+				}
+				
+			}
+		}
+
+		if (restart->isPointInside(player->xpos + 32, player->ypos + 32))
+		{
+			gameOver = true;
+
+		}
 	}
+
+	
+	if (player->xpos < -64)
+	{
+		player->xpos = 800;
+	}
+
+	if (player->xpos > 800)
+	{
+		player->xpos = -64;
+	}
+
+	if (player->ypos < -64)
+	{
+		player->ypos = 640;
+	}
+
+	if (player->ypos > 640)
+	{
+		player->ypos = -64;
+	}
+
+	if (gameOver == true)
+	{
+		lives = 4;
+		score = 0;
+		cout << "New Game Started" << endl;
+		cout << "Score: " << score << endl;
+		if (enemylist.size() > numberofenemies)
+		{
+			enemylist.erase(enemylist.begin(),enemylist.begin() + extraEnemies);
+		}
+
+		if (bosslist.size() > numberofbosses)
+		{
+			bosslist.erase(bosslist.begin(), bosslist.begin() + extraBosses);
+		}
+
+		enemySpeed = 0.5;
+		bossSpeed = 1.0;
+		extraEnemies = 0;
+		extraBosses = 0;
+			
+		gameOver = false;
+
+		for (Enemy* currentEnemy : enemylist)
+		{
+			currentEnemy->ypos = -64;
+			currentEnemy->xpos = rand() % 736 + 1;
+		}
+
+		for (Boss* currentBoss : bosslist)
+		{
+			currentBoss->ypos = -64;
+			currentBoss->xpos = rand() % 736 + 1;
+		}
+	}
+
+	//change the enemies speed depending on how high the players score is
+	if (score < 3)
+	{
+		enemySpeed = 0.5;
+	}
+
+	if ((score >= 3) && (score < 6))
+	{
+		enemySpeed = 1.0;
+		if (enemylist.size() <= 2)
+		{
+			enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
+			extraEnemies++;
+		}
+	}
+
+	if ((score >= 6) && (score < 9))
+	{
+		enemySpeed = 1.5;
+		bossSpeed = 2.0;
+		if (enemylist.size() <= 3)
+		{
+			enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
+			bosslist.push_back(new Boss("Assets/Boss.png", 277, -256));
+			extraEnemies++;
+			extraBosses++;
+		}
+	}
+
+	if ((score >= 9) && (score < 12))
+	{
+		enemySpeed = 2.0;
+	}
+
+	if ((score >= 12) && (score < 15))
+	{
+		enemySpeed = 2.5;
+		if (enemylist.size() <= 4)
+		{
+			enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
+			extraEnemies++;
+		}
+	}
+
+	if ((score >= 15) && (score < 18))
+	{
+		enemySpeed = 3.0;
+	}
+
+	if (score >= 18)
+	{
+		enemySpeed = 3.5;
+		if (enemylist.size() <= 5)
+		{
+			enemylist.push_back(new Enemy("Assets/Enemy.png", rand() % 736 + 1, -64));
+			extraEnemies++;
+		}
+	}
+
 
 	// Using the console to show the scoring and lives left.
 	for (Enemy* currentEnemy : enemylist)
 	{
-		//change the enemies speed depending on how high the players score is
-		if (score < 5)
-		{
-			currentEnemy->MoveDown();
-		}
-
-		if ((score >= 5) && (score < 11))
-		{
-			currentEnemy->MoveDown2();
-		}
-
-		if (score >= 11)
-		{
-			currentEnemy->MoveDown2();
-		}
-
+		currentEnemy->MoveDown(enemySpeed);
+		
 		//at end of game stop all enemies
 		if (lives == 0)
 		{
@@ -200,6 +362,39 @@ void Game::update()
 				cout << "Game Over!" << endl;
 				cout << "Final Score: " << score << endl;
 				score = 0;
+				SDL_Delay(3000);
+				gameOver = true;
+			}
+		}
+	}
+
+	for (Boss* currentBoss : bosslist)
+	{
+		currentBoss->MoveDown(bossSpeed);
+
+		//at end of game stop all enemies
+		if (lives == 0)
+		{
+			currentBoss->StopMoving();
+		}
+
+		//respawn the enemy at the top of the screen if the player misses it and
+		//lower the players number of lives by one 
+		if (currentBoss->ypos > 896)
+		{
+			currentBoss->ypos = -256;
+			currentBoss->xpos = 277;
+			lives--;
+			cout << "Lives left: " << lives - 1 << endl;
+
+			//end of game, show final score
+			if (lives == 0)
+			{
+				cout << "Game Over!" << endl;
+				cout << "Final Score: " << score << endl;
+				score = 0;
+				SDL_Delay(3000);
+				gameOver = true;
 			}
 		}
 	}
@@ -209,10 +404,21 @@ void Game::update()
 void Game::render()
 {
 	// set background color
-	SDL_SetRenderDrawColor(renderer, 0, 204, 0, 255);
+	//SDL_SetRenderDrawColor(renderer, 0, 204, 0, 255);
+
+	
 
 	// clear previous frame
 	SDL_RenderClear(renderer);
+
+	background->Render();
+
+	restart->Render();
+
+	for (Boss* currentBoss : bosslist)
+	{
+		currentBoss->Render();
+	}
 
 	//render enemies from vector
 	for (Enemy* currentEnemy : enemylist)
@@ -220,8 +426,31 @@ void Game::render()
 		currentEnemy->Render();
 	}
 
+
+	if (player->hasFired())
+	{
+		explosion->Render();
+	}
+
+
 	//render player
 	player->Render();
+
+	for (Enemy* currentEnemy : enemylist)
+	{
+		if (currentEnemy->isPointInside(player->xpos + 32, player->ypos + 32))
+		{
+			redCrosshair->Render();
+		}
+	}
+
+	for (Boss* currentBoss : bosslist)
+	{
+		if (currentBoss->isPointInside(player->xpos + 32, player->ypos + 32))
+		{
+			redCrosshair->Render();
+		}
+	}
 
 	// render new frame
 	SDL_RenderPresent(renderer);
@@ -236,6 +465,13 @@ void Game::clean()
 {
 	// delete player and enemies
 	delete player;
+	delete explosion;
+	delete restart;
+	delete background;
+	delete enemy;
+	delete redCrosshair;
+	delete boss;
+
 	for (auto iter = enemylist.begin(); iter != enemylist.end(); )
 	{
 		if ((*iter))
