@@ -153,7 +153,7 @@ private:
 	const float scalePerZ = 1.0f;
 
 	// Min and maximum zooms
-	const float minZ = -15.0f;
+	const float minZ = -6.0f;
 	const float maxZ = 10.0f;
 };
 

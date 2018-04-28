@@ -63,7 +63,7 @@ void Bigfoot::Update(float deltaTime) {
 	sprite.SetScale(Vec2(health / initialHealth));
 
 	// If close enough to the player, request camera focus
-	game.GetCamera().AddViewTarget(position, GetSize());
+	game.GetCamera().AddViewTarget(position, GetSize() * Vec2(0.4f, 0.2f));
 }
 
 void Bigfoot::Jump() {

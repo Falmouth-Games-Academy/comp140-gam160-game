@@ -177,8 +177,8 @@ void Camera::SetFollowingPlayer(bool isFollowingPlayer) {
 void Camera::AddViewTarget(const Vec3& target, const Vec2& targetSize) {
 	// Target position = position + (target_.xy - position.xy) / (target_.z - position.z)
 	// The Z position required by this camera to fit the target in the view
-	float potentialZByX = 1.0f - (abs(target.x - targetPosition.x) + abs(targetSize.x)) / viewBox.size.x;
-	float potentialZByY = 1.0f - (abs(target.y - targetPosition.y) + abs(targetSize.y)) / viewBox.size.y;
+	float potentialZByX = 1.0f - (abs(target.x - targetPosition.x) + abs(targetSize.x)) / viewBox.size.x * 2.0f;
+	float potentialZByY = 1.0f - (abs(target.y - targetPosition.y) + abs(targetSize.y)) / viewBox.size.y * 2.0f;
 
 	float smallestZ = potentialZByX < potentialZByY ? potentialZByX : potentialZByY;
 
