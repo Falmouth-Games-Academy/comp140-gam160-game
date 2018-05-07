@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "Sound.h"
 
 class Laser : public Object {
 public:
@@ -7,6 +8,7 @@ public:
 	virtual ~Laser();
 
 	void OnSpawn() override;
+	void OnDestroy() override;
 
 	void Update(float deltaTime) override;
 	void Render() override;
@@ -47,6 +49,9 @@ private:
 
 	// Effect list
 	Array<class LaserFX*> effects;
+
+	// Sound effect
+	SoundEmitter* blarghSound = nullptr;
 };
 
 // Class for special effects spawned by the laser. The laser performs the update and render functions accordingly

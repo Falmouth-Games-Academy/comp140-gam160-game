@@ -218,11 +218,11 @@ public:
 		return (float)sqrt((vecA.x - vecB.x) * (vecA.x - vecB.x) + (vecA.y - vecB.y) * (vecA.y - vecB.y) + (vecA.z - vecB.z) * (vecA.z - vecB.z));
 	}
 
-	static Vec3 Vec3::Cross(const Vec3& vecA, const Vec3& vecB) {
+	static Vec3 Cross(const Vec3& vecA, const Vec3& vecB) {
 		return Vec3(vecA.y * vecB.z - vecA.z * vecB.y, vecA.z * vecB.x - vecA.x * vecB.z, vecA.x * vecB.y - vecA.y * vecB.x);
 	}
 
-	static float Vec3::Dot(const Vec3& vecA, const Vec3& vecB) {
+	static float Dot(const Vec3& vecA, const Vec3& vecB) {
 		return vecA.x * vecB.x + vecA.y * vecB.y + vecA.z * vecB.z;
 	}
 

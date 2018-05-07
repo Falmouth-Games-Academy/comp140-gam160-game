@@ -66,6 +66,9 @@ void Bottle::Smash() {
 		fragment->SetupFragment(this, i);
 	}
 
+	// Play smash sound effect
+	//SoundEmitter("./sounds/Smash.wav", position).Play();
+
 	// Destroy self
 	Destroy();
 }

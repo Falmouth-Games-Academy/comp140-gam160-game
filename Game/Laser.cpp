@@ -32,6 +32,15 @@ void Laser::OnSpawn() {
 	sprite.GetFrame(LightBall)->SetBaseOrigin(Vec2(100.0f, 100.0f));
 }
 
+void Laser::OnDestroy() {
+	// Free the sound effect if it's active
+	if (blarghSound) {
+		delete blarghSound;
+
+		blarghSound = nullptr;
+	}
+}
+
 void Laser::Update(float deltaTime) {
 	// Move to player mouth position and angle
 	position = game.GetPlayer().SpritePointToWorldPoint(Vec2(792.0f, 628.0f).Lerped(Vec2(668.0f, 820.0f), power));
@@ -57,6 +66,24 @@ void Laser::Update(float deltaTime) {
 	if (game.GetFrameTime() >= nextCameraShake && power > 0.0f) {
 		game.GetCamera().StartShake(0.5f, 40.0f - power * 30.0f, 100.0f * power);
 		nextCameraShake = game.GetFrameTime() + Math::randfloat(0.4f, 0.5f);
+	}
+
+	// Update sound
+	const float powerSoundThreshold = 0.1f;
+	if (power >= powerSoundThreshold) {
+		if (!blarghSound) {
+			blarghSound = new SoundEmitter("./sounds/IntenseLaser.mp3", position);
+			blarghSound->Play(50);
+		}
+
+		if (blarghSound) {
+			blarghSound->SetVolume(Math::lerpfloat(power, MinMax<float>(0.3f, 1.0f)));
+			blarghSound->SetPitch(Math::randfloat(0.5f, 0.7f) + power * 0.4f);
+		}
+	} else if (power < powerSoundThreshold && blarghSound) {
+		delete blarghSound;
+
+		blarghSound = nullptr;
 	}
 
 	// Update damage on other objects

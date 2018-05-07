@@ -21,6 +21,15 @@ void Bigfoot::OnSpawn() {
 	jumpTimer = secsPerJump;
 }
 
+void Bigfoot::OnDestroy() {
+	// Cleanup sounds
+	delete jumpSound;
+	delete landSound;
+
+	jumpSound = nullptr;
+	landSound = nullptr;
+}
+
 void Bigfoot::Update(float deltaTime) {
 	const float groundY = 2000.0f;
 
@@ -37,7 +46,7 @@ void Bigfoot::Update(float deltaTime) {
 
 	Object::Update(deltaTime);
 
-	// Don't die tho
+	// Avoid falling below a threshodl
 	if (position.y > groundY) {
 		position.y = groundY;
 		velocity.y = 0.0f;
@@ -54,6 +63,16 @@ void Bigfoot::Update(float deltaTime) {
 			Math::clamp((shakeMaxRange - Vec3::Distance(position, game.GetCamera().GetPosition())) / shakeMaxRange * shakeMaxMagnitude, 0.0f, shakeMaxMagnitude)
 				* (health / initialHealth));
 
+		// Play the land sound!
+		if (!landSound) {
+			landSound = new SoundEmitter("./sounds/BigfootLand.wav", position);
+		}
+
+		if (landSound) {
+			landSound->SetPitch(Math::lerpfloat(health / initialHealth, {2.0f, 1.0f}));
+			landSound->Play();
+		}
+
 		// Get ready for the next jump
 		jumpTimer = secsPerJump;
 		velocity.x = 0.0f;
@@ -68,7 +87,7 @@ void Bigfoot::Update(float deltaTime) {
 
 void Bigfoot::Jump() {
 	// Jump high enough to remain in the air for airTime
-	velocity.y = -game.GetGravity() * airTime * 0.5f;
+	velocity.y = -game.GetGravity() * (airTime * 0.5f);
 
 	// Jump toward the player
 	velocity.x = (game.GetPlayer().GetPosition().x - position.x) / airTime;
@@ -76,6 +95,16 @@ void Bigfoot::Jump() {
 	// Cap jump distance
 	if (abs(velocity.x * airTime) >= maxJumpDistance) {
 		velocity.x = Math::getsign(velocity.x) * maxJumpDistance / airTime;
+	}
+
+	// Play the jump sound
+	if (!jumpSound) {
+		jumpSound = new SoundEmitter("./sounds/BigfootJump.wav", position);
+	}
+
+	if (jumpSound) {
+		jumpSound->SetPitch(Math::lerpfloat(health / initialHealth, {2.0f, 1.0f}));
+		jumpSound->Play();
 	}
 }
 

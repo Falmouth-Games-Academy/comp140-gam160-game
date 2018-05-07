@@ -5,6 +5,7 @@
 class Bigfoot : public Object {
 public:
 	void OnSpawn() override;
+	void OnDestroy() override;
 
 	void Update(float deltaTime) override;
 
@@ -37,4 +38,8 @@ private:
 
 	// Initial health value
 	float32 initialHealth = 40.0f;
+
+	// Sound effects
+	class SoundEmitter* jumpSound = nullptr;
+	class SoundEmitter* landSound = nullptr;
 };

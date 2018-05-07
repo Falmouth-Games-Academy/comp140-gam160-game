@@ -52,47 +52,69 @@ void SoundManager::Shutdown() {
 #include "Game.h"
 
 void SoundManager::Update() {
-	// Play blargh sound (very much debug)
-	FMOD_RESULT result;
-	static FMOD::Sound* imASound;
-	static FMOD::Sound* recordedSound;
-	static FMOD::Channel* channel;
-
-	if (game.GetPlayer().GetLaserPower() > 0.0f) {
-		if (!imASound) {
-			result = system->createSound("./sounds/IntenseLaser.mp3", FMOD_2D, nullptr, &imASound);
-		}
-
-		if (!channel) {
-			system->playSound(imASound, nullptr, true, &channel);
-
-			if (channel) {
-				channel->setPosition(50, FMOD_TIMEUNIT_MS);
-				channel->setPaused(false);
-			}
-		}
-
-		if (channel) {
-			bool isPlaying = false;
-			channel->isPlaying(&isPlaying);
-			
-			if (isPlaying) {
-				channel->setVolume(game.GetPlayer().GetLaserPower());
-				channel->setPitch(Math::randfloat(0.9f, 1.1f));
-			}
-		}
-	} else {
-		if (channel) {
-			channel->stop();
-			channel = nullptr;
-		}
-	}
+	// Update FMOD system
+	system->update();
 }
 
 FMOD::System* SoundManager::GetSystem() {
 	return system;
 }
 
-SoundEmitter::SoundEmitter(const Vec3& position, float32 lifeTime, bool8 looping) {
+SoundEmitter::SoundEmitter(const char* soundFilename, const Vec3& position, float32 lifeTime, bool8 looping) {
+	// Load the sound file from the cache
+	FMOD_RESULT error = game.GetSound().GetSystem()->createSound(soundFilename, FMOD_2D, nullptr, &sound);
 
+	if (error != FMOD_OK) {
+		// Sound not successfully loaded
+		return;
+	}
+}
+
+SoundEmitter::~SoundEmitter() {
+	// Free FMOD resources
+	if (sound) {
+		sound->release();
+		sound = nullptr;
+	}
+
+	channel = nullptr;
+}
+
+void SoundEmitter::Play(uint32 startPosition) {
+	// Disable the active sound channel if there is one
+	Stop();
+
+	// Create the new sound channel
+	if (sound) {
+		game.GetSound().GetSystem()->playSound(sound, nullptr, false, &channel);
+		channel->setPitch(pitch);
+		channel->setVolume(volume);
+	}
+
+	// Play the sound channel (if it worked)
+	if (channel) {
+		channel->setPosition(startPosition, FMOD_TIMEUNIT_MS);
+		channel->setPaused(false);
+	}
+}
+
+void SoundEmitter::Stop() {
+	if (channel) {
+		channel->stop();
+		channel = nullptr;
+	}
+}
+
+void SoundEmitter::SetVolume(float value) {
+	// Some really basic wrapping here...
+	if (channel) {
+		channel->setVolume(this->volume = value);
+	}
+}
+
+void SoundEmitter::SetPitch(float pitch) {
+	// Do thewrap rap yo, this is encapsulated fo' sho, so you better know, I just realised I got sunburn on the back of my hands, darn!! Knew I shouldn't have gone outside!
+	if (channel) {
+		channel->setPitch(this->pitch = pitch);
+	}
 }
