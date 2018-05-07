@@ -40,7 +40,7 @@ void GameStateRecordSpeech::Update(float deltaTime) {
 	player.SetPosition(playerPosition);
 	player.SetVelocity(Vec3(0.0f, 0.0f, 0.0f));
 
-	if (game.GetInput().IsKeyBooped(SDLK_r)) {
+	if (game.CheckDebugPassword("record")) {
 		// Return to GameStatePlay
 		game.SetGameState<GameStatePlay>();
 	}
@@ -180,7 +180,7 @@ void GameStateRecordSpeech::Render() {
 }
 
 void GameStateRecordSpeech::RenderDebug() {
-	DebugStringBox* debug = game.GetDebug();
+	DebugStringBox* debug = game.GetDebugBox();
 
 	if (debug) {
 		FMOD::System* system = game.GetSound().GetSystem();

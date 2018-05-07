@@ -3,12 +3,11 @@
 
 void Bottle::OnSpawn() {
 	// Load sprite
-	sprite.LoadFrame("graphics/objects/bottles/Budweiser.png", Vec2(230.0f, 1522.0f), Vec2(0.3f, 0.3f));
+	sprite.LoadFrame("graphics/objects/bottles/Budweiser.png", Vec2(230.0f, 1522.0f), Vec2(defaultScale, defaultScale));
 
 	// Setup deafults
 	collisionBox = Rect2(Vec2(0.0f, 0.0f), Vec2(553.0f, 2184.0f));
-
-//	rotationSpeed = Math::randfloat(7.0f, 11.0f) * 360.0f * (float)Math::randsign(); // wheee
+	collisionFlags = SolidEnv | OverlapObjs;
 
 	isHurtable = true;
 	health = 1.0f;
@@ -16,10 +15,42 @@ void Bottle::OnSpawn() {
 
 void Bottle::Update(float deltaTime) {
 	Object::Update(deltaTime);
+
+	if (isOnGround) {
+		// Stop spinning
+		rotation = 0.0f;
+		rotationSpeed = 0.0f;
+
+		// Stop sliding!
+		velocity.x = 0.0f;
+	} else {
+		// Try and stay in view so the player can shoot it down
+		game.GetCamera().AddViewTarget(position, sprite.GetDimensions());
+	}
+
+	if (rotationSpeed) {
+		if (sprite.GetScale() < Vec2(defaultScale, defaultScale)) {
+			sprite.SetScale(sprite.GetScale() + Vec2(tossScaleRate * deltaTime, tossScaleRate * deltaTime));
+
+			if (sprite.GetScale() > Vec2(defaultScale, defaultScale)) {
+				sprite.SetScale(Vec2(defaultScale, defaultScale));
+			}
+		}
+	}
 }
 
 void Bottle::OnDeath() {
 	Smash();
+}
+
+void Bottle::Toss(Vec3 force) {
+	// Throw th ebottle spinning in a certain direction
+	velocity = force;
+
+	rotationSpeed = Math::randfloat(7.0f, 11.0f) * 360.0f * (float)Math::randsign(); // wheee
+
+	// Grow while spinning
+	//sprite.SetScale(Vec2(0.0f, 0.0f));
 }
 
 void Bottle::Smash() {

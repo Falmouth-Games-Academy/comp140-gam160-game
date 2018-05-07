@@ -1,5 +1,9 @@
 #include "Serial.h"
 
+#include <SetupAPI.h>
+#include <devguid.h>
+
+// Interfacing code sourced from Arduino website: https://playground.arduino.cc/Interfacing/CPPWindows
 Serial::Serial(const char *portName)
 {
     //We're not yet connected
@@ -149,4 +153,61 @@ bool Serial::IsConnected()
 {
     //Simply return the connection status
     return this->connected;
+}
+
+StaticString<128> Serial::GetMostLikelyArduinoPort() {
+	const int maxPortNameLength = 128;
+	const int maxFriendlyNameLength = 256;
+	const int maxHardwareIdLength = 128;
+
+	// Use essentially the boilerplate code to find connected COM devices and their friendly names
+	HDEVINFO devInfoSet = SetupDiGetClassDevs(&GUID_DEVCLASS_PORTS, nullptr, nullptr, DIGCF_PRESENT);
+	SP_DEVINFO_DATA devInfoData;
+
+	devInfoData.cbSize = sizeof(SP_DEVINFO_DATA);
+
+	// Iterate devices
+	for (DWORD memberIndex = 0; SetupDiEnumDeviceInfo(devInfoSet, memberIndex, &devInfoData); ++memberIndex) {
+		// Get port name registry key
+		HKEY hkey = SetupDiOpenDevRegKey(devInfoSet, &devInfoData, DICS_FLAG_GLOBAL, 0, DIREG_DEV, KEY_READ);
+
+		char portName[maxPortNameLength];
+		DWORD portNameLength = maxPortNameLength;
+
+		LONG returnCode = RegQueryValueEx(hkey, "PortName", nullptr, nullptr, (LPBYTE)portName, &portNameLength);
+
+		portName[portNameLength - 1] = '\0';
+		RegCloseKey(hkey);
+
+		if (returnCode != EXIT_SUCCESS) {
+			continue;
+		}
+
+		// Ignore parallel ports
+		if (strstr(portName, "LPT")) {
+			continue;
+		}
+
+		// Get the friendly name of the port device
+		char friendlyName[maxFriendlyNameLength];
+		DWORD friendlyNameLength = 0;
+
+		BOOL wasFriendlyNameFound = SetupDiGetDeviceRegistryProperty(devInfoSet, &devInfoData, SPDRP_FRIENDLYNAME, nullptr, (PBYTE)friendlyName, 
+																		maxFriendlyNameLength, &friendlyNameLength);
+
+		if (wasFriendlyNameFound && friendlyNameLength > 0) {
+			friendlyName[friendlyNameLength - 1] = '\0';
+		} else {
+			// We need this name to identify the device
+			continue;
+		}
+
+		// Check if this is maybe possibly meh who knows the Arduino:
+		if (!strncmp(friendlyName, "USB Serial Device", 17) || !strncmp(friendlyName, "Arduino", 7)) {
+			// OK this is totally 100% guaranteed NO-BS absolutely certainly the Arduino yep
+			return portName;
+		}
+	}
+
+	return "";
 }

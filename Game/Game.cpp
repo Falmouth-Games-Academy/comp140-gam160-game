@@ -1,6 +1,7 @@
 #include "Types.h"
 #include "Game.h"
 #include "GameStatePlay.h"
+#include "GameStateCalibrate.h"
 #include "SDL.h"
 
 #include "Graph.h"
@@ -11,11 +12,9 @@
 // The global variable... KILL IT WITH FIRE! LEST THE STUPID PROGRAMMERS BERAK SOMETHING!!!!
 Game game;
 
-const char* port = "COM6";
-
 void Game::Init() {
 	AllocConsole();
-	freopen("conout$","w",stdout);
+	freopen("conout$", "w", stdout);
 
 	printf("Init SDL\n");
 	SDL_Init(SDL_INIT_VIDEO);
@@ -38,12 +37,16 @@ void Game::Init() {
 	// Init sound engine
 	sound.Init();
 
+	// Try and discover the Arduino
+	StaticString<128> mostLikelyPort = Serial::GetMostLikelyArduinoPort();
+
 	// Initialise Arduino if possible
-	arduino = new Serial(port);
+	arduino = new Serial(mostLikelyPort);
 
 	if (arduino->IsConnected()) {
 		printf("Arduino init successful: Serial is served!\n");
-	} else {
+	}
+	else {
 		printf("Arduino init failed: Serial killer on the loose!\n");
 	}
 
@@ -91,12 +94,12 @@ void Game::Update(float deltaTime) {
 		activeGameState->Enter();
 	}
 
-	// Now do update the gameplay stuff!
+	// Now update the gameplay stuff!
 	if (activeGameState) {
 		// Call current game state's update function
 		activeGameState->Update(deltaTime);
 	}
-	
+
 	// Update the sound engine
 	sound.Update();
 
@@ -108,6 +111,11 @@ void Game::Update(float deltaTime) {
 
 			objects.RemoveByIndex(i--);
 		}
+	}
+
+	// Update debug box password
+	if (CheckDebugPassword("debug")) {
+		isDebugBoxEnabled = !isDebugBoxEnabled;
 	}
 }
 
@@ -124,7 +132,11 @@ void Game::Render() {
 
 	// Render the debug box
 	if (debugBox) {
-		debugBox->Render();
+		if (isDebugBoxEnabled) {
+			debugBox->Render();
+		} else {
+			debugBox->ClearStrings();
+		}
 	}
 
 	// Finish rendering
@@ -137,9 +149,10 @@ void Game::Run() {
 	// Initialise engine
 	Init();
 
-	SetGameState<GameStatePlay>();
+	SetGameState<GameStateCalibrate>();
 
 	// Load the level
+	printf("Loading the level...\n");
 	level.Load("./maps/default.hdf");
 
 	// Begin main loop!
@@ -180,9 +193,21 @@ void Game::Run() {
 					   sdlEvent.type == SDL_MOUSEMOTION || sdlEvent.type == SDL_MOUSEWHEEL) {
 				// Defer the input event to the input manager
 				input.OnInputEvent(sdlEvent);
+
+				// Add the key to the debug password if applicable
+				if (sdlEvent.type == SDL_KEYDOWN && (int)sdlEvent.key.keysym.sym >= SDLK_a && (int)sdlEvent.key.keysym.sym <= SDLK_z) {
+					for (int i = 1; i < debugPasswordLength; ++i) {
+						debugPassword[i - 1] = debugPassword[i];
+					}
+
+					debugPassword[debugPasswordLength - 1] = 'a' + (int)sdlEvent.key.keysym.sym - SDLK_a;
+
+					// Triggered
+					isDebugPasswordTriggered = true;
+				}
 			// File drop event
 			} else if (sdlEvent.type == SDL_DROPFILE) {
-				// Send to the input manager
+				// Send file path to the input manager
 				input.OnFileDropEvent(sdlEvent.drop.file);
 
 				// Cleanup
@@ -198,6 +223,9 @@ void Game::Run() {
 
 		// Timer update
 		lastPerformanceCounter = currentPerformanceCounter;
+
+		// Reset debug password trigger
+		isDebugPasswordTriggered = false;
 	}
 
 	// Game has ended
@@ -239,4 +267,12 @@ void Game::ClearObjects() {
 	objects.Clear();
 
 	player = nullptr; // todo: dangerous--player should always have a value right?
+}
+
+bool Game::CheckDebugPassword(const char* password, bool persistent) {
+	if (isDebugPasswordTriggered || persistent) {
+		return !strncmp(password, &debugPassword[debugPasswordLength - strlen(password)], strlen(password));
+	} else {
+		return false;
+	}
 }

@@ -203,6 +203,12 @@ public:
 		return Vec3(vecB.x * factor + x * (1.0f - factor), vecB.y * factor + y * (1.0f - factor), vecB.z * factor + z * (1.0f - factor));
 	}
 
+	// Returns a normalised version of this vector
+	Vec3 Normalised() const {
+		float length = sqrt(x * x + y * y + z * z);
+		return Vec3(x / length, y / length, z / length);
+	}
+
 	// Static functions
 	static Vec3 Lerp(const Vec3& vecA, const Vec3& vecB, float bFactor) {
 		return Vec3(vecB.x * bFactor + vecA.x * (1.0f - bFactor), vecB.y * bFactor + vecA.y * (1.0f - bFactor), vecB.z * bFactor + vecA.z * (1.0f - bFactor));
@@ -210,6 +216,14 @@ public:
 
 	static float Distance(const Vec3& vecA, const Vec3& vecB) {
 		return (float)sqrt((vecA.x - vecB.x) * (vecA.x - vecB.x) + (vecA.y - vecB.y) * (vecA.y - vecB.y) + (vecA.z - vecB.z) * (vecA.z - vecB.z));
+	}
+
+	static Vec3 Vec3::Cross(const Vec3& vecA, const Vec3& vecB) {
+		return Vec3(vecA.y * vecB.z - vecA.z * vecB.y, vecA.z * vecB.x - vecA.x * vecB.z, vecA.x * vecB.y - vecA.y * vecB.x);
+	}
+
+	static float Vec3::Dot(const Vec3& vecA, const Vec3& vecB) {
+		return vecA.x * vecB.x + vecA.y * vecB.y + vecA.z * vecB.z;
 	}
 
 	// Variables

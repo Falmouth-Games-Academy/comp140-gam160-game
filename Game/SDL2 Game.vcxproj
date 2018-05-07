@@ -93,7 +93,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;comdlg32.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;comdlg32.lib;fmod_vc.lib;SetupAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -121,7 +121,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;comdlg32.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;comdlg32.lib;fmod_vc.lib;SetupAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -144,11 +144,13 @@
   <ItemGroup>
     <ClCompile Include="Bigfoot.cpp" />
     <ClCompile Include="Bottle.cpp" />
+    <ClCompile Include="BottleThrower.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DataFile.cpp" />
     <ClCompile Include="DebugStringBox.cpp" />
     <ClCompile Include="FileDialog.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameStateCalibrate.cpp" />
     <ClCompile Include="GameStateDed.cpp" />
     <ClCompile Include="GameStateEditor.cpp" />
     <ClCompile Include="GameStatePlay.cpp" />
@@ -174,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bottle.h" />
+    <ClInclude Include="BottleThrower.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Containers.h" />
     <ClInclude Include="DataFile.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="FileDialog.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateCalibrate.h" />
     <ClInclude Include="GameStateDed.h" />
     <ClInclude Include="GameStateEditor.h" />
     <ClInclude Include="GameStatePlay.h" />

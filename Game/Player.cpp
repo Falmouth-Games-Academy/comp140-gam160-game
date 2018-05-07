@@ -70,7 +70,7 @@ void Hand::Render() {
 	game.GetCamera().RenderSprite(sprite, position + headBob, rotation, (direction == 1) ? true : false);
 
 	// Draw relevant debug info
-	if (DebugStringBox* debug = game.GetDebug()) {
+	if (DebugStringBox* debug = game.GetDebugBox()) {
 		debug->DrawString(StaticString<80>::FromFormat("Player speed: %.2f, %.2f, %.2f", velocity.x, velocity.y, velocity.z));
 		debug->DrawString(StaticString<80>::FromFormat("Player rotation: %.2f", rotation));
 		debug->DrawString(StaticString<80>::FromFormat("Mouth open angle: %.2f degrees", game.GetGesture().GetFlexAngle()));
@@ -78,42 +78,23 @@ void Hand::Render() {
 }
 
 void Hand::Update(float deltaTime) {
-	// Test damage
-	if (game.GetInput().IsKeyBooped(SDLK_h)) {
-		ChangeHealth(-1.0f);
-	}
-
 	// Update rotation
 	Vec3 currentAccel = game.GetGesture().GetAverageAccel(200, 0);
 	float lastRotation = rotation;
 
-	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs - 35.0f;
+	rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-currentAccel.y, -currentAccel.z)) * Math::degs;
 
 	// Todo maybe: powerslides
-
-
-	// Update flex sensor range
-	float32 flexAngle = game.GetGesture().GetFlexAngle();
-	const float32 angleLeeway = 8.0f;
-	
-	if (game.GetInput().IsKeyBooped(SDLK_r)) {
-		// Reset flex range
-		flexRange.max = flexRange.min = flexAngle;
-	}
-
-	if (flexAngle - 8.0f > flexRange.max) {
-		flexRange.max = flexAngle - 8.0f;
-	}
-
-	if (flexAngle + 8.0f < flexRange.min) {
-		flexRange.min = flexAngle + 8.0f;
-	}
-
 	// Update laser power
-	laserPower = 1.0f - Math::clamp(Math::lerpfloat(flexAngle, flexRange, MinMax<float32>(0.0f, 1.0f)), 0.0f, 1.0f);
+	laserPower = game.GetGesture().GetHandOpenness();
 
-	// Update mouse openness
-	sprite.SetCurrentFrame(Math::clampmax(Math::round(laserPower * sprite.GetNumFrames(), 1.0f), (float)(sprite.GetNumFrames() - 1)));
+	// Hack: Fix infinite power glitch
+	if (laserPower != laserPower) {
+		laserPower = 0.0f;
+	}
+
+	// Change sprite to open or closed
+	sprite.SetCurrentFrame(Math::round(laserPower * (sprite.GetNumFrames() - 1), 1.0f));
 
 	// Do gesture movement
 	bool doFriction = false;
@@ -126,6 +107,9 @@ void Hand::Update(float deltaTime) {
 	const float minAcceleration = 2000.0f, maxAcceleration = 5000.0f;
 	const float minBounceAcceleration = minBounceSpeed, maxBounceAcceleration = 200000.0f;
 	const float minBounceAmplitude = 2000.0f;
+	const float bounceTiltAmpThreshold = 4000.0f; // confusing, but this is the minimum bounce amp before the player's angle is calculated using the bounces
+	const int bounceTiltNumThreshold = 3;
+	const float jumpAmplitude = 18000.0f;
 
 	// Bounce along!
 	GestureManager::BounceInfo bounceInfo = game.GetGesture().CalculateBounceInfo(300, 0);
@@ -141,8 +125,8 @@ void Hand::Update(float deltaTime) {
 
 		acceleration = Math::lerpfloat(bounceSpeed, MinMax<float>(minBounceAcceleration, maxBounceAcceleration), MinMax<float>(minAcceleration, maxAcceleration));
 
-		if (bounceInfo.numBounces > 1) {
-			rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs - 35.0f;
+		if (bounceInfo.numBounces > bounceTiltNumThreshold && bounceInfo.averageBounceAmplitude >= bounceTiltAmpThreshold) {
+			rotation = Vec2::Direction(Vec2(0.0f, 0.0f), Vec2(-bounceInfo.lastCentralForce.y, -bounceInfo.lastCentralForce.z)) * Math::degs;
 		}
 	}
 
@@ -152,17 +136,17 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Jump if an unusually large amount of force was applied in a short time
-	if (bounceInfo.maxBounceAmplitude >= 18000.0f) {
+	if (bounceInfo.maxBounceAmplitude >= jumpAmplitude) {
 		doJump = true;
 	}
 
 	// Draw debug stuff?
-	if (game.GetDebug()) {
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
+	if (game.GetDebugBox()) {
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Bounce Num: %i   Hz: %.2f   Amp: %.2f", 
 			bounceInfo.numBounces, bounceInfo.averageBounceHz, bounceInfo.averageBounceAmplitude));
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Bounce speed: %.2f", bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude));
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Player target speed: %.2f  accel: %.2f", targetSpeed, acceleration));
-		game.GetDebug()->DrawString(StaticString<80>::FromFormat("Amplitude deviation: %.2f", bounceInfo.maxBounceAmplitude - bounceInfo.averageBounceAmplitude));
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Bounce speed: %.2f", bounceInfo.averageBounceHz * bounceInfo.averageBounceAmplitude));
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Player target speed: %.2f  accel: %.2f", targetSpeed, acceleration));
+		game.GetDebugBox()->DrawString(StaticString<80>::FromFormat("Amplitude deviation: %.2f", bounceInfo.maxBounceAmplitude - bounceInfo.averageBounceAmplitude));
 	}
 
 	if (abs(velocity.x) < abs(targetSpeed)) {
@@ -172,7 +156,7 @@ void Hand::Update(float deltaTime) {
 	}
 
 	// Bob the head
-	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.01f;
+	headBob = Vec2(0.0f, -1.0f) * (gesture.GetAccelAtTime(0).yz.Length() - 9800.0f) * 0.03f;
 
 	// Jump
 	if (isOnGround && (game.GetInput().IsKeyBooped(SDLK_SPACE) || doJump)) {

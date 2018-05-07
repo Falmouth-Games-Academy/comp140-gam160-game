@@ -28,7 +28,7 @@ void GameStateDed::Render() {
 	if (respawnTimer <= defaultRespawnTime - 1.0f) {
 		Dimensions2 screenSize = game.GetRenderer().GetScreenSize();
 
-		game.GetRenderer().RenderText("Ded.", screenSize.width / 2, screenSize.height / 2, true, true);
+		game.GetRenderer().RenderText("Ded.", screenSize.width / 2, screenSize.height / 2, Colour::Red(), true, true);
 	}
 }
 

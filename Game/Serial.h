@@ -1,7 +1,9 @@
 #pragma once
 
-// Interfacing code sourced from: https://playground.arduino.cc/Interfacing/CPPWindows
+// Some interfacing code sourced from: https://playground.arduino.cc/Interfacing/CPPWindows
 #define ARDUINO_WAIT_TIME 2000
+
+#include "String.h"
 
 #include <windows.h>
 #include <stdio.h>
@@ -37,5 +39,6 @@ class Serial
         //Check if we are actually connected
         bool IsConnected();
 
-
+		// Searches ports for the one most likely to have the Arduino
+		static StaticString<128> GetMostLikelyArduinoPort();
 };

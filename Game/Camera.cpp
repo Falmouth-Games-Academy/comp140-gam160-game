@@ -6,25 +6,11 @@ void Camera::Update(float deltaTime) {
 	SDL_Rect renderViewport;
 	SDL_RenderGetViewport(game.GetSDLRenderer(), &renderViewport);
 
-	// Update the camera viewport size based on scaling etc
-	viewBox.size = Vec2((float)renderViewport.w, (float)renderViewport.h);
-	viewBox.position = position.xy - viewBox.size * 0.5f;
-
-	// Move the camera gradually to the target point
-	position += (targetPosition - position) * 10.0f * deltaTime;
-	
-	// Follow the player
-	if (isFollowingPlayer) {
-		playerFollowOffset.xy = viewBox.size * Vec2(-0.3f, -0.4f);
-
-		position = game.GetPlayer().GetPosition() + playerFollowOffset;
-	}
-
 	// Apply shake effect
 	if (shakeRate >= 0.002f /* no division by 0 */ && shakeTimer > 0.0f) {
 		Vec3 lastShakeOffset = shakeOffset;
 		float shakeMagnitude = shakeInitialMagnitude * shakeTimer / shakeInitialTimer;
-		
+
 		// Determine the current shake offest
 		shakeOffset.y = sin((shakeInitialTimer - shakeTimer) * Math::pi * 2.0f * shakeRate) * shakeMagnitude;
 
@@ -33,14 +19,33 @@ void Camera::Update(float deltaTime) {
 
 		// Count down the shake timer
 		shakeTimer -= deltaTime;
-	} else {
+	}
+	else {
 		shakeOffset = Vec3(0.0f, 0.0f, 0.0f);
 	}
 
+	// Update the camera viewport size based on scaling etc
+	viewBox.size = Vec2((float)renderViewport.w, (float)renderViewport.h);
+	viewBox.position = position.xy - viewBox.size * 0.5f;
+
 	// Zoom in/out
-	if (game.GetInput().IsKeyDown(SDLK_c) && game.GetInput().GetMouseScroll()) {
+	if (game.GetInput().IsKeyDown(SDLK_z) && game.GetInput().GetMouseScroll()) {
 		playerFollowOffset.z += game.GetInput().GetMouseScroll() * 0.5f;
 	}
+
+	// Move the camera gradually to the target point
+	position += (targetPosition - position) * 10.0f * deltaTime;
+
+	// Follow the player for the next frame
+	// This is done here because other objects may change the view zoom with AddViewTarget
+	if (isFollowingPlayer) {
+		playerFollowOffset.xy = viewBox.size * Vec2(-0.3f, -0.4f) * (-playerFollowOffset.z);
+
+		// Expand view bounds
+		GoToPosition(game.GetPlayer().GetPosition() + playerFollowOffset);
+	}
+
+	game.GetDebugBox()->DrawString(StaticString<180>::FromFormat("Cam %.2f %.2f %.2f", position.x, position.y, position.z));
 }
 
 void Camera::Render() {
@@ -77,45 +82,54 @@ void Camera::FlushLayeredRenders() {
 		if (lastMinorItem != -1) {
 			RenderCall* call = renderCalls[lastMinorItem];
 
-			if (!call->texture) {
-				continue;
+			if (call->type == RenderCall::Sprite) {
+				if (!call->texture) {
+					continue;
+				}
+
+				// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
+				SDL_Point sdlRotationOrigin = {(int)call->rotationOrigin.x, (int)call->rotationOrigin.y};
+				SDL_Rect sdlDestRect = {(int)call->destRect.x, (int)call->destRect.y, (int)call->destRect.width, (int)call->destRect.height};
+
+				// Setup flip flags
+				SDL_RendererFlip sdlFlip = SDL_FLIP_NONE;
+
+				if (call->flipFlags == FlipFlags::Horizontal) {
+					sdlFlip = SDL_FLIP_HORIZONTAL;
+				} else if (call->flipFlags == FlipFlags::Vertical) {
+					sdlFlip = SDL_FLIP_VERTICAL;
+				} else if (call->flipFlags == (FlipFlags::Vertical | FlipFlags::Horizontal)) {
+					call->rotation += 180.0f; // This little detail might be why SDL doesn't have SDL_FLIP_BOTH
+				}
+
+				// Setup render colour blend
+				SDL_SetTextureColorMod(const_cast<SDL_Texture*>(call->texture), call->colourBlend.r, call->colourBlend.g, call->colourBlend.b);
+
+				// If a sprite region was specified, draw the sprite with wrapping enabled
+				if (!call->useFullRegion) {
+					SDL_Rect sdlSourceRect = {(int)call->region.x, (int)call->region.y, (int)call->region.width, (int)call->region.height};
+
+					sdlDestRect.w -= sdlSourceRect.x;
+					sdlDestRect.h -= sdlSourceRect.y;
+					// Todo make this actually work
+
+					SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), &sdlSourceRect, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+				} else {
+					// Otherwise draw it normally
+					SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), nullptr, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
+				}
+
+				// Update major item
+				lastMajorDepth = lastMinorDepth;
+				lastMajorItem = lastMinorItem;
+			} else if (call->type == RenderCall::Text) {
+				Vec3 renderTextPoint = game.GetCamera().WorldToScreen(call->textPosition);
+
+				if (renderTextPoint.xy >= Vec2(0.0f, 0.0f) &&
+					renderTextPoint.x < game.GetRenderer().GetScreenSize().width && renderTextPoint.y < game.GetRenderer().GetScreenSize().height) {
+					game.GetRenderer().RenderText(call->textContents, renderTextPoint.x, renderTextPoint.y, Colour::Black(), call->textIsCentered, call->textIsLarge);
+				}
 			}
-
-			// Render the sprite texture with positioning, scaling, Z depth scaling, and rotation around an origin
-			SDL_Point sdlRotationOrigin = {(int)call->rotationOrigin.x, (int)call->rotationOrigin.y};
-			SDL_Rect sdlDestRect = {(int)call->destRect.x, (int)call->destRect.y, (int)call->destRect.width, (int)call->destRect.height};
-
-			// Setup flip flags
-			SDL_RendererFlip sdlFlip = SDL_FLIP_NONE;
-
-			if (call->flipFlags == FlipFlags::Horizontal) {
-				sdlFlip = SDL_FLIP_HORIZONTAL;
-			} else if (call->flipFlags == FlipFlags::Vertical) {
-				sdlFlip = SDL_FLIP_VERTICAL;
-			} else if (call->flipFlags == (FlipFlags::Vertical | FlipFlags::Horizontal)) {
-				call->rotation += 180.0f; // This little detail might be why SDL doesn't have SDL_FLIP_BOTH
-			}
-
-			// Setup render colour blend
-			SDL_SetTextureColorMod(const_cast<SDL_Texture*>(call->texture), call->colourBlend.r, call->colourBlend.g, call->colourBlend.b);
-
-			// If a sprite region was specified, draw the sprite with wrapping enabled
-			if (!call->useFullRegion) {
-				SDL_Rect sdlSourceRect = {(int)call->region.x, (int)call->region.y, (int)call->region.width, (int)call->region.height};
-
-				sdlDestRect.w -= sdlSourceRect.x;
-				sdlDestRect.h -= sdlSourceRect.y;
-				// Todo make this actually work
-
-				SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), &sdlSourceRect, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
-			} else {
-				// Otherwise draw it normally
-				SDL_RenderCopyEx(game.GetSDLRenderer(), const_cast<SDL_Texture*>(call->texture), nullptr, &sdlDestRect, call->rotation, &sdlRotationOrigin, sdlFlip);
-			}
-
-			// Update major item
-			lastMajorDepth = lastMinorDepth;
-			lastMajorItem = lastMinorItem;
 		}
 	}
 
@@ -137,7 +151,7 @@ void Camera::SetPosition(const Vec3& position) {
 }
 
 void Camera::GoToPosition(const Vec3& position, float speed) {
-	this->targetPosition = position;
+	targetPosition = position;
 }
 
 const Vec3& Camera::GetTargetPosition() const {
@@ -148,12 +162,35 @@ const Vec2& Camera::GetViewSize() const {
 	return viewBox.size;
 }
 
+const Vec2 Camera::GetViewSize(float z) const {
+	return viewBox.size * (z - position.z);
+}
+
 void Camera::SetZoomIntoCentre(float targetZoom) {
 	position.z = targetZoom;
 }
 
 void Camera::SetFollowingPlayer(bool isFollowingPlayer) {
 	this->isFollowingPlayer = isFollowingPlayer;
+}
+
+void Camera::AddViewTarget(const Vec3& target, const Vec2& targetSize) {
+	// Target position = position + (target_.xy - position.xy) / (target_.z - position.z)
+	// The Z position required by this camera to fit the target in the view
+	float potentialZByX = 1.0f - (abs(target.x - targetPosition.x) + abs(targetSize.x)) / viewBox.size.x * 2.0f;
+	float potentialZByY = 1.0f - (abs(target.y - targetPosition.y) + abs(targetSize.y)) / viewBox.size.y * 2.0f;
+
+	float smallestZ = potentialZByX < potentialZByY ? potentialZByX : potentialZByY;
+
+	if (smallestZ < minZ) {
+		// Too far zoomed out--don't bother trying to fit this in the view
+		return;
+	}
+
+	if (smallestZ < targetPosition.z) {
+		// Zoom out
+		targetPosition.z = smallestZ;
+	}
 }
 
 void Camera::StartShake(float32 time, float32 rate, float32 magnitude) {
@@ -224,6 +261,10 @@ void Camera::RenderRectangle(const Vec3& position, const Vec2& size, Colour colo
 
 	SDL_SetRenderDrawColor(game.GetSDLRenderer(), colour.r, colour.g, colour.b, colour.a);
 	SDL_RenderDrawRect(game.GetSDLRenderer(), &sdlDestRect);
+}
+
+void Camera::RenderText(const char* string, const Vec3& position, const Colour& colour, bool isCentered, bool isLarge) {
+	InsertNewRenderCall(new RenderCall(position, string, isCentered, isLarge));
 }
 
 Vec3 Camera::ScreenToWorld(const Vec3& screenPoint) const {

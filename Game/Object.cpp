@@ -72,7 +72,11 @@ void Object::Update(float deltaTime) {
 }
 
 void Object::Render() {
-	game.GetCamera().RenderSprite(sprite, position, rotation);
+	if (sprite.GetCurrentFrame() && sprite.GetCurrentFrame()->GetScale() > Vec2(0.0f, 0.0f)) {
+		game.GetCamera().RenderSprite(sprite, position, rotation);
+	} else if (game.GetGameState() && game.GetGameState()->GetType() == GameStateType::Editor && editorLabel[0]) {
+		game.GetCamera().RenderText(editorLabel, position);
+	}
 }
 
 void Object::OnDamage() {
@@ -92,7 +96,8 @@ void Object::RenderCollisionBox() const {
 
 bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 	// A collision can only happen if both objects are solid
-	if (!((collisionFlags & (SolidObjs | OverlapObjs)) && (otherObject.collisionFlags & (SolidObjs | OverlapObjs)))) {
+	if (!((collisionFlags & (SolidObjs | OverlapObjs)) && (otherObject.collisionFlags & (SolidObjs | OverlapObjs))) && 
+		!((collisionFlags & (SolidEnv | OverlapEnv)) && otherObject.GetType() == Object::BackgroundLayerType && otherObject.collisionFlags)) {
 		return false;
 	}
 
@@ -127,7 +132,8 @@ bool Object::IsColliding(const Object& otherObject, Bounds2* borderOffsets) {
 		return false;
 	} else {
 		if (borderOffsets) {
-			*borderOffsets = Bounds2(otherR - (selfL - 0.1f), otherB - (selfT - 0.1f), otherL - (selfR + 0.1f), otherT - (selfB + 0.1f)); // the 0.1fs are for precision
+			*borderOffsets = Bounds2(otherR - (selfL - 0.001f), otherB - (selfT - 0.001f), otherL - (selfR + 0.001f), otherT - (selfB + 0.001f));
+			 // the 0.1fs are for glorious hacky precision
 		}
 
 		return true;
@@ -259,6 +265,7 @@ bool Object::Move(const Vec3& originalMoveOffset, bool teleport) {
 #include "Object.h"
 #include "Bigfoot.h"
 #include "Goose.h"
+#include "BottleThrower.h"
 
 Object::SpawnerDatabase::SpawnerDatabase() {
 	// Type definitions go here!
@@ -270,4 +277,5 @@ Object::SpawnerDatabase::SpawnerDatabase() {
 	SET_SPAWNER(Hand);
 	SET_SPAWNER(Bigfoot);
 	SET_SPAWNER(Goose);
+	SET_SPAWNER(BottleThrower);
 }

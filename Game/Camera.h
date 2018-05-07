@@ -1,6 +1,7 @@
 #pragma once
 #include "Math.h"
 #include "Containers.h"
+#include "String.h"
 
 namespace FlipFlags {
 	const uint32
@@ -27,14 +28,21 @@ public:
 	// Gets the position the camera is moving towards
 	const Vec3& GetTargetPosition() const;
 
-	// Gets the size of the viewport
+	// Gets the size of the viewport at a distance of 1.0f
 	const Vec2& GetViewSize() const;
 	
+	// Gets the size of the viewport at an arbitrary Z value
+	const Vec2 GetViewSize(float z) const;
+
+public:
 	// Sets the camera's current zoom, homing in on the centre of view
 	void SetZoomIntoCentre(float targetZoom);
 
 	// Set whether or not the camera follows the player
 	void SetFollowingPlayer(bool isFollowingPlayer);
+
+	// Adds a view target. This widens the view so you can see additional objects in the scene if they're close enough. Reset every frame.
+	void AddViewTarget(const Vec3& targetPosition, const Vec2& targetSize);
 
 	/* Starts a camera shake (cancelling out any previous shake operation)
 		@param time: Time, in seconds, that the shake will last
@@ -43,20 +51,8 @@ public:
 	*/
 	void StartShake(float32 time, float32 rate, float32 magnitude);
 
+public:
 	/* Note: Camera render functions work in world space! This depends entirely on the location of the camera, including its Z position */
-	/* Renders a sprite at a given position in the world
-		@param position: origin position to render the sprite at
-		@param size: Size of the sprite
-		@param rotation: Rotation of the sprite, in clockwise degrees
-		@param rotationOrigin: Origin of rotation of the sprite, in pixels
-		@param hFlip: Whether the sprite will be flipped horizontally
-		@param vFlip: Whether the sprite will be flipped vertically
-	*/
-	/*void RenderSprite(struct SDL_Texture* texture,
-		const Vec3& position, const Vec2& size, 
-		float rotation = 0.0f, const Vec2& rotationOrigin = Vec2(0.0f, 0.0f), 
-		bool hFlip = false, bool vFlip = false);*/
-
 	/* Renders a sprite at a given position in the world
 		@param sprite: The sprite to render
 		@param position: The position to render the sprite at
@@ -95,13 +91,21 @@ public:
 	*/
 	void RenderRectangle(const Vec3& position, const Vec2& size, Colour colour);
 
+	/* Renders a text at a given position in the world 
+		@param string: Text to render
+		@param position: Position of the text to render
+		@param colour: Colour of the text
+		@param isCentered: Whether the text is centered on the position given 
+		@param isLarge: Whether the text uses the large font 
+	*/
+	void RenderText(const char* string, const Vec3& position, const Colour& colour = Colour::Black(), bool isCentered = false, bool isLarge = false);
+
+public:
 	// Converts a pixel relative to a window to a world coordinate and returns the result
 	Vec3 ScreenToWorld(const Vec3& screenPoint) const;
 
 	// Converts a pixel from a world coordinate to a window coordinate and returns the result
 	Vec3 WorldToScreen(const Vec3& worldPoint) const;
-
-	const float scalePerZ = 1.0f;
 
 private:
 	/* Inserts a render call into the ordered render call list.
@@ -125,7 +129,7 @@ private:
 	bool8 isFollowingPlayer;
 
 	// The offset of the camera relative to the player, when following
-	Vec3 playerFollowOffset = (Vec3(0.0f, 0.0f, -1.5f));
+	Vec3 playerFollowOffset = (Vec3(0.0f, 0.0f, -3.0f));
 
 	// Shake effect stuff
 	// Current time, in secs, until the shake is finished
@@ -143,14 +147,28 @@ private:
 
 	// List of depth-ordered render calls
 	Array<struct RenderCall*> renderCalls;
+
+private:
+	// Constants
+	const float scalePerZ = 1.0f;
+
+	// Min and maximum zooms
+	const float minZ = -6.0f;
+	const float maxZ = 10.0f;
 };
 
 struct RenderCall {
-	// Default constructor
+	// Type of render call
+	enum Type : uint8 {
+		Sprite,
+		Text
+	};
+
+	// Sprite draw constructor
 	RenderCall(float32 depth_, const struct SDL_Texture* texture_, const Rect2* srcRect_, const Rect2& destRect_, const float rotation_, const Vec2& rotationOrigin_, uint32 flipFlags_, 
 		const Colour& colourBlend_) : 
 			depth(depth_), texture(texture_), destRect(destRect_), rotation(rotation_), flipFlags(flipFlags_), rotationOrigin(rotationOrigin_), 
-			colourBlend(colourBlend_) {
+			colourBlend(colourBlend_), type(Sprite) {
 		if (srcRect_) {
 			srcRect = *srcRect_;
 			useFullRegion = false;
@@ -158,12 +176,22 @@ struct RenderCall {
 			useFullRegion = true;
 		}
 	}
+	
+	// Text draw constructor
+	RenderCall(const Vec3& position, const char* text, bool isCentered, bool isLarge) : textPosition(position), textContents(text), textIsLarge(isLarge), textIsCentered(isCentered), 
+			type(Text) {
+		depth = position.z;
+	}
 
-	float32 depth;
+	// Text draw constructor
 
 	// Parameters for the draw call
+	Type type;
+
 	const struct SDL_Texture* texture;
 	Rect2 srcRect, destRect;
+
+	float32 depth;
 
 	float32 rotation;
 	Vec2 rotationOrigin;
@@ -174,4 +202,11 @@ struct RenderCall {
 
 	Rect2 region;
 	bool8 useFullRegion;
+
+	StaticString<256> textContents;
+
+	Vec3 textPosition;
+
+	bool8 textIsLarge;
+	bool8 textIsCentered;
 };

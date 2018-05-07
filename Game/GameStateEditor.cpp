@@ -15,7 +15,7 @@ void GameStateEditor::Update(float deltaTime) {
 	UpdateSelections();
 
 	// Switch back to gameplay if the editor button was pressed
-	if (game.GetInput().IsKeyBooped(SDLK_e)) {
+	if (game.CheckDebugPassword("edit")) {
 		game.SetGameState<GameStatePlay>();
 	}
 }
@@ -45,7 +45,7 @@ void GameStateEditor::Render() {
 	//game.GetCamera().RenderRectangle(start3D, (end3D - start3D).xy, clrRed);
 
 	// Draw debug information
-	DebugStringBox* debug = game.GetDebug();
+	DebugStringBox* debug = game.GetDebugBox();
 	Vec3 cameraPosition = game.GetCamera().GetPosition();
 
 	if (debug) {
@@ -251,9 +251,17 @@ void GameStateEditor::UpdateSelections() {
 
 		// Look for objects to select
 		for (Object* obj : game.GetObjects()) {
+			Vec2 dimensions = obj->GetSprite().GetDimensions();
+
+			if (dimensions <= Vec2(1.0f, 1.0f) && obj->GetEditorLabel()) {
+				// Invisible objects get a little border around them!
+				dimensions = Vec2(50.0f, 50.0f);
+			}
+
+			// Check that the object is under the mouse
 			if (game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin()).xy <= cursorScreenPosition.xy && 
-					game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin() + obj->GetSprite().GetDimensions()).xy >= cursorScreenPosition.xy) {
-				// Select this object, if it's the closest or only one under the mouse
+					game.GetCamera().WorldToScreen(obj->GetPosition() - obj->GetSprite().GetOrigin() + dimensions).xy >= cursorScreenPosition.xy) {
+				// Select this object, if it's the closest
 				if (selectedItems.GetNum() == 0 || (selectedItems[0] && selectedItems[0]->GetPosition().z > obj->GetPosition().z)) {
 					selectedItems.Set({ obj });
 				}
