@@ -10,6 +10,8 @@ Place FMOD includes in Game/fmod_include
 Place SDL in Game/SDL-2.0.7  
 
 # Architecture overview
+![UML diagram](http://github.com/LXShades/comp140-gam160-game/docs/architecture.png)
+
 See the code, heavily commented where appropriate, for further details. The following classes are fundamental to the engine and gameplay. This list is non-exhaustive.  
 
 ## Game
@@ -29,6 +31,9 @@ Handles the rendering of text and rectangles. Due to limited code refactoring ti
 
 ## InputManager
 Handles the input from the keyboard and mouse.
+
+## GestureManager
+Handles the conversion of Arduino or keyboard inputs into player gesture data (e.g. bounce movement, jumps). (todo: full translation--some gestures are still managed by the Player class)
 
 ## Serial
 Handles the input from the Arduino. Todo: Rename to ArduinoManager?
