@@ -182,7 +182,7 @@ void Camera::AddViewTarget(const Vec3& target, const Vec2& targetSize) {
 
 	float smallestZ = potentialZByX < potentialZByY ? potentialZByX : potentialZByY;
 
-	if (smallestZ < minZ) {
+	if (smallestZ < -7.0f) {
 		// Too far zoomed out--don't bother trying to fit this in the view
 		return;
 	}

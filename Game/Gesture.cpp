@@ -144,7 +144,8 @@ void GestureManager::UpdateKeyboardInput() {
 	if (game.GetInput().IsMouseDown(InputManager::LeftButton)) {
 		Vec3 playerScreenPosition = game.GetCamera().WorldToScreen(game.GetPlayer().GetPosition());
 
-		nextForce = Vec3(0.0f, (game.GetInput().GetMousePosition().x - playerScreenPosition.x) * 30, (game.GetInput().GetMousePosition().y - playerScreenPosition.y) * 30);
+		nextForce.x = 0.0f;
+		nextForce.yz = (game.GetInput().GetMousePosition() - game.GetCamera().GetViewSize() * 0.5f) * 50.0f;
 	}
 
 	// Append the force
