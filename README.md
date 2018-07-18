@@ -10,7 +10,7 @@ Place FMOD includes in Game/fmod_include
 Place SDL in Game/SDL-2.0.7  
 
 # Architecture overview
-![UML diagram](http://github.com/LXShades/comp140-gam160-game/docs/architecture.png)
+![UML diagram](https://raw.githubusercontent.com/LXShades/comp140-gam160-game/master/docs/architecture.png)
 
 See the code, heavily commented where appropriate, for further details. The following classes are fundamental to the engine and gameplay. This list is non-exhaustive.  
 
