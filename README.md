@@ -16,3 +16,38 @@ The core mechanics of the cocktail maker game will be opening the shaker to add 
 Burgun Keith. 'Understanding Balance in Video Games'. Available at: https://www.gamasutra.com/view/feature/134768/understanding_balance_in_video_.php. [Accessed Feb 7,].
 
 COUTURE, Joel. 'Alt.Ctrl.GDC Showcase: Yo, Bartender'. Available at: /view/news/313808/AltCtrlGDC_Showcase_Yo_Bartender.php. [Accessed Feb 7,].
+
+# GAM160 Video Game Controller Proposal
+
+# Research
+Inspiration for my controller has mainly come from the unique controllers at the alt ctrl GDC event in 2017 and 2018. One of the controllers that has inspired me is Yo bartender which is a game where the player makes cocktails depending on the customer’s order and then serves the drink to the customer using the cup like joystick. The controller allows you to physically grab and pour different bottles into a glass (Couture 2018). What I like about the game is that you can manually pour them rather than press a button. In addition, I like that you can control which direction to slide the glass so that it reaches the customer. However, (though it’s a nit-pick) I feel like the size of the controller is too big since it makes it less portable. However, the size and placement of the controls are this way to make it feel like you’re at a bar. I believe that I can use the controller’s abilities to select different drinks and move the bottles and glass for my controller. Figure 1 below is a picture of Yo Bartender.
+ 
+![Yo Bartender]()
+Fig1: COUTURE, Joel. 2018. Yo Bartender
+
+Another game that has inspired me is called Space Box (see figure 2) that is controlled by the player sitting in a box and tilting it to make the space ship move and direct it through space. I like it because it can allow adults to relive, and for children to experience, their imagination and the fun they had when playing (Champlain 2017). The way the controller measures the angle the player tilts to change the position of the ship and use the menu in Space Box was an inspiration for my controller. This can be used for my game so that the virtual shaker will tilt the depending on the angle of the controller and thus allow the player to pour the drink they make. As well as that, like Space Box, I hope that my game will make the player feel like they’re a part of it. 
+ 
+Fig2: Champlain emc. 2017. Space Box
+When looking at controllers for popular consoles, most of them are designed to be small so that they can be held by two or one hand with ease (see figures 3 and 4). I intend to make my controller like this as well so that it can be held easily and comfortably. In addition, making the controller small can make it commercially viable.    
+Fig3: Gurwin, Gabe. 2019. Xbox Controller   Fig4: Honorof marshal. 2017. PS4 Controller
+
+# Control Description
+The controller will be a converted cocktail shaker and will consist of up to seven input devices. Six being buttons which are covered by pieces of the shaker and the seventh being a gyroscope/accelerometer module (BerryIMU). The controller could potentially have an output which would be a strip of LEDs (Neopixels). The area where the Neopixels could be placed depends on whether the controller will be ambidextrous or specifically right handed. If it’s meant to only be held by the player’s right hand, then the Neopixel could be placed on the side of the shaker from bottom to top. Otherwise if the controller is created to be ambidextrous then the Neopixels could be placed around the lid of the shaker. The number of lit LEDs will depend on how many layers of the drink have been added. One of the buttons will open and close the lid of the shaker and the other five will be for the player’s left or right fingers. The buttons will be on the side of the shaker where the player’s finger tips will be. This is so that the player can hold onto the shaker normally. However, the button that opens the lid will be next to the thumb or on top of the shaker. The controller is meant to be held by one hand, mainly to make the player feel like they are a bar tender. The BerryIMU will be inside of the shaker and will be able to measure its angle, position and speed, allowing the player to shake the cocktail. The design sketch for my controller is shown below in figure 5.
+
+# Design
+ 
+Fig5: Oates, Max. 2019. Controller Design
+Bibliography
+Champlain emc. Space Box – The Emergent Media Centre’s 10 year anniver-sary. WordPress.
+COUTURE, Joel. 2018. 'Alt.Ctrl.GDC Showcase: Yo, Bartender'. Available at: /view/news/313808/AltCtrlGDC_Showcase_Yo_Bartender.php. [Accessed Feb 7,].
+
+List of Figures
+Fig1: COUTURE, Joel. 2018. Yo Bartender [Online Image] Available at: 
+https://www.gamasutra.com/view/news/313808/AltCtrlGDC_Showcase_Yo_Bartender.php
+ Fig2: Champlain, emc. 2017. Space Box [Online Image] Available at:
+http://ten.emergentmediacenter.com/2016/12/02/space-box/
+Fig3: Gurwin, Gabe. 2019. Xbox Controller [Online Image] Available at:
+https://www.digitaltrends.com/gaming/xbox-one-controller-battery-life-tips/
+Fig4: Honorof, Marshal. 2017. PS4 Controller [Online Image] Available at:
+https://www.tomsguide.com/us/connect-ps4-controller-pc,news-17952.html
+
