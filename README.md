@@ -44,6 +44,7 @@ The controller will be a converted cocktail shaker and will consist of up to sev
 # Design
  
  
+ ![](ShakerDesign3.jpg)
  
 Fig5: Oates, Max. 2019. Controller Design
 
