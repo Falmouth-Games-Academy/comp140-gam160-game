@@ -55,11 +55,12 @@ The controller will be a converted cocktail shaker and will consist of up to sev
  
 Fig6: Oates, Max. 2019. Controller Design
 
-Bibliography
+# Bibliography
 Champlain emc. Space Box – The Emergent Media Centre’s 10 year anniver-sary. WordPress.
 COUTURE, Joel. 2018. 'Alt.Ctrl.GDC Showcase: Yo, Bartender'. Available at: /view/news/313808/AltCtrlGDC_Showcase_Yo_Bartender.php. [Accessed Feb 7,].
+Larsen Dyhr Rasmus. 2016a. 'Overbrewed – Shake that Button'. Word Press [Online]. Available at: https://shakethatbutton.com/overbrewed/. [Accessed Feb 14,].
 
-List of Figures
+# List of Figures
 Fig1: COUTURE, Joel. 2018. Yo Bartender [Online Image] Available at: 
 https://www.gamasutra.com/view/news/313808/AltCtrlGDC_Showcase_Yo_Bartender.php
  Fig2: Champlain, emc. 2017. Space Box [Online Image] Available at:
@@ -68,4 +69,6 @@ Fig3: Gurwin, Gabe. 2019. Xbox Controller [Online Image] Available at:
 https://www.digitaltrends.com/gaming/xbox-one-controller-battery-life-tips/
 Fig4: Honorof, Marshal. 2017. PS4 Controller [Online Image] Available at:
 https://www.tomsguide.com/us/connect-ps4-controller-pc,news-17952.html
-
+Fig5: Larsen, Dyhr, Rasmus. 2016. Overbrewed [Online Image] Available at:
+https://shakethatbutton.com/overbrewed/
+Fig6: Oates, Max. 2019. Video Game Controller
