@@ -46,10 +46,9 @@ Fig5: Larsen Dyhr, Ramsum. 2017. Overbrewed
 
 
 # Control Description
-The controller will be a converted cocktail shaker and will consist of up to seven input devices. Six being buttons which are covered by pieces of the shaker and the seventh being a gyroscope/accelerometer module (BerryIMU). The controller could potentially have an output which would be a strip of LEDs (Neopixels). The area where the Neopixels could be placed depends on whether the controller will be ambidextrous or specifically right handed. If it’s meant to only be held by the player’s right hand, then the Neopixel could be placed on the side of the shaker from bottom to top. Otherwise if the controller is created to be ambidextrous then the Neopixels could be placed around the lid of the shaker. The number of lit LEDs will depend on how many layers of the drink have been added. One of the buttons will open and close the lid of the shaker and the other five will be for the player’s left or right fingers. The buttons will be on the side of the shaker where the player’s finger tips will be. This is so that the player can hold onto the shaker normally. However, the button that opens the lid will be next to the thumb or on top of the shaker. The controller is meant to be held by one hand, mainly to make the player feel like they are a bar tender. The BerryIMU will be inside of the shaker and will be able to measure its angle, position and speed, allowing the player to shake the cocktail. The design sketch for my controller is shown below in figure 6.
+The controller will be a converted cocktail shaker and will consist of up to seven input devices. Six being buttons which are covered by pieces of the shaker and the seventh being a gyroscope/accelerometer module (BerryIMU). The controller could potentially have an output which would be a strip of LEDs (Neopixels). The area where the Neopixels could be placed depends on whether the controller will be ambidextrous or specifically right handed. If it’s meant to only be held by the player’s right hand, then the Neopixel could be placed on the side of the shaker from bottom to top. Otherwise if the controller is created to be ambidextrous then the Neopixels could be placed around the lid of the shaker. The number of lit LEDs will depend on how many layers of the drink have been added. One of the buttons will open and close the lid of the shaker and the other five will be for the player’s left or right fingers. The buttons will be on the side of the shaker where the player’s finger tips will be. This is so that the player can hold onto the shaker normally. However, the button that opens the lid will be next to the thumb or on top of the shaker. The controller is meant to be held by one hand, mainly to make the player feel like they are a bar tender. The BerryIMU will be inside of the shaker and will be able to measure its angle, position and speed, allowing the player to shake the cocktail. The design sketch for my controller is shown below in figure 6. Though not shown in the design below the bottom of the controller will have a hole where the player will be able to connect it to the computer
 
 # Design
- 
  
  ![](ShakerDesign3.jpg)
  
@@ -57,18 +56,26 @@ Fig6: Oates, Max. 2019. Controller Design
 
 # Bibliography
 Champlain emc. Space Box – The Emergent Media Centre’s 10 year anniver-sary. WordPress.
+
 COUTURE, Joel. 2018. 'Alt.Ctrl.GDC Showcase: Yo, Bartender'. Available at: /view/news/313808/AltCtrlGDC_Showcase_Yo_Bartender.php. [Accessed Feb 7,].
+
 Larsen Dyhr Rasmus. 2016a. 'Overbrewed – Shake that Button'. Word Press [Online]. Available at: https://shakethatbutton.com/overbrewed/. [Accessed Feb 14,].
 
 # List of Figures
+
 Fig1: COUTURE, Joel. 2018. Yo Bartender [Online Image] Available at: 
 https://www.gamasutra.com/view/news/313808/AltCtrlGDC_Showcase_Yo_Bartender.php
- Fig2: Champlain, emc. 2017. Space Box [Online Image] Available at:
+
+Fig2: Champlain, emc. 2017. Space Box [Online Image] Available at:
 http://ten.emergentmediacenter.com/2016/12/02/space-box/
+
 Fig3: Gurwin, Gabe. 2019. Xbox Controller [Online Image] Available at:
 https://www.digitaltrends.com/gaming/xbox-one-controller-battery-life-tips/
+
 Fig4: Honorof, Marshal. 2017. PS4 Controller [Online Image] Available at:
 https://www.tomsguide.com/us/connect-ps4-controller-pc,news-17952.html
+
 Fig5: Larsen, Dyhr, Rasmus. 2016. Overbrewed [Online Image] Available at:
 https://shakethatbutton.com/overbrewed/
+
 Fig6: Oates, Max. 2019. Video Game Controller
