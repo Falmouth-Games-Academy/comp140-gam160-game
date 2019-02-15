@@ -54,7 +54,7 @@ The controller will be a converted cocktail shaker and will consist of up to sev
  
 Fig6: Oates, Max. 2019. Controller Design
 
-At the bottomer right of the design is a ruff sketch of the inside of the controller. The shaker will house a frame containing the Neopixels, buttons, Arduinos and BerryImu.
+At the bottomer right of the design is a ruff sketch of the inside of the controller. The shaker will house a 3D printed frame that can contain the Neopixels, buttons, Arduinos and BerryImu.
 
 # Bibliography
 Champlain emc. Space Box – The Emergent Media Centre’s 10 year anniver-sary. WordPress.
