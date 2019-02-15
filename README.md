@@ -5,29 +5,20 @@
 ## Human Planes
 
 ### The Game
-Arcade Air plane stunt game. Fly around the Death ~~Star~~ Moon dodging turrets, enemie fighter jets and laser bullets!
+Arcade Air plane stunt game. Fly in and around the Death ~~Star~~Moon surving for as long as possible.
 
 ### The Core Mechanics
-The player will need to fly the Death Moon 
+The player will have to dodge incoming fire from turrets and enemy fighter jets. The player is equiped with laser cannons.
+When a turret or enemy fighter jet is destroid, there is chance for them to drop "Weapon Parts". These Weapon Parts will randomise the stats of the players laser cannons, such as rate of fire, damage and bullet speed.
+
 ## The Controller
-Wings will be attached to the players arms. An accelemeromator/gyroscope will be on the tips of the wings to messure angle of wings
+Wings will be attached to the players arms. An accelemeromator/gyroscope will be on the tips of the wings to messure rotation of the wings. There will also be buttons on the handles of the wings to fire the laser cannons.
 
+To fly the plane the player just needs to stand in a manor that resembles a plane and the plane will automatically fly forwards. To turn left and right the player tilts their arms up and down (like a plane would). To pitch up and down, the player rotates theirs arms in the same direction (both rotate forward to pitch down, backward to pitch up). If the player rotates their arms in different directions, they will do a barrel role!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Research
+I want to know how I could detect the rotation of the wings so I will look into how other alt. controllers detect rotation and postion of loose or free flowing objects i.e arms.
+I will want to know how I could make the player feel like they **are** the plane. So I might look into how other alt. controls use body parts as the controler and how they are atached.
 
 
 
@@ -47,8 +38,6 @@ Cannon Defence is a game where the player defends the castle from waves of invad
 1. The player loads the the cannon useing a _"Rammer"_. 
 2. Next the player positions the cannon rotating it left/right and up/down.
 3. Finally the player fires the cannon.
-
-------
 
 #### Win/Defeat Condition
 The game is wave based, each wave is complete when all enamies have been defeated. The player is defeated when all villagers have been kidnapped or are dead.
@@ -78,7 +67,6 @@ When an invader kidnaps a someone, they run back to the forrest. The player has 
 2. Not Safe Yet - Invaders can pick up Villagers that are running back to the castle.
 
 
-======
 ======
 
 ## Backup Idea
