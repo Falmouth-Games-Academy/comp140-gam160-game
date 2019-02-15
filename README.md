@@ -2,6 +2,41 @@
 ###### Repository for Assignment 1 of COMP140-GAM160
 ------
 
+## Human Planes
+
+### The Game
+Arcade Air plane stunt game. Fly around the Death ~~Star~~ Moon dodging turrets, enemie fighter jets and laser bullets!
+
+### The Core Mechanics
+The player will need to fly the Death Moon 
+## The Controller
+Wings will be attached to the players arms. An accelemeromator/gyroscope will be on the tips of the wings to messure angle of wings
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======
+=======
+
+# Previous Ideas
+
 ## Cannon Defence - Dan Jones
 
 Cannon Defence is a game where the player defends the castle from waves of invaders. The invaders are attempting to kidnap the people of the castle. The aim of the game is to see how long you can last before everyone has been kidnapped.
@@ -53,18 +88,3 @@ When an invader kidnaps a someone, they run back to the forrest. The player has 
 Flappy Human is a silly game where the player weres a pair of wings and flaps their arms to fly around.
 
 With this base idea I can have different gamemodes to choose from for example, flying through rings, cearfully flying through a deadly forrest dodging predators or hunting prey, or the classic flappy bird clone.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
