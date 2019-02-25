@@ -1,19 +1,41 @@
-Ideas: 
+Game Controller proposal: 
 
-Floor is lava game: 
+1 - Secret Temple (safe cracking): 
 
-The aim of the game is to stay of the floor and get to the water at the end, where the lava is extinguished. 
+Game Controller: 
 
-The controls will be a board, that the player has to jump up and down in order to move between platforms. Also the player, will be wearing gloves so that if they touch the lava on the floor their hands will heat up.  
+9 Keys and 9 buttons with different images/ characters. 
 
-Secret temple: 
+9 LED lights: 
 
-The controls are a keyboard, that will have certain images on them. The aim is for the player to guess the password from the clues in the game, so that they will press the correct images in the correct order. To progress onto the next level, where and the end they will have a chamber of treasure.  
+3 green 
 
-However if the player guess wrong password or the wrong order, then they will be kicked out of the temple and have to start again. With new passwords for each level  
+3 orange  
 
-Crime scene game: 
+3 red 
 
-The controls will be a flash light and a room made out of a large box. Each clue that will have a light sensor near it, so the player can light up the clue that the game wants the player to find next to work out who done. 
+Joy stick 
 
-One the game asks the player who done it. There will also be a line up of suspects out side of the the large box, which will also have a light sensor on so the player has to light up the correct murder  suspect  to win the case. This is so that they can progress into the next one . 
+ 
+
+Game design:  
+
+3D Game, first person game set in a secret temple.  
+
+There will be clues around the room, to help the player guess the correct combination. The passwords will change, every time that the player guesses wrong or the player restarts the level. The clues will have to change every time, that the password changes.  
+
+The password will be 3 characters long every time. 
+
+The player must get to the locked doors and crack the password to open it, by the player must guess the correct combination to progress onto the next level.  
+
+The player can have 3 wrong answers before being kicked out of the temple, however if the player guesses correctly then can then progress onto the next level. There will be 3 – 4 levels before getting to the gold and winning the game. 
+
+The player must use a joy stick, to move around the level to find clues and get to the door. Once the door is open, the player then must move the player to the portal that takes them to the next scene.  
+
+ 
+
+If the password is correct, all the lights will flash green and the door will open on screen and the player will progress onto the next level 
+
+If the password is slightly in the wrong order (by 2 character), two of the lights will flash orange and one will flash green 
+
+If the password is completely in the wrong order, all the lights will flash red   
