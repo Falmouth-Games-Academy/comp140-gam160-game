@@ -16,7 +16,15 @@ Submit key and a back button
 
 3 red 
 
-Tilt sensor 
+Tilt sensor or bend sensor
+
+There will be 9 keys butons evenly spread out on the board, three in each row and column.
+
+In between each key and butons will be LEDs lights. On the top row will be green lights. On the middle row will be orange lights. Then on the buttom row will be red lights. 
+
+Undet the lights and buttons and keys will be a submit and back button.
+
+On the side will be a bend or tilt sensor.
 
 Once the player has entered the password and is happy with the order of the images, the player will have to press the submit key to submit the passwords. However, if the player is unhappy with the order then they will be a back buttons, which will get rid of all the characters that have been pressed. The player can the start again. 
  
@@ -38,7 +46,7 @@ The player must get to the locked doors and crack the password to open it, by th
 
 The player can have 3 wrong answers before being kicked out of the temple, however if the player guesses correctly then can then progress onto the next level. There will be 3 – 4 levels before getting to the gold and winning the game. 
 
-The player must use a tilt sensor, to move around the level to find clues and get to the door. Once the door is open, the player then must move the player to the portal that takes them to the next scene.  
+The player must use a tilt sensor or bend sensor, to move around the level to find clues and get to the door. Once the door is open, the player then must move the player to the portal that takes them to the next scene.  
 
 
 Game mecanics:
