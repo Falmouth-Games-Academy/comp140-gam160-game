@@ -20,9 +20,9 @@ Tilt sensor or bend sensor
 
 Game Controller Design:
 
-There will be 9 keys butons evenly spread out on the board, three in each row and column.
+There will be 9 keys buttons evenly spread out on the board, three in each row and column.
 
-In between each key and butons will be LEDs lights. On the top row will be green lights. On the middle row will be orange lights. Then on the buttom row will be red lights. 
+In between each key and buttons will be LEDs lights. On the top row will be green lights. On the middle row will be orange lights. Then on the bottom row will be red lights. 
 
 Undet the lights and buttons and keys will be a submit and back button.
 
