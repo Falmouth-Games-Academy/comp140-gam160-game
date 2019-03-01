@@ -12,13 +12,15 @@ void Player::init()
 	posY = 220;
 
 	speed = 10;
+
+	SC = new SerialController();
 }
 
 void Player::Move()
 {
 	assert(mySide != Side_Undefined);
 
-	float delta = 0;
+	float delta = SC->getPlayerPosition(0);
 
 	if(mySide == Side_Left)
 	{		

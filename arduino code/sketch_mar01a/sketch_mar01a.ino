@@ -9,4 +9,9 @@ void loop() {
   int potentiometer = analogRead(A0);
   Serial.println(potentiometer);
   analogWrite(5, potentiometer);
+
+  if (Serial.available > 0)
+  {
+   int input = Serial.read(); 
+  }
 }
