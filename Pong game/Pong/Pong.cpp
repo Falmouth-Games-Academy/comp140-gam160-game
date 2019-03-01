@@ -16,8 +16,6 @@ bool Pong::Init(SDL_Renderer *renderer)
 
 	debugPrinter = new DebugPrinter();
 	debugPrinter->Init(renderer);
-
-	SC = new SerialController();
 		
 	return true;
 }

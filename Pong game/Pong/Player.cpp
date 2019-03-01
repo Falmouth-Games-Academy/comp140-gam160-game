@@ -13,14 +13,17 @@ void Player::init()
 
 	speed = 10;
 
-	SC = new SerialController();
+	SC = new SerialInterface();
 }
 
 void Player::Move()
 {
 	assert(mySide != Side_Undefined);
 
-	float delta = SC->getPlayerPosition(0);
+	float delta = 0;
+
+	SC->getPositions();
+	posY = SC->getPot1();
 
 	if(mySide == Side_Left)
 	{		

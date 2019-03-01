@@ -29,7 +29,7 @@
     <ClCompile Include="Pong\Object.cpp" />
     <ClCompile Include="Pong\Player.cpp" />
     <ClCompile Include="Pong\Pong.cpp" />
-    <ClCompile Include="Pong\SerialController.cpp" />
+    <ClCompile Include="Pong\SerialInterface.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -40,7 +40,7 @@
     <ClInclude Include="Pong\Object.h" />
     <ClInclude Include="Pong\Player.h" />
     <ClInclude Include="Pong\Pong.h" />
-    <ClInclude Include="Pong\SerialController.h" />
+    <ClInclude Include="Pong\SerialInterface.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -1,6 +1,6 @@
 #pragma once
 #include "Object.h"
-#include "SerialController.h"
+#include "SerialInterface.h"
 
 class Player : public Object
 {
@@ -10,7 +10,7 @@ public:
 	
 	enum Side{Side_Undefined,Side_Left,Side_Right};
 	void SetSide(Side eSide);
-	SerialController* SC;
+	SerialInterface* SC;
 
 private:
 	Side mySide;

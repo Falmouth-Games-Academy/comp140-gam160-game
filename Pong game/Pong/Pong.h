@@ -3,7 +3,6 @@
 #include "Ball.h"
 #include "Player.h"
 #include "DebugPrinter.h"
-#include "SerialController.h"
 
 class Pong
 {
@@ -19,7 +18,6 @@ class Pong
 		bool Update();
 		bool Draw(SDL_Renderer *renderer);
 		bool Shutdown();
-		SerialController* SC;
 
 		DebugPrinter* debugPrinter;
 
