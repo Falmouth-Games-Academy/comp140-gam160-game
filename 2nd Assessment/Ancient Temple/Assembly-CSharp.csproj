@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Death.cs" />
+    <Compile Include="Assets\Scripts\InstructionsControl.cs" />
     <Compile Include="Assets\Scripts\Key.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\PasswordColours.cs" />
@@ -71,16 +72,16 @@
     <Compile Include="Assets\Scripts\Portal.cs" />
     <None Include="Assets\_BayatGames\Free Platform Game Assets\Readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>J:/University/1st Year/GAM160 - Futher Game Programming/GAM160_2_215888/Ancient Temple/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>J:/University/1st Year/Respositories/comp140-gam160-game/2nd Assessment/Ancient Temple/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>J:/University/1st Year/GAM160 - Futher Game Programming/GAM160_2_215888/Ancient Temple/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>J:/University/1st Year/Respositories/comp140-gam160-game/2nd Assessment/Ancient Temple/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>J:/University/1st Year/GAM160 - Futher Game Programming/GAM160_2_215888/Ancient Temple/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>J:/University/1st Year/Respositories/comp140-gam160-game/2nd Assessment/Ancient Temple/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>J:/University/1st Year/GAM160 - Futher Game Programming/GAM160_2_215888/Ancient Temple/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>J:/University/1st Year/Respositories/comp140-gam160-game/2nd Assessment/Ancient Temple/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
