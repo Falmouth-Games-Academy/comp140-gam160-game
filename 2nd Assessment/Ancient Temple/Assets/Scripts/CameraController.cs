@@ -33,4 +33,3 @@ public class CameraController : MonoBehaviour {
 	}
     //All this script follows the player, when the player is moving in the game.
 }
-//This is from Jamie's power point
