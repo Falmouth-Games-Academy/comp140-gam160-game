@@ -119,6 +119,9 @@ class Renderer
 		// Make our background black
 		glClearColor(0.1, 0.1, 0.1, 1.0);
 
+		// Clear the depth buffer
+		glClearDepth(1.0f);
+
 		// We need to add GL_DEPTH_BUFFER_BIT so that the depth buffer will be cleared too.
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 	}
@@ -198,7 +201,9 @@ class Renderer
 
 		// Enable depth testing so that closer triangles will hide the triangles farther away
 		glEnable( GL_DEPTH_TEST);
+		glDepthMask(GL_TRUE);
 		glDepthFunc(GL_LEQUAL);
+		glDepthRange(0.0f, 1.0f);
 
 		// Enable wireframe mode
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
