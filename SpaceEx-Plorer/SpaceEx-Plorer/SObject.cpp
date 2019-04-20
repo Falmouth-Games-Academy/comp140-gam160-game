@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SObject.h"
 
+static int objIndex = 0;
 
 SObject::SObject()
 {

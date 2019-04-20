@@ -32,6 +32,8 @@ class Model
 	{
 		shader.UseProgram();
 		
+		glBindVertexArray(vao[0]);
+
 		glDrawArrays(GL_TRIANGLES, 0, positions.size() / 3 );
 	}
 
@@ -64,7 +66,7 @@ class Model
 	}
 
 	// This is where we setup the model like we saw in the first part
-	bool SetupBufferObjects(std::string inPositions, std::string inColours)
+	bool SetupBufferObjects(std::string inPositions, std::string inColours, int vboIndex = 0, int vaoIndex=0)
 	{
 		positions = ReadFile(inPositions.c_str());
 		colors = ReadFile(inColours.c_str());
