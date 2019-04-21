@@ -18,6 +18,9 @@
 #include <glew.h>
 #include <glm/glm.hpp>
 #include <SDL.h>
+#include <SDL_opengl.h>
+
+#include "Camera.h"
 
 class Renderer
 {
@@ -51,6 +54,8 @@ class Renderer
 	}
 
 	glm::vec3 cameraPosition = glm::vec3(0, 0, -4);
+
+	SDL_Window* getWindow() { return mainWindow; }
 
 	bool Init()
 	{
@@ -132,17 +137,6 @@ class Renderer
 		model.Render( );
 	}
 
-	void UpdateCamera(glm::vec3 target)
-	{
-
-		view = glm::lookAt
-		(
-			glm::vec3(0, 0, -4), // Camera is at (0,0,-4), in World Space
-			target,
-			glm::vec3(0, 1, 0)  // Head is up ( set to 0,-1,0 to look upside-down )
-		);
-	}
-
 	// Called at the end to swap the buffers
 	void RenderEnd()
 	{
@@ -150,9 +144,9 @@ class Renderer
 		SDL_GL_SwapWindow(mainWindow);
 	}
 
-	void SetMatrix( const glm::mat4 &model )
+	void SetMatrix( const glm::mat4 &model, Camera camera)
 	{
-		glm::mat4 mvp = projection * view  * model;
+		glm::mat4 mvp = projection * camera.getView() * model;
 		simpleShader.SetMatrix( mvp );
 	}
 
@@ -224,7 +218,6 @@ class Renderer
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
 		// Turn on double buffering with a 24bit Z buffer.
-		// You may need to change this to 16 or 32 for your system
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 		return true;

@@ -5,6 +5,7 @@ static int objIndex = 0;
 
 SObject::SObject()
 {
+	following = false;
 }
 
 
@@ -31,4 +32,13 @@ void SObject::Update()
 {
 	// Set the position of the SObject to the median center of the 3D model
 	position = model.GetCenter();
+
+	if (target != nullptr && glm::length(this->getPosition() - this->target->getPosition()) > 1)
+	{
+		if (following)
+		{
+			model.Translate(-glm::normalize(this->getPosition() - target->getPosition()));
+		}
+
+	}
 }

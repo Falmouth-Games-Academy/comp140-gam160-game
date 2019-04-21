@@ -32,6 +32,11 @@ public:
 	std::string getName() { return name; }
 
 	bool canReceiveInput = false;
+
+	SObject * target;
+
+	bool following = false;
+
 private:
 	// Read-only
 	glm::vec3 position;
