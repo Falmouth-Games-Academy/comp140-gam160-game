@@ -10,6 +10,8 @@ public class PourScript : MonoBehaviour {
     private GameObject drink;
     [SerializeField]
     private CheckScript cs;
+    [SerializeField]
+    private Arduino arduino;
     // Use this for initialization
     void Start () {
         cs = GetComponent<CheckScript>();
@@ -18,13 +20,21 @@ public class PourScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (transform.eulerAngles.z < 220 && transform.eulerAngles.z > 150)
+        if (arduino != null)
         {
-            if (cs != null)
+            if (arduino.values == "e")
             {
                 Debug.Log("pouring Script: " + cs.isMade);
-                if (Input.GetMouseButtonDown(1) && cs.isMade)
+            }
+        }
+
+        if (transform.eulerAngles.z < 220 && transform.eulerAngles.z > 150)
+        {
+            if (cs != null && arduino != null)
+            {
+                if (arduino.val == "e" && cs.isMade)
                 {
+                    Debug.Log("pouring Script: " + cs.isMade);
                     Instantiate(drink, spawnPoint.position, Quaternion.identity);
                 }
             }

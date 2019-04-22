@@ -31,6 +31,7 @@ public class Arduino : MonoBehaviour {
     private Text arrayLength;
 
     public Vector3 shakerPos;
+    public string val;
 
     private Vector3 rotationVector;
     private Vector3 currentAcc;
@@ -152,9 +153,10 @@ public class Arduino : MonoBehaviour {
             z.text = angelZ.ToString();
             arrayLength.text = splitValues.Length.ToString();
 
-            posX = float.Parse(values[3]);
+            /*posX = float.Parse(values[3]);
             posY = float.Parse(values[4]);
             posZ = float.Parse(values[5]);
+            */
 
             xAcc.text = posX.ToString();
             yAcc.text = posY.ToString();
@@ -167,7 +169,7 @@ public class Arduino : MonoBehaviour {
             currentAcc = shakerPos;
             //Shaker.transform.position = shakerPos;
 
-
+            val = values[3];
 
 
         }

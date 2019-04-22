@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shaker: {fileID: 1402252731}
   ShakerMove: {fileID: 123660257}
-  commPort: 5
+  commPort: 3
   x: {fileID: 1972667703}
   y: {fileID: 54318055}
   z: {fileID: 359184503}
@@ -283,6 +283,7 @@ MonoBehaviour:
   zAcc: {fileID: 1284871779}
   arrayLength: {fileID: 617671992}
   shakerPos: {x: 0, y: 0, z: 0}
+  val: 
   values: 
 --- !u!4 &61906565
 Transform:
@@ -3147,6 +3148,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 688851167}
   drink: {fileID: 1009268943335182, guid: 05cc17f93ae41334993a2c3b44b78ec5, type: 2}
   cs: {fileID: 1402252737}
+  arduino: {fileID: 61906564}
 --- !u!114 &1402252739
 MonoBehaviour:
   m_ObjectHideFlags: 0
