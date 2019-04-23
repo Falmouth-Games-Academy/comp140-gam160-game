@@ -10,13 +10,15 @@ public class ScoreBoard : MonoBehaviour {
     private Text scoreText;
     [SerializeField]
     private CheckScript drink;
+    [SerializeField]
+    private Shakermeter sm;
     private int count;
     private int score;
     public bool drinkAccounted;
 
     // Use this for initialization
     void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
@@ -29,7 +31,11 @@ public class ScoreBoard : MonoBehaviour {
             score++;
             scoreText.text = score.ToString();
             drinkAccounted = false;
-            Values.RandomLayers();
+            sm.GetComponent<Shakermeter>().runOnce = false;
+            sm.GetComponent<Shakermeter>().isShaken = false;
+
+            if (Values != null)
+                Values.RandomLayers();
         }
 
         

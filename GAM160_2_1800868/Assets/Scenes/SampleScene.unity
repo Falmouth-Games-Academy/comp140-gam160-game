@@ -162,6 +162,11 @@ Prefab:
       propertyPath: drink
       value: 
       objectReference: {fileID: 1402252737}
+    - target: {fileID: 114808027475410742, guid: b30b5964a173a8e41a7966831ac817c0,
+        type: 2}
+      propertyPath: sm
+      value: 
+      objectReference: {fileID: 123660260}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b30b5964a173a8e41a7966831ac817c0, type: 2}
   m_IsPrefabAsset: 0
@@ -432,14 +437,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 123660257}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7bad7c5fc42b754cb67b9a4b5480ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   arduino: {fileID: 61906564}
   shakeBar: {fileID: 714464416}
+  shakerMeter: {fileID: 1122330691}
+  cs: {fileID: 1402252737}
   isShaken: 0
+  runOnce: 0
 --- !u!114 &138799454 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114808027475410742, guid: b30b5964a173a8e41a7966831ac817c0,
@@ -1934,7 +1942,7 @@ RectTransform:
   m_GameObject: {fileID: 714464414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1476314814}
   m_RootOrder: 0
@@ -2625,7 +2633,7 @@ RectTransform:
   - {fileID: 2023523514}
   - {fileID: 433328606}
   - {fileID: 1850490957}
-  - {fileID: 1476314814}
+  - {fileID: 1122330692}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2654,6 +2662,40 @@ MonoBehaviour:
   - {fileID: 846747333}
   - {fileID: 918603157}
   layerNums: 
+--- !u!1 &1122330691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1122330692}
+  m_Layer: 5
+  m_Name: ShakeMeter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1122330692
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1122330691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1476314814}
+  m_Father: {fileID: 1115055817}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1133822198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4778839513003222, guid: 088f4271147807b4c8c3fc48ff49aaba,
@@ -3130,7 +3172,6 @@ MonoBehaviour:
   values: {fileID: 1115055818}
   sb: {fileID: 138799454}
   arduino: {fileID: 61906564}
-  sM: {fileID: 0}
   timer: {fileID: 2023523517}
   isMade: 0
   i: 0
@@ -3147,7 +3188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 688851167}
   drink: {fileID: 1009268943335182, guid: 05cc17f93ae41334993a2c3b44b78ec5, type: 2}
-  cs: {fileID: 1402252737}
+  sm: {fileID: 123660260}
   arduino: {fileID: 61906564}
 --- !u!114 &1402252739
 MonoBehaviour:
@@ -3205,8 +3246,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 714464415}
-  m_Father: {fileID: 1115055817}
-  m_RootOrder: 11
+  m_Father: {fileID: 1122330692}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3844,7 +3885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d15af5cfb399c439367b2579a5325c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 100
+  timer: 500
   timerTexts: {fileID: 974507273}
   cs: {fileID: 2023523518}
 --- !u!114 &2023523518

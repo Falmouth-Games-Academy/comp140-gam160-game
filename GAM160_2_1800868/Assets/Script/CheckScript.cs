@@ -10,8 +10,6 @@ public class CheckScript : MonoBehaviour {
     private ScoreBoard sb;
     [SerializeField]
     private Arduino arduino;
-    [SerializeField]
-    private Shakermeter sM;
 
     public Timer timer;
     public bool isMade;

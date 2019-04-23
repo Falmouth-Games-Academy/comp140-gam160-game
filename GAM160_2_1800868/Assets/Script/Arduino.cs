@@ -153,10 +153,10 @@ public class Arduino : MonoBehaviour {
             z.text = angelZ.ToString();
             arrayLength.text = splitValues.Length.ToString();
 
-            /*posX = float.Parse(values[3]);
+            posX = float.Parse(values[3]);
             posY = float.Parse(values[4]);
             posZ = float.Parse(values[5]);
-            */
+            
 
             xAcc.text = posX.ToString();
             yAcc.text = posY.ToString();
@@ -164,12 +164,12 @@ public class Arduino : MonoBehaviour {
 
             posX = posX - 9;
 
-            shakerPos = new Vector3(Smoother(posX), Smoother(posY), Smoother(posZ));
+            shakerPos = new Vector3(posX, Smoother(posY), Smoother(posZ));
             
             currentAcc = shakerPos;
             //Shaker.transform.position = shakerPos;
 
-            val = values[3];
+            val = values[6];
 
 
         }
@@ -200,54 +200,20 @@ public class Arduino : MonoBehaviour {
     {
         if (angelZ > 1 && angelZ < 30)
         {
-            //Debug.Log("Left");
-            accX = shakerPos.x;
-
-            Debug.Log("Left");
             ShakerMove.transform.Translate(Vector3.left * Time.deltaTime * 2);
-
-            if (accX > previousAcc.x)
-            {
-                
-            }
         }
         else if (angelZ < -1 && angelZ > -30)
         {
-            accX = shakerPos.x;
-
-            Debug.Log("Right");
             ShakerMove.transform.Translate(Vector3.right * Time.deltaTime * 2);
-
-            if (accX > previousAcc.x)
-            {
-               
-            }
         }
 
         if (angelX > 1 && angelX < 30)
         {
-            accZ = shakerPos.z;
-
-            Debug.Log("Forward");
             ShakerMove.transform.Translate(Vector3.forward * Time.deltaTime * 2);
-
-            if (accZ > previousAcc.z)
-            {
-                
-            }
         }
         else if (angelX < -1 && angelX > -30)
         {
-            accZ = shakerPos.z;
-            //Debug.Log("Backward");
-
-            Debug.Log("Backward");
             ShakerMove.transform.Translate(Vector3.back * Time.deltaTime * 2);
-
-            if (accZ > previousAcc.z)
-            {
-                
-            }
         }
     }
 

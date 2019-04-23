@@ -9,42 +9,77 @@ public class Shakermeter : MonoBehaviour {
     private Arduino arduino;
     [SerializeField]
     private Image shakeBar;
+    [SerializeField]
+    private GameObject shakerMeter;
+    [SerializeField]
+    private CheckScript cs;
+    private Rigidbody rb;
 
     public bool isShaken;
+    public bool runOnce;
 
     private float originalYAxis;
     private float barScale;
-    private float y;
+    private float lastXPos;
+
+    private bool lidIsOpen;
 
     // Use this for initialization
     void Start () {
         originalYAxis = transform.position.y;
-        barScale = 0;
-	}
+        barScale = 0.1f;
+        shakerMeter.SetActive(false);
+        rb = GetComponentInChildren<Rigidbody>();
+        runOnce = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetMouseButton(0))
+
+
+        if (arduino != null)
         {
-            float x = transform.position.x;
-            float z = transform.position.z;
-
-            y = Mathf.Lerp(-2, 2,Time.deltaTime);
-
-            transform.position = new Vector3(0, y,0);
+            if (arduino.val == "e")
+            {
+                lidIsOpen = false;
+            }
+            else
+                lidIsOpen = true;
         }
 
-        if (arduino.shakerPos.y < 0 || arduino.shakerPos.y > 0)
+        if (cs != null && !lidIsOpen)
         {
-            Debug.Log(arduino.shakerPos.y);
-            shakeBar.rectTransform.localEulerAngles += new Vector3 (barScale * (Time.deltaTime * 0.1f),1,1);
-        }
+            //When ingrediants have been added the player can shake the cocktail
+            if (cs.isMade && !runOnce)
+            {
+                shakerMeter.SetActive(true);
+                isShaken = false;
+                transform.position = new Vector3(0, originalYAxis, 0);
+                rb.isKinematic = true;
 
-        if (barScale >= 1)
+                if (arduino.shakerPos.x < lastXPos || arduino.shakerPos.x > lastXPos)
+                {
+                    shakeBar.rectTransform.localScale += new Vector3(barScale * (Time.deltaTime * 0.8f), 0, 0);
+                }
+            }
+        }
+        
+        
+
+        if (shakeBar.rectTransform.localScale.x >= 1 && !runOnce)
         {
-            barScale = 1.0f;
+            runOnce = true;
+            shakeBar.rectTransform.localScale = new Vector3(0,1,1);
             isShaken = true;
+            shakerMeter.SetActive(false);
+            rb.isKinematic = false;
         }
 	}
+
+    private void LateUpdate()
+    {
+        lastXPos = arduino.shakerPos.x;
+    }
 }

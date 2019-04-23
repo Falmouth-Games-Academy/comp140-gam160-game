@@ -60,7 +60,9 @@ void loop()
 {
   timer = millis();
   
-  
+  float rate_gyr_x = rawGyro.XAxis;
+  float rate_gyr_y = rawGyro.YAxis;
+  float rate_gyr_z = rawGyro.ZAxis;
   
 if(Serial.available() > 0){
     //The variable incomingByte contains the incoming infromation
@@ -127,14 +129,49 @@ void sendData()
   Serial.print(roll);
   Serial.print(",");
   Serial.print(yaw);
-  /*
   Serial.print(",");
   Serial.print(X);
   Serial.print(",");
   Serial.print(Y);
   Serial.print(",");
   Serial.print(Z);
-  */
   Serial.print(",");
   Serial.println(val);
+}
+
+float ComplementFilter(float Axis)
+{
+  float DT = 0.02;
+  Vector rawGyro = mpu.readRawGyro();
+  Vector rawAccel = mpu.readRawAccel();
+
+  //Convert Gyro raw to degrees per second
+  
+
+  //Calculate the angles from the gyro
+  float gyroXangle+=rate_gyr_x*DT;
+  float gyroYangle+=rate_gyr_y*DT;
+  float gyroZangle+=rate_gyr_z*DT;
+
+  //Convert Accelerometer values to degrees
+  float AccXangle = (float) (atan2(rawAccel.YAxis,rawAccel.ZAxis)+M_PI)*RAD_TO_DEG;
+  float AccYangle = (float) (atan2(rawAccel.ZAxis,rawAccel.XAxis)+M_PI)*RAD_TO_DEG;
+  float AccZangle = (float) (atan2(rawAccel.XAxis,rawAccel.ZAxis)+M_PI)*RAD_TO_DEG;
+
+
+  //If IMU is up the correct way, use these lines
+        AccXangle -= (float)180.0;
+  if (AccYangle > 90)
+          AccYangle -= (float)270;
+  else
+    AccYangle += (float)90;
+
+
+  //Complementary filter used to combine the accelerometer and gyro values.
+  float CFangleX=AA*(CFangleX+rate_gyr_x*DT) +(1 - AA) * AccXangle;
+  float CFangleY=AA*(CFangleY+rate_gyr_y*DT) +(1 - AA) * AccYangle;
+  float CFangleZ=AA*(CFangleZ+rate_gyr_z*DT) +(1 - AA) * AccZangle;
+
+  
+  return Axis
 }
