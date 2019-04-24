@@ -196,27 +196,29 @@ public class Arduino : MonoBehaviour {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
+    //When the controller tilts the object will move in that direction
     public void ShakerMovement()
     {
-        if (angelZ > 1 && angelZ < 30)
+        if (angelZ > 1 && angelZ < 50)
         {
             ShakerMove.transform.Translate(Vector3.left * Time.deltaTime * 2);
         }
-        else if (angelZ < -1 && angelZ > -30)
+        else if (angelZ < -1 && angelZ > -50)
         {
             ShakerMove.transform.Translate(Vector3.right * Time.deltaTime * 2);
         }
 
-        if (angelX > 1 && angelX < 30)
+        if (angelX > 1 && angelX < 50)
         {
             ShakerMove.transform.Translate(Vector3.forward * Time.deltaTime * 2);
         }
-        else if (angelX < -1 && angelX > -30)
+        else if (angelX < -1 && angelX > -50)
         {
             ShakerMove.transform.Translate(Vector3.back * Time.deltaTime * 2);
         }
     }
 
+    //The angle of the object will be equal to the angle of the controller
     public void ShakerRotaion()
     {
         Shaker.transform.eulerAngles = rotationVector;

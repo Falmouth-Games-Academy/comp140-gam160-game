@@ -31,7 +31,21 @@ int num;
 int incomingByte;
 const int button1Pin = 3;
 String val;
+float rate_gyr_x;
+float rate_gyr_y;
+float rate_gyr_z;
+float gyroXangle;
+float gyroYangle;
+float gyroZangle;
+float CFangleX;
+float CFangleY;
+float CFangleZ;
 
+float AA = 0.97;
+float G_GAIN = 0.070;
+
+Vector rawGyro;
+Vector rawAccel;
 
 void setup() 
 {
@@ -59,10 +73,44 @@ void setup()
 void loop()
 {
   timer = millis();
+  rawGyro = mpu.readRawGyro();
+  rawAccel = mpu.readRawAccel();
+  Vector normAccel = mpu.readNormalizeAccel();
   
-  float rate_gyr_x = rawGyro.XAxis;
-  float rate_gyr_y = rawGyro.YAxis;
-  float rate_gyr_z = rawGyro.ZAxis;
+  
+
+
+  float DT = 0.02;
+  
+
+  //Convert Gyro raw to degrees per second
+  rate_gyr_x = rawGyro.XAxis * G_GAIN;
+  rate_gyr_y = rawGyro.YAxis * G_GAIN;
+  rate_gyr_z = rawGyro.ZAxis * G_GAIN;
+
+  //Calculate the angles from the gyro
+  gyroXangle+=rate_gyr_x*DT;
+  gyroYangle+=rate_gyr_y*DT;
+  gyroZangle+=rate_gyr_z*DT;
+
+  //Convert Accelerometer values to degrees
+  float AccXangle = (float) (atan2(rawAccel.YAxis,rawAccel.ZAxis)+M_PI)*(180/3.14159);
+  float AccYangle = (float) (atan2(rawAccel.ZAxis,rawAccel.XAxis)+M_PI)*(180/3.14159);
+  float AccZangle = (float) (atan2(rawAccel.XAxis,rawAccel.ZAxis)+M_PI)*(180/3.14159);
+
+/*
+  //If IMU is up the correct way, use these lines
+        AccXangle -= (float)180.0;
+  if (AccYangle > 90)
+          AccYangle -= (float)270;
+  else
+    AccYangle += (float)90;
+*/
+
+  //Complementary filter used to combine the accelerometer and gyro values.
+  CFangleX=AA*(CFangleX+rate_gyr_x*DT) +(1 - AA) * AccXangle;
+  CFangleY=AA*(CFangleY+rate_gyr_y*DT) +(1 - AA) * AccYangle;
+  CFangleZ=AA*(CFangleZ+rate_gyr_z*DT) +(1 - AA) * AccZangle;
   
 if(Serial.available() > 0){
     //The variable incomingByte contains the incoming infromation
@@ -91,14 +139,18 @@ if(Serial.available() > 0){
   Vector axis = mpu.readNormalizeAccel();
 
   // Calculate Pitch, Roll and Yaw
+ 
   pitch = pitch + norm.YAxis * timeStep;
   roll = roll + norm.XAxis * timeStep;
   yaw = yaw + norm.ZAxis * timeStep;
   
 
-  /*pitch = -(atan2(axis.XAxis, sqrt(axis.YAxis*axis.YAxis + axis.ZAxis*axis.ZAxis))*180.0)/M_PI;
-  roll = (atan2(axis.YAxis, axis.ZAxis)*180.0)/M_PI;
-*/
+  /*pitch = 180 * atan (rawAccel.XAxis/sqrt(rawAccel.YAxis*rawAccel.YAxis + rawAccel.ZAxis*rawAccel.ZAxis))/M_PI;
+  roll = 180 * atan (rawAccel.YAxis/sqrt(rawAccel.XAxis*rawAccel.XAxis + rawAccel.ZAxis*rawAccel.ZAxis))/M_PI;
+  yaw = 180 * atan (rawAccel.ZAxis/sqrt(rawAccel.XAxis*rawAccel.XAxis + rawAccel.ZAxis*rawAccel.ZAxis))/M_PI;
+  */
+
+
   
   X = axis.XAxis;
   Y = axis.YAxis;
@@ -141,37 +193,8 @@ void sendData()
 
 float ComplementFilter(float Axis)
 {
-  float DT = 0.02;
-  Vector rawGyro = mpu.readRawGyro();
-  Vector rawAccel = mpu.readRawAccel();
-
-  //Convert Gyro raw to degrees per second
   
 
-  //Calculate the angles from the gyro
-  float gyroXangle+=rate_gyr_x*DT;
-  float gyroYangle+=rate_gyr_y*DT;
-  float gyroZangle+=rate_gyr_z*DT;
-
-  //Convert Accelerometer values to degrees
-  float AccXangle = (float) (atan2(rawAccel.YAxis,rawAccel.ZAxis)+M_PI)*RAD_TO_DEG;
-  float AccYangle = (float) (atan2(rawAccel.ZAxis,rawAccel.XAxis)+M_PI)*RAD_TO_DEG;
-  float AccZangle = (float) (atan2(rawAccel.XAxis,rawAccel.ZAxis)+M_PI)*RAD_TO_DEG;
-
-
-  //If IMU is up the correct way, use these lines
-        AccXangle -= (float)180.0;
-  if (AccYangle > 90)
-          AccYangle -= (float)270;
-  else
-    AccYangle += (float)90;
-
-
-  //Complementary filter used to combine the accelerometer and gyro values.
-  float CFangleX=AA*(CFangleX+rate_gyr_x*DT) +(1 - AA) * AccXangle;
-  float CFangleY=AA*(CFangleY+rate_gyr_y*DT) +(1 - AA) * AccYangle;
-  float CFangleZ=AA*(CFangleZ+rate_gyr_z*DT) +(1 - AA) * AccZangle;
-
   
-  return Axis
+  return Axis;
 }

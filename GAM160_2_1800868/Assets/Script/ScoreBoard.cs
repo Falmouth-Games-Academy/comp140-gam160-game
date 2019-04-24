@@ -23,6 +23,8 @@ public class ScoreBoard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        //When the glass if filled up it will reset the ingrediants list and shaker meter
         if (count >= 5)
         {
             count = 0;
@@ -41,11 +43,11 @@ public class ScoreBoard : MonoBehaviour {
         
 	}
 
+    //Detects the 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(other.gameObject);
         drinkAccounted = true;
         count++;
-
     }
 }

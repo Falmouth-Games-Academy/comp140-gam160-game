@@ -13,6 +13,8 @@ public class Shakermeter : MonoBehaviour {
     private GameObject shakerMeter;
     [SerializeField]
     private CheckScript cs;
+    [SerializeField]
+    private LidScript ls;
     private Rigidbody rb;
 
     public bool isShaken;
@@ -22,7 +24,7 @@ public class Shakermeter : MonoBehaviour {
     private float barScale;
     private float lastXPos;
 
-    private bool lidIsOpen;
+    
 
     // Use this for initialization
     void Start () {
@@ -38,36 +40,30 @@ public class Shakermeter : MonoBehaviour {
 	void Update () {
 
 
-
-        if (arduino != null)
+        if (ls != null)
         {
-            if (arduino.val == "e")
+            if (cs != null && !ls.lidIsOpen)
             {
-                lidIsOpen = false;
-            }
-            else
-                lidIsOpen = true;
-        }
-
-        if (cs != null && !lidIsOpen)
-        {
-            //When ingrediants have been added the player can shake the cocktail
-            if (cs.isMade && !runOnce)
-            {
-                shakerMeter.SetActive(true);
-                isShaken = false;
-                transform.position = new Vector3(0, originalYAxis, 0);
-                rb.isKinematic = true;
-
-                if (arduino.shakerPos.x < lastXPos || arduino.shakerPos.x > lastXPos)
+                //When ingrediants have been added the player can shake the cocktail
+                if (cs.isMade && !runOnce)
                 {
-                    shakeBar.rectTransform.localScale += new Vector3(barScale * (Time.deltaTime * 0.8f), 0, 0);
+                    shakerMeter.SetActive(true);
+                    isShaken = false;
+                    transform.position = new Vector3(0, originalYAxis, 0);
+                    rb.isKinematic = true;
+
+                    if (arduino.shakerPos.x < lastXPos || arduino.shakerPos.x > lastXPos)
+                    {
+                        shakeBar.rectTransform.localScale += new Vector3(barScale * (Time.deltaTime * 0.8f), 0, 0);
+                    }
                 }
             }
         }
-        
-        
 
+        
+        
+        
+        //As the player shakes the controller, the bar will increase in size
         if (shakeBar.rectTransform.localScale.x >= 1 && !runOnce)
         {
             runOnce = true;
