@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 {
     CharacterController characterController;
 
+    Vector3 xdd = new Vector3(0,0,0);
+
     [SerializeField]
     protected float speed = 6.0f;
     //This is saying how fast the player can move when walking
@@ -18,7 +20,7 @@ public class PlayerController : MonoBehaviour
     protected float jumpSpeed = 10.0f;
     //This is saying how fast the player can jump
     [SerializeField]
-    protected float gravity = 20.0f;
+    protected float gravity = 10.0f;
     //This is saying how high the player can jump
 
 
@@ -26,35 +28,19 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>(); 
+        characterController = GetComponent<CharacterController>();
+
     }
 
     void Update()
     {
-        if (characterController.isGrounded)
-        {
-            // We are grounded, so recalculate
-            // move direction directly from axes
-
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
-            moveDirection *= speed;
-            //This is saying only move fowardwards and backwards
-           
-
-            if (Input.GetButtonDown("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-            }
-            //This is saying press space bar to jump
-        }
-
-            // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-            // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-            // as an acceleration (ms^-2)
-            moveDirection.y -= gravity * Time.deltaTime;
+        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
+        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
+        // as an acceleration (ms^-2)
+        xdd.y -= gravity * Time.deltaTime;
 
             // Move the controller
-            characterController.Move(moveDirection * Time.deltaTime);
+        characterController.Move(xdd * Time.deltaTime);
 
     }
 
@@ -67,6 +53,13 @@ public class PlayerController : MonoBehaviour
         //This code is saying if the player touches any objects that have the tag hazard, the player will die and the death scene will load.
 
     }
-
+    public void MovePlayer(float x)
+    {
+        xdd.x = x;
+    }
+    public void Jump()
+    {
+       xdd.y = 10;
+    }
 }
 //This code is from Gareth's power point
