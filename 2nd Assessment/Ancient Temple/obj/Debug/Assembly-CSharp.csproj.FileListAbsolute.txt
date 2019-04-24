@@ -1,0 +1,2 @@
+G:\University\1st Year\Respositories\comp140-gam160-game\2nd Assessment\Ancient Temple\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+G:\University\1st Year\Respositories\comp140-gam160-game\2nd Assessment\Ancient Temple\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
