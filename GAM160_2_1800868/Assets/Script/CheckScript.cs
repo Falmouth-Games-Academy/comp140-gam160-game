@@ -10,6 +10,8 @@ public class CheckScript : MonoBehaviour {
     private ScoreBoard sb;
     [SerializeField]
     private Arduino arduino;
+    [SerializeField]
+    private LidScript ls;
 
     public Timer timer;
     public bool isMade;
@@ -57,13 +59,13 @@ public class CheckScript : MonoBehaviour {
             Destroy(other.gameObject);
         }
 
-        if (numOfLayers < 5)
+        
+        if (numOfLayers < 5 && ls.lidIsOpen)
         {
             isFull = false;
             if (values.layerNums[i].ToString() == other.transform.tag)
             {
                 gadge++;
-                arduino.WriteToArduio("q");
                 if (gadge > 3)
                 {
 

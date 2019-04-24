@@ -12,7 +12,8 @@ public class Timer : MonoBehaviour {
     private Text timerTexts;
     [SerializeField]
     private ChangeScene cs;
-
+    [SerializeField]
+    private ScoreBoard scoreBoards;
 
 
     // Use this for initialization
@@ -27,8 +28,9 @@ public class Timer : MonoBehaviour {
 
         if (timer <= 0)
         {
-            if (cs != null)
+            if (cs != null && scoreBoards != null)
             {
+                PlayerPrefs.SetFloat("Score", scoreBoards.score);
                 cs.GetComponent<ChangeScene>().SwitchtoScene();
             }
         }

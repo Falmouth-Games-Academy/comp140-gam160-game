@@ -13,7 +13,7 @@ public class ScoreBoard : MonoBehaviour {
     [SerializeField]
     private Shakermeter sm;
     private int count;
-    private int score;
+    public int score;
     public bool drinkAccounted;
 
     // Use this for initialization

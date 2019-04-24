@@ -9,7 +9,6 @@
 
 #include <Wire.h>
 #include <MPU6050.h>
-#include <Adafruit_NeoPixel.h>
 
 MPU6050 mpu;
 
@@ -77,9 +76,6 @@ void loop()
   rawAccel = mpu.readRawAccel();
   Vector normAccel = mpu.readNormalizeAccel();
   
-  
-
-
   float DT = 0.02;
   
 
@@ -189,12 +185,4 @@ void sendData()
   Serial.print(Z);
   Serial.print(",");
   Serial.println(val);
-}
-
-float ComplementFilter(float Axis)
-{
-  
-
-  
-  return Axis;
 }
