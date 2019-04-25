@@ -8,6 +8,8 @@ const int flexPinL = A0;
 const int flexPinR = A1;
 const int JumpSen = A2;
 
+int pressed = 0;
+
 int incomingByte;
 
 void setup() {
@@ -63,6 +65,13 @@ void SendPositions()
    int positionL = analogRead(flexPinL) - 723;
    int positionR = analogRead(flexPinR) - 750;
    int positionJ = analogRead(JumpSen);
+  
+   if(digitalRead(BUTTONG) > 0)
+   pressed = 1;
+   else if(digitalRead(BUTTONO) > 0)
+   pressed = 2;
+   else if(digitalRead(BUTTONR) > 0)
+   pressed = 3;
 
    if (positionL < 0 )
    {
@@ -78,7 +87,13 @@ void SendPositions()
   Serial.print('-');
   Serial.print(getPadded(positionR));
   Serial.print('-');
-  Serial.println(getPadded(positionJ));
+  Serial.print(getPadded(positionJ));
+  Serial.print('-');
+  Serial.print(getPadded(digitalRead(BUTTONG)));
+  Serial.print('-');
+  Serial.print(getPadded(digitalRead(BUTTONO)));
+  Serial.print('-');
+  Serial.println(getPadded(digitalRead(BUTTONR)));
 }
 
 String getPadded(int num)

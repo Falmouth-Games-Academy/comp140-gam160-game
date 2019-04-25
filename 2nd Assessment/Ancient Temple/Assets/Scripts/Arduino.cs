@@ -11,6 +11,10 @@ public class Arduino : MonoBehaviour
     private bool B1 = true;
     private bool B2 = true;
 
+    private int pressed;
+
+
+
     public int commPort = 0;
     //This allows me to change the port number that the arduino is connected too in the inspector 
 
@@ -40,7 +44,7 @@ public class Arduino : MonoBehaviour
            
 
 
-            if (splitValues.Length == 3)
+            if (splitValues.Length == 6)
             {
                 positionPlayers(splitValues);
             }
@@ -79,6 +83,18 @@ public class Arduino : MonoBehaviour
                     player.GetComponent<PlayerController>().Jump();
                     B2 = B1;
                 }
+            }
+            if (int.Parse(values[3]) > 0)
+            {
+                ;
+            }
+            if (int.Parse(values[4]) > 0)
+            {
+                ;
+            }
+            if (int.Parse(values[5]) > 0)
+            {
+                ;
             }
         }
 
