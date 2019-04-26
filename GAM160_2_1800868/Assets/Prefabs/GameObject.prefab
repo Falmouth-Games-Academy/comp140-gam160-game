@@ -208,8 +208,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a6b2b7a3d2ba24e84c5dc74110bc9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arduino: {fileID: 0}
   liquid: {fileID: 1303055105596206, guid: fd12c08e0b878e74d8a837b6d4652721, type: 2}
   spawnPoint: {fileID: 4778839513003222}
-  ingrediantID: 
-  rotateSpeed: 0
