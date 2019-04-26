@@ -13,6 +13,8 @@ public class ScoreBoard : MonoBehaviour {
     private CheckScript drink;
     [SerializeField]
     private Shakermeter sm;
+    [SerializeField]
+    private Arduino arduino;
     private int count;
     public int score;
     public bool drinkAccounted;
@@ -33,7 +35,7 @@ public class ScoreBoard : MonoBehaviour {
                 Values.RemoveOldList();
                 Values.RandomLayers();
             }
-
+            arduino.WriteToArduio("r");
             count = 0;
             drink.i = 0;
             drink.resetList();
