@@ -30,6 +30,7 @@ public class Timer : MonoBehaviour {
         {
             if (cs != null && scoreBoards != null)
             {
+
                 PlayerPrefs.SetFloat("Score", scoreBoards.score);
                 cs.GetComponent<ChangeScene>().SwitchtoScene();
             }

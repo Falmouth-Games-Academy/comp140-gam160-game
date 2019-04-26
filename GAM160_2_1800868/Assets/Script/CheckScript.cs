@@ -30,6 +30,8 @@ public class CheckScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        //If the shaker detects the wrong ingreiant then the player's time will be reduced
         if (wrongIngrediantGadge >= 10)
         {
             timer.timer -= 5;
@@ -51,6 +53,7 @@ public class CheckScript : MonoBehaviour {
             
 	}
 
+    
     private void OnTriggerEnter(Collider other)
     {
 
@@ -59,9 +62,11 @@ public class CheckScript : MonoBehaviour {
             Destroy(other.gameObject);
         }
 
-        
+        //if the shaker lid is open and if the ingrediant matches the current needed ingrediant
+        //then it will state that the ingrediant has been added and go on to the next one
         if (numOfLayers < 5 && ls.lidIsOpen)
         {
+            Debug.Log("Adding ingrediant");
             isFull = false;
             if (values.layerNums[i].ToString() == other.transform.tag)
             {
@@ -86,6 +91,7 @@ public class CheckScript : MonoBehaviour {
         }
     }
 
+    //Each layer in the list will be set back to white
     public void resetList()
     {
         for (int i = 0; i < 5; i++)

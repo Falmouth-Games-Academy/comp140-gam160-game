@@ -72,7 +72,8 @@ public class Arduino : MonoBehaviour {
         serial.ReadTimeout = 50;
         //Unity will also open the specified port above
         serial.Open();
-	}
+        WriteToArduio("r");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -199,20 +200,20 @@ public class Arduino : MonoBehaviour {
     //When the controller tilts the object will move in that direction
     public void ShakerMovement()
     {
-        if (angelZ > 1 && angelZ < 50)
+        if (angelZ > 1 && angelZ < 30)
         {
             ShakerMove.transform.Translate(Vector3.left * Time.deltaTime * 2);
         }
-        else if (angelZ < -1 && angelZ > -50)
+        else if (angelZ < -1 && angelZ > -30)
         {
             ShakerMove.transform.Translate(Vector3.right * Time.deltaTime * 2);
         }
 
-        if (angelX > 1 && angelX < 50)
+        if (angelX > 1 && angelX < 30)
         {
             ShakerMove.transform.Translate(Vector3.forward * Time.deltaTime * 2);
         }
-        else if (angelX < -1 && angelX > -50)
+        else if (angelX < -1 && angelX > -30)
         {
             ShakerMove.transform.Translate(Vector3.back * Time.deltaTime * 2);
         }

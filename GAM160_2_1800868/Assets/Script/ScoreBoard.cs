@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreBoard : MonoBehaviour {
 
+    [SerializeField]
     private Randomizer Values;
     [SerializeField]
     private Text scoreText;
@@ -24,8 +25,8 @@ public class ScoreBoard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //When the glass if filled up it will reset the ingrediants list and shaker meter
-        if (count >= 5)
+        //When the shaker has been shaken it will reset the ingrediants list and shaker meter
+        if (sm.GetComponent<Shakermeter>().isShaken == true)
         {
             count = 0;
             drink.i = 0;
@@ -35,19 +36,15 @@ public class ScoreBoard : MonoBehaviour {
             drinkAccounted = false;
             sm.GetComponent<Shakermeter>().runOnce = false;
             sm.GetComponent<Shakermeter>().isShaken = false;
-
+            
             if (Values != null)
+            {
+
                 Values.RandomLayers();
+            }
         }
 
         
 	}
-
-    //Detects the 
-    private void OnTriggerEnter(Collider other)
-    {
-        Destroy(other.gameObject);
-        drinkAccounted = true;
-        count++;
-    }
+    
 }

@@ -167,7 +167,8 @@ Prefab:
       propertyPath: sm
       value: 
       objectReference: {fileID: 1615839082}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114808027475410742, guid: b30b5964a173a8e41a7966831ac817c0, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: b30b5964a173a8e41a7966831ac817c0, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &54318053
@@ -372,12 +373,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 113192750}
   m_CullTransparentMesh: 0
---- !u!114 &138799454 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114808027475410742, guid: b30b5964a173a8e41a7966831ac817c0,
-    type: 2}
-  m_PrefabInternal: {fileID: 37079608}
-  m_Script: {fileID: 11500000, guid: 75aa0ff6e8d6d08448b56de309c42059, type: 3}
 --- !u!4 &148967478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4778839513003222, guid: 088f4271147807b4c8c3fc48ff49aaba,
@@ -1830,7 +1825,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 688851166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0271}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0281}
   m_LocalScale: {x: 0.02, y: 0.019999996, z: 0.019999996}
   m_Children: []
   m_Father: {fileID: 1615839075}
@@ -2501,6 +2496,7 @@ GameObject:
   - component: {fileID: 1115055815}
   - component: {fileID: 1115055814}
   - component: {fileID: 1115055818}
+  - component: {fileID: 1115055819}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2615,6 +2611,23 @@ MonoBehaviour:
   - {fileID: 846747333}
   - {fileID: 918603157}
   layerNums: 
+--- !u!114 &1115055819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1115055813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75aa0ff6e8d6d08448b56de309c42059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Values: {fileID: 1115055818}
+  scoreText: {fileID: 1998977323}
+  drink: {fileID: 1615839078}
+  sm: {fileID: 1615839082}
+  score: 0
+  drinkAccounted: 0
 --- !u!1 &1122330691
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,7 +3429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values: {fileID: 1115055818}
-  sb: {fileID: 138799454}
+  sb: {fileID: 1115055819}
   arduino: {fileID: 61906564}
   ls: {fileID: 1615839085}
   timer: {fileID: 2023523517}
@@ -3428,7 +3441,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1615839076}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45ca2b1fb30a50b499f731f264e3ca1d, type: 3}
   m_Name: 
@@ -4018,10 +4031,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d15af5cfb399c439367b2579a5325c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 500
+  timer: 100
   timerTexts: {fileID: 974507273}
   cs: {fileID: 2023523518}
-  scoreBoards: {fileID: 0}
+  scoreBoards: {fileID: 1115055819}
 --- !u!114 &2023523518
 MonoBehaviour:
   m_ObjectHideFlags: 0

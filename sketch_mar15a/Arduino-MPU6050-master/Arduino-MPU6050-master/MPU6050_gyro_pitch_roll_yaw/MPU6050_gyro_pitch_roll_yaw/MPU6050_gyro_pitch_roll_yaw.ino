@@ -118,6 +118,13 @@ if(Serial.available() > 0){
     {
       sendData();
     }
+
+    if(incomingByte == 'r')
+    {
+      pitch = 0.0;
+      roll = 0.0;
+      yaw = 0.0;
+    }
     
     if(digitalRead(button1Pin) == HIGH)
     {
