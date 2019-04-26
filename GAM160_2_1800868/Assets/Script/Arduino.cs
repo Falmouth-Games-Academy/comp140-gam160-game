@@ -73,6 +73,7 @@ public class Arduino : MonoBehaviour {
         //Unity will also open the specified port above
         serial.Open();
         WriteToArduio("r");
+        WriteToArduio("p");
     }
 	
 	// Update is called once per frame

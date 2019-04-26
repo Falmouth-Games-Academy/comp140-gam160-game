@@ -28,6 +28,12 @@ public class ScoreBoard : MonoBehaviour {
         //When the shaker has been shaken it will reset the ingrediants list and shaker meter
         if (sm.GetComponent<Shakermeter>().isShaken == true)
         {
+            if (Values != null)
+            {
+                Values.RemoveOldList();
+                Values.RandomLayers();
+            }
+
             count = 0;
             drink.i = 0;
             drink.resetList();
@@ -36,12 +42,6 @@ public class ScoreBoard : MonoBehaviour {
             drinkAccounted = false;
             sm.GetComponent<Shakermeter>().runOnce = false;
             sm.GetComponent<Shakermeter>().isShaken = false;
-            
-            if (Values != null)
-            {
-
-                Values.RandomLayers();
-            }
         }
 
         

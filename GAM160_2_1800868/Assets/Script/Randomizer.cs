@@ -39,4 +39,9 @@ public class Randomizer : MonoBehaviour {
             layerNums.Add(randomNum);
         }
     }
+
+    public void RemoveOldList()
+    {
+        layerNums.Clear();
+    }
 }

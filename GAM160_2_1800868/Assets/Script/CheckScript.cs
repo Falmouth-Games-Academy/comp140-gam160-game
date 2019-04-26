@@ -45,7 +45,7 @@ public class CheckScript : MonoBehaviour {
         else
             isMade = false;
 
-        Debug.Log("checkscript: " + isMade);
+        //Debug.Log("checkscript: " + isMade);
 
         /*if (!isFull)
             isMade = false;
@@ -56,6 +56,8 @@ public class CheckScript : MonoBehaviour {
     
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(values.layerNums[i].ToString() + " | " + other.transform.tag);
+        //Debug.Log(numOfLayers);
 
         if (other.tag != "SpawnPoint")
         {
@@ -64,9 +66,9 @@ public class CheckScript : MonoBehaviour {
 
         //if the shaker lid is open and if the ingrediant matches the current needed ingrediant
         //then it will state that the ingrediant has been added and go on to the next one
-        if (numOfLayers < 5 && ls.lidIsOpen)
+        if (ls.lidIsOpen)
         {
-            Debug.Log("Adding ingrediant");
+            //Debug.Log("Adding ingrediant");
             isFull = false;
             if (values.layerNums[i].ToString() == other.transform.tag)
             {
@@ -81,7 +83,7 @@ public class CheckScript : MonoBehaviour {
             }
             else
             {
-                Debug.Log("Wrong ingrediant");
+                //Debug.Log("Wrong ingrediant");
                 wrongIngrediantGadge++;
             }
         }
