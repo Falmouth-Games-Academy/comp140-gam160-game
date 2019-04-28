@@ -7,7 +7,7 @@
 
 // C++ standard
 #include <iostream>
-#include <string>
+#include <string>	
 
 // Headerphile
 #include "Shader.h"
@@ -17,6 +17,7 @@
 #define GL3_PROTOTYPES 1
 #include <glew.h>
 #include <glm/glm.hpp>
+#include <GL/glut.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
 
@@ -142,6 +143,8 @@ class Renderer
 	{
 		// Swap our buffers to make our changes visible
 		SDL_GL_SwapWindow(mainWindow);
+
+		//glutSwapBuffers();
 	}
 
 	void SetMatrix( const glm::mat4 &model, Camera camera)

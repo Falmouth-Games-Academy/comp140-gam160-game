@@ -4,6 +4,7 @@
 
 #include "Model.h"
 #include "Renderer.h"
+#include "BaseComponent.h"
 #include "SDL.h"
 #include "glew.h"
 
@@ -34,6 +35,8 @@ public:
 	bool canReceiveInput = false;
 
 	SObject * target;
+
+	BaseComponent component;
 
 	bool following = false;
 

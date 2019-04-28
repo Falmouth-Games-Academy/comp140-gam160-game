@@ -33,6 +33,9 @@ public:
 	// Distance to view target
 	float targetRange;
 
+	glm::vec3 getPosition() { return position; }
+
+	glm::vec3 * pointToFollow;
 private:
 	glm::mat4 viewMatrix;
 

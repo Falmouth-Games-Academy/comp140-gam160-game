@@ -1,0 +1,5 @@
+﻿  serial.cc
+  win.cc
+  list_ports_win.cc
+  Generating Code...
+  serial.vcxproj -> C:\Users\brian\Documents\Git\comp140_3_sdl_serial\libraries\serial\visual_studio\Debug\serial.lib

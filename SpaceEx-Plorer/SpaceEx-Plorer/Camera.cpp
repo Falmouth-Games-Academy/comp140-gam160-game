@@ -8,6 +8,8 @@ Camera::Camera()
 
 	direction = glm::vec3(0, 0, 0);
 
+	targetRange = 5;
+
 	viewMatrix = glm::lookAt
 	(
 		position , // Camera is at (0,0,-4), in World Space
@@ -31,15 +33,20 @@ void Camera::Translate(glm::vec3 &axis)
 
 void Camera::Rotate(float degrees, glm::vec3 &axis)
 {
-	// ugh
+	// Seriously considering not implementing this
 }
 
 void Camera::Update()
 {
+	if (pointToFollow == nullptr)
+	{
+		std::cout << "oof";
+	}
+	
 	viewMatrix = glm::lookAt
 	(
-		position, // Camera is at (0,0,-4), in World Space
-		target + direction,  // And looks at the origin
+		pointToFollow == nullptr ? position : *pointToFollow + glm::vec3(0, 0, 1) * targetRange, // Camera is at (0,0,-4), in World Space
+		pointToFollow == nullptr ? position + glm::vec3(0, 0, 5) : *pointToFollow,  // And looks at the origin
 		glm::vec3(0, -1, 0)  // Head is up ( set to 0,-1,0 to look upside-down )
 	);
 }

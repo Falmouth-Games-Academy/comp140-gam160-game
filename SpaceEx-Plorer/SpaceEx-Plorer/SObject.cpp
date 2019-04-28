@@ -33,6 +33,7 @@ void SObject::Update()
 	// Set the position of the SObject to the median center of the 3D model
 	position = model.GetCenter();
 
+	// If a valid target has been set, move this model towards it
 	if (target != nullptr && glm::length(this->getPosition() - this->target->getPosition()) > 1)
 	{
 		if (following)
