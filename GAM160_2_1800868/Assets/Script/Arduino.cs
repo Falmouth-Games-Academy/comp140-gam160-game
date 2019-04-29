@@ -195,20 +195,20 @@ public class Arduino : MonoBehaviour {
     {
         if (angelZ > 1 && angelZ < 30)
         {
-            ShakerMove.transform.Translate(Vector3.left * Time.deltaTime * 2);
+            ShakerMove.transform.Translate(Vector3.left * Time.deltaTime * 3);
         }
         else if (angelZ < -1 && angelZ > -30)
         {
-            ShakerMove.transform.Translate(Vector3.right * Time.deltaTime * 2);
+            ShakerMove.transform.Translate(Vector3.right * Time.deltaTime * 3);
         }
 
         if (angelX > 1 && angelX < 30)
         {
-            ShakerMove.transform.Translate(Vector3.forward * Time.deltaTime * 2);
+            ShakerMove.transform.Translate(Vector3.forward * Time.deltaTime * 3);
         }
         else if (angelX < -1 && angelX > -30)
         {
-            ShakerMove.transform.Translate(Vector3.back * Time.deltaTime * 2);
+            ShakerMove.transform.Translate(Vector3.back * Time.deltaTime * 3);
         }
     }
 

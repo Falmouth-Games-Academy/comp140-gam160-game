@@ -61,11 +61,11 @@ void setup()
   
   // Calibrate gyroscope. The calibration must be at rest.
   // If you don't want calibrate, comment this line.
-  //mpu.calibrateGyro();
+  mpu.calibrateGyro();
 
   // Set threshold sensivty. Default 3.
   // If you don't want use threshold, comment this line or set 0.
-  mpu.setThreshold(3);
+  //mpu.setThreshold(3);
 
   //Serial.println("Finished setup");
 }

@@ -14,12 +14,14 @@ public class Timer : MonoBehaviour {
     private ChangeScene cs;
     [SerializeField]
     private ScoreBoard scoreBoards;
+    [SerializeField]
+    private Text warning;
 
 
     // Use this for initialization
     void Start () {
-		
-	}
+        warning.enabled = false;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -37,5 +39,13 @@ public class Timer : MonoBehaviour {
                 cs.GetComponent<ChangeScene>().SwitchtoScene();
             }
         }
+    }
+
+    //The time reduction warning will appear when for 0.5 seconds
+    public IEnumerator Warning()
+    {
+        warning.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        warning.enabled = false;
     }
 }

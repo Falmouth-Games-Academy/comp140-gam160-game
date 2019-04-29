@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CheckScript : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class CheckScript : MonoBehaviour {
     private Arduino arduino;
     [SerializeField]
     private LidScript ls;
+    [SerializeField]
+    private float gadgeLimit;
 
     public Timer timer;
     public bool isMade;
@@ -31,10 +34,11 @@ public class CheckScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        //If the shaker detects the wrong ingreiant then the player's time will be reduced
+        //If the shaker detects the wrong ingreiant then the player's time will be reduced and the warning from the timer script will appear
         if (wrongIngrediantGadge >= 10)
         {
             timer.timer -= 5;
+            timer.StartCoroutine(timer.Warning());
             wrongIngrediantGadge = 0;
         }
 
@@ -69,7 +73,7 @@ public class CheckScript : MonoBehaviour {
             if (values.layerNums[i].ToString() == other.transform.tag)
             {
                 gadge++;
-                if (gadge > 3)
+                if (gadge > gadgeLimit)
                 {
 
                     i = i + 1;
