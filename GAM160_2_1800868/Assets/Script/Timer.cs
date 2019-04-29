@@ -23,9 +23,11 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         timer -= Time.deltaTime;
         timerTexts.text = Convert.ToInt16(timer).ToString();
 
+        //When the timer hits zero it will save the players score and switch to the set scene
         if (timer <= 0)
         {
             if (cs != null && scoreBoards != null)

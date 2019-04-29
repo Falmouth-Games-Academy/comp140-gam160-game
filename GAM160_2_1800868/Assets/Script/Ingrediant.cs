@@ -16,14 +16,16 @@ public class Ingrediant : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //When the player collised with the ingrediants collider it will spawn the ingrediant
         if (isPouring)
             pour();
 
     }
 
+    //Create the ingrediant object and destroy after 2 seconds when called
     void pour()
     {
-        transform.eulerAngles = new Vector3(-90, transform.eulerAngles.y, transform.eulerAngles.z);
+        //transform.eulerAngles = new Vector3(-90, transform.eulerAngles.y, transform.eulerAngles.z);
         GameObject drop = Instantiate(liquid, spawnPoint.position, Quaternion.identity);
         Destroy(drop, 2);
     }

@@ -30,6 +30,7 @@ public class Randomizer : MonoBehaviour {
 
     public void RandomLayers()
     {
+        //For every layer it will be given a value which is diasplayed on the UI list and added a list for the check script
         foreach (Image layer in Layers)
         {
             string String = ingrediantsList[0].ToString();
@@ -40,6 +41,7 @@ public class Randomizer : MonoBehaviour {
         }
     }
 
+    //When called the previous list will be removed
     public void RemoveOldList()
     {
         layerNums.Clear();

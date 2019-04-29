@@ -24,7 +24,7 @@ public class LidScript : MonoBehaviour {
 
         if (arduino != null)
         {
-            //when the button is pressed the lid will close else it'll be open
+            //when the button is pressed the lid will appear else it will disapear
             if (arduino.val == "e")
             {
                 lidIsOpen = false;

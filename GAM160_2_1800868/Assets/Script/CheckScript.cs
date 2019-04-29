@@ -56,9 +56,6 @@ public class CheckScript : MonoBehaviour {
     
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(values.layerNums[i].ToString() + " | " + other.transform.tag);
-        //Debug.Log(numOfLayers);
-
         if (other.tag != "SpawnPoint")
         {
             Destroy(other.gameObject);
@@ -68,7 +65,6 @@ public class CheckScript : MonoBehaviour {
         //then it will state that the ingrediant has been added and go on to the next one
         if (ls.lidIsOpen)
         {
-            //Debug.Log("Adding ingrediant");
             isFull = false;
             if (values.layerNums[i].ToString() == other.transform.tag)
             {
@@ -83,7 +79,6 @@ public class CheckScript : MonoBehaviour {
             }
             else
             {
-                //Debug.Log("Wrong ingrediant");
                 wrongIngrediantGadge++;
             }
         }

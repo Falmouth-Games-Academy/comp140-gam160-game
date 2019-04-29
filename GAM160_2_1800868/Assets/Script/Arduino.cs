@@ -100,7 +100,7 @@ public class Arduino : MonoBehaviour {
             }
             */
             
-
+            //The function player position is run if values exists
             PositionPlayer(splitValues);
 
 
@@ -134,7 +134,7 @@ public class Arduino : MonoBehaviour {
         }     
     }
 
-    //The void will get and set the position of the paddle depending on the angle of the potentiomenter
+    //The void will get and set the position / rotation of the shaker depending on the angle of the gryoscope/accelerometer
     void PositionPlayer(string[] values)
     {
         if (Shaker != null)
@@ -142,11 +142,6 @@ public class Arduino : MonoBehaviour {
             angelX = float.Parse(values[0]);
             angelY = float.Parse(values[1]);
             angelZ = float.Parse(values[2]);
-
-            if (float.TryParse(values[0], out angelX) && float.TryParse(values[1], out angelY) && float.TryParse(values[2], out angelZ))
-            {
-                
-            }
             
             rotationVector = new Vector3(angelX,0, angelZ);
 
@@ -169,11 +164,8 @@ public class Arduino : MonoBehaviour {
             shakerPos = new Vector3(posX, Smoother(posY), Smoother(posZ));
             
             currentAcc = shakerPos;
-            //Shaker.transform.position = shakerPos;
 
             val = values[6];
-
-
         }
     }
 

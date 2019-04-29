@@ -11,6 +11,7 @@ public class Score : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        //At the start the player score will be displayed
         scoreText.text = PlayerPrefs.GetFloat("Score", score).ToString();
 	}
 }

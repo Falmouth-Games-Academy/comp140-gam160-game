@@ -94,14 +94,6 @@ void loop()
   float AccYangle = (float) (atan2(rawAccel.ZAxis,rawAccel.XAxis)+M_PI)*(180/3.14159);
   float AccZangle = (float) (atan2(rawAccel.XAxis,rawAccel.ZAxis)+M_PI)*(180/3.14159);
 
-/*
-  //If IMU is up the correct way, use these lines
-        AccXangle -= (float)180.0;
-  if (AccYangle > 90)
-          AccYangle -= (float)270;
-  else
-    AccYangle += (float)90;
-*/
 
   //Complementary filter used to combine the accelerometer and gyro values.
   CFangleX=AA*(CFangleX+rate_gyr_x*DT) +(1 - AA) * AccXangle;
@@ -119,13 +111,15 @@ if(Serial.available() > 0){
       sendData();
     }
 
+    //If the incomingByte is equal to r then pitch,roll and yaw are set to 0.0
     if(incomingByte == 'r')
     {
       pitch = 0.0;
       roll = 0.0;
       yaw = 0.0;
     }
-    
+
+    //When the button is pressed send e to the game else send 0
     if(digitalRead(button1Pin) == HIGH)
     {
       val = 'e';
@@ -142,18 +136,9 @@ if(Serial.available() > 0){
   Vector axis = mpu.readNormalizeAccel();
 
   // Calculate Pitch, Roll and Yaw
- 
   pitch = pitch + norm.YAxis * timeStep;
   roll = roll + norm.XAxis * timeStep;
   yaw = yaw + norm.ZAxis * timeStep;
-  
-
-  /*pitch = 180 * atan (rawAccel.XAxis/sqrt(rawAccel.YAxis*rawAccel.YAxis + rawAccel.ZAxis*rawAccel.ZAxis))/M_PI;
-  roll = 180 * atan (rawAccel.YAxis/sqrt(rawAccel.XAxis*rawAccel.XAxis + rawAccel.ZAxis*rawAccel.ZAxis))/M_PI;
-  yaw = 180 * atan (rawAccel.ZAxis/sqrt(rawAccel.XAxis*rawAccel.XAxis + rawAccel.ZAxis*rawAccel.ZAxis))/M_PI;
-  */
-
-
   
   X = axis.XAxis;
   Y = axis.YAxis;
@@ -177,8 +162,7 @@ if(Serial.available() > 0){
 
 void sendData()
 {
-  //The code below send the data fromt the poteniometers via the specifc port and create a new line
-  //if displayed on the serial moniter
+  //The code below send the data from the GyroScope via the specifc port and creates a new line after val
   Serial.print(pitch);
   Serial.print(",");
   Serial.print(roll);

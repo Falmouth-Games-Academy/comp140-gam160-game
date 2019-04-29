@@ -28,6 +28,7 @@ public class PourScript : MonoBehaviour {
 
         if (sm != null )
         {
+            //If the drink is shaken and is tilted updside down then the drink will be spawned
             if (sm.isShaken)
             {
                 if (transform.eulerAngles.z < 220 && transform.eulerAngles.z > 150)

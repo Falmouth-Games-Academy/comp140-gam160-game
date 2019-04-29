@@ -27,7 +27,8 @@ public class ScoreBoard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //When the shaker has been shaken it will reset the ingrediants list and shaker meter
+        //When the shaker has been shaken it will reset the ingrediants list, shake meter and reset the values from the Arduino
+        //while also increasing the player score
         if (sm.GetComponent<Shakermeter>().isShaken == true)
         {
             if (Values != null)

@@ -44,7 +44,7 @@ public class Shakermeter : MonoBehaviour {
         {
             if (cs != null && !ls.lidIsOpen)
             {
-                //When ingrediants have been added the player can shake the cocktail
+                //When ingrediants have been added the player can shake the cocktail and will put into a set position
                 if (cs.isMade && !runOnce)
                 {
                     shakerMeter.SetActive(true);
@@ -74,6 +74,7 @@ public class Shakermeter : MonoBehaviour {
         }
 	}
 
+    //The shaker's previous position is stored in lastXpos;
     private void LateUpdate()
     {
         lastXPos = arduino.shakerPos.x;
