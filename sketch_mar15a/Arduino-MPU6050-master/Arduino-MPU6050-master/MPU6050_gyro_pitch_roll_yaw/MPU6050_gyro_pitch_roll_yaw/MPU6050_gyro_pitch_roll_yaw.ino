@@ -14,7 +14,7 @@ MPU6050 mpu;
 
 // Timers
 unsigned long timer = 0;
-float timeStep = 0.003;
+float timeStep = 0.0003;
 
 // Pitch, Roll and Yaw values
 float pitch = 0;
@@ -52,6 +52,7 @@ void setup()
   pinMode(button1Pin, INPUT);
   
   // Initialize MPU6050
+  
   while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))
   {
     Serial.println("Could not find a valid MPU6050 sensor, check wiring!");
@@ -60,7 +61,7 @@ void setup()
   
   // Calibrate gyroscope. The calibration must be at rest.
   // If you don't want calibrate, comment this line.
-  mpu.calibrateGyro();
+  //mpu.calibrateGyro();
 
   // Set threshold sensivty. Default 3.
   // If you don't want use threshold, comment this line or set 0.

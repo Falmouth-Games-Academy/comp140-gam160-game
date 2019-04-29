@@ -4737,7 +4737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d15af5cfb399c439367b2579a5325c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 500
+  timer: 200
   timerTexts: {fileID: 974507273}
   cs: {fileID: 2023523518}
   scoreBoards: {fileID: 1115055819}

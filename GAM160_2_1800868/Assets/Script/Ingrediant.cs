@@ -16,6 +16,8 @@ public class Ingrediant : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        Debug.Log(isPouring);
+
         //When the player collised with the ingrediants collider it will spawn the ingrediant
         if (isPouring)
             pour();
@@ -30,13 +32,15 @@ public class Ingrediant : MonoBehaviour {
         Destroy(drop, 2);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter (Collider other)
     {
-        isPouring = true;
+        if(other.transform.name.Contains("Shaker"))
+            isPouring = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        isPouring = false;
+        if (other.transform.name.Contains("Shaker"))
+            isPouring = false;
     }
 }
