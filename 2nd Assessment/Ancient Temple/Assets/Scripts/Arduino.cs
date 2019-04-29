@@ -8,6 +8,9 @@ public class Arduino : MonoBehaviour
 {
     public GameObject player;
 
+    public PasswordColours ButtonsColours;
+
+
     private bool B1 = true;
     private bool B2 = true;
 
@@ -86,15 +89,27 @@ public class Arduino : MonoBehaviour
             }
             if (int.Parse(values[3]) > 0)
             {
-                ;
+                 if(ButtonsColours.passwords.GetComponent<Password>().ButtonType == ButtonColour.Green)
+                {
+                    ButtonsColours.CorrectPassword();
+                }
+                
             }
             if (int.Parse(values[4]) > 0)
             {
-                ;
+                if (ButtonsColours.passwords.GetComponent<Password>().ButtonType == ButtonColour.Orange)
+                {
+                    ButtonsColours.CorrectPassword();
+
+                }
             }
             if (int.Parse(values[5]) > 0)
             {
-                ;
+                if (ButtonsColours.passwords.GetComponent<Password>().ButtonType == ButtonColour.Red)
+                {
+                    ButtonsColours.CorrectPassword();
+
+                }
             }
         }
 

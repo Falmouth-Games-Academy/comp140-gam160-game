@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class PasswordColours: MonoBehaviour {
 
     public Canvas passwordCanvas;
+    public GameObject targetObject;
+    public GameObject passwords;
     public GameObject[] passwordOptions = new GameObject[0];
     //This tells unity to start with an empty array 
 
@@ -32,5 +34,20 @@ public class PasswordColours: MonoBehaviour {
         // enable one of them
         int theItemToEnable = Random.Range(0, passwordOptions.Length); // a random index within passwordOptions
         passwordOptions[theItemToEnable].SetActive(true);
+        passwords = passwordOptions[theItemToEnable];
+
+        
+    }
+
+    public void CorrectPassword()
+    {
+        //This allows the canvas with the text to pop up
+        Time.timeScale = 1f;
+        //This freezes the game
+        passwords.SetActive(false);
+        passwordCanvas = null;
+        targetObject.SetActive(false);
+        Destroy(gameObject);
+        //
     }
 }
