@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 #include "SerialInterface.h"
 #include <iostream>
 
@@ -42,59 +42,33 @@ void SerialInterface::send(std::string msg)
 	}
 }
 
-// 1 for player one; -1 for player two
-void SerialInterface::score(int player)
-{
-	switch (player)
-	{
-	case -1: { mySerial->write("L"); break; }
-	case 1: { mySerial->write("R"); break; }
-	default: {break; }
-	}
-}
-
-void SerialInterface::resetGame()
-{
-	mySerial->write("Q");
-}
-
-void SerialInterface::getButton()
+void SerialInterface::getInput()
 {
 	if (connect)
 	{
-		mySerial->write("B");
+		mySerial->write("I");
 
 		std::string result = mySerial->readline();
 
-		//std::vector<std::string> pos = split(result, ';');
+		if (result.length() > 22)
+		{
+			std::string subSpeed = result.substr(0, 4);
 
-		std::string b1 = result.substr(0, 1);
-		std::string b2 = result.substr(2, 1);
+			std::string subX = result.substr(5, 9);
+			std::string subY = result.substr(10, 14);
+			std::string subZ = result.substr(15, 19);
 
-		button1 = std::stoi(b1);
-		button2 = std::stoi(b2);
-		//std::cout << button1 << std::endl;
-	}
-}
+			std::string subState = result.substr(20, 21);
 
-void SerialInterface::getPositions()
-{
-	if (connect)
-	{
-		mySerial->write("P");
+			speed = debounce(0.2, speed, std::stoi(subSpeed));
 
-		std::string result = mySerial->readline();
+			angleX = debounce(0.2, angleX, std::stoi(subX));
+			angleY = debounce(0.2, angleY, std::stoi(subY));
+			angleZ = debounce(0.2, angleZ, std::stoi(subZ));
 
+			state = stoi(subState);
 
-		if (result.length() > 5) {
-			std::string sub1 = result.substr(0, 4);
-
-			std::string sub2 = result.substr(5, 9);
-
-			pot1 = debounce(0.2, pot1, std::stoi(sub1));
-			pot2 = debounce(0.2, pot2, std::stoi(sub2));
 		}
-
 	}
 }
 

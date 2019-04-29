@@ -7,17 +7,31 @@ const int player = A0;
 // Clamped value between 0 and 1023 (inclusive)
 int playerSpeed = 0;
 
+// Number of leds
+const int LEDS = 1;
 // Array for led ports
-const int leds[1] = {3};
+const int leds[LEDS] = {5};
+bool ledsOn[LEDS] = {false};
 
 // Gyroscope specific values
 int gyro_error = 0;           // Used for
-int16_t rawX, rawY, rawZ;     // Raw gyro values
-float angleX, angleY, angleZ; // Processed angles
-float errX, errY, errZ;       // Initial gyro error 
+int16_t Gyr_rawX, Gyr_rawY, Gyr_rawZ;     // Raw gyro values
+float Gyro_angle_x, Gyro_angle_y, Gyro_angle_z; // Processed angles
+float Gyro_raw_error_x, Gyro_raw_error_y, Gyro_raw_error_z;       // Initial gyro error 
 
 // Time specific values
-float elapsedTime, time, timePrev;                
+float elapsedTime, time, timePrev;       
+
+long debounce = 200;
+long switchTime = 0;
+
+// Button variables
+int inPin = 2;
+int outPin = 13;
+
+int state = HIGH;
+int reading = 0;
+int previous = LOW;
 
 int incomingByte = 0;
 
@@ -30,6 +44,9 @@ void setup() {
   Wire.write(0x00);
   Wire.endTransmission(true);   // end transmission
 
+  pinMode(inPin, INPUT);
+  pinMode(outPin, OUTPUT);
+  pinMode(leds[0], OUTPUT);
   
   // Serial setup
   Serial.begin(9600);
@@ -46,7 +63,7 @@ void setup() {
          
       Gyr_rawX=Wire.read()<<8|Wire.read();     //Once again we shift and sum
       Gyr_rawY=Wire.read()<<8|Wire.read();
-      GYr_rawZ=Wire.read()<<8|Wire.read();     //TODO: check functionality
+      Gyr_rawZ=Wire.read()<<8|Wire.read();     //TODO: check functionality
       
       /*---X---*/
       Gyro_raw_error_x = Gyro_raw_error_x + (Gyr_rawX/32.8); 
@@ -74,7 +91,10 @@ void resetGame()
 // Update specific LED's based on incoming byte
 void updateDashboard(int inByte)
 {
-  // switch based on inByte that determines which LED's are lit
+  if(inByte == 'P')
+  {
+    ledsOn[0] = true;
+  }
 }
 
 // Read input from potentiometer and gyro
@@ -88,12 +108,35 @@ void loop() {
   time = millis();                        // actual time read
   elapsedTime = (time - timePrev) / 1000; //divide by 1000 in order to obtain seconds
 
+  if(incomingByte == 'P')
+  {
+    digitalWrite(5, HIGH);
+  }
+  else
+  {
+    digitalWrite(5, LOW);
+  }
+
+  reading = digitalRead(inPin);
+  if(reading == HIGH && previous == LOW && millis() - switchTime > debounce)
+  {
+    if(state == HIGH)
+      state = LOW;
+    else
+      state = HIGH;
+
+    switchTime = millis();
+  }
+
+  digitalWrite(outPin, state);
+  previous = reading;
+
   //////////////////////////////////////Gyro read/////////////////////////////////////
 
     Wire.beginTransmission(0x68);            //begin, Send the slave adress (in this case 68) 
     Wire.write(0x43);                        //First adress of the Gyro data
     Wire.endTransmission(false);
-    Wire.requestFrom(0x68,4,true);           //We ask for just 4 registers
+    Wire.requestFrom(0x68,6,true);           //We ask for 6 registers
         
     Gyr_rawX=Wire.read()<<8|Wire.read();     //Once again we shift and sum
     Gyr_rawY=Wire.read()<<8|Wire.read();
@@ -114,7 +157,7 @@ void loop() {
     /*---X---*/
     Gyro_angle_y = Gyro_angle_y  + Gyr_rawY*elapsedTime;
     /*---Z---*/
-    Gyr_rawZ = (Gyr_rawZ/32.8) - Gyro_raw_error_z;      //TODO: check functionality
+    Gyro_angle_z = Gyro_angle_z  + Gyr_rawZ*elapsedTime;      //TODO: check functionality
 
     //Serial.print("GyroX raw: ");
     //Serial.print(Gyr_rawX);
@@ -123,12 +166,12 @@ void loop() {
     //Serial.print(Gyr_rawY);
     //Serial.print("   |   ");
     //Serial.print("GyroX angle: ");
-    //Serial.print(Gyro_angle_x);
+    //Serial.println(Gyro_angle_x);
     //Serial.print("   |   ");
     //Serial.print("GyroY angle: ");
     //Serial.println(Gyro_angle_y);
-    Serial.print("GyroZ angle: ");      //Display z values, hopefully they are alright
-    Serial.println(Gyro_angle_z);
+    //Serial.print("GyroZ angle: ");      //Display z values, hopefully they are alright
+    //Serial.println(Gyro_angle_z);
     
     ///////////////END GYRO READ/////////////////////////
   
@@ -137,24 +180,38 @@ void loop() {
     incomingByte = Serial.read();
 
     // Read inputs from potentiometer and gyro
-    if(incomingByte == 'P')
+    if(incomingByte == 'I')
     {
       playerSpeed = analogRead(player);
 
       analogWrite(leds[0], (playerSpeed / 1023.0f) * 255);
-      
-      Serial.print(getPadded(playerSpeed));
-      Serial.print("\n");
-    }
 
-    // Reset game
-    if(incomingByte == 'Q')
-    {
-      resetGame();
+      Serial.print(getPadded(playerSpeed));
+      Serial.print("-");
+      Serial.print(getPadded(getNormalisedAngle(Gyro_angle_x)));
+      Serial.print("-");
+      Serial.print(getPadded(getNormalisedAngle(Gyro_angle_y)));
+      Serial.print("-");
+      Serial.print(getPadded(getNormalisedAngle(Gyro_angle_z)));
+      Serial.print("-");
+      Serial.print(state);
+      Serial.println();
     }
-  
-    updateDashboard(incomingByte); 
+    
+    if(incomingByte == 'P')
+    {
+      digitalWrite(leds[0], LOW);
+    }
   }
+}
+
+int getNormalisedAngle(float angle)
+{
+  int newAngle = angle;
+  newAngle = newAngle % 360;
+  if(newAngle < 0)
+    newAngle = 360 - (-1)*newAngle;
+  return newAngle;
 }
 
 String getPadded(int num)
@@ -171,6 +228,7 @@ String getPadded(int num)
   return String(padded);
 
 }
+
 // Use for mapping from one range to another
 float Remap(float value, float from1, float to1, float from2, float to2)
 {

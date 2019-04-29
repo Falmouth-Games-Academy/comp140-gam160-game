@@ -42,9 +42,9 @@ class Model
 		model = glm::mat4(1.0f); 
 	}
 
-	void Translate(const glm::vec3 &axis)
+	void Translate(const glm::vec3 &axis, float speed=1.0f)
 	{
-		model *= glm::translate(axis);
+		model *= glm::translate(axis * speed);
 	}
 
 	void Rotate(float degrees, const glm::vec3 &axis)

@@ -6,6 +6,11 @@
 #include <vector>
 #include <iterator>
 
+// Data format: PPPP-AAAA-AAAA-AAAA-S
+// P - potentiometer reading
+// A - gyro rotational axis
+// S - state of the button
+
 class SerialInterface
 {
 public:
@@ -15,19 +20,10 @@ public:
 	bool connect = false;
 
 	void send(std::string msg);
-	
-	void getPositions();
-
-	void score(int);
-
-	void resetGame();
-	
-	void getButton();
-
-	int getPot1() { return pot1; };
-	int getPot2() { return pot2; };
 
 	void close();
+
+	void getInput();
 
 	// Debounces Arduino input
 	int debounce(float, int, int);
@@ -35,9 +31,10 @@ public:
 private:
 	serial::Serial* mySerial;
 
+public:
+	int speed;
 
-	int pot1 = 0;
-	int pot2 = 0;
-	int button1;
-	int button2;
+	int angleX, angleY, angleZ;
+
+	int state;
 };

@@ -1,10 +1,8 @@
-﻿  Camera.cpp
-  SpaceEx-Plorer.cpp
-e:\projects\sdl\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\model.h(130): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-e:\projects\sdl\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(53): warning C4018: '<': signed/unsigned mismatch
-e:\projects\sdl\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(105): warning C4018: '<': signed/unsigned mismatch
-e:\projects\sdl\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(107): warning C4018: '<': signed/unsigned mismatch
-e:\projects\sdl\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(122): warning C4018: '<': signed/unsigned mismatch
-e:\projects\sdl\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(130): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  SpaceEx-Plorer.vcxproj -> E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\Debug\SpaceEx-Plorer.exe
+﻿  SpaceEx-Plorer.cpp
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\model.h(130): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(58): warning C4018: '<': signed/unsigned mismatch
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(118): warning C4018: '<': signed/unsigned mismatch
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(120): warning C4018: '<': signed/unsigned mismatch
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(147): warning C4018: '<': signed/unsigned mismatch
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(155): warning C4018: '<': signed/unsigned mismatch
+  SpaceEx-Plorer.vcxproj -> D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\Debug\SpaceEx-Plorer.exe

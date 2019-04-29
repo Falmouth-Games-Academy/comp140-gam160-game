@@ -23,7 +23,7 @@
     <ProjectGuid>{DA7C1976-75DD-49B3-A4E6-F7722420A76A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SpaceExPlorer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -91,13 +91,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NDEBUG;%(PreprocessorDefinitions);_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\include;E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\serial\include;D:\Visual Studio Projects\Local\SpaceEx-Plorer\stb;D:\Visual Studio Projects\Local\SpaceEx-Plorer\GL\include\glm;D:\Visual Studio Projects\Local\SpaceEx-Plorer\GL\include;D:\Visual Studio Projects\Local\SpaceEx-Plorer\SDL2\include;E:\Projects\SDL\Git\SpaceEx-Plorer\GL\include;E:\Projects\SDL\Git\SpaceEx-Plorer\GL\include\glm;E:\Projects\SDL\Git\SpaceEx-Plorer\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\serial\include\serial\impl;D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\include;E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\include;D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\serial\include;D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\serial;E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\serial\include;D:\Visual Studio Projects\Local\SpaceEx-Plorer\stb;D:\Visual Studio Projects\Local\SpaceEx-Plorer\GL\include\glm;D:\Visual Studio Projects\Local\SpaceEx-Plorer\GL\include;D:\Visual Studio Projects\Local\SpaceEx-Plorer\SDL2\include;E:\Projects\SDL\Git\SpaceEx-Plorer\GL\include;E:\Projects\SDL\Git\SpaceEx-Plorer\GL\include\glm;E:\Projects\SDL\Git\SpaceEx-Plorer\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\lib;E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\lib\x64;E:\Projects\SDL\Git\SpaceEx-Plorer\SDL2\lib\x86;D:\Visual Studio Projects\Local\SpaceEx-Plorer\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_net.lib;SDL2_image.lib;SDL2_ttf.lib;glew32s.lib;glew32.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\lib;D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\lib\x64;D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\lib;E:\Projects\SDL\Git\comp140-gam160-game\SpaceEx-Plorer\freeglut-3.0.0\lib\x64;E:\Projects\SDL\Git\SpaceEx-Plorer\SDL2\lib\x86;D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\serial\visual_studio\Debug;D:\Visual Studio Projects\Local\SpaceEx-Plorer\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_net.lib;SDL2_image.lib;SDL2_ttf.lib;glew32s.lib;glew32.lib;opengl32.lib;glu32.lib;serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -165,6 +165,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="SerialInterface.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SObject.h" />
     <ClInclude Include="SProjectile.h" />
@@ -179,6 +180,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SerialInterface.cpp" />
     <ClCompile Include="SObject.cpp" />
     <ClCompile Include="SpaceEx-Plorer.cpp" />
     <ClCompile Include="SProjectile.cpp" />
