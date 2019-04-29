@@ -65,7 +65,7 @@ void setup()
 
   // Set threshold sensivty. Default 3.
   // If you don't want use threshold, comment this line or set 0.
-  //mpu.setThreshold(3);
+  mpu.setThreshold(3);
 
   //Serial.println("Finished setup");
 }

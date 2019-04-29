@@ -424,7 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Shaker: {fileID: 939846766}
   ShakerMove: {fileID: 1615839074}
-  commPort: 7
+  commPort: 4
   x: {fileID: 1972667703}
   y: {fileID: 54318055}
   z: {fileID: 359184503}
