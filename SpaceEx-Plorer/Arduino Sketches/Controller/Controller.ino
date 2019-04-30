@@ -184,7 +184,7 @@ void loop() {
     {
       playerSpeed = analogRead(player);
 
-      analogWrite(leds[0], (playerSpeed / 1023.0f) * 255);
+      //analogWrite(leds[0], (playerSpeed / 1023.0f) * 255);
 
       Serial.print(getPadded(playerSpeed));
       Serial.print("-");
@@ -199,6 +199,10 @@ void loop() {
     }
     
     if(incomingByte == 'P')
+    {
+      digitalWrite(leds[0], HIGH);
+    }
+    else
     {
       digitalWrite(leds[0], LOW);
     }

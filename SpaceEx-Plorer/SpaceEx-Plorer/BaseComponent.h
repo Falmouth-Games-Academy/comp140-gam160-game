@@ -2,6 +2,14 @@
 
 // Scoring component: attached to any SObjects that require scoring functionality
 
+enum ComponentType
+{
+	Player,
+	Enemy,
+	Projectile,
+	Score
+};
+
 class BaseComponent
 {
 public:
@@ -13,12 +21,14 @@ public:
 
 public:
 	static int score;
+
+	ComponentType type;
 };
 
 class ProjectileComponent : public BaseComponent
 {
 public:
-	ProjectileComponent() {};
+	ProjectileComponent() { type = ComponentType::Projectile; };
 	~ProjectileComponent() {};
 public:
 	int damage;
@@ -28,7 +38,7 @@ public:
 class EnemyComponent : public BaseComponent
 {
 public:
-	EnemyComponent() {};
+	EnemyComponent() { type = ComponentType::Enemy; };
 	~EnemyComponent() {};
 
 	void hit(ProjectileComponent * projectile)
@@ -50,7 +60,7 @@ public:
 class PlayerComponent : public BaseComponent
 {
 public:
-	PlayerComponent() {};
+	PlayerComponent() { type = ComponentType::Player; };
 	~PlayerComponent() {};
 
 	void hit(ProjectileComponent * projectile)
