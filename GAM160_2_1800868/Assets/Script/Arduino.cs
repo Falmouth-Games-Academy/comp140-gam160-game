@@ -38,8 +38,8 @@ public class Arduino : MonoBehaviour {
     private Vector3 previousAcc;
     private Vector3 previousPos;
     private Vector3 direction;
-    float angelX;
-    float angelZ;
+    private float angelX;
+    private float angelZ;
 
     float posX;
     float posY;
@@ -82,17 +82,15 @@ public class Arduino : MonoBehaviour {
             //The value will be split into two to get the different positions
             splitValues = values.Split(',');
             
+            //Get controller data every frame
             PositionPlayer(splitValues);
-
-
-            
         }
 
         
     }
 
     //The method below will send the data stored in the msg parameter 
-    //snd remove previous information so that it can access new incoming information
+    //and remove previous information so that it can access new incoming information
     public void WriteToArduio(string msg)
     {
         serial.WriteLine(msg);

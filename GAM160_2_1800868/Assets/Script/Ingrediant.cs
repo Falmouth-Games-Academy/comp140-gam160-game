@@ -15,9 +15,7 @@ public class Ingrediant : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        Debug.Log(isPouring);
-
+        
         //When the player collised with the ingrediants collider it will spawn the ingrediant
         if (isPouring)
             pour();

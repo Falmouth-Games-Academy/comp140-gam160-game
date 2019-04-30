@@ -28,6 +28,8 @@ public class Shakermeter : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        //Setting up parts shake meter for the start of the game
         originalYAxis = transform.position.y;
         barScale = 0.1f;
         shakerMeter.SetActive(false);
@@ -39,12 +41,12 @@ public class Shakermeter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
         if (ls != null)
         {
+            //When the lid is open the player can add ingrediants
             if (cs != null && !ls.lidIsOpen)
             {
-                //When ingrediants have been added the player can shake the cocktail and will put into a set position
+                //When ingrediants have been added the player can shake the cocktail and will put it into a set position
                 if (cs.isMade && !runOnce)
                 {
                     shakerMeter.SetActive(true);
@@ -52,6 +54,7 @@ public class Shakermeter : MonoBehaviour {
                     transform.position = new Vector3(0, originalYAxis, 0);
                     rb.isKinematic = true;
 
+                    //Checking to see if the acceloration has changed
                     if (arduino.shakerPos.x < lastXPos || arduino.shakerPos.x > lastXPos)
                     {
                         shakeBar.rectTransform.localScale += new Vector3(barScale * (Time.deltaTime * 0.8f), 0, 0);

@@ -28,6 +28,7 @@ public class CheckScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        
         wrongIngrediantGadge = 0;
     }
 
@@ -63,7 +64,7 @@ public class CheckScript : MonoBehaviour {
         }
 
         //if the shaker lid is open and if the ingrediant matches the current needed ingrediant
-        //then the gadge value will increase
+        //then the gadge value will increase else if numofLayers if equal to five then the isFull is equal to true
         if (ls.lidIsOpen)
         {
             isFull = false;

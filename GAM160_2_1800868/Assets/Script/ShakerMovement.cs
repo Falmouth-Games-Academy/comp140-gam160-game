@@ -21,12 +21,13 @@ public class ShakerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //If forTesting is true then the player will control the shaker via the keyboard else if will invoke the registerted function
+        //If forTesting is true then the player will control the shaker via the keyboard else it will invoke the registerted function
         if (forTesting)
             transform.Translate(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         else
             shaker.Invoke();
 
+        /*
         if (Input.GetMouseButtonDown(0) && GetComponent<BoxCollider>() != null)
         {
             if (!isOpen)
@@ -42,5 +43,6 @@ public class ShakerMovement : MonoBehaviour {
 
             Debug.Log(isOpen);
         }
+        */
 	}
 }
