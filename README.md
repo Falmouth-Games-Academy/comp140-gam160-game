@@ -64,3 +64,22 @@ As for the biggest setbacks I expect to encounter, I could name:
 ### Ending notes
 
 My intention as of now is to use the 2 stick layout, mainly due to the fact that I am not yet confident enough to attempt to incorporate all the LED's, potentiometers, gyros and buttons on a single stick. However, as work progresses, I would like to keep it as an open possibility, a personal "stretch goal", so to speak. I hope it will not represent an issue, given the materials required are mostly the same and the underlying idea is the same - controlling a ship.
+
+### Final cost breakdown
+
+
+* £6.99 - Gyroscope
+
+* Materials for the casing (cardboard, glue, tape) as well as a small amount of wiring materials were kindly provided by peers and relatives
+
+Total cost: £6.99
+
+
+
+The reason behind going for such a low-cost approach was mainly due to ease of use of materials such as cardboard, and due to the flexibility
+that such materials entail.
+
+### Key user stories
+* As a player, I want to be able to control a space ship's movements and rotations with a physical controller
+* As a player, I want to explore space with my spaceship
+* As a player, I want to have some visual feedback in the form of a physical dashboard
