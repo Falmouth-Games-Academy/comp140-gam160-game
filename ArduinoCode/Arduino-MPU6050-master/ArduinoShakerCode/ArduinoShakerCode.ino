@@ -73,33 +73,6 @@ void setup()
 void loop()
 {
   timer = millis();
-  rawGyro = mpu.readRawGyro();
-  rawAccel = mpu.readRawAccel();
-  Vector normAccel = mpu.readNormalizeAccel();
-  
-  float DT = 0.02;
-  
-
-  //Convert Gyro raw to degrees per second
-  rate_gyr_x = rawGyro.XAxis * G_GAIN;
-  rate_gyr_y = rawGyro.YAxis * G_GAIN;
-  rate_gyr_z = rawGyro.ZAxis * G_GAIN;
-
-  //Calculate the angles from the gyro
-  gyroXangle+=rate_gyr_x*DT;
-  gyroYangle+=rate_gyr_y*DT;
-  gyroZangle+=rate_gyr_z*DT;
-
-  //Convert Accelerometer values to degrees
-  float AccXangle = (float) (atan2(rawAccel.YAxis,rawAccel.ZAxis)+M_PI)*(180/3.14159);
-  float AccYangle = (float) (atan2(rawAccel.ZAxis,rawAccel.XAxis)+M_PI)*(180/3.14159);
-  float AccZangle = (float) (atan2(rawAccel.XAxis,rawAccel.ZAxis)+M_PI)*(180/3.14159);
-
-
-  //Complementary filter used to combine the accelerometer and gyro values.
-  CFangleX=AA*(CFangleX+rate_gyr_x*DT) +(1 - AA) * AccXangle;
-  CFangleY=AA*(CFangleY+rate_gyr_y*DT) +(1 - AA) * AccYangle;
-  CFangleZ=AA*(CFangleZ+rate_gyr_z*DT) +(1 - AA) * AccZangle;
   
 if(Serial.available() > 0){
     //The variable incomingByte contains the incoming infromation

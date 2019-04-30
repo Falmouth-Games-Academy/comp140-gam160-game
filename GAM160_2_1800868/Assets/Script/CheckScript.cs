@@ -34,7 +34,7 @@ public class CheckScript : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        //If the shaker detects the wrong ingreiant then the player's time will be reduced and the warning from the timer script will appear
+        //If the shaker detects the wrong ingreiant then the player's time will be reduced and a warning will appear
         if (wrongIngrediantGadge >= 10)
         {
             timer.timer -= 5;
@@ -42,37 +42,36 @@ public class CheckScript : MonoBehaviour {
             wrongIngrediantGadge = 0;
         }
 
+        //If i is smaller than 5 then is made is equal to true
         if (i >= 5)
         {
             isMade = true;
         }
         else
             isMade = false;
-
-        //Debug.Log("checkscript: " + isMade);
-
-        /*if (!isFull)
-            isMade = false;
-            */
+        
             
 	}
 
     
     private void OnTriggerEnter(Collider other)
     {
+        //Destroy ingrediant object and other objects unless it has a SpawnPoint tag
         if (other.tag != "SpawnPoint")
         {
             Destroy(other.gameObject);
         }
 
         //if the shaker lid is open and if the ingrediant matches the current needed ingrediant
-        //then it will state that the ingrediant has been added and go on to the next one
+        //then the gadge value will increase
         if (ls.lidIsOpen)
         {
             isFull = false;
             if (values.layerNums[i].ToString() == other.transform.tag)
             {
                 gadge++;
+
+                //when gadge has a big enough value then the script will move onto the next layer
                 if (gadge > gadgeLimit)
                 {
 
@@ -83,6 +82,7 @@ public class CheckScript : MonoBehaviour {
             }
             else
             {
+                //If the wrong ingrediant is added then the wrong ingrediant gadge will increase
                 wrongIngrediantGadge++;
             }
         }

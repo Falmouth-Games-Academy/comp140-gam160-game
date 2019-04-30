@@ -14,18 +14,13 @@ public class Randomizer : MonoBehaviour {
     public List<Image> Layers = new List<Image>();
     public List<int> layerNums = new List<int>();
 
-    DrinkClass ingrediantLayer = new DrinkClass();
+
     string[] ingrediantsList = new string[] { "Sugar Syrup", "Lemon Juice", "Lime Juice", "Dry Gin", "Vodka"};
     int randomNum;
 
     // Use this for initialization
     void Start () {
         RandomLayers();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
     public void RandomLayers()

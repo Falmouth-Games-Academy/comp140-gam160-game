@@ -32,12 +32,14 @@ public class Ingrediant : MonoBehaviour {
         Destroy(drop, 2);
     }
 
+    //when the shaker collides with the trigger ispouring is set to true
     private void OnTriggerEnter (Collider other)
     {
         if(other.transform.name.Contains("Shaker"))
             isPouring = true;
     }
 
+    //when the shaker exits the trigger ispouring is set to false
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.name.Contains("Shaker"))

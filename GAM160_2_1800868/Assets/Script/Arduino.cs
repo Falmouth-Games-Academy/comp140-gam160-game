@@ -45,12 +45,6 @@ public class Arduino : MonoBehaviour {
     float posX;
     float posY;
     float posZ;
-    float X;
-    float Y;
-    float Z;
-    float accX;
-    float accY;
-    float accZ;
     float num;
 
     Vector3 previousDistance;
@@ -145,19 +139,9 @@ public class Arduino : MonoBehaviour {
             
             rotationVector = new Vector3(angelX,0, angelZ);
 
-            x.text = angelX.ToString();
-            y.text = angelY.ToString();
-            z.text = angelZ.ToString();
-            arrayLength.text = splitValues.Length.ToString();
-
             posX = float.Parse(values[3]);
             posY = float.Parse(values[4]);
             posZ = float.Parse(values[5]);
-            
-
-            xAcc.text = posX.ToString();
-            yAcc.text = posY.ToString();
-            zAcc.text = posZ.ToString();
 
             posX = posX - 9;
 
@@ -168,17 +152,11 @@ public class Arduino : MonoBehaviour {
             val = values[6];
         }
     }
+    
 
-    private void LateUpdate()
-    {
-        previousAcc = new Vector3(accX,accY,accZ);
-    }
-
-    //When the game closes the port to the arduino will close as well
-    //and turn off the LEDs
+    //When the game closes the port to the arduino will close
     private void OnDestroy()
     {
-        //WriteToArduio("r");
         serial.Close();
     }
 
@@ -218,6 +196,7 @@ public class Arduino : MonoBehaviour {
         Shaker.transform.eulerAngles = rotationVector;
     }
 
+    //gets the average of the newest input data
     public float Smoother(float axis)
     {
         float average;
@@ -227,10 +206,7 @@ public class Arduino : MonoBehaviour {
             num += movementList[i];
         }
         average = num / 4;
-        for (int i = 0; i < 4; i++)
-        {
-            movementList.Remove(axis);
-        }
+        movementList.Clear();
 
         return average;
     }
