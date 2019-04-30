@@ -7,7 +7,7 @@
 
 // C++ standard
 #include <iostream>
-#include <string>
+#include <string>	
 
 // Headerphile
 #include "Shader.h"
@@ -99,25 +99,6 @@ class Renderer
 		//if (!CreateSimpleShader()) return false;
 
 		return true;
-	}
-
-	void RenderText(unsigned char string[])
-	{
-		int w = glutBitmapLength(GLUT_BITMAP_8_BY_13, string);
-
-		float x = 0.5f;
-
-		glRasterPos2f(x - (float)w / 2, 0.0);
-
-		glColor3f(1, 1, 1);
-
-		int len = (strlen((char*)string));
-
-		for (int i = 0; i < len; i++)
-		{
-			glutBitmapCharacter(GLUT_BITMAP_8_BY_13, string[i]);
-		}
-
 	}
 
 	bool SetUpShader(const std::string &vertex, const std::string &fragment)
