@@ -173,6 +173,25 @@ class Renderer
 		SDL_Quit();
 	}
 
+	void printText(unsigned char string[])
+	{
+		int w = glutBitmapLength(GLUT_BITMAP_8_BY_13, string);
+
+		float x = 0.5f;
+
+		glRasterPos2f(x - (float)w / 2, 0.0);
+
+		glColor3f(1, 1, 1);
+
+		int len = (strlen((char*)string));
+
+		for (int i = 0; i < len; i++)
+		{
+			glutBitmapCharacter(GLUT_BITMAP_8_BY_13, string[i]);
+		}
+
+	}
+
 	void CheckSDLError(int line = -1)
 	{
 		std::string error = SDL_GetError();
