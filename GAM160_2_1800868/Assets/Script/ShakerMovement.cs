@@ -10,6 +10,7 @@ public class ShakerMovement : MonoBehaviour {
     private bool forTesting;
 
     private bool isOpen;
+    private Transform t;
 
     public UnityEvent shaker;
 

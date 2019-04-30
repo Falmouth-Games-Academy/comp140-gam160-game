@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Arduino : MonoBehaviour {
     //The code used has come from Andy's workshop and has been modified
-    
+
     [SerializeField]
     private GameObject Shaker;
     [SerializeField]
