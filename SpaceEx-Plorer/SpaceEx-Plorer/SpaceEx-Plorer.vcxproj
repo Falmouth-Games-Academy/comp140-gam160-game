@@ -23,7 +23,7 @@
     <ProjectGuid>{DA7C1976-75DD-49B3-A4E6-F7722420A76A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SpaceExPlorer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
