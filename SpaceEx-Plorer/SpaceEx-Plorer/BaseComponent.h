@@ -7,7 +7,8 @@ enum ComponentType
 	Player,
 	Enemy,
 	Projectile,
-	Score
+	Score,
+	Collectible
 };
 
 class BaseComponent
@@ -80,4 +81,17 @@ public:
 
 public:
 	int health;
+};
+
+class CollectibleComponent : public BaseComponent
+{
+public:
+	CollectibleComponent() { type = ComponentType::Collectible; };
+	~CollectibleComponent() {};
+
+public:
+	// Hit points
+	int health;
+	// Points rewarded for collecting
+	int points;
 };

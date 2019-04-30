@@ -1,17 +1,7 @@
-﻿  pch.cpp
-  BaseComponent.cpp
-  Camera.cpp
-  EventHandler.cpp
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\eventhandler.cpp(83): warning C4101: 'e': unreferenced local variable
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\eventhandler.cpp(102): warning C4101: 'e': unreferenced local variable
-  SerialInterface.cpp
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\serialinterface.cpp(27): warning C4101: 'e': unreferenced local variable
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\serialinterface.cpp(63): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\serialinterface.cpp(69): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\serialinterface.cpp(70): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\serialinterface.cpp(71): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\serialinterface.cpp(83): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+﻿  BaseComponent.cpp
   SObject.cpp
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\model.h(130): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+  SProjectile.cpp
 d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\model.h(130): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
   SpaceEx-Plorer.cpp
 d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\model.h(130): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
@@ -20,8 +10,6 @@ d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\
 d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(133): warning C4018: '<': signed/unsigned mismatch
 d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(174): warning C4018: '<': signed/unsigned mismatch
 d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(182): warning C4018: '<': signed/unsigned mismatch
-  SProjectile.cpp
-d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\model.h(130): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
   Generating Code...
 d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\sobject.cpp(29): warning C4715: 'SObject::Init': not all control paths return a value
   SpaceEx-Plorer.vcxproj -> D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\Debug\SpaceEx-Plorer.exe
