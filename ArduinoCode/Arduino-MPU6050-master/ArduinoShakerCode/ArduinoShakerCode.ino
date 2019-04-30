@@ -40,31 +40,25 @@ float CFangleX;
 float CFangleY;
 float CFangleZ;
 
-float AA = 0.97;
-float G_GAIN = 0.070;
-
-Vector rawGyro;
-Vector rawAccel;
 
 void setup() 
 {
+  //setting up rate of bits per minute
   Serial.begin(9600);
+  //setting up the button pin
   pinMode(button1Pin, INPUT);
   
   // Initialize MPU6050
-  
   while(!mpu.begin(MPU6050_SCALE_2000DPS, MPU6050_RANGE_2G))
   {
     Serial.println("Could not find a valid MPU6050 sensor, check wiring!");
   }
   
   
-  // Calibrate gyroscope. The calibration must be at rest.
-  // If you don't want calibrate, comment this line.
+  // Calibrate gyroscope
   mpu.calibrateGyro();
 
-  // Set threshold sensivty. Default 3.
-  // If you don't want use threshold, comment this line or set 0.
+  // Set threshold sensivty
   mpu.setThreshold(3);
 
   //Serial.println("Finished setup");
@@ -79,7 +73,7 @@ if(Serial.available() > 0){
     incomingByte = Serial.read();
     
     //if incomingByte is equal to the character of p 
-   //then the arduino will send the analog information of poteniometers
+   //then the arduino will send the information from the mpu6050
     if(incomingByte == 'p')
     {
       sendData();
@@ -105,7 +99,7 @@ if(Serial.available() > 0){
     
 }
 
-  // Read normalized values
+  // Read normalized values of the gyroscope and accelerometer
   Vector norm = mpu.readNormalizeGyro();
   Vector axis = mpu.readNormalizeAccel();
 
@@ -113,25 +107,12 @@ if(Serial.available() > 0){
   pitch = pitch + norm.YAxis * timeStep;
   roll = roll + norm.XAxis * timeStep;
   yaw = yaw + norm.ZAxis * timeStep;
-  
+
+  //set variables to the acceloration from the 
   X = axis.XAxis;
   Y = axis.YAxis;
   Z = axis.ZAxis;
 
-  
-  
-  // Output raw
-  /*
-  Serial.print(" Pitch = ");
-  Serial.print(pitch);
-  Serial.print(" Roll = ");
-  Serial.print(roll);  
-  Serial.print(" Yaw = ");
-  Serial.println(yaw);
-
-  // Wait to full timeStep period
-  delay((timeStep*1000) - (millis() - timer));
-  */
 }
 
 void sendData()

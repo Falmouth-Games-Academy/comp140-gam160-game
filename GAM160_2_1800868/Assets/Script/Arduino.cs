@@ -38,7 +38,6 @@ public class Arduino : MonoBehaviour {
     private Vector3 previousAcc;
     private Vector3 previousPos;
     private Vector3 direction;
-    float angelY;
     float angelX;
     float angelZ;
 
@@ -54,7 +53,7 @@ public class Arduino : MonoBehaviour {
 
     private SerialPort serial;
     string[] splitValues;
-    private int valueID = 0;
+    //private int valueID = 0;
     public string values;
 
     // Use this for initialization
@@ -82,19 +81,7 @@ public class Arduino : MonoBehaviour {
         {
             //The value will be split into two to get the different positions
             splitValues = values.Split(',');
-
-            /*for (int i = 0; i < splitValues.Length; i++)
-            {
-                valueID = i;
-            }
             
-            foreach (string value in splitValues)
-            {
-                Debug.Log(value);
-            }
-            */
-            
-            //The function player position is run if values exists
             PositionPlayer(splitValues);
 
 
@@ -134,7 +121,6 @@ public class Arduino : MonoBehaviour {
         if (Shaker != null)
         {
             angelX = float.Parse(values[0]);
-            angelY = float.Parse(values[1]);
             angelZ = float.Parse(values[2]);
             
             rotationVector = new Vector3(angelX,0, angelZ);

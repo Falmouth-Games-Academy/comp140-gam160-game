@@ -8,13 +8,11 @@ public class LidScript : MonoBehaviour {
     private Arduino arduino;
 
     private Vector3 currentPos;
-    private Vector3 defaltRotation;
 
     public bool lidIsOpen;
 
     // Use this for initialization
     void Start () {
-        defaltRotation = transform.eulerAngles;
 	}
 	
 	// Update is called once per frame
