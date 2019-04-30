@@ -210,7 +210,7 @@ int getNormalisedAngle(float angle)
   int newAngle = angle;
   newAngle = newAngle % 360;
   if(newAngle < 0)
-    newAngle = 360 - (-1)*newAngle;
+    newAngle = abs(newAngle);
   return newAngle;
 }
 

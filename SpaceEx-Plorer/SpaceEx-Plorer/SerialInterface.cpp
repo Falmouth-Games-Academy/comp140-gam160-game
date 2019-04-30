@@ -62,9 +62,15 @@ void SerialInterface::getInput()
 
 			speed = debounce(0.2, speed, std::stoi(subSpeed));
 
+			prevX = angleX;
+			prevY = angleY;
+			prevZ = angleZ;
+
 			angleX = debounce(0.2, angleX, std::stoi(subX));
 			angleY = debounce(0.2, angleY, std::stoi(subY));
 			angleZ = debounce(0.2, angleZ, std::stoi(subZ));
+
+			//std::cout << angleX << " " << angleY << " " << angleZ << "\n";
 
 			state = stoi(subState);
 

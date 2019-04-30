@@ -36,5 +36,7 @@ public:
 
 	int angleX, angleY, angleZ;
 
+	int prevX, prevY, prevZ;
+
 	int state;
 };
