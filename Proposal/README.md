@@ -109,7 +109,7 @@ In other words, competitive games start off with the players having the same amo
 3|Push Button|The button will send signals to the Arduino which will tell the game that I want to close the shaker lid|1|£0.22| 
 4| Wires| The wires are used to allow the devices to communicate with one another. |8|£ 2.39|
 5|10k-ohm resistor|The resistor is used for the button so that the right volt is sent and doesn’t damage the button or Arduino.|1| £1.39| 
-6|Soldiering board|Is used to create prototype circuit boards that you can solder parts to|1|£3.89| 
+6|Soldiering board|The soldering board is used to create prototype circuit boards with components soldered onto them on any part of the board|1|£3.89| 
 ||||Total:| £32.89|
 
  
@@ -154,7 +154,7 @@ Fig6: Oates, Max. 2019.Old Controller Design Fig7: Oates, Max. 2019.NewControlle
 
 Below in Fig 8 you can see a circuit diagram of the controller using the components mentioned in the table above. The breadboard in the diagram demonstrates the soldering board. 
 
- ![](CircuitDiagram.png)
+ ![](CircuitDiagram.PNG)
 
 Fig8: Oates, Max. 2019. Controller Circuit Diagram 
 
@@ -240,7 +240,7 @@ Saddam. 2018. MPU6050 Gyro Sensor Interfacing with Arduino. Available at: https:
 
  
 
-Burgun Keith. 2018. 'Understanding Balance in Video Games'. Available at: https://www.gamasutra.com/view/feature/134768/understanding_balance_in_video_.php. [Accessed Feb 7,]. 
+Burgun Keith. 2011. 'Understanding Balance in Video Games'. Available at: https://www.gamasutra.com/view/feature/134768/understanding_balance_in_video_.php. [Accessed Feb 7,]. 
 
 Champlain emc. Space Box – The Emergent Media Centre’s 10 year anniver-sary. WordPress. 
 
