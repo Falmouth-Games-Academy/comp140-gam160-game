@@ -72,13 +72,14 @@ public class CheckScript : MonoBehaviour {
             {
                 gadge++;
 
-                //when gadge has a big enough value then the script will move onto the next layer
+                //when gadge has a big enough value then the script will move onto the next layer and reset both gadges
                 if (gadge > gadgeLimit)
                 {
 
                     i = i + 1;
                     gadge = 0;
                     values.Layers[i-1].color = Color.green;
+                    wrongIngrediantGadge = 0;
                 }
             }
             else
@@ -87,6 +88,7 @@ public class CheckScript : MonoBehaviour {
                 wrongIngrediantGadge++;
             }
         }
+        //Shaker is full when all the layers have been added
         else if (numOfLayers >= 5)
         {
             isFull = true;

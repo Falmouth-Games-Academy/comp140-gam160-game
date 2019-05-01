@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -572,47 +572,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liquid: {fileID: 1303055105596206, guid: c7776d3697ffa3a41bccc252dc7e8c0f, type: 2}
   spawnPoint: {fileID: 1133822198}
---- !u!1 &194393251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 194393253}
-  - component: {fileID: 194393252}
-  m_Layer: 0
-  m_Name: Loader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &194393252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 194393251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d709e956582d5d4f9c40e84096a6b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arduino: {fileID: 362704980}
---- !u!4 &194393253
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 194393251}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &194567609
 Prefab:
   m_ObjectHideFlags: 0
@@ -1261,11 +1220,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 359184501}
   m_CullTransparentMesh: 0
---- !u!1 &362704980 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1752993630058508, guid: bae42e6bee1de4c40886c5133ef2e786,
-    type: 2}
-  m_PrefabInternal: {fileID: 1853777864}
 --- !u!224 &378924215 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224313095359921802, guid: 8dedb47b40398d54882789ef29266cf2,
@@ -3924,7 +3878,7 @@ Prefab:
     - target: {fileID: 114860190612762738, guid: bae42e6bee1de4c40886c5133ef2e786,
         type: 2}
       propertyPath: commPort
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae42e6bee1de4c40886c5133ef2e786, type: 2}

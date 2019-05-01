@@ -169,7 +169,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 22
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -181,11 +181,12 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "Hold the controller up striaght and gently tilt \nthe controller in the
-    direction you want it to go\n\nWhen collecting ingrediants go from bottom to tope
-    of the list \n\nLeave the shaker under the bottle until the ingrediant\non the
-    list has gone green\n\nWhen all the ingreidants on the list have gone green hold
-    the button\nto close the lid\n\nBegin shaking the controller until the \nshaker
-    bar is full\n"
+    direction you want it to go\n\nWhen collecting ingrediants go from the bottom
+    to top of the list \n\nLeave the shaker under the bottle until the ingrediant\non
+    the list has gone green\n\nWhen all the ingreidants on the list have gone green
+    hold the button\nto close the lid\n\nBegin shaking the controller until the \nshaker
+    bar is full\n\nAdd the wrong ingrediant or too much of the right ingrediant\nand
+    you loose time\n"
 --- !u!222 &619978140
 CanvasRenderer:
   m_ObjectHideFlags: 0
