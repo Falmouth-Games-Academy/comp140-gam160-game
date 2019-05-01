@@ -144,7 +144,7 @@ The game controller is a converted cocktail shaker with one button on the side w
 
 # Controller Design 
 
-The design of the controller has changed over time as shown in fig 6 & 7. Originally the controller was going to have six buttons allow the player to pour different ingredients and open and close the lid. Now the player only needs to press one button to open and close the lid of the shaker. As well as that the Neopixel strip at the top of the shaker has been removed due to time constraints. Some areas of the controller have remained consistent such as the controller’s housing being a cocktail shaker and the controller having a frame to hold the Arduino in place. However, the frame is made of carboard rather than 3D printed plastic. 
+The design of the controller has changed over time as shown in fig 6 & 7. Originally the controller was going to have six buttons allow the player to pour different ingredients and open and close the lid. Now the player only needs to press one button to open and close the lid of the shaker. As well as that the Neopixel strip at the top of the shaker has been removed due to time constraints. In addition, due to the position in the MPU the controller is right handed only. Some areas of the controller have remained consistent such as the controller’s housing being a cocktail shaker and the controller having a frame to hold the Arduino in place. However, the frame is made of carboard rather than 3D printed plastic. 
 
  
 ![](ShakerDesign3.jpg) ![](NewControllerDesign.jpg)
