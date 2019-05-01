@@ -17,6 +17,7 @@ public class DrinkClass : MonoBehaviour {
 		
 	}
 
+    //Display the inputed name for the ingrediant
     public void Ingrediant(string ingrediantName)
     {
         transform.GetComponentInChildren<Text>().text = ingrediantName;

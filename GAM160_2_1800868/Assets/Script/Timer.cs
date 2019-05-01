@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //turn off warning at start
         warning.enabled = false;
     }
 	

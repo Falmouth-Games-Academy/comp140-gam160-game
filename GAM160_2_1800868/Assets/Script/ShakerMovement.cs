@@ -27,23 +27,5 @@ public class ShakerMovement : MonoBehaviour {
             transform.Translate(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         else
             shaker.Invoke();
-
-        /*
-        if (Input.GetMouseButtonDown(0) && GetComponent<BoxCollider>() != null)
-        {
-            if (!isOpen)
-            {
-                isOpen = true;
-                GetComponent<BoxCollider>().enabled = true;
-            }
-            else
-            {
-                isOpen = false;
-                GetComponent<BoxCollider>().enabled = false;
-            }
-
-            Debug.Log(isOpen);
-        }
-        */
 	}
 }

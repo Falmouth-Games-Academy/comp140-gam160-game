@@ -67,7 +67,8 @@ void setup()
 void loop()
 {
   timer = millis();
-  
+
+//If new data is detected run code below
 if(Serial.available() > 0){
     //The variable incomingByte contains the incoming infromation
     incomingByte = Serial.read();
