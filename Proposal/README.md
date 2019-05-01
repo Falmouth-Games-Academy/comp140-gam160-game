@@ -140,11 +140,11 @@ On shake that button I found an interesting game called Overbrewed where you phy
 
 Fig5: Larsen Dyhr, Ramsum. 2017. Overbrewed 
 
-The game controller is a converted cocktail shaker with one button on the side which can open and close the lid of the shaker. The button will be big enough for the thumb on both the left and right hand to press. It will be placed on the beaker so that the player can hold the shaker normally with it being uncomfortable. This will allow the controller to be used by either left or right handed people. 
+The game controller is a converted cocktail shaker with one button on the side which can open and close the lid of the shaker. The button will be big enough for the thumb on both the left and right hand to press. It will be placed on the beaker so that the player can hold the shaker normally without it being uncomfortable. This will allow the controller to be used by either left or right handed people. 
 
 # Controller Design 
 
-The design of the controller has changed over time as shown in fig 6 & 7. Originally the controller was to have six buttons allow the player to pour different ingredients and open and close the lid. Now the player only needs to press one button to open and close the lid of the shaker. As well as that the Neopixel strip at the top of the shaker has been removed due to time constraints. Some areas of the controller have remained consistent such as the controller’s housing being a cocktail shaker and the controller having a frame to hold the Arduino in place. However, the frame is made of carboard rather than being 3D printed plastic. 
+The design of the controller has changed over time as shown in fig 6 & 7. Originally the controller was going to have six buttons allow the player to pour different ingredients and open and close the lid. Now the player only needs to press one button to open and close the lid of the shaker. As well as that the Neopixel strip at the top of the shaker has been removed due to time constraints. Some areas of the controller have remained consistent such as the controller’s housing being a cocktail shaker and the controller having a frame to hold the Arduino in place. However, the frame is made of carboard rather than 3D printed plastic. 
 
  
 ![](ShakerDesign3.jpg) ![](NewControllerDesign.jpg)
