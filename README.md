@@ -15,7 +15,7 @@ The player rotates the catpult and fires at the incoming drones. The game is wav
 The controler is a smaller version of the catapult in game. It will use a potentiometer to rotate the catapult and a flex sensor to fire the projectiles.
 To load the catapult, the player pulls back the shaft (the flex senosr). Once loaded, the player may release to fire at the incoming drones!
 
-Old Ideas
+# Old Ideas
 
 > ## Human Planes
 > 
