@@ -172,7 +172,7 @@ class Renderer
 		// Shutdown SDL 2
 		SDL_Quit();
 	}
-
+	// DO NOT CALL
 	void printText(unsigned char string[])
 	{
 		int w = glutBitmapLength(GLUT_BITMAP_8_BY_13, string);

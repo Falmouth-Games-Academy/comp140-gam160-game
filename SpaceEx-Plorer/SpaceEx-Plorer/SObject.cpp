@@ -42,4 +42,11 @@ void SObject::Update()
 		}
 
 	}
+	else if (targetPoint != glm::vec3() && glm::length(this->getPosition() - targetPoint) > 2)
+	{
+		if (following)
+		{
+			model.Translate(-glm::normalize(this->getPosition() - targetPoint));
+		}
+	}
 }

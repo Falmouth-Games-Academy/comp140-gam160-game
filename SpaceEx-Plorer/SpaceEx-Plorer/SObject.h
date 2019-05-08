@@ -36,7 +36,11 @@ public:
 
 	SObject * target;
 
+	glm::vec3 targetPoint;
+
 	BaseComponent component;
+
+	bool render = true;
 
 	bool following = false;
 
