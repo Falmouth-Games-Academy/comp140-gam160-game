@@ -1,0 +1,3 @@
+﻿  SpaceEx-Plorer.cpp
+e:\projects\sdl\git\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(51): warning C4305: 'initializing': truncation from 'double' to 'const GLfloat'
+  SpaceEx-Plorer.vcxproj -> E:\Projects\SDL\Git\SpaceEx-Plorer\Debug\SpaceEx-Plorer.exe

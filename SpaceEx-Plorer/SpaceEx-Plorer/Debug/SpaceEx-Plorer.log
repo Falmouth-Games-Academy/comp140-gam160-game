@@ -1,0 +1,7 @@
+﻿  SpaceEx-Plorer.cpp
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\model.h(130): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(58): warning C4018: '<': signed/unsigned mismatch
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(132): warning C4018: '<': signed/unsigned mismatch
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(134): warning C4018: '<': signed/unsigned mismatch
+d:\visual studio projects\git\comp140-gam160-game\spaceex-plorer\spaceex-plorer\spaceex-plorer.cpp(179): warning C4018: '<': signed/unsigned mismatch
+  SpaceEx-Plorer.vcxproj -> D:\Visual Studio Projects\Git\comp140-gam160-game\SpaceEx-Plorer\Debug\SpaceEx-Plorer.exe
